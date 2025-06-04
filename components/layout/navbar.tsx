@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const navLinks = [
   { title: "Home", href: "home" },
@@ -60,9 +61,11 @@ export function Navbar() {
             animate={{ rotate: 10 }}
             transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
           >
-            <img
+            <Image
               src="/logo/logo_technisia.svg"
               alt="Technisia Logo"
+              width={isScrolled ? 24 : 32}
+              height={isScrolled ? 24 : 32}
               className={cn(
                 "block",
                 isScrolled ? "h-6 w-6 md:h-8 md:w-8" : "h-8 w-8 md:h-10 md:w-10"
@@ -117,7 +120,6 @@ export function Navbar() {
           </a>
         </Button>
 
-
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="md:hidden">
@@ -128,9 +130,11 @@ export function Navbar() {
           <SheetContent side="right" className="bg-black/95 border-white/10 w-72">
             <SheetHeader className="border-b border-white/20 pb-4">
               <SheetTitle className="text-purple-400 text-xl font-bold flex items-center gap-2">
-                <img
+                <Image
                   src="/logo/logo_technisia.svg"
                   alt="Technisia Logo"
+                  width={32}
+                  height={32}
                   className="h-8 w-8"
                 />
                 Menu
