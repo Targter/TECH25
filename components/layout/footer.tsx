@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Twitter, Github, Linkedin, Facebook, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { siteConfig, navLinks } from "@/lib/constants";

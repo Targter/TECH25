@@ -1,50 +1,47 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, ReactNode } from 'react'
+import { useEffect, useRef, ReactNode } from "react";
 
 interface Particle {
-  x: number
-  y: number
-  size: number
-  speedX: number
-  speedY: number
-  opacity: number
-  life?: number
+  x: number;
+  y: number;
+  size: number;
+  speedX: number;
+  speedY: number;
+  opacity: number;
+  life?: number;
 }
 
 interface ParticleWrapperProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export function ParticleWrapper({ children }: ParticleWrapperProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null)
-  const particlesRef = useRef<Particle[]>([])
-  const sparklesRef = useRef<Particle[]>([])
-  const animationFrameIdRef = useRef<number>(0)
-  const scrollYRef = useRef<number>(0)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const sparklesRef = useRef<Particle[]>([]);
+  const animationFrameIdRef = useRef<number>(0);
+  const scrollYRef = useRef<number>(0);
 
   useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
+    const canvas = canvasRef.current;
+    if (!canvas) return;
 
-    const container = canvas.parentElement
-    if (!container) return
+    const container = canvas.parentElement;
+    if (!container) return;
 
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
 
     const resizeCanvas = () => {
-      canvas.width = container.clientWidth
-      canvas.height = container.clientHeight
-    }
-
-    resizeCanvas()
-    window.addEventListener('resize', resizeCanvas)
+      canvas.width = container.clientWidth;
+      canvas.height = container.clientHeight;
+    };
 
     const createParticles = () => {
-      const particles = particlesRef.current
-      particles.length = 0
-      const count = Math.floor(canvas.width * 0.08)
+      const particles = particlesRef.current;
+      particles.length = 0;
+      const count = Math.floor(canvas.width * 0.08);
       for (let i = 0; i < count; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -53,77 +50,77 @@ export function ParticleWrapper({ children }: ParticleWrapperProps) {
           speedX: (Math.random() - 0.5) * 0.7,
           speedY: (Math.random() - 0.5) * 0.7,
           opacity: Math.random() * 0.5 + 0.5,
-        })
+        });
       }
-    }
+    };
 
     const drawLines = () => {
-      const particles = particlesRef.current
+      const particles = particlesRef.current;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const distance = Math.sqrt(dx * dx + dy * dy)
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < 130) {
-            ctx.beginPath()
-            ctx.strokeStyle = `rgba(0,255,180,${(1 - distance / 130) * 0.4})`
-            ctx.lineWidth = 1
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.stroke()
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0,255,180,${(1 - distance / 130) * 0.4})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
           }
         }
       }
-    }
+    };
 
     const animate = () => {
-      animationFrameIdRef.current = requestAnimationFrame(animate)
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      animationFrameIdRef.current = requestAnimationFrame(animate);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const particles = particlesRef.current
-      const sparkles = sparklesRef.current
+      const particles = particlesRef.current;
+      const sparkles = sparklesRef.current;
 
       for (const p of particles) {
-        p.x += p.speedX
-        p.y += p.speedY
+        p.x += p.speedX;
+        p.y += p.speedY;
 
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
 
-        ctx.shadowBlur = 10 + scrollYRef.current * 0.01
-        ctx.shadowColor = 'rgba(0,255,180,0.5)'
+        ctx.shadowBlur = 10 + scrollYRef.current * 0.01;
+        ctx.shadowColor = "rgba(0,255,180,0.5)";
 
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0,255,180,${p.opacity})`
-        ctx.fill()
-        ctx.shadowBlur = 0
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,255,180,${p.opacity})`;
+        ctx.fill();
+        ctx.shadowBlur = 0;
       }
 
-      drawLines()
+      drawLines();
 
       for (let i = sparkles.length - 1; i >= 0; i--) {
-        const s = sparkles[i]
-        s.x += s.speedX
-        s.y += s.speedY
-        s.opacity -= 0.02
-        s.life! -= 1
+        const s = sparkles[i];
+        s.x += s.speedX;
+        s.y += s.speedY;
+        s.opacity -= 0.02;
+        s.life! -= 1;
 
-        ctx.beginPath()
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(255, 255, 120, ${s.opacity})`
-        ctx.fill()
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 120, ${s.opacity})`;
+        ctx.fill();
 
         if (s.opacity <= 0 || s.life! <= 0) {
-          sparkles.splice(i, 1)
+          sparkles.splice(i, 1);
         }
       }
-    }
+    };
 
     const handleClick = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
 
       for (let i = 0; i < 20; i++) {
         sparklesRef.current.push({
@@ -134,27 +131,29 @@ export function ParticleWrapper({ children }: ParticleWrapperProps) {
           speedY: (Math.random() - 0.5) * 3,
           opacity: 1,
           life: 40,
-        })
+        });
       }
-    }
+    };
 
     const handleScroll = () => {
-      scrollYRef.current = window.scrollY
-    }
+      scrollYRef.current = window.scrollY;
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    window.addEventListener('click', handleClick)
+    resizeCanvas();
+    createParticles();
+    animate();
 
-    createParticles()
-    animate()
+    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("click", handleClick);
 
     return () => {
-      cancelAnimationFrame(animationFrameIdRef.current!)
-      window.removeEventListener('resize', resizeCanvas)
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('click', handleClick)
-    }
-  }, []) // ✅ now we can safely keep this empty
+      cancelAnimationFrame(animationFrameIdRef.current);
+      window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   return (
     <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -169,5 +168,5 @@ export function ParticleWrapper({ children }: ParticleWrapperProps) {
       />
       <div className="relative z-10 w-full">{children}</div>
     </div>
-  )
+  );
 }

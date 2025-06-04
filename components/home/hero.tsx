@@ -5,126 +5,41 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight, Calendar, MapPin, Users, Trophy, Code, Zap } from "lucide-react"
 import { siteConfig } from "@/lib/constants"
-import PlanetScene from '@/components/planet-3d/planet-3d';
+import { useState, useEffect, useMemo,  } from 'react';
+import dynamic from 'next/dynamic';
+
+// Dynamic imports with Next.js dynamic() - Recommended approach
+const PlanetScene = dynamic(() => import('@/components/planet-3d/planet-3d'), {
+  loading: () => (
+    <div className="flex items-center justify-center w-full min-h-[400px]">
+      <div className="text-green-400 animate-pulse">Loading 3D Planet...</div>
+    </div>
+  ),
+  ssr: false
+});
+
+// ✅ Alternative for named exports
+// ✅ Correct way for named exports
+// ✅ Simplest approach - make sure FlyingSpaceship is a default export
+const FlyingSpaceship = dynamic(() => 
+  import('@/components/FlyingSpaceship/FlyingSpaceship'), 
+  {
+    loading: () => null,
+    ssr: false
+  }
+);
+
+// Then use it as: <FlyingSpaceship.FlyingSpaceship />
 
 
-interface FlyingSpaceshipProps {
-  right?: string;
-  left?: string;
-  top?: string;
-  duration?: number;
-  color?: "green" | "blue" | "purple";
-  direction?: "leftToRight" | "rightToLeft";
-}
 
-export  function FlyingSpaceship({
-  top = "top-[30%]",
-  left = "left-[10%]",
-  duration = 20,
-  color = "green",
-  direction = "leftToRight"
-}: FlyingSpaceshipProps) {
-  const colors = {
-    green: {
-      body: "from-green-400 via-green-500 to-green-600",
-      inner: "from-green-300 to-green-400",
-      wing: "bg-green-500",
-      cockpit: "from-cyan-300 to-blue-400",
-      trail: "from-green-400 via-green-300"
-    },
-    blue: {
-      body: "from-blue-400 via-blue-500 to-blue-600",
-      inner: "from-blue-300 to-blue-400",
-      wing: "bg-blue-500",
-      cockpit: "from-teal-300 to-blue-300",
-      trail: "from-blue-400 via-blue-300"
-    },
-    purple: {
-      body: "from-purple-400 via-purple-500 to-purple-600",
-      inner: "from-purple-300 to-purple-400",
-      wing: "bg-purple-500",
-      cockpit: "from-pink-300 to-purple-400",
-      trail: "from-purple-400 via-purple-300"
-    }
-  };
-
-  const c = colors[color];
-  const isLeftToRight = direction === "leftToRight";
-
-  return (
-    <motion.div
-      className={`absolute ${top} ${left} w-32 h-20 pointer-events-none z-30`}
-      initial={{ x: isLeftToRight ? -200 : 200 }}
-      animate={{ x: isLeftToRight ? "100vw" : "-100vw" }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: "linear"
-      }}
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      <motion.div
-        className="relative w-24 h-12"
-        animate={{
-          rotateX: [0, 10, -5, 0],
-          scale: [1, 1.1, 0.95, 1]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        {/* Main Body */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${c.body} rounded-full shadow-lg transform rotate-12`}>
-          <div className={`absolute inset-2 bg-gradient-to-r ${c.inner} rounded-full opacity-60`} />
-        </div>
-
-        {/* Wings */}
-        <div className={`absolute -left-3 top-1/2 w-8 h-3 ${c.wing} transform -translate-y-1/2 rotate-45 rounded-full shadow-md`} />
-        <div className={`absolute -right-3 top-1/2 w-8 h-3 ${c.wing} transform -translate-y-1/2 -rotate-45 rounded-full shadow-md`} />
-
-        {/* Cockpit */}
-        <div className={`absolute top-1 left-1/2 w-4 h-4 bg-gradient-to-br ${c.cockpit} rounded-full transform -translate-x-1/2 shadow-inner`}>
-          <motion.div
-            className="absolute inset-1 bg-white rounded-full opacity-80"
-            animate={{ opacity: [0.8, 0.4, 0.8] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-
-        {/* Engine Glow */}
-        <motion.div
-          className="absolute -right-8 top-1/2 w-12 h-2 bg-gradient-to-r from-orange-400 via-yellow-300 to-transparent rounded-full transform -translate-y-1/2"
-          animate={{
-            scaleX: [1, 1.5, 0.8, 1.2, 1],
-            opacity: [0.8, 1, 0.6, 0.9, 0.8]
-          }}
-          transition={{
-            duration: 0.3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Particle Trail */}
-        <motion.div
-          className={`absolute -right-16 top-1/2 w-20 h-1 bg-gradient-to-r ${c.trail} to-transparent rounded-full transform -translate-y-1/2 opacity-60`}
-          animate={{
-            scaleX: [1, 1.3, 0.7, 1],
-            opacity: [0.6, 0.8, 0.3, 0.6]
-          }}
-          transition={{
-            duration: 0.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </motion.div>
-    </motion.div>
-  );
-}
 export function HeroSection() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const stats = [
     { icon: Users, label: "Participants", value: "5000+" },
     { icon: Trophy, label: "Competitions", value: "12+" },
@@ -132,27 +47,33 @@ export function HeroSection() {
     { icon: Zap, label: "Workshops", value: "25+" }
   ]
 
-  const floatingElements = Array.from({ length: 6 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 20 + 10,
-    duration: Math.random() * 10 + 15,
-    delay: Math.random() * 5,
-    x: Math.random() * 100,
-    y: Math.random() * 100
-  }))
+  const floatingElements = useMemo(() => {
+    if (!isClient) return [];
+    
+    const elements = [];
+    for (let i = 0; i < 6; i++) {
+      const seed = i * 12345;
+      elements.push({
+        id: i,
+        size: ((seed * 3) % 20) + 10,
+        duration: ((seed * 5) % 10) + 15,
+        delay: (seed % 5) + (i * 0.5),
+        x: ((seed * 7) % 80) + 10,
+        y: ((seed * 11) % 80) + 10
+      });
+    }
+    return elements;
+  }, [isClient]);
 
   return (
     <div className="relative min-h-screen flex items-center justify-start overflow-hidden bg-gradient-to-br scroll-smooth px-8 md:px-16">
-      {/* Animated background grid */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_70%,transparent_110%)]" />
       </div>
-        {/* <FlyingSpaceship top="top-[10%]" left="left-[5%]" duration={18} color="green" direction="leftToRight" /> */}
-        <FlyingSpaceship top="top-[35%]" left="left-[90%]" duration={22} color="blue" direction="rightToLeft" />
-        {/* <FlyingSpaceship top="top-[50%]" left="left-[30%]" duration={15} color="purple" direction="leftToRight" /> */}
+      
+      <FlyingSpaceship top="top-[35%]" left="left-[90%]" duration={22} color="blue" direction="rightToLeft" />
 
-      {/* Floating geometric shapes */}
-      {floatingElements.map((element) => (
+      {isClient && floatingElements.map((element) => (
         <motion.div
           key={element.id}
           className="absolute pointer-events-none"
@@ -178,25 +99,33 @@ export function HeroSection() {
         </motion.div>
       ))}
 
-      {/* Planet scene - full screen width & height container, planet centered */}
+      {/* Planet scene with dynamic import - Now properly lazy loaded */}
       <div className="hidden md:flex absolute inset-0 pointer-events-none z-10 justify-center items-center">
         <div className="w-full h-full max-w-[1400px] max-h-[900px]">
+          {/* Option 1: Using Next.js dynamic() with built-in loading */}
           <PlanetScene />
+          
+          {/* Option 2: If using React.lazy(), wrap with Suspense (uncomment if needed) */}
+          {/* 
+          <Suspense fallback={
+            <div className="flex items-center justify-center w-full h-full">
+              <div className="text-green-400 animate-pulse">Loading 3D Planet...</div>
+            </div>
+          }>
+            <PlanetScene />
+          </Suspense>
+          */}
         </div>
       </div>
 
-      {/* Main gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/60" style={{ zIndex: 2 }} />
 
-      {/* Content container aligned left */}
       <div className="relative z-20 max-w-3xl text-center mx-auto">
-
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "easeOut" }}
         >
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -204,10 +133,9 @@ export function HeroSection() {
             className="inline-flex items-center px-4 py-2 mb-8 bg-green-500/10 border border-green-500/30 rounded-full backdrop-blur-sm"
           >
             <Zap className="h-4 w-4 mr-2 text-green-400" />
-            <span className="text-sm font-medium text-green-400">Asia&apos;s Premier Tech Festival</span>
+            <span className="text-sm font-medium text-green-400">North India&apos;s Premier Tech Festival</span>
           </motion.div>
 
-          {/* Main title */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
             <div className="block">
               {['TECH', 'NISIA'].map((word, index) => (
@@ -236,7 +164,6 @@ export function HeroSection() {
             </motion.span>
           </h1>
 
-          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -249,13 +176,10 @@ export function HeroSection() {
             </span>
           </motion.p>
 
-          {/* Description */}
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.3 }} className="text-green-400 text-lg font-semibold mb-10 max-w-xl leading-tight">
-            Experience North India’s ultimate tech festival — innovate, compete, connect!
+            Experience North India@apos;s ultimate tech festival — innovate, compete, connect!
           </motion.p>
 
-
-          {/* Stats section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -277,7 +201,6 @@ export function HeroSection() {
             ))}
           </motion.div>
 
-          {/* Event details */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -294,7 +217,6 @@ export function HeroSection() {
             </div>
           </motion.div>
 
-          {/* CTA buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -323,7 +245,6 @@ export function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent" style={{ zIndex: 2 }} />
     </div>
   )

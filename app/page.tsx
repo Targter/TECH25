@@ -17,7 +17,7 @@ export default function Home() {
       </section>
 
       <section id="video">
-        <Video src="/videos/event-highlights.mp4" />
+        <Video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
       </section>
 
       <section id="highlights">

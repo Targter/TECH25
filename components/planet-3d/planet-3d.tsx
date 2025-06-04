@@ -1,25 +1,32 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,  useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Sphere } from "@react-three/drei";
 import * as THREE from "three";
 
 function Planet({ position = [0, 0, 0] }) {
   const meshRef = useRef<THREE.Mesh>(null);
-  const [scale, setScale] = useState(0.1); // Start very small
-  const [color, setColor] = useState("#FF4500"); // Volcanic red-orange
-  const [emissive, setEmissive] = useState("#FF0000"); // Glowing red
-  const [finalSize] = useState(2); // Normal size
+  const [scale, setScale] = useState(0.1);
+  const [color, setColor] = useState("#FF4500");
+  const [emissive, setEmissive] = useState("#FF0000");
+  const [finalSize] = useState(2);
+  const [startTime, setStartTime] = useState<number | null>(null);
 
   const normalSpeed = 0.1;
-  const maxSpeed = 15; // Faster initial spin
-  const transitionDuration = 5; // Longer transition (5 seconds)
+  const maxSpeed = 15;
+  const transitionDuration = 5;
 
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
 
-    const elapsed = clock.getElapsedTime();
+    // Initialize start time on first frame
+    if (startTime === null) {
+      setStartTime(clock.getElapsedTime());
+      return;
+    }
+
+    const elapsed = clock.getElapsedTime() - startTime;
     const progress = Math.min(elapsed / transitionDuration, 1);
 
     // Explosive growth animation (easeOutElastic)
@@ -71,12 +78,19 @@ function Rings({ position = [0, 0, 0] }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const [ringScale, setRingScale] = useState(0.1);
   const [finalSize] = useState(3);
+  const [startTime, setStartTime] = useState<number | null>(null);
   const transitionDuration = 5;
 
   useFrame(({ clock }) => {
     if (!meshRef.current) return;
 
-    const elapsed = clock.getElapsedTime();
+    // Initialize start time on first frame
+    if (startTime === null) {
+      setStartTime(clock.getElapsedTime());
+      return;
+    }
+
+    const elapsed = clock.getElapsedTime() - startTime;
     const progress = Math.min(elapsed / transitionDuration, 1);
 
     // Ring growth animation
@@ -87,7 +101,7 @@ function Rings({ position = [0, 0, 0] }) {
     }
 
     // Fast initial spin that slows down
-    const spinSpeed = 0.5 + (5 * (1 - progress)); // Starts fast (5.5), ends at 0.5
+    const spinSpeed = 0.5 + (5 * (1 - progress));
     meshRef.current.rotation.x = Math.PI / 2;
     meshRef.current.rotation.y += spinSpeed * 0.05;
   });
@@ -99,7 +113,6 @@ function Rings({ position = [0, 0, 0] }) {
       scale={ringScale}
     >
       <torusGeometry args={[1, 0.05, 16, 100]} />
-
       <meshPhongMaterial
         color="#9F7AEA"
         emissive="#000000"
@@ -114,20 +127,43 @@ function Rings({ position = [0, 0, 0] }) {
 
 function Stars() {
   const starsRef = useRef<THREE.Points>(null);
-  const particlesCount = 2000;
-  const positions = new Float32Array(particlesCount * 3);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  
+  // Use useMemo to generate consistent star positions
+  const { positions } = useMemo(() => {
+    const count = 2000;
+    const pos = new Float32Array(count * 3);
+    
+    // Use a seeded approach for consistent positions
+    const seed = 12345; // Fixed seed
+    let seedValue = seed;
+    
+    const seedRandom = () => {
+      seedValue = (seedValue * 9301 + 49297) % 233280;
+      return seedValue / 233280;
+    };
 
-  for (let i = 0; i < particlesCount; i++) {
-    const i3 = i * 3;
-    positions[i3] = (Math.random() - 0.5) * 50;
-    positions[i3 + 1] = (Math.random() - 0.5) * 50;
-    positions[i3 + 2] = (Math.random() - 0.5) * 50;
-  }
+    for (let i = 0; i < count; i++) {
+      const i3 = i * 3;
+      pos[i3] = (seedRandom() - 0.5) * 50;
+      pos[i3 + 1] = (seedRandom() - 0.5) * 50;
+      pos[i3 + 2] = (seedRandom() - 0.5) * 50;
+    }
+
+    return { positions: pos, particlesCount: count };
+  }, []); // Empty dependency array - only compute once
 
   useFrame(({ clock }) => {
-    if (starsRef.current) {
-      starsRef.current.rotation.y = clock.getElapsedTime() * 0.02;
+    if (!starsRef.current) return;
+
+    // Initialize start time on first frame
+    if (startTime === null) {
+      setStartTime(clock.getElapsedTime());
+      return;
     }
+
+    const elapsed = clock.getElapsedTime() - startTime;
+    starsRef.current.rotation.y = elapsed * 0.02;
   });
 
   return (
@@ -135,9 +171,8 @@ function Stars() {
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          args={[positions, 3]} // [array, itemSize]
+          args={[positions, 3]}
         />
-
       </bufferGeometry>
       <pointsMaterial
         size={0.1}
@@ -148,6 +183,7 @@ function Stars() {
   );
 }
 
+// Clean component without client checking - let dynamic import handle hydration
 export default function PlanetScene({ containerClass = "" }) {
   return (
     <div className={`w-full h-full ${containerClass}`}>
