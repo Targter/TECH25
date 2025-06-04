@@ -11,7 +11,7 @@ interface VideoProps {
 
 export const Video = ({ className = "", order = "right", src }: VideoProps) => {
   return (
-    <section className="w-full py-16 text-white">
+    <section className={`w-full py-16 text-white ${className}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div
           className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${order === "right" ? "" : "lg:flex-row-reverse"
@@ -23,10 +23,10 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
               <h3 className="text-green-500 text-lg font-medium mb-2">ABOUT THE EVENT</h3>
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                 Welcome to the Amazing<br />
-                <span className="text-green-500">TECHNISIA '25</span>
+                <span className="text-green-500">TECHNISIA &apos;25</span>
               </h2>
               <p className="text-gray-300 text-lg mb-8">
-                TECHNASIA is not just an event, it's an interstellar journey through the cosmos of technology. With over 5000 participants from across the galaxy, our annual tech extravaganza brings together the brightest minds to innovate, compete, and celebrate the future of tech.
+                TECHNASIA is not just an event, it&apos;s an interstellar journey through the cosmos of technology. With over 5000 participants from across the galaxy, our annual tech extravaganza brings together the brightest minds to innovate, compete, and celebrate the future of tech.
               </p>
             </div>
 
@@ -74,7 +74,6 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
                     Click it. Feel it. Live the Thrill!
                   </p>
                 </div>
-
               </div>
             </DialogTrigger>
             <DialogContent className="max-w-4xl p-0 bg-black border-purple-500/20">
@@ -83,7 +82,7 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
+                  src={src || "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"}
                   title="Technisia 2024 Recap"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
