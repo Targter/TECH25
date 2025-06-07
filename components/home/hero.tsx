@@ -18,8 +18,7 @@ const PlanetScene = dynamic(() => import('@/components/planet-3d/planet-3d'), {
   ssr: false
 });
 
-// ✅ Alternative for named exports
-// ✅ Correct way for named exports
+
 // ✅ Simplest approach - make sure FlyingSpaceship is a default export
 const FlyingSpaceship = dynamic(() => 
   import('@/components/FlyingSpaceship/FlyingSpaceship'), 

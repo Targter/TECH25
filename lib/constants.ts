@@ -52,134 +52,93 @@ export const navLinks = [
     href: "/faqs",
   },
 ];
-
 export const competitions = [
   {
-    id: "CUMUN",
-    title: "CU-MUN",
-    description:
-      "A 24-hour coding marathon where teams build innovative solutions to real-world problems.",
-    longDescription:
-      "Join us for an exhilarating 24-hour coding marathon where teams of up to 4 members collaborate to create groundbreaking solutions to real-world challenges. Participants will have access to mentors, workshops, and resources to bring their ideas to life. This is your chance to showcase your technical skills, creativity, and problem-solving abilities while competing for substantial prizes.",
-    image: "/competition/mun.png",
-    prize: "$5,000",
-    date: "March 15-16, 2025",
-    location: "Main Campus",
-    registrationDeadline: "March 1, 2025",
-    teamSize: "2-4 members",
-    allowsTeam: true,
-    requirements: [
-      "Laptop with necessary development tools",
-      "Student ID or professional ID",
-      "Preliminary project idea",
-    ],
-    judges: [
-      "Dr. Emily Chen - AI Research Lead",
-      "Mark Johnson - Senior Software Architect",
-      "Priya Sharma - Tech Entrepreneur",
-    ],
-  },
-  {
-    id: "GAMING",
-    title: "GAME-X",
-    description:
-      "Test your problem-solving skills in this competitive programming challenge.",
-    longDescription:
-      "Challenge yourself in this intense competitive programming contest designed to test your algorithmic thinking and coding efficiency. Participants will face a series of increasingly difficult problems that must be solved under time constraints. The contest will cover data structures, algorithms, and mathematical concepts, providing a platform for coders to demonstrate their technical prowess.",
-    image: "/competition/1.png",
-    prize: "$2,500",
-    date: "March 14, 2025",
-    location: "Tech Building",
-    registrationDeadline: "March 1, 2025",
-    teamSize: "Individual",
-    allowsTeam: false,
-    requirements: [
-      "Proficiency in at least one programming language",
-      "Laptop with development environment",
-      "Student ID or professional ID",
-    ],
-    judges: [
-      "Prof. James Wilson - Computer Science Department",
-      "Aisha Khan - Competitive Programming Champion",
-      "David Lee - Software Engineer at Google",
-    ],
-  },
-  {
-    id: "ROBO",
-    title: "ROBO WAR",
-    description:
-      "Design intuitive and beautiful interfaces for next-generation applications.",
-    longDescription:
-      "Unleash your creativity in our UI/UX Challenge where participants design user-centered interfaces for real-world applications. You'll be given a design brief for a product or service, and your task will be to create an intuitive, accessible, and visually appealing user experience. This contest highlights the importance of design thinking and user research in creating digital products that truly meet user needs.",
-    image: "/competition/4.png",
-    prize: "$3,000",
-    date: "March 14, 2025",
-    location: "Design Lab",
-    registrationDeadline: "March 1, 2025",
-    teamSize: "1-2 members",
-    allowsTeam: true,
-    requirements: [
-      "Design software (Figma, Adobe XD, or similar)",
-      "Portfolio of previous work (optional)",
-      "Laptop with necessary design tools",
-    ],
-    judges: [
-      "Sarah Williams - UX Director at Apple",
-      "Raj Patel - Product Design Lead",
-      "Nina Rodriguez - Design Researcher",
-    ],
-  },
-  {
-    id: "show",
-    title: "TECH ROAST SHOW",
-    description:
-      "Demonstrate innovative applications of artificial intelligence and machine learning.",
-    longDescription:
-      "The AI/ML Showcase invites participants to present cutting-edge applications of artificial intelligence and machine learning technologies. Whether it's a novel algorithm, an innovative use case, or an improvement to existing methods, this competition is your platform to demonstrate how AI can solve complex problems and create value. Projects will be evaluated based on innovation, technical implementation, practical applicability, and potential impact.",
-    image: "/competition/5.png",
-    prize: "$4,000",
+    id: 1,
+    title: "CU MUN",
+      description: "Showcase your artificial intelligence prowess in this cutting-edge competition where innovation meets technology.",
     date: "March 15, 2025",
-    location: "Innovation Center",
-    registrationDeadline: "March 1, 2025",
-    teamSize: "1-3 members",
-    allowsTeam: true,
-    requirements: [
-      "Project demonstration materials",
-      "Documentation of methodology",
-      "Data sources and processing explanation",
-    ],
-    judges: [
-      "Dr. Michael Chang - AI Research Scientist",
-      "Leila Ahmadi - ML Engineering Director",
-      "Tom Richards - Data Science Lead",
-    ],
+    time: "09:00 AM - 06:00 PM",
+    location: "Main Auditorium, Tech Block",
+    participants: "150+ Teams",
+    prize: "₹50,000",
+    difficulty: "Advanced",
+    category: "Technology",
+    highlights: ["Machine Learning Models", "Neural Networks", "Real-world Problem Solving", "Industry Mentorship"],
+    image: "/competition/1.png"
   },
   {
-    id: "cft",
-    title: "CAPTURE THE FLAG",
-    description:
-      "Present your startup idea to a panel of investors and industry experts.",
-    longDescription:
-      "The Startup Pitch competition offers aspiring entrepreneurs the chance to present their business ideas to a panel of investors and industry experts. Participants will deliver a compelling pitch that covers their product, market opportunity, business model, and growth strategy. This is not just a competition but a platform to gain valuable feedback, networking opportunities, and potential investment for your venture.",
-    image: "/competition/6.png",
-    prize: "$10,000 Investment Opportunity",
+    id: 2,
+    title: "CodeFest Marathon",
+    description: "The ultimate coding showdown where algorithms dance and logic reigns supreme. Test your programming skills against the best.",
     date: "March 16, 2025",
-    location: "Business Center",
-    registrationDeadline: "February 28, 2025",
-    teamSize: "1-4 members",
-    allowsTeam: true,
-    requirements: [
-      "Business plan or pitch deck",
-      "Prototype or MVP (if available)",
-      "Market research data",
-    ],
-    judges: [
-      "Alexandra Chen - Venture Capitalist",
-      "Robert Kim - Successful Tech Entrepreneur",
-      "Jessica Moore - Angel Investor",
-    ],
+    time: "10:00 AM - 08:00 PM",
+    location: "Computer Lab Complex",
+    participants: "200+ Coders",
+    prize: "₹30,000",
+    difficulty: "Intermediate",
+    category: "Programming",
+    highlights: ["Data Structures", "Algorithm Optimization", "Competitive Programming", "Live Coding Sessions"],
+    image: "/competition/2.png"
+  },
+  {
+    id: 3,
+    title: "RoboWars Championship",
+    description: "Enter the arena where metal meets mayhem! Design, build, and battle your way to robotic supremacy in this thrilling competition.",
+    date: "March 17, 2025",
+    time: "11:00 AM - 07:00 PM",
+    location: "Engineering Workshop Arena",
+    participants: "80+ Robots",
+    prize: "₹75,000",
+    difficulty: "Expert",
+    category: "Robotics",
+    highlights: ["Combat Robotics", "Mechanical Design", "Strategic Warfare", "Live Battle Arena"],
+    image: "/competition/5.png"
+  },
+  {
+    id: 4,
+    title: "Web Dev Wizardry",
+    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
+    date: "March 18, 2025",
+    time: "09:30 AM - 05:30 PM",
+    location: "Digital Innovation Center",
+    participants: "120+ Developers",
+    prize: "₹40,000",
+    difficulty: "Intermediate",
+    category: "Web Development",
+    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
+    image: "/competition/4.png"
+  },
+  {
+    id: 5,
+    title: "Web Dev Wizardry",
+    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
+    date: "March 18, 2025",
+    time: "09:30 AM - 05:30 PM",
+    location: "Digital Innovation Center",
+    participants: "120+ Developers",
+    prize: "₹40,000",
+    difficulty: "Intermediate",
+    category: "Web Development",
+    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
+    image: "/competition/6.png"
+  },
+  {
+    id: 6,
+    title: "Web Dev Wizardry",
+    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
+    date: "March 18, 2025",
+    time: "09:30 AM - 05:30 PM",
+    location: "Digital Innovation Center",
+    participants: "120+ Developers",
+    prize: "₹40,000",
+    difficulty: "Intermediate",
+    category: "Web Development",
+    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
+    image: "/competition/7.png"
   },
 ];
+
 
 export const sponsors = [
   {
@@ -307,23 +266,23 @@ export const previousEvents = [
   {
     year: "2024",
     image: "/previous_events/1.jpg",
-    title: "Tech Fest 2024",
+    title: "CU-MUN ",
     description: "An annual technology festival showcasing the latest innovations and projects by students and professionals.",
     location: "Chandigarh University Campus",
     date: "March 15-17, 2024"
   },
   {
-    year: "2023",
+    year: "2024",
     image: "/previous_events/2.jpg",
-    title: "Innovation Summit",
+    title: "Mind Spirint",
     description: "A gathering of industry leaders, startups, and enthusiasts to discuss emerging trends and groundbreaking ideas.",
-    location: "Delhi Convention Center",
+    location: "Chandigarh University Campus",
     date: "November 10, 2023"
   },
   {
-    year: "2023",
+    year: "2024",
     image: "/previous_events/3.jpg",
-    title: "AI Conference",
+    title: "Threejs Workshop",
     description: "Exploring advancements in artificial intelligence, machine learning, and their impact on various industries.",
     location: "Online Virtual Event",
     date: "September 20-22, 2023"
@@ -368,6 +327,47 @@ export const previousEvents = [
     location: "Tech Park Auditorium, Pune",
     date: "December 10, 2022"
   },
+  {
+    year: "2022",
+    image: "/previous_events/9.jpg",
+    title: "Data Science Meetup",
+    description: "Community meetup for data scientists to network, share knowledge, and discuss recent data science trends.",
+    location: "Tech Park Auditorium, Pune",
+    date: "December 10, 2022"
+  },
+  {
+    year: "2022",
+    image: "/previous_events/10.jpg",
+    title: "Data Science Meetup",
+    description: "Community meetup for data scientists to network, share knowledge, and discuss recent data science trends.",
+    location: "Tech Park Auditorium, Pune",
+    date: "December 10, 2022"
+  },
+  {
+    year: "2022",
+    image: "/previous_events/11.jpg",
+    title: "Data Science Meetup",
+    description: "Community meetup for data scientists to network, share knowledge, and discuss recent data science trends.",
+    location: "Tech Park Auditorium, Pune",
+    date: "December 10, 2022"
+  },
+  {
+    year: "2022",
+    image: "/previous_events/12.jpg",
+    title: "Data Science Meetup",
+    description: "Community meetup for data scientists to network, share knowledge, and discuss recent data science trends.",
+    location: "Tech Park Auditorium, Pune",
+    date: "December 10, 2022"
+  },
+  {
+    year: "2022",
+    image: "/previous_events/13.jpg",
+    title: "Data Science Meetup",
+    description: "Community meetup for data scientists to network, share knowledge, and discuss recent data science trends.",
+    location: "Tech Park Auditorium, Pune",
+    date: "December 10, 2022"
+  },
+
 ];
 
 

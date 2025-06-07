@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { ExternalLink, X, Globe, Users, Award, Calendar } from "lucide-react";
@@ -8,7 +8,7 @@ import { ExternalLink, X, Globe, Users, Award, Calendar } from "lucide-react";
 const sponsors = [
   {
     name: "Google",
-    logo: "/competition/2.png",
+    logo: "/api/placeholder/200/100",
     website: "https://google.com",
     description:
       "Leading the future of technology with innovative solutions in cloud computing, AI, and developer tools.",
@@ -21,7 +21,7 @@ const sponsors = [
   },
   {
     name: "Microsoft",
-    logo: "/competition/8.png",
+    logo: "/api/placeholder/200/100",
     website: "https://microsoft.com",
     description: "Empowering every person and organization on the planet to achieve more through cutting-edge technology.",
     partnership: "Cloud Infrastructure Partner",
@@ -33,7 +33,7 @@ const sponsors = [
   },
   {
     name: "Apple",
-    logo: "/competition/4.png",
+    logo: "/api/placeholder/200/100",
     website: "https://apple.com",
     description: "Creating innovative products that enrich people's lives and push the boundaries of technology.",
     partnership: "Innovation Partner",
@@ -45,7 +45,7 @@ const sponsors = [
   },
   {
     name: "Amazon",
-    logo: "/competition/5.png",
+    logo: "/api/placeholder/200/100",
     website: "https://amazon.com",
     description: "Building the future of e-commerce, cloud computing, and artificial intelligence solutions.",
     partnership: "E-commerce & AWS Partner",
@@ -57,7 +57,7 @@ const sponsors = [
   },
   {
     name: "Meta",
-    logo: "/competition/6.png",
+    logo: "/api/placeholder/200/100",
     website: "https://meta.com",
     description: "Connecting the world through social technology and building the next generation of social experiences.",
     partnership: "Social Innovation Partner",
@@ -69,7 +69,7 @@ const sponsors = [
   },
   {
     name: "Netflix",
-    logo: "/competition/2.png",
+    logo: "/api/placeholder/200/100",
     website: "https://netflix.com",
     description: "Revolutionizing entertainment through streaming technology and original content creation.",
     partnership: "Media Technology Partner",
@@ -81,7 +81,7 @@ const sponsors = [
   },
   {
     name: "Tesla",
-    logo: "/competition/2.png",
+    logo: "/api/placeholder/200/100",
     website: "https://tesla.com",
     description:
       "Accelerating the world's transition to sustainable energy through innovative electric vehicles and clean energy solutions.",
@@ -94,7 +94,7 @@ const sponsors = [
   },
   {
     name: "Spotify",
-    logo: "/competition/2.png",
+    logo: "/api/placeholder/200/100",
     website: "https://spotify.com",
     description: "Transforming the way people discover and enjoy music through innovative audio streaming technology.",
     partnership: "Audio Technology Partner",
@@ -112,6 +112,26 @@ export default function SponsorsGrid() {
   const sponsorsRef = useRef(null);
   const sponsorsInView = useInView(sponsorsRef, { once: true, amount: 0.2 });
   const [selectedSponsor, setSelectedSponsor] = useState<Sponsor | null>(null);
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedSponsor) {
+        setSelectedSponsor(null);
+      }
+    };
+
+    if (selectedSponsor) {
+      document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when modal is open
+      document.body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedSponsor]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -133,14 +153,12 @@ export default function SponsorsGrid() {
   const openDetails = (sponsor: Sponsor) => setSelectedSponsor(sponsor);
   const closeDetails = () => setSelectedSponsor(null);
 
-  const floatingElements = Array.from({ length: 8 }, (_, i) => ({
-    id: i,
-    size: Math.random() * 15 + 8,
-    duration: Math.random() * 8 + 12,
-    delay: Math.random() * 4,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-  }));
+  // Handle backdrop click to close modal
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      closeDetails();
+    }
+  };
 
   return (
     <section className="relative py-20 overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
@@ -152,20 +170,14 @@ export default function SponsorsGrid() {
         />
       </div>
 
-      {/* Floating geometric shapes */}
-      {floatingElements.map(({ id, size, duration, delay, x, y }) => (
-        <motion.div
-          key={id}
-          className="absolute pointer-events-none rounded-full border border-green-500/20 bg-gradient-to-br from-green-400/10 to-green-600/10 backdrop-blur-sm"
-          style={{ left: `${x}%`, top: `${y}%`, width: size, height: size }}
-          animate={{ y: [-15, 15, -15], rotate: [0, 180, 360], scale: [1, 1.2, 1] }}
-          transition={{ duration, repeat: Infinity, delay, ease: "easeInOut" }}
-        />
-      ))}
-
       <div className="container relative z-10 max-w-7xl mx-auto px-6">
         {/* Header Section */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center max-w-4xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.8 }} 
+          className="text-center max-w-4xl mx-auto mb-16"
+        >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -182,7 +194,7 @@ export default function SponsorsGrid() {
             </span>
           </h1>
           <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
-            We’re proud to collaborate with industry leaders who fuel innovation and provide unmatched support to our hackathons.
+            We&apos;re proud to collaborate with industry leaders who fuel innovation and provide unmatched support to our hackathons.
           </p>
         </motion.div>
 
@@ -199,9 +211,9 @@ export default function SponsorsGrid() {
             <motion.article
               key={sponsor.name}
               variants={itemVariants}
-              className="group relative flex flex-col items-center bg-gray-900/40 rounded-2xl border border-green-600/30 p-6 shadow-lg hover:shadow-2xl cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-500"
+              className="group relative flex flex-col items-center bg-gray-900/40 rounded-2xl border border-green-600/30 p-6 shadow-lg hover:shadow-2xl hover:border-green-500/50 cursor-pointer focus:outline-none focus:ring-4 focus:ring-green-500 transition-all duration-300"
               tabIndex={0}
-              role="listitem"
+              role="button"
               aria-label={`${sponsor.name} sponsor card, press enter or click for details`}
               onClick={() => openDetails(sponsor)}
               onKeyDown={(e) => {
@@ -211,31 +223,28 @@ export default function SponsorsGrid() {
                 }
               }}
             >
-              <div className="relative w-28 h-16 mb-4 flex-shrink-0">
+              <div className="relative w-32 h-20 mb-4 flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
                 <Image
                   src={sponsor.logo}
                   alt={`${sponsor.name} logo`}
                   fill
                   className="object-contain"
-                  sizes="(max-width: 768px) 112px, 112px"
+                  sizes="(max-width: 768px) 128px, 128px"
                   unoptimized
                 />
               </div>
-              <h3 className="font-semibold text-lg text-green-400 mb-1 truncate text-center">{sponsor.name}</h3>
-              <p className="text-sm text-gray-300 text-center line-clamp-3">{sponsor.description}</p>
-              <motion.div
-                className="mt-4 px-3 py-1 rounded-full text-xs font-semibold bg-green-700/40 text-green-100 select-none pointer-events-none"
-                aria-hidden="true"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
+              <h3 className="font-semibold text-lg text-green-400 mb-2 text-center group-hover:text-green-300 transition-colors">
+                {sponsor.name}
+              </h3>
+              <p className="text-sm text-gray-300 text-center line-clamp-3 mb-4 flex-grow">
+                {sponsor.description}
+              </p>
+              <div className="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-700/40 text-green-100 border border-green-600/30">
                 {sponsor.partnership}
-              </motion.div>
+              </div>
 
-              <motion.div
-                aria-hidden="true"
-                className="absolute inset-0 rounded-2xl ring-2 ring-green-400/50 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity pointer-events-none"
-              />
+              {/* Hover ring effect */}
+              <div className="absolute inset-0 rounded-2xl ring-2 ring-green-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </motion.article>
           ))}
         </motion.div>
@@ -244,96 +253,136 @@ export default function SponsorsGrid() {
       {/* Sponsor Details Modal */}
       <AnimatePresence>
         {selectedSponsor && (
-          <motion.dialog
-           
-            open
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 backdrop-blur-sm bg-black/75"
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            aria-modal="true"
-            role="dialog"
-            aria-labelledby="modal-title"
-            aria-describedby="modal-description"
+            onClick={handleBackdropClick}
           >
             <motion.div
               className="relative bg-gray-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-green-600/50"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
+              initial={{ scale: 0.8, opacity: 0, y: 50 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 50 }}
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
             >
+              {/* Close Button */}
               <button
                 aria-label="Close sponsor details"
-                className="absolute top-5 right-5 text-green-400 hover:text-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full"
+                className="absolute top-6 right-6 text-gray-400 hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full p-2 hover:bg-gray-800/50 transition-colors"
                 onClick={closeDetails}
               >
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
-                <div className="relative w-40 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-green-500/40 shadow-lg">
+              <div className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8">
+                {/* Logo */}
+                <div className="relative w-48 h-28 flex-shrink-0 rounded-xl overflow-hidden border border-green-500/40 shadow-lg bg-gray-800/50 p-4">
                   <Image
                     src={selectedSponsor.logo}
                     alt={`${selectedSponsor.name} logo`}
                     fill
                     className="object-contain"
+                    sizes="(max-width: 768px) 192px, 192px"
                     unoptimized
                   />
                 </div>
-                <div className="flex-1">
-                  <h2 id="modal-title" className="text-3xl font-extrabold text-green-400 mb-3">
+
+                {/* Basic Info */}
+                <div className="flex-1 text-center md:text-left">
+                  <h2 className="text-3xl md:text-4xl font-extrabold text-green-400 mb-4">
                     {selectedSponsor.name}
                   </h2>
-                  <p id="modal-description" className="text-gray-300 mb-6">{selectedSponsor.description}</p>
+                  <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                    {selectedSponsor.description}
+                  </p>
 
                   <a
                     href={selectedSponsor.website}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-green-400 hover:text-green-600 font-semibold mb-6 underline"
+                    className="inline-flex items-center gap-2 text-green-400 hover:text-green-300 font-semibold px-4 py-2 rounded-lg border border-green-500/30 hover:border-green-400/50 transition-all duration-300"
                   >
                     <Globe className="w-5 h-5" />
                     Visit Website
                     <ExternalLink className="w-4 h-4" />
                   </a>
+                </div>
+              </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-green-400" />
-                      <span>Partner Since: <strong>{selectedSponsor.since}</strong></span>
+              {/* Detailed Information Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Partnership Details */}
+                <div className="space-y-6">
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <Calendar className="w-6 h-6 text-green-400 flex-shrink-0" />
+                    <div>
+                      <span className="text-green-400 font-semibold">Partner Since:</span>
+                      <p className="text-xl font-bold">{selectedSponsor.since}</p>
                     </div>
-                    
-                    <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5 text-green-400" />
-                      <span>Employees: <strong>{selectedSponsor.employees}</strong></span>
+                  </div>
+                  
+                  <div className="flex items-center gap-3 text-gray-300">
+                    <Users className="w-6 h-6 text-green-400 flex-shrink-0" />
+                    <div>
+                      <span className="text-green-400 font-semibold">Company Size:</span>
+                      <p className="text-xl font-bold">{selectedSponsor.employees}</p>
                     </div>
-                    <div className="flex flex-col gap-1">
-                      <strong className="text-green-400 mb-1">Focus Areas:</strong>
-                      <ul className="list-disc list-inside text-gray-400">
-                        {selectedSponsor.focus.map((area) => (
-                          <li key={area}>{area}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <strong className="text-green-400 mb-1">Contributions:</strong>
-                      <p className="text-gray-400">{selectedSponsor.contribution}</p>
-                    </div>
-                    
-                    <div className="flex flex-col gap-1">
-                      <strong className="text-green-400 mb-1">Benefits to Participants:</strong>
-                      <ul className="list-disc list-inside text-gray-400">
-                        {selectedSponsor.benefits.map((benefit) => (
-                          <li key={benefit}>{benefit}</li>
-                        ))}
-                      </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-green-400 font-semibold text-lg mb-3 flex items-center gap-2">
+                      <Award className="w-5 h-5" />
+                      Partnership Type
+                    </h3>
+                    <div className="px-4 py-2 bg-green-700/20 border border-green-600/30 rounded-lg">
+                      <p className="text-green-300 font-medium">{selectedSponsor.partnership}</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Focus Areas & Contributions */}
+                <div className="space-y-6">
+                  <div>
+                    <h3 className="text-green-400 font-semibold text-lg mb-3">Focus Areas</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {selectedSponsor.focus.map((area) => (
+                        <span
+                          key={area}
+                          className="px-3 py-1.5 bg-gray-800/50 border border-gray-700 rounded-full text-sm text-gray-300"
+                        >
+                          {area}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <h3 className="text-green-400 font-semibold text-lg mb-3">Contributions</h3>
+                    <p className="text-gray-300 leading-relaxed">{selectedSponsor.contribution}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Benefits Section */}
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <h3 className="text-green-400 font-semibold text-xl mb-4">Benefits to Participants</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {selectedSponsor.benefits.map((benefit, index) => (
+                    <div
+                      key={index}
+                      className="flex items-start gap-3 p-4 bg-gray-800/30 border border-gray-700 rounded-lg hover:border-green-600/50 transition-colors"
+                    >
+                      <div className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0" />
+                      <p className="text-gray-300 text-sm leading-relaxed">{benefit}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
-          </motion.dialog>
+          </motion.div>
         )}
       </AnimatePresence>
     </section>
