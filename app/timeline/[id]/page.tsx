@@ -155,20 +155,14 @@ export default function CompetitionPage({ params }: PageProps) {
       {/* Navigation */}
       <div className="bg-white/80 backdrop-blur-md border-b border-gray-200 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-  <button 
-    onClick={() => {
-      window.location.href = "/#timeline";
-      // Add smooth scroll after navigation
-      setTimeout(() => {
-        document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    }}
-    className="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200 bg-transparent border-none cursor-pointer"
-  >
-    <ArrowLeft className="w-5 h-5" />
-    <span className="font-medium">Back to Timeline</span>
-  </button>
-</div>
+          <Link 
+            href="/"
+            className="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-medium">Back to Home</span>
+          </Link>
+        </div>
       </div>
 
       {/* Hero Section */}
