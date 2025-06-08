@@ -17,6 +17,9 @@ interface Competition {
   highlights: string[];
   image: string;
 }
+interface PageProps {
+  params: Promise<{ id: string }>
+}
 
 const getCompetitionData = (id: string): Competition | null => {
   const competitions: { [key: string]: Competition } = {
@@ -109,14 +112,11 @@ const getCompetitionData = (id: string): Competition | null => {
   return competitions[id] || null;
 };
 
-interface PageProps {
-  params: {
-    id: string;
-  };
-}
 
-const SpaceCompetitionPage = ({ params }: PageProps) => {
-  const competition = getCompetitionData(params.id);
+
+ const  SpaceCompetitionPage = async ({ params }: PageProps) => {
+  const { id } = await params;
+  const competition = getCompetitionData(id);
 
   if (!competition) {
     return (
