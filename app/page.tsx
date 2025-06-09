@@ -3,8 +3,7 @@ import { HighlightsSection } from "@/components/home/highlights";
 import TeamSection from "@/components/about/team-section";
 import TimelineComponent from "@/components/timeline/timeline-component";
 import SponsorGrid from "@/components/sponsors/sponsors-grid";
-import RegistrationForm from "@/components/register/registration-form";
-import { PreviousEventsGrid } from "@/components/previous-events/previous-events-grid";
+import PreviousEventsGrid  from "@/components/previous-events/previous-events-grid";
 import { FaqAccordion } from "@/components/faqs/faq-accordion";
 import { ParticleWrapper } from "@/components/ParticleWrapper/ParticleWrapper";
 import { Video } from "@/components/videotrailer/videopage";
@@ -40,9 +39,7 @@ export default function Home() {
         <PreviousEventsGrid />
       </section>
 
-      <section id="register">
-        <RegistrationForm />
-      </section>
+     
 
       <section id="faqs">
         <FaqAccordion />

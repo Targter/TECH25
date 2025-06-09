@@ -36,7 +36,7 @@ function GalleryImage({ event, className }: { event: Event; className: string })
   );
 }
 
-export function PreviousEventsGrid() {
+export default  function PreviousEventsGrid() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -156,24 +156,20 @@ export function PreviousEventsGrid() {
               className="col-span-1 row-span-1 border-2 border-white/50" 
             />
             
+           
+
             {/* Bottom: one wide image and one regular */}
             <GalleryImage 
               event={previousEvents[10]} 
               className="col-span-2 row-span-1 border-2 border-white/50" 
-            />
+              />
             <GalleryImage 
               event={previousEvents[11]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
-            />
+              className="col-span-1 row-span-1 border-2  border-white/50" 
+              />
+           
           </div>
 
-          {/* Final Image */}
-          <div className="grid grid-cols-1 gap-4 h-[450px]">
-            <GalleryImage 
-              event={previousEvents[12]} 
-              className="col-span-1 border-2 border-white/50" 
-            />
-          </div>
         </div>
       </div>
     </section>
