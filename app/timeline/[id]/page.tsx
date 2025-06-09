@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import { Calendar, MapPin, Users, Trophy, Star, Zap, Award, ArrowLeft, ExternalLink, Rocket, Satellite } from 'lucide-react';
+import { Calendar, MapPin, Users, Trophy, Star, Zap, ArrowLeft, ExternalLink, Rocket, Satellite } from 'lucide-react';
+import Link from 'next/link';
 
 // Competition data type
 interface Competition {
@@ -114,7 +115,7 @@ const getCompetitionData = (id: string): Competition | null => {
 
 
 
- const  SpaceCompetitionPage = async ({ params }: PageProps) => {
+const SpaceCompetitionPage = async ({ params }: PageProps) => {
   const { id } = await params;
   const competition = getCompetitionData(id);
 
@@ -163,10 +164,9 @@ const getCompetitionData = (id: string): Competition | null => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+    <div className="min-h-screen text-white relative overflow-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-green-900/20 to-black"></div>
         {/* Floating particles */}
         <div className="absolute top-20 left-10 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
         <div className="absolute top-40 right-20 w-1 h-1 bg-cyan-400 rounded-full animate-ping"></div>
@@ -184,235 +184,178 @@ const getCompetitionData = (id: string): Competition | null => {
       </div>
 
       {/* Navigation */}
-      <div className="relative z-10 bg-black/40 backdrop-blur-xl border-b border-green-500/30  top-0">
+      <div className="relative z-10 bg-black/40 backdrop-blur-xl border-b border-green-500/30 top-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <button className="inline-flex items-center space-x-2 text-green-400 hover:text-green-300 transition-all duration-300 group">
-            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-            <span className="font-medium">Back to Mission Control</span>
-          </button>
+          <Link href={'/#previous-event'}>
+            <button className="inline-flex items-center space-x-2 text-green-400 hover:text-green-300 transition-all duration-300 group">
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span className="font-medium">Back to Home</span>
+            </button>
+          </Link>
         </div>
       </div>
 
-      {/* Hero Section with Large Image */}
+      {/* Main Content */}
       <div className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          {/* Competition Image - Large and Prominent */}
-          <div className="relative mb-8">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/30 to-cyan-500/30 rounded-3xl blur-2xl transform rotate-1"></div>
-            <div className="relative bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-lg rounded-3xl p-4 border border-green-500/30 shadow-2xl">
-              <Image
-                src={competition.image}
-                alt={competition.title}
-                width={800}
-                height={600}
-                className="w-full h-96 md:h-[500px] lg:h-[600px] object-cover rounded-2xl"
-                unoptimized
-              />
-              <div className="absolute inset-4 rounded-2xl bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div className="absolute bottom-8 left-8 right-8">
-                <div className="flex items-center space-x-4 mb-4">
-                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md ${getCategoryColor(competition.category)}`}>
+
+          {/* Hero Section - Split Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+
+            {/* Left Side - Text Content */}
+            <div className="space-y-8">
+              {/* Title and Description */}
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4 mb-6">
+                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md transition-all duration-300 hover:scale-105 ${getCategoryColor(competition.category)}`}>
                     <Rocket className="w-4 h-4 inline mr-2" />
                     {competition.category}
                   </span>
-                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md ${getDifficultyColor(competition.difficulty)}`}>
+                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md transition-all duration-300 hover:scale-105 ${getDifficultyColor(competition.difficulty)}`}>
                     <Satellite className="w-4 h-4 inline mr-2" />
                     {competition.difficulty}
                   </span>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight hover:text-green-400 transition-colors duration-500">
                   {competition.title}
                 </h1>
-                <p className="text-xl text-green-200 leading-relaxed max-w-3xl">
+
+                <p className="text-xl text-green-200 leading-relaxed">
                   {competition.description}
                 </p>
               </div>
-            </div>
-          </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4 mb-12 justify-center">
-            <button className="group bg-gradient-to-r from-green-500 to-emerald-600 text-black px-8 py-4 rounded-2xl font-bold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25">
-              <span className="flex items-center space-x-2">
-                <Rocket className="w-5 h-5" />
-                <span>Launch Registration</span>
-                <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </button>
-            <button className="border-2 border-green-500/50 text-green-400 px-8 py-4 rounded-2xl font-semibold hover:bg-green-500/10 hover:border-green-400 transition-all duration-300 backdrop-blur-md">
-              <span className="flex items-center space-x-2">
-                <Satellite className="w-5 h-5" />
-                <span>Mission Briefing</span>
-              </span>
-            </button>
-          </div>
-
-          {/* Information Grid - New Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Mission Stats - Large Cards */}
-            <div className="lg:col-span-8 space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Date & Time Card */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-4 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
-                      <Calendar className="w-8 h-8 text-green-400" />
+              {/* Key Info Cards */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Date & Time */}
+                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
+                      <Calendar className="w-6 h-6 text-green-400" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-green-400 mb-2">Mission Timeline</h3>
-                      <p className="text-lg text-white font-semibold">{competition.date}</p>
-                      <p className="text-green-300">{competition.time}</p>
-                      <div className="mt-3 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-green-300">Countdown Active</span>
-                      </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-green-400 mb-1">Competition Timeline</h3>
+                      <p className="text-white font-semibold">{competition.date}</p>
+                      <p className="text-green-300 text-sm">{competition.time}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Location Card */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-4 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-500/30">
-                      <MapPin className="w-8 h-8 text-cyan-400" />
+                {/* Location */}
+                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-500/30">
+                      <MapPin className="w-6 h-6 text-cyan-400" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-cyan-400 mb-2">Launch Pad</h3>
-                      <p className="text-lg text-white font-semibold">{competition.location}</p>
-                      <div className="mt-3 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                        <span className="text-sm text-cyan-300">Coordinates Locked</span>
-                      </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-cyan-400 mb-1">Venue</h3>
+                      <p className="text-white font-semibold">{competition.location}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Participants Card */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-4 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
-                      <Users className="w-8 h-8 text-purple-400" />
+                {/* Participants */}
+                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
+                      <Users className="w-6 h-6 text-purple-400" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-purple-400 mb-2">Space Crew</h3>
-                      <p className="text-lg text-white font-semibold">{competition.participants}</p>
-                      <div className="mt-3 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-                        <span className="text-sm text-purple-300">Recruitment Open</span>
-                      </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-purple-400 mb-1">participants</h3>
+                      <p className="text-white font-semibold">{competition.participants}</p>
                     </div>
                   </div>
                 </div>
 
-                {/* Prize Card */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105">
-                  <div className="flex items-start space-x-4">
-                    <div className="p-4 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl border border-yellow-500/30">
-                      <Trophy className="w-8 h-8 text-yellow-400" />
+                {/* Prize */}
+                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25">
+                  <div className="flex items-center space-x-4">
+                    <div className="p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl border border-yellow-500/30">
+                      <Trophy className="w-6 h-6 text-yellow-400" />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-yellow-400 mb-2">Stellar Rewards</h3>
-                      <p className="text-3xl font-bold text-white">{competition.prize}</p>
-                      <div className="mt-3 flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
-                        <span className="text-sm text-yellow-300">Victory Awaits</span>
-                      </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-yellow-400 mb-1">Crazy Rewards</h3>
+                      <p className="text-2xl font-bold text-white">{competition.prize}</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Mission Objectives */}
-              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-8 border border-green-500/30">
-                <h2 className="text-3xl font-bold text-green-400 mb-6 flex items-center">
-                  <Star className="w-8 h-8 text-green-400 mr-3" />
-                  Mission Objectives
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {competition.highlights.map((highlight, index) => (
-                    <div key={index} className="group flex items-center space-x-4 p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300">
-                      <div className="p-3 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-full border border-green-500/40">
-                        <Zap className="w-5 h-5 text-green-400" />
-                      </div>
-                      <span className="text-white font-medium group-hover:text-green-300 transition-colors">{highlight}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Command Center Sidebar */}
-            <div className="lg:col-span-4 space-y-6">
-              {/* Mission Control */}
-              <div className="bg-gradient-to-br from-green-600/80 to-emerald-700/80 backdrop-blur-xl rounded-2xl p-8 text-white shadow-2xl border border-green-400/30">
-                <div className="text-center space-y-6">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-green-300/30 to-emerald-300/30 rounded-full flex items-center justify-center border border-green-300/50">
-                    <Rocket className="w-8 h-8 text-green-200" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">Ready for Launch?</h3>
-                    <p className="text-green-200">Join the {competition.participants} elite space explorers!</p>
-                  </div>
-                  <button className="w-full bg-gradient-to-r from-white to-green-100 text-green-700 py-4 px-6 rounded-xl font-bold hover:from-green-50 hover:to-white transition-all duration-300 transform hover:scale-105 shadow-lg">
-                    <span className="flex items-center justify-center space-x-2">
-                      <Satellite className="w-5 h-5" />
-                      <span>Initiate Launch Sequence</span>
+              {/* Action Button */}
+              <div className="pt-4">
+                <Link href='/register'>
+                  <button className="group bg-gradient-to-r from-green-500 to-emerald-600 text-black px-8 py-4 rounded-2xl font-bold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25">
+                    <span className="flex items-center space-x-2">
+                      <Rocket className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
+                      <span>Registration</span>
+                      <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </span>
                   </button>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="relative group">
+  <div className="relative bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-lg rounded-2xl p-4 border border-green-500/30 shadow-1xl group-hover:border-green-400/50 transition-all duration-500 transform group-hover:scale-105">
+    <Image
+      src={competition.image}
+      alt={competition.title}
+      width={600}
+      height={700}
+      className="w-full h-auto max-h-[679px] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105"
+      unoptimized
+    />
+    <div className="absolute inset-4 rounded-2xl bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+  </div>
+</div>
+
+          </div>
+
+          {/* Mission Objectives */}
+          <div className="mb-12">
+            <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-8 border border-green-500/30 hover:border-green-400/40 transition-all duration-500 hover:shadow-lg hover:shadow-green-500/10">
+              <h2 className="text-3xl font-bold text-green-400 mb-6 flex items-center hover:text-green-300 transition-colors duration-300">
+                <Star className="w-8 h-8 text-green-400 mr-3 hover:rotate-180 transition-transform duration-500" />
+                Mission Objectives
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {competition.highlights.map((highlight, index) => (
+                  <div key={index} className="group flex items-center space-x-4 p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:scale-105 hover:shadow-md hover:shadow-green-500/20">
+                    <div className="p-3 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-full border border-green-500/40 group-hover:rotate-12 transition-transform duration-300">
+                      <Zap className="w-5 h-5 text-green-400" />
+                    </div>
+                    <span className="text-white font-medium group-hover:text-green-300 transition-colors duration-300">{highlight}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* System Status */}
+          <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/40 transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/10">
+            <h3 className="text-xl font-bold text-cyan-400 mb-4 hover:text-cyan-300 transition-colors duration-300">System Status</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
+                <span className="text-gray-300">Registration</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <span className="text-green-400 text-sm font-medium">ACTIVE</span>
                 </div>
               </div>
-
-              {/* Space Station Info */}
-              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-6 border border-green-500/30">
-                <h3 className="text-xl font-bold text-green-400 mb-6 flex items-center">
-                  <Award className="w-6 h-6 mr-2" />
-                  Space Station Status
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg">
-                    <span className="text-gray-300">Difficulty Level:</span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getDifficultyColor(competition.difficulty)}`}>
-                      {competition.difficulty}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg">
-                    <span className="text-gray-300">Mission Type:</span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getCategoryColor(competition.category)}`}>
-                      {competition.category}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center p-3 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg">
-                    <span className="text-gray-300">Crew Size:</span>
-                    <span className="font-bold text-green-400">{competition.participants}</span>
-                  </div>
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
+                <span className="text-gray-300">Launch Pad</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+                  <span className="text-cyan-400 text-sm font-medium">READY</span>
                 </div>
               </div>
-
-              {/* System Status */}
-              <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30">
-                <h3 className="text-xl font-bold text-cyan-400 mb-4">System Status</h3>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-300">Registration</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      <span className="text-green-400 text-sm font-medium">ACTIVE</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-300">Launch Pad</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                      <span className="text-cyan-400 text-sm font-medium">READY</span>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-gray-300">Mission Control</span>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
-                      <span className="text-yellow-400 text-sm font-medium">STANDBY</span>
-                    </div>
-                  </div>
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
+                <span className="text-gray-300">Mission Control</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
+                  <span className="text-yellow-400 text-sm font-medium">STANDBY</span>
                 </div>
               </div>
             </div>

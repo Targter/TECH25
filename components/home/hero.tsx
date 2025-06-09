@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 const PlanetScene = dynamic(() => import('@/components/planet-3d/planet-3d'), {
   loading: () => (
     <div className="flex items-center justify-center w-full min-h-[400px]">
-      <div className="text-green-400 animate-pulse">Loading 3D Planet...</div>
+      <div className="text-green-400 animate-pulse">Loading..</div>
     </div>
   ),
   ssr: false
@@ -103,17 +103,6 @@ export function HeroSection() {
         <div className="w-full h-full max-w-[1400px] max-h-[900px]">
           {/* Option 1: Using Next.js dynamic() with built-in loading */}
           <PlanetScene />
-          
-          {/* Option 2: If using React.lazy(), wrap with Suspense (uncomment if needed) */}
-          {/* 
-          <Suspense fallback={
-            <div className="flex items-center justify-center w-full h-full">
-              <div className="text-green-400 animate-pulse">Loading 3D Planet...</div>
-            </div>
-          }>
-            <PlanetScene />
-          </Suspense>
-          */}
         </div>
       </div>
 
@@ -137,7 +126,7 @@ export function HeroSection() {
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
             <div className="block">
-              {['TECH', 'NISIA'].map((word, index) => (
+              {['TECH', 'NICIA-25'].map((word, index) => (
                 <motion.span
                   key={word}
                   initial={{ opacity: 0, x: -50 }}
@@ -159,7 +148,7 @@ export function HeroSection() {
               transition={{ duration: 0.5, delay: 0.9 }}
               className="block text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 mt-2"
             >
-              &apos;25
+              
             </motion.span>
           </h1>
 
@@ -176,29 +165,151 @@ export function HeroSection() {
           </motion.p>
 
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.3 }} className="text-green-400 text-lg font-semibold mb-10 max-w-xl leading-tight">
-            Experience North India@apos;s ultimate tech festival — innovate, compete, connect!
+            Experience North India&apos;s ultimate tech festival — innovate, compete, connect!
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.4 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-xl"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.5 + index * 0.1 }}
-                className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-3 hover:border-green-500/40 transition-colors duration-300"
-              >
-                <stat.icon className="h-5 w-5 text-green-400 mx-auto mb-2" />
-                <div className="text-lg font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-xs text-gray-400">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+  initial={{ opacity: 0, y: 30 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 1.4 }}
+  className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-xl"
+>
+  {stats.map((stat, index) => (
+    <motion.div
+      key={stat.label}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5, delay: 1.5 + index * 0.1 }}
+      whileHover={{ 
+        scale: 1.08, 
+        y: -8,
+        rotateY: 5,
+        transition: { 
+          duration: 0.3,
+          type: "spring",
+          stiffness: 300,
+          damping: 20
+        }
+      }}
+      whileTap={{ scale: 0.95 }}
+      className="bg-gradient-to-br from-black/40 via-black/30 to-black/20 backdrop-blur-md border border-green-500/20 rounded-xl p-4 hover:border-green-400/80 hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-500 cursor-pointer group relative overflow-hidden"
+      style={{
+        background: 'linear-gradient(135deg, rgba(0,0,0,0.4) 0%, rgba(0,50,0,0.1) 50%, rgba(0,0,0,0.3) 100%)'
+      }}
+    >
+      {/* Animated background glow */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-green-500/0 via-green-500/10 to-green-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        animate={{
+          x: ['-100%', '100%'],
+          transition: {
+            repeat: Infinity,
+            duration: 2,
+            ease: "linear"
+          }
+        }}
+      />
+      
+      {/* Floating particles effect */}
+      <motion.div
+        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                       radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                       radial-gradient(circle at 40% 80%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)`
+        }}
+      />
+
+      {/* Icon with complex animation */}
+      <motion.div
+        className="relative z-10"
+        whileHover={{ 
+          scale: 1.2,
+          rotate: [0, -10, 10, -5, 0],
+          y: [-2, -5, -2],
+          transition: { 
+            duration: 0.6,
+            type: "spring",
+            stiffness: 200
+          }
+        }}
+      >
+        <motion.div
+          
+          animate={{
+            boxShadow: [
+              "0 0 0 0 rgba(34, 197, 94, 0)",
+              "0 0 0 4px rgba(34, 197, 94, 0.1)",
+              "0 0 0 8px rgba(34, 197, 94, 0)",
+            ]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: "loop"
+          }}
+          className=" relative rounded-full p-2 group-hover:bg-green-500/10 transition-colors duration-300"
+        >
+          <stat.icon className="h-6 w-6 text-green-400 mx-auto mb-3 group-hover:text-green-300 group-hover:drop-shadow-[0_0_8px_rgba(34,197,94,0.6)] transition-all duration-300" />
+        </motion.div>
+      </motion.div>
+
+      {/* Value with typewriter effect on hover */}
+      <motion.div 
+        className="text-xl font-bold text-white mb-2 group-hover:text-green-100 transition-colors duration-300 relative z-10"
+        whileHover={{
+          scale: 1.05,
+          textShadow: "0 0 8px rgba(34, 197, 94, 0.5)",
+          transition: { duration: 0.2 }
+        }}
+      >
+        {stat.value}
+      </motion.div>
+
+      {/* Label with slide-up effect */}
+      <motion.div 
+        className="text-xs text-gray-400 group-hover:text-gray-200 transition-colors duration-300 relative z-10"
+        whileHover={{
+          y: -1,
+          transition: { duration: 0.2 }
+        }}
+      >
+        {stat.label}
+      </motion.div>
+
+      {/* Corner accent lines */}
+      <motion.div
+        className="absolute top-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-400 to-transparent group-hover:w-full transition-all duration-500"
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-0 h-0.5 bg-gradient-to-l from-green-400 to-transparent group-hover:w-full transition-all duration-500 delay-100"
+      />
+      <motion.div
+        className="absolute top-0 left-0 h-0 w-0.5 bg-gradient-to-b from-green-400 to-transparent group-hover:h-full transition-all duration-500 delay-200"
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 h-0 w-0.5 bg-gradient-to-t from-green-400 to-transparent group-hover:h-full transition-all duration-500 delay-300"
+      />
+
+      {/* Data stream effect */}
+      <motion.div
+        className="absolute right-2 top-2 opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+        animate={{
+          rotate: 360,
+          transition: {
+            duration: 8,
+            repeat: Infinity,
+            ease: "linear"
+          }
+        }}
+      >
+        <div className="w-3 h-3 border border-green-400/50 rounded-full">
+          <div className="w-1 h-1 bg-green-400 rounded-full animate-pulse"></div>
+        </div>
+      </motion.div>
+    </motion.div>
+  ))}
+</motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
