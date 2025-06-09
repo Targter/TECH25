@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -22,7 +23,7 @@ const navLinks = [
   { title: "Sponsors", href: "sponsors" },
   { title: "Previous Events", href: "previous-events" },
   { title: "FAQs", href: "faqs" },
-  { title: "Registration", href: "register", special: true },
+  { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
 
 export function Navbar() {
@@ -84,27 +85,40 @@ export function Navbar() {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex space-x-1">
-          {navLinks.map((link) => (
-            <ScrollLink
-              key={link.href}
-              to={link.href}
-              spy={true}
-              smooth={true}
-              offset={-100}
-              duration={500}
-              onSetActive={() => setActiveSection(link.href)}
-              className={cn(
-                "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer select-none",
-                link.special
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-blue-600/40"
-                  : activeSection === link.href
+          {navLinks.map((link) =>
+            link.isRoute ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={cn(
+                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer select-none",
+                  link.special
+                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-blue-600/40"
+                    : "text-white/80 hover:text-white hover:bg-white/10"
+                )}
+              >
+                {link.title}
+              </Link>
+            ) : (
+              <ScrollLink
+                key={link.href}
+                to={link.href}
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onSetActive={() => setActiveSection(link.href)}
+                className={cn(
+                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer select-none",
+                  activeSection === link.href
                     ? "text-purple-400 bg-purple-950/30"
                     : "text-white/80 hover:text-white hover:bg-white/10"
-              )}
-            >
-              {link.title}
-            </ScrollLink>
-          ))}
+                )}
+              >
+                {link.title}
+              </ScrollLink>
+            )
+          )}
         </nav>
 
         {/* Desktop Button */}
@@ -141,24 +155,34 @@ export function Navbar() {
               </SheetTitle>
             </SheetHeader>
             <nav className="flex flex-col gap-3 mt-6">
-              {navLinks.map((link) => (
-                <ScrollLink
-                  key={link.href}
-                  to={link.href}
-                  spy={true}
-                  smooth={true}
-                  offset={-100}
-                  duration={500}
-                  className={cn(
-                    "px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors",
-                    link.special
-                      ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
-                      : "text-white/80 hover:text-white hover:bg-white/10"
-                  )}
-                >
-                  {link.title}
-                </ScrollLink>
-              ))}
+              {navLinks.map((link) =>
+                link.isRoute ? (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors",
+                      link.special
+                        ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                        : "text-white/80 hover:text-white hover:bg-white/10"
+                    )}
+                  >
+                    {link.title}
+                  </Link>
+                ) : (
+                  <ScrollLink
+                    key={link.href}
+                    to={link.href}
+                    spy={true}
+                    smooth={true}
+                    offset={-100}
+                    duration={500}
+                    className="px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors text-white/80 hover:text-white hover:bg-white/10"
+                  >
+                    {link.title}
+                  </ScrollLink>
+                )
+              )}
             </nav>
           </SheetContent>
         </Sheet>
