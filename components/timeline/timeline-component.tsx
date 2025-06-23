@@ -1,269 +1,80 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Calendar, Users, Trophy, Clock, Star } from "lucide-react";
 import Link from "next/link";
+import dynamic from 'next/dynamic';
+import {competitions} from '@/lib/constants'
 
 
-const competitions = [
+const FlyingSpaceship = dynamic(() => 
+  import('@/components/FlyingSpaceship/FlyingSpaceship'), 
   {
-    id: 1,
-    title: "CU MUN",
-    description: "Showcase your artificial intelligence prowess in this cutting-edge competition where innovation meets technology.",
-    date: "March 15, 2025",
-    time: "09:00 AM - 06:00 PM",
-    location: "Main Auditorium, Tech Block",
-    participants: "150+ Teams",
-    prize: "₹50,000",
-    difficulty: "Advanced",
-    category: "Technology",
-    highlights: ["Machine Learning Models", "Neural Networks", "Real-world Problem Solving", "Industry Mentorship"],
-    image: "/competition/1.png"
-  },
-  {
-    id: 2,
-    title: "CodeFest Marathon",
-    description: "The ultimate coding showdown where algorithms dance and logic reigns supreme. Test your programming skills against the best.",
-    date: "March 16, 2025",
-    time: "10:00 AM - 08:00 PM",
-    location: "Computer Lab Complex",
-    participants: "200+ Coders",
-    prize: "₹30,000",
-    difficulty: "Intermediate",
-    category: "Programming",
-    highlights: ["Data Structures", "Algorithm Optimization", "Competitive Programming", "Live Coding Sessions"],
-    image: "/competition/2.png"
-  },
-  {
-    id: 3,
-    title: "RoboWars Championship",
-    description: "Enter the arena where metal meets mayhem! Design, build, and battle your way to robotic supremacy in this thrilling competition.",
-    date: "March 17, 2025",
-    time: "11:00 AM - 07:00 PM",
-    location: "Engineering Workshop Arena",
-    participants: "80+ Robots",
-    prize: "₹75,000",
-    difficulty: "Expert",
-    category: "Robotics",
-    highlights: ["Combat Robotics", "Mechanical Design", "Strategic Warfare", "Live Battle Arena"],
-    image: "/competition/5.png"
-  },
-  {
-    id: 4,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/4.png"
-  },
-  {
-    id: 5,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/6.png"
-  },
-  {
-    id: 6,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/7.png"
-  },
-];
-interface FlyingSpaceshipProps {
-  right?: string;
-  left?: string;
-  top?: string;
-  duration?: number;
-  color?: "green" | "blue" | "purple";
-  direction?: "leftToRight" | "rightToLeft";
-}
+    loading: () => null,
+    ssr: false
+  }
+);
 
-export function FlyingSpaceship({
-  top = "top-[30%]",
-  left = "left-[10%]",
-  duration = 20,
-  color = "green",
-  direction = "leftToRight"
-}: FlyingSpaceshipProps) {
-  const colors = {
-    green: {
-      body: "from-green-400 via-green-500 to-green-600",
-      inner: "from-green-300 to-green-400",
-      wing: "bg-green-500",
-      cockpit: "from-cyan-300 to-blue-400",
-      trail: "from-green-400 via-green-300"
-    },
-    blue: {
-      body: "from-blue-400 via-blue-500 to-blue-600",
-      inner: "from-blue-300 to-blue-400",
-      wing: "bg-blue-500",
-      cockpit: "from-teal-300 to-blue-300",
-      trail: "from-blue-400 via-blue-300"
-    },
-    purple: {
-      body: "from-purple-400 via-purple-500 to-purple-600",
-      inner: "from-purple-300 to-purple-400",
-      wing: "bg-purple-500",
-      cockpit: "from-pink-300 to-purple-400",
-      trail: "from-purple-400 via-purple-300"
-    }
-  };
 
-  const c = colors[color];
-  const isLeftToRight = direction === "leftToRight";
 
-  return (
-    <motion.div
-      className={`absolute ${top} ${left} w-32 h-20 pointer-events-none z-30`}
-      initial={{ x: isLeftToRight ? -200 : 200 }}
-      animate={{ x: isLeftToRight ? "100vw" : "-100vw" }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: "linear"
-      }}
-      style={{ transformStyle: "preserve-3d" }}
-    >
-      <motion.div
-        className="relative w-24 h-12"
-        animate={{
-          rotateX: [0, 10, -5, 0],
-          scale: [1, 1.1, 0.95, 1]
-        }}
-        transition={{
-          duration: 3,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      >
-        {/* Main Body */}
-        <div className={`absolute inset-0 bg-gradient-to-r ${c.body} rounded-full shadow-lg transform rotate-12`}>
-          <div className={`absolute inset-2 bg-gradient-to-r ${c.inner} rounded-full opacity-60`} />
-        </div>
 
-        {/* Wings */}
-        <div className={`absolute -left-3 top-1/2 w-8 h-3 ${c.wing} transform -translate-y-1/2 rotate-45 rounded-full shadow-md`} />
-        <div className={`absolute -right-3 top-1/2 w-8 h-3 ${c.wing} transform -translate-y-1/2 -rotate-45 rounded-full shadow-md`} />
+// function CountdownTimer() {
+//   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60);
 
-        {/* Cockpit */}
-        <div className={`absolute top-1 left-1/2 w-4 h-4 bg-gradient-to-br ${c.cockpit} rounded-full transform -translate-x-1/2 shadow-inner`}>
-          <motion.div
-            className="absolute inset-1 bg-white rounded-full opacity-80"
-            animate={{ opacity: [0.8, 0.4, 0.8] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 24 * 60 * 60));
+//     }, 1000);
 
-        {/* Engine Glow */}
-        <motion.div
-          className="absolute -right-8 top-1/2 w-12 h-2 bg-gradient-to-r from-orange-400 via-yellow-300 to-transparent rounded-full transform -translate-y-1/2"
-          animate={{
-            scaleX: [1, 1.5, 0.8, 1.2, 1],
-            opacity: [0.8, 1, 0.6, 0.9, 0.8]
-          }}
-          transition={{
-            duration: 0.3,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+//     return () => clearInterval(interval);
+//   }, []);
 
-        {/* Particle Trail */}
-        <motion.div
-          className={`absolute -right-16 top-1/2 w-20 h-1 bg-gradient-to-r ${c.trail} to-transparent rounded-full transform -translate-y-1/2 opacity-60`}
-          animate={{
-            scaleX: [1, 1.3, 0.7, 1],
-            opacity: [0.6, 0.8, 0.3, 0.6]
-          }}
-          transition={{
-            duration: 0.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </motion.div>
-    </motion.div>
-  );
-}
-function CountdownTimer() {
-  const [timeLeft, setTimeLeft] = useState(24 * 60 * 60);
+//   const hours = Math.floor(timeLeft / 3600);
+//   const minutes = Math.floor((timeLeft % 3600) / 60);
+//   const seconds = timeLeft % 60;
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => (prev > 0 ? prev - 1 : 24 * 60 * 60));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const hours = Math.floor(timeLeft / 3600);
-  const minutes = Math.floor((timeLeft % 3600) / 60);
-  const seconds = timeLeft % 60;
-
-  return (
-    <motion.div
-      className="text-center text-green-400 font-mono text-3xl font-bold mb-12 relative"
-      animate={{
-        textShadow: ["0 0 10px rgba(34,197,94,0.8)", "0 0 20px rgba(34,197,94,1)", "0 0 10px rgba(34,197,94,0.8)"]
-      }}
-      transition={{
-        duration: 2,
-        repeat: Infinity,
-        ease: "easeInOut"
-      }}
-    >
-      <div className="flex justify-center space-x-4">
-        <motion.div
-          className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-          whileHover={{ scale: 1.1, rotateY: 15 }}
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {hours.toString().padStart(2, "0")}
-          <div className="text-xs text-green-300">HOURS</div>
-        </motion.div>
-        <motion.div
-          className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-          whileHover={{ scale: 1.1, rotateY: 15 }}
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {minutes.toString().padStart(2, "0")}
-          <div className="text-xs text-green-300">MINS</div>
-        </motion.div>
-        <motion.div
-          className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-          whileHover={{ scale: 1.1, rotateY: 15 }}
-          style={{ transformStyle: "preserve-3d" }}
-        >
-          {seconds.toString().padStart(2, "0")}
-          <div className="text-xs text-green-300">SECS</div>
-        </motion.div>
-      </div>
-    </motion.div>
-  );
-}
+//   return (
+//     <motion.div
+//       className="text-center text-green-400 font-mono text-3xl font-bold mb-12 relative"
+//       animate={{
+//         textShadow: ["0 0 10px rgba(34,197,94,0.8)", "0 0 20px rgba(34,197,94,1)", "0 0 10px rgba(34,197,94,0.8)"]
+//       }}
+//       transition={{
+//         duration: 2,
+//         repeat: Infinity,
+//         ease: "easeInOut"
+//       }}
+//     >
+//       <div className="flex justify-center space-x-4">
+//         <motion.div
+//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
+//           whileHover={{ scale: 1.1, rotateY: 15 }}
+//           style={{ transformStyle: "preserve-3d" }}
+//         >
+//           {hours.toString().padStart(2, "0")}
+//           <div className="text-xs text-green-300">HOURS</div>
+//         </motion.div>
+//         <motion.div
+//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
+//           whileHover={{ scale: 1.1, rotateY: 15 }}
+//           style={{ transformStyle: "preserve-3d" }}
+//         >
+//           {minutes.toString().padStart(2, "0")}
+//           <div className="text-xs text-green-300">MINS</div>
+//         </motion.div>
+//         <motion.div
+//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
+//           whileHover={{ scale: 1.1, rotateY: 15 }}
+//           style={{ transformStyle: "preserve-3d" }}
+//         >
+//           {seconds.toString().padStart(2, "0")}
+//           <div className="text-xs text-green-300">SECS</div>
+//         </motion.div>
+//       </div>
+//     </motion.div>
+//   );
+// }
 
 export default function TimelineComponent() {
   const ref = useRef(null);
@@ -381,7 +192,7 @@ export default function TimelineComponent() {
             Mark your calendar for these exciting competitions at TECHNASIA&apos;25.
             Join us for an unforgettable journey through innovation, technology, and excellence.
           </motion.p>
-          <CountdownTimer />
+          {/* <CountdownTimer /> */}
         </motion.div>
         <FlyingSpaceship />
         <motion.div

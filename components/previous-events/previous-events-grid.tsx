@@ -36,7 +36,7 @@ function GalleryImage({ event, className }: { event: Event; className: string })
   );
 }
 
-export default  function PreviousEventsGrid() {
+export default function PreviousEventsGrid() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -80,17 +80,58 @@ export default  function PreviousEventsGrid() {
             <motion.div
               key={index}
               variants={itemVariants}
-              className="p-6 rounded-xl border border-green-500 bg-black/30 hover:shadow-xl transition-shadow duration-300"
+              className="group relative p-8 rounded-xl border border-green-500/50 bg-black/30 
+                 hover:border-purple-400 hover:bg-black/40
+                 transition-all duration-300 ease-out
+                 hover:scale-[1.02] hover:-translate-y-2
+                 hover:shadow-xl hover:shadow-purple-500/20
+                 min-h-[280px] flex flex-col"
             >
-              <div className="flex items-center space-x-3 text-green-400 text-3xl mb-4">
-                {icons[index % icons.length]}
-                <h2 className="text-xl font-semibold text-white">{event.title}</h2>
+
+              {/* Main content container */}
+              <div className="relative z-10">
+                <div className="flex items-center space-x-3 mb-6 group-hover:scale-105 transition-transform duration-300">
+                  <div className="text-green-400 text-4xl group-hover:text-purple-300 
+                          group-hover:drop-shadow-lg group-hover:filter group-hover:brightness-125
+                          transition-all duration-300 group-hover:rotate-6 group-hover:scale-110">
+                    {icons[index % icons.length]}
+                  </div>
+                  <h2 className="text-xl font-semibold text-white group-hover:text-purple-100 
+                         transition-colors duration-300 group-hover:drop-shadow-md">
+                    {event.title}
+                  </h2>
+                </div>
+
+                <p className="text-sm text-gray-300 mb-4 group-hover:text-gray-200 
+                      transition-colors duration-300 font-medium">
+                  Year: {event.year}
+                </p>
+
+                <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300 
+                      leading-relaxed group-hover:drop-shadow-sm flex-grow">
+                  The <strong className="text-green-400 group-hover:text-blue-300 transition-colors duration-300">
+                    {event.title}
+                  </strong> was a remarkable event focusing on{" "}
+                  <span className="group-hover:text-purple-200 transition-colors duration-300">
+                    {event.title.toLowerCase().split(" ")[0]}
+                  </span>.
+                </p>
+
+                {/* Hover-revealed gradient overlay */}
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-500/3 via-blue-500/3 to-pink-500/3 
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                {/* Subtle animated particles effect */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-purple-400/50 rounded-full
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                        group-hover:animate-ping" />
+                <div className="absolute top-6 right-8 w-1 h-1 bg-blue-400/60 rounded-full
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100
+                        group-hover:animate-pulse" />
+                <div className="absolute bottom-4 left-4 w-1.5 h-1.5 bg-pink-400/40 rounded-full
+                        opacity-0 group-hover:opacity-100 transition-opacity duration-600 delay-200
+                        group-hover:animate-bounce" />
               </div>
-              <p className="text-sm text-gray-300 mb-2">Year: {event.year}</p>
-              <p className="text-gray-400">
-                The <strong>{event.title}</strong> was a remarkable event focusing on{" "}
-                {event.title.toLowerCase().split(" ")[0]}.
-              </p>
             </motion.div>
           ))}
         </motion.div>
@@ -104,73 +145,56 @@ export default  function PreviousEventsGrid() {
         {/* Simple Collage Layout - Using All 13 Images */}
         <div className="space-y-6 max-w-6xl mx-auto">
           {/* First Collage Section */}
-          <div className="grid grid-cols-4 grid-rows-3 gap-4 h-[600px]">
-            {/* Large image spanning 2x2 */}
-            <GalleryImage 
-              event={previousEvents[3]} 
-              className="col-span-2 row-span-2 border-2 border-white/50" 
+          <div className="grid grid-cols-4 grid-rows-3 gap-4 h-[700px]">
+            <GalleryImage
+              event={previousEvents[3]}
+              className="col-span-2 row-span-2 border-2 border-green-400"
             />
-            
-            {/* Two medium images on the right */}
-            <GalleryImage 
-              event={previousEvents[1]} 
-              className="col-span-2 row-span-1 border-2 border-white/50" 
+
+            <GalleryImage
+              event={previousEvents[1]}
+              className="col-span-2 row-span-1 border-2 border-green-400"
             />
-            <GalleryImage 
-              event={previousEvents[2]} 
-              className="col-span-2 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[2]}
+              className="col-span-2 row-span-1 border-2 border-green-400"
             />
-            
-            {/* Bottom row - 4 small images */}
-            <GalleryImage 
-              event={previousEvents[0]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+
+            <GalleryImage
+              event={previousEvents[0]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
-            <GalleryImage 
-              event={previousEvents[4]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[4]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
-            <GalleryImage 
-              event={previousEvents[5]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[5]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
-            <GalleryImage 
-              event={previousEvents[6]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[6]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
           </div>
 
           {/* Second Collage Section */}
-          <div className="grid grid-cols-3 grid-rows-2 gap-4 h-[400px]">
-            {/* Three equal images on top */}
-            <GalleryImage 
-              event={previousEvents[7]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+          <div className="grid grid-cols-3 grid-rows-2 gap-4 h-[500px]">
+            <GalleryImage
+              event={previousEvents[7]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
-            <GalleryImage 
-              event={previousEvents[8]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[10]}
+              className="col-span-1 row-span-1 border-2 border-green-600"
             />
-            <GalleryImage 
-              event={previousEvents[9]} 
-              className="col-span-1 row-span-1 border-2 border-white/50" 
+            <GalleryImage
+              event={previousEvents[9]}
+              className="col-span-1 row-span-1 border-2 border-green-400"
             />
-            
-           
-
-            {/* Bottom: one wide image and one regular */}
-            <GalleryImage 
-              event={previousEvents[10]} 
-              className="col-span-2 row-span-1 border-2 border-white/50" 
-              />
-            <GalleryImage 
-              event={previousEvents[11]} 
-              className="col-span-1 row-span-1 border-2  border-white/50" 
-              />
-           
           </div>
-
         </div>
+
       </div>
     </section>
   );
