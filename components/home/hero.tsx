@@ -338,7 +338,7 @@ export function HeroSection() {
               className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold px-6  rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.4)] transition-all duration-300 transform hover:scale-105"
               asChild
             >
-              <Link href="#register">
+              <Link href="/register">
                 Register Now
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
