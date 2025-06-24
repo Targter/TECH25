@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const navLinks = [
-  { title: "Home", href: "home" },
+  { title: "Home", href: "/",speacil:true,isRoute:true },
   { title: "About", href: "about" },
   { title: "Timeline", href: "timeline" },
   { title: "Sponsors", href: "sponsors" },
