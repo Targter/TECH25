@@ -38,7 +38,7 @@ export function FaqAccordion() {
               Frequently Asked Questions
             </h1>
             <p className="text-green-300 text-lg md:text-xl max-w-2xl mx-auto">
-              Find answers to common questions about TECHNASIA&apos;25
+              Find answers to common questions about TECHNICIA&apos;25
             </p>
 
             <div className="relative max-w-xl mx-auto mt-10">
