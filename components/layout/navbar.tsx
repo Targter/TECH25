@@ -18,11 +18,12 @@ import Image from "next/image";
 
 const navLinks = [
   { title: "Home", href: "/",special:true,isRoute:true },
-  { title: "About", href: "about" },
+  { title: "About", href: "video" },
   { title: "Timeline", href: "timeline" },
   { title: "Sponsors", href: "sponsors" },
-  { title: "Previous Events", href: "previous-events" },
+  { title: "Previous Events", href: "/previous-events",isRoute:true },
   { title: "FAQs", href: "faqs" },
+  { title: "Team", href: "/team",isRoute:true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
 

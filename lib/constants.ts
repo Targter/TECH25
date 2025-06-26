@@ -262,6 +262,28 @@ export const timelineEvents = [
   }
 ];
 
+
+export const previousposter= [
+  {
+     year:"2024",
+     image:"/previous_events/postercumun.jpg",
+     discription:"CU-MUN is a national-level technical symposium held at Chandigarh University, where students from various branches of engineering and technology come together to showcase their projects, ideas, and innovations. This year's edition of CU-MUN featured a diverse range of topics, including artificial intelligence, machine learning, robotics, automation, and more.",
+     title:'CU-MUN'
+  },
+  {
+     year:"2024",
+     image:"/previous_events/postermind.jpg",
+     discription:"MIND-SPIRINT is a dynamic symposium that brings together students, faculty, and industry experts from different domains to collaborate, learn, and innovate. This year's edition featured a fusion of cutting-edge technologies, creative problem-solving, and a vibrant community of enthusiasts.",
+     title:'MIND-SPIRINT'
+  },
+  {
+     year:"2024",
+     image:"/previous_events/posterthreejs.jpg",
+     discription:"Interactive 3D modeling and animation workshop using Three.js.",
+     title:'THREE.JS'
+  }
+]
+
 export const previousEvents = [
   {
     year: "2024",
