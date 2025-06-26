@@ -108,3 +108,30 @@ body {
 html {
   scroll-behavior: smooth;
 }
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  33% { transform: translateY(-20px) rotate(120deg) scale(1.1); }
+  66% { transform: translateY(10px) rotate(240deg) scale(0.9); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  50% { transform: translateY(-15px) rotate(180deg) scale(1.05); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  25% { transform: translateY(-10px) rotate(90deg) scale(1.1); }
+  75% { transform: translateY(5px) rotate(270deg) scale(0.95); }
+}
+
+@keyframes float-4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  40% { transform: translateY(-25px) rotate(144deg) scale(1.05); }
+  80% { transform: translateY(15px) rotate(288deg) scale(0.9); }
+}
+
+.animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+.animate-float-2 { animation: float-2 15s ease-in-out infinite 2s; }
+.animate-float-3 { animation: float-3 18s ease-in-out infinite 1s; }
+.animate-float-4 { animation: float-4 22s ease-in-out infinite 3s; }

@@ -22,136 +22,218 @@ export function ParticleWrapper({ children }: ParticleWrapperProps) {
   const sparklesRef = useRef<Particle[]>([]);
   const animationFrameIdRef = useRef<number>(0);
   const scrollYRef = useRef<number>(0);
+  
+  // Performance optimization refs
+  const frameCountRef = useRef<number>(0);
+  const lastResizeTimeRef = useRef<number>(0);
+  const sparklePoolRef = useRef<Particle[]>([]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    const ctx = canvas?.getContext("2d");
+    const container = canvas?.parentElement;
 
-    const container = canvas.parentElement;
-    if (!container) return;
+    if (!canvas || !ctx || !container) return;
 
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    // Enable performance optimizations
+    ctx.imageSmoothingEnabled = false;
 
+    // Debounced resize function
     const resizeCanvas = () => {
+      const now = performance.now();
+      if (now - lastResizeTimeRef.current < 100) return; // Debounce resize
+      lastResizeTimeRef.current = now;
+      
       canvas.width = container.clientWidth;
       canvas.height = container.clientHeight;
+      createParticles();
     };
 
     const createParticles = () => {
+      const width = canvas.width;
+      const height = canvas.height;
       const particles = particlesRef.current;
       particles.length = 0;
-      const count = Math.floor(canvas.width * 0.08);
+      
+      // Reduced particle count with adaptive scaling
+      const baseCount = 30;
+      const screenFactor = Math.min(width * height / (1920 * 1080), 1);
+      const count = Math.floor(baseCount * screenFactor);
+
       for (let i = 0; i < count; i++) {
         particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          size: Math.random() * 2 + 1,
-          speedX: (Math.random() - 0.5) * 0.7,
-          speedY: (Math.random() - 0.5) * 0.7,
-          opacity: Math.random() * 0.5 + 0.5,
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 1.5 + 0.5,
+          speedX: (Math.random() - 0.5) * 0.5,
+          speedY: (Math.random() - 0.5) * 0.5,
+          opacity: Math.random() * 0.4 + 0.3,
         });
       }
     };
 
-    const drawLines = () => {
-      const particles = particlesRef.current;
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < 130) {
+    // Object pool for sparkles
+    const getSparkle = (): Particle => {
+      return sparklePoolRef.current.pop() || {
+        x: 0, y: 0, size: 0, speedX: 0, speedY: 0, opacity: 0, life: 0
+      };
+    };
+
+    const releaseSparkle = (sparkle: Particle) => {
+      if (sparklePoolRef.current.length < 50) {
+        sparklePoolRef.current.push(sparkle);
+      }
+    };
+
+    // Optimized line drawing with reduced frequency
+    const drawLines = (particles: Particle[]) => {
+      // Only draw lines every other frame for performance
+      if (frameCountRef.current % 2 !== 0) return;
+      
+      const threshold = 100 * 100; // Reduced threshold
+      const maxLines = 15; // Limit maximum lines drawn
+      let lineCount = 0;
+      
+      for (let i = 0; i < particles.length && lineCount < maxLines; i++) {
+        const p1 = particles[i];
+        for (let j = i + 1; j < particles.length && lineCount < maxLines; j++) {
+          const p2 = particles[j];
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < threshold) {
+            const opacity = (1 - distSq / threshold) * 0.25;
+            ctx.strokeStyle = `rgba(0,255,180,${opacity})`;
+            ctx.lineWidth = 0.8;
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0,255,180,${(1 - distance / 130) * 0.4})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
+            lineCount++;
           }
         }
       }
     };
 
-    const animate = () => {
-      animationFrameIdRef.current = requestAnimationFrame(animate);
+    // Reduced frame rate for better performance
+    const TARGET_FPS = 30;
+    const FRAME_INTERVAL = 1000 / TARGET_FPS;
+    let lastFrameTime = 0;
+
+    const animate = (currentTime: number) => {
+      // Frame rate limiting
+      if (currentTime - lastFrameTime < FRAME_INTERVAL) {
+        animationFrameIdRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      lastFrameTime = currentTime;
+      frameCountRef.current++;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const particles = particlesRef.current;
       const sparkles = sparklesRef.current;
 
-      for (const p of particles) {
+      // Reduced shadow blur frequency and intensity
+      if (frameCountRef.current % 3 === 0) {
+        ctx.shadowColor = "rgba(0,255,180,0.3)";
+        ctx.shadowBlur = Math.min(5 + scrollYRef.current * 0.005, 10);
+      }
+
+      // Update and draw particles in single loop
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
         p.x += p.speedX;
         p.y += p.speedY;
 
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+        // Boundary checking
+        if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
+        if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
 
-        ctx.shadowBlur = 10 + scrollYRef.current * 0.01;
-        ctx.shadowColor = "rgba(0,255,180,0.5)";
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        // Draw particle
         ctx.fillStyle = `rgba(0,255,180,${p.opacity})`;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, 6.28318); // Use constant instead of Math.PI * 2
         ctx.fill();
-        ctx.shadowBlur = 0;
       }
 
-      drawLines();
+      ctx.shadowBlur = 0;
+      drawLines(particles);
 
+      // Optimized sparkle handling
       for (let i = sparkles.length - 1; i >= 0; i--) {
         const s = sparkles[i];
         s.x += s.speedX;
         s.y += s.speedY;
-        s.opacity -= 0.02;
+        s.opacity -= 0.025;
         s.life! -= 1;
 
-        ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 120, ${s.opacity})`;
-        ctx.fill();
-
-        if (s.opacity <= 0 || s.life! <= 0) {
-          sparkles.splice(i, 1);
+        if (s.opacity > 0 && s.life! > 0) {
+          ctx.fillStyle = `rgba(255, 255, 120, ${s.opacity})`;
+          ctx.beginPath();
+          ctx.arc(s.x, s.y, s.size, 0, 6.28318);
+          ctx.fill();
+        } else {
+          // Return to pool instead of creating garbage
+          releaseSparkle(sparkles.splice(i, 1)[0]);
         }
       }
+
+      animationFrameIdRef.current = requestAnimationFrame(animate);
     };
 
+    // Throttled click handler
+    let lastClickTime = 0;
     const handleClick = (e: MouseEvent) => {
+      const now = performance.now();
+      if (now - lastClickTime < 100) return; // Throttle clicks
+      lastClickTime = now;
+
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      for (let i = 0; i < 20; i++) {
-        sparklesRef.current.push({
-          x,
-          y,
-          size: Math.random() * 2 + 1,
-          speedX: (Math.random() - 0.5) * 3,
-          speedY: (Math.random() - 0.5) * 3,
-          opacity: 1,
-          life: 40,
-        });
+      // Reduced sparkle count
+      const sparkleCount = Math.min(12, 20 - sparklesRef.current.length);
+      for (let i = 0; i < sparkleCount; i++) {
+        const sparkle = getSparkle();
+        sparkle.x = x;
+        sparkle.y = y;
+        sparkle.size = Math.random() * 1.5 + 0.5;
+        sparkle.speedX = (Math.random() - 0.5) * 2.5;
+        sparkle.speedY = (Math.random() - 0.5) * 2.5;
+        sparkle.opacity = 1;
+        sparkle.life = 35;
+        sparklesRef.current.push(sparkle);
       }
     };
 
+    // Throttled scroll handler
+    let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
-      scrollYRef.current = window.scrollY;
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        scrollYRef.current = window.scrollY;
+      }, 16);
     };
 
     resizeCanvas();
-    createParticles();
-    animate();
+    animate(performance.now());
 
-    window.addEventListener("resize", resizeCanvas);
-    window.addEventListener("scroll", handleScroll);
-    window.addEventListener("click", handleClick);
+    // Use passive listeners for better performance
+    const resizeObserver = new ResizeObserver(resizeCanvas);
+    resizeObserver.observe(container);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    canvas.addEventListener("click", handleClick, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationFrameIdRef.current);
-      window.removeEventListener("resize", resizeCanvas);
+      resizeObserver.disconnect();
       window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("click", handleClick);
+      canvas.removeEventListener("click", handleClick);
+      clearTimeout(scrollTimeout);
     };
   }, []);
 

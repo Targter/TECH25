@@ -39,8 +39,9 @@ export function Footer() {
                     alt="Technisia Logo"
                     width={40}
                     height={40}
-                    className="h-10 w-10 filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300"
+                    className="filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300"
                   />
+
                   <div className="absolute inset-0 bg-green-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
                 <div className="flex flex-col">
