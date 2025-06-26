@@ -5,6 +5,7 @@ import SponsorGrid from "@/components/sponsors/sponsors-grid";
 import { FaqAccordion } from "@/components/faqs/faq-accordion";
 import { ParticleWrapper } from "@/components/ParticleWrapper/ParticleWrapper";
 import { Video } from "@/components/videotrailer/videopage";
+import PreviousPosterMain from "@/components/previous-poster/previous-poster";
 
 export default function Home() {
   return (
@@ -21,7 +22,9 @@ export default function Home() {
         <HighlightsSection />
       </section>
 
-      
+      <section id="previous-events">
+        <PreviousPosterMain />
+      </section>
 
       <section id="timeline">
         <TimelineComponent />

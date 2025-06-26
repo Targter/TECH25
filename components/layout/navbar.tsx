@@ -17,13 +17,13 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const navLinks = [
-  { title: "Home", href: "/",special:true,isRoute:true },
+  { title: "Home", href: "/", special: true, isRoute: true },
   { title: "About", href: "video" },
   { title: "Timeline", href: "timeline" },
   { title: "Sponsors", href: "sponsors" },
-  { title: "Previous Events", href: "/previous-events",isRoute:true },
+  { title: "Previous Events", href: "/previous-events", isRoute: true },
   { title: "FAQs", href: "faqs" },
-  { title: "Team", href: "/team",isRoute:true },
+  { title: "Team", href: "/team", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
 
@@ -48,7 +48,7 @@ export function Navbar() {
           : "bg-transparent py-4"
       )}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 px-4 md:px-6">
+      <div className="container mx-auto flex flex-wrap items-center justify-between gap-4 px-4 md:px-6">
         {/* Logo */}
         <ScrollLink
           to="home"
@@ -85,14 +85,14 @@ export function Navbar() {
         </ScrollLink>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex space-x-1">
+        <nav className="hidden md:flex flex-wrap gap-2 justify-end items-center max-w-[70%]">
           {navLinks.map((link) =>
             link.isRoute ? (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer select-none",
+                  "px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors cursor-pointer select-none whitespace-nowrap",
                   link.special
                     ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-blue-600/40"
                     : "text-white/80 hover:text-white hover:bg-white/10"
@@ -110,7 +110,7 @@ export function Navbar() {
                 duration={500}
                 onSetActive={() => setActiveSection(link.href)}
                 className={cn(
-                  "px-4 py-2 text-sm font-medium rounded-md transition-colors cursor-pointer select-none",
+                  "px-3 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors cursor-pointer select-none whitespace-nowrap",
                   activeSection === link.href
                     ? "text-purple-400 bg-purple-950/30"
                     : "text-white/80 hover:text-white hover:bg-white/10"
@@ -125,12 +125,9 @@ export function Navbar() {
         {/* Desktop Button */}
         <Button
           asChild
-          className="hidden md:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
+          className="hidden md:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2 text-sm"
         >
-          <a
-            href="mailto:contact@example.com"
-            className="cursor-pointer"
-          >
+          <a href="mailto:contact@example.com" className="cursor-pointer">
             Contact Us
           </a>
         </Button>
@@ -162,7 +159,7 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors",
+                      "px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors text-wrap break-words",
                       link.special
                         ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
                         : "text-white/80 hover:text-white hover:bg-white/10"
@@ -178,7 +175,7 @@ export function Navbar() {
                     smooth={true}
                     offset={-100}
                     duration={500}
-                    className="px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors text-white/80 hover:text-white hover:bg-white/10"
+                    className="px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors text-white/80 hover:text-white hover:bg-white/10 text-wrap break-words"
                   >
                     {link.title}
                   </ScrollLink>

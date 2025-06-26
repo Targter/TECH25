@@ -109,16 +109,16 @@ const FloatingElements = memo(() => (
 FloatingElements.displayName = 'FloatingElements'
 
 export function HeroSection() {
-  const [isClient, setIsClient] = useState(false)
+  // const [isClient, setIsClient] = useState(false)
   const [enhancementsReady, setEnhancementsReady] = useState(false)
 
   useEffect(() => {
-    setIsClient(true);
+    // setIsClient(true);
     
     // Use requestIdleCallback for non-critical enhancements
     const scheduleEnhancements = () => {
       if ('requestIdleCallback' in window) {
-        (window as any).requestIdleCallback(() => {
+        (window as Window & typeof globalThis).requestIdleCallback(() => {
           setEnhancementsReady(true)
         }, { timeout: 2000 })
       } else {
@@ -138,7 +138,7 @@ export function HeroSection() {
   ], [])
 
   // Optimized button click handlers
-  const handleRegisterClick = useCallback((e: React.MouseEvent) => {
+  const handleRegisterClick = useCallback(() => {
     // Add any analytics or tracking here
     // The Link component handles navigation
   }, [])
