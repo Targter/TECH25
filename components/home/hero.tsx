@@ -83,174 +83,38 @@ const StatCard = memo<StatCardProps>(({ stat }) => {
 
 StatCard.displayName = 'StatCard'
 
-// Responsive star pattern with mobile optimization
-// Fixed ResponsiveStarPattern component with better coverage
-const ResponsiveStarPattern = memo(() => (
-  <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden z-[1]">
-    {/* Desktop stars - better distributed across full viewport */}
-    <div className="hidden lg:block">
-      {/* Large stars - more spread out */}
-      <div 
-        className="absolute w-6 h-6 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-1"
-        style={{ left: '5%', top: '10%' }}
-      />
-      <div 
-        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-2"
-        style={{ left: '95%', top: '8%' }}
-      />
-      <div 
-        className="absolute w-7 h-7 bg-gradient-to-br from-green-400/35 to-green-600/35 rounded-full backdrop-blur-sm border border-green-500/45 animate-star-float-3"
-        style={{ left: '85%', top: '25%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-4"
-        style={{ left: '12%', top: '35%' }}
-      />
-      <div 
-        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-5"
-        style={{ left: '92%', top: '50%' }}
-      />
-      <div 
-        className="absolute w-6 h-6 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-6"
-        style={{ left: '3%', top: '60%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-1"
-        style={{ left: '78%', top: '75%' }}
-      />
-      <div 
-        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-2"
-        style={{ left: '25%', top: '85%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-3"
-        style={{ left: '88%', top: '92%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/22 to-green-600/22 rounded-full backdrop-blur-sm border border-green-500/32 animate-star-float-4"
-        style={{ left: '45%', top: '5%' }}
-      />
-      <div 
-        className="absolute w-6 h-6 bg-gradient-to-br from-green-400/28 to-green-600/28 rounded-full backdrop-blur-sm border border-green-500/38 animate-star-float-5"
-        style={{ left: '65%', top: '12%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/18 to-green-600/18 rounded-full backdrop-blur-sm border border-green-500/28 animate-star-float-6"
-        style={{ left: '35%', top: '22%' }}
-      />
-    </div>
-
-    {/* Tablet stars - medium sized, better coverage */}
-    <div className="hidden md:block lg:hidden">
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-1"
-        style={{ left: '8%', top: '15%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-2"
-        style={{ left: '90%', top: '12%' }}
-      />
-      <div 
-        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-3"
-        style={{ left: '85%', top: '40%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-4"
-        style={{ left: '15%', top: '55%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-1"
-        style={{ left: '92%', top: '70%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-2"
-        style={{ left: '22%', top: '85%' }}
-      />
-      <div 
-        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-mobile-3"
-        style={{ left: '75%', top: '88%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-4"
-        style={{ left: '50%', top: '8%' }}
-      />
-    </div>
-
-    {/* Mobile stars - smaller but better distributed */}
-    <div className="block md:hidden">
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-1"
-        style={{ left: '5%', top: '12%' }}
-      />
-      <div 
-        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-2"
-        style={{ left: '92%', top: '18%' }}
-      />
-      <div 
-        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-3"
-        style={{ left: '88%', top: '45%' }}
-      />
-      <div 
-        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-4"
-        style={{ left: '8%', top: '65%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-1"
-        style={{ left: '85%', top: '82%' }}
-      />
-      <div 
-        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-2"
-        style={{ left: '25%', top: '88%' }}
-      />
-      <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/18 to-green-600/18 rounded-full backdrop-blur-sm border border-green-500/28 animate-star-float-mobile-3"
-        style={{ left: '50%', top: '8%' }}
-      />
-      <div 
-        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/16 to-green-600/16 rounded-full backdrop-blur-sm border border-green-500/26 animate-star-float-mobile-4"
-        style={{ left: '72%', top: '28%' }}
-      />
-    </div>
-
-    {/* Enhanced twinkling stars for all screen sizes - much better coverage */}
-    <div className="absolute inset-0">
-      {/* Corner stars */}
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-1" style={{ left: '2%', top: '5%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-2" style={{ left: '97%', top: '3%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-3" style={{ left: '1%', top: '95%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-4" style={{ left: '98%', top: '97%' }} />
-      
-      {/* Edge stars */}
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-5" style={{ left: '0.5%', top: '30%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-6" style={{ left: '99%', top: '60%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-1" style={{ left: '15%', top: '1%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-2" style={{ left: '85%', top: '99%' }} />
-      
-      {/* Mid-section stars */}
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-3" style={{ left: '25%', top: '18%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-4" style={{ left: '75%', top: '22%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-5" style={{ left: '35%', top: '45%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-6" style={{ left: '65%', top: '55%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-1" style={{ left: '20%', top: '75%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-2" style={{ left: '80%', top: '78%' }} />
-      
-      {/* Additional scattered stars for better coverage */}
-      <div className="absolute w-1 h-1 bg-green-400/32 rounded-full animate-twinkle-3" style={{ left: '42%', top: '12%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/28 rounded-full animate-twinkle-4" style={{ left: '58%', top: '35%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/36 rounded-full animate-twinkle-5" style={{ left: '28%', top: '52%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/24 rounded-full animate-twinkle-6" style={{ left: '72%', top: '68%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/38 rounded-full animate-twinkle-1" style={{ left: '48%', top: '85%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/26 rounded-full animate-twinkle-2" style={{ left: '38%', top: '92%' }} />
-    </div>
+// Lightweight floating elements using CSS animations instead of JS
+const FloatingElements = memo(() => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    {/* Static positioned elements to prevent CLS */}
+    <div 
+      className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-1"
+      style={{ left: '15%', top: '20%' }}
+    />
+    <div 
+      className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-2"
+      style={{ left: '85%', top: '15%' }}
+    />
+    <div 
+      className="absolute w-5 h-5 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-3"
+      style={{ left: '70%', top: '60%' }}
+    />
+    <div 
+      className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-4"
+      style={{ left: '25%', top: '70%' }}
+    />
   </div>
 ))
 
-ResponsiveStarPattern.displayName = 'ResponsiveStarPattern'
+FloatingElements.displayName = 'FloatingElements'
 
 export function HeroSection() {
+  // const [isClient, setIsClient] = useState(false)
   const [enhancementsReady, setEnhancementsReady] = useState(false)
 
   useEffect(() => {
+    // setIsClient(true);
+    
     // Use requestIdleCallback for non-critical enhancements
     const scheduleEnhancements = () => {
       if ('requestIdleCallback' in window) {
@@ -291,143 +155,48 @@ export function HeroSection() {
 
   return (
     <>
-      {/* Enhanced CSS animations for responsive star pattern */}
-       <style jsx>{`
-        /* Desktop star animations */
-        @keyframes star-float-1 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          33% { transform: translateY(-25px) rotate(120deg) scale(1.2); opacity: 0.8; }
-          66% { transform: translateY(15px) rotate(240deg) scale(0.9); opacity: 0.6; }
+      {/* CSS animations for floating elements */}
+      <style jsx>{`
+        @keyframes float-1 {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          33% { transform: translateY(-20px) rotate(120deg) scale(1.1); }
+          66% { transform: translateY(10px) rotate(240deg) scale(0.9); }
         }
-        @keyframes star-float-2 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          50% { transform: translateY(-20px) rotate(180deg) scale(1.1); opacity: 0.7; }
+        @keyframes float-2 {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          50% { transform: translateY(-15px) rotate(180deg) scale(1.05); }
         }
-        @keyframes star-float-3 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          25% { transform: translateY(-15px) rotate(90deg) scale(1.15); opacity: 0.8; }
-          75% { transform: translateY(8px) rotate(270deg) scale(0.95); opacity: 0.6; }
+        @keyframes float-3 {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          25% { transform: translateY(-10px) rotate(90deg) scale(1.1); }
+          75% { transform: translateY(5px) rotate(270deg) scale(0.95); }
         }
-        @keyframes star-float-4 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          40% { transform: translateY(-30px) rotate(144deg) scale(1.1); opacity: 0.7; }
-          80% { transform: translateY(20px) rotate(288deg) scale(0.9); opacity: 0.5; }
+        @keyframes float-4 {
+          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+          40% { transform: translateY(-25px) rotate(144deg) scale(1.05); }
+          80% { transform: translateY(15px) rotate(288deg) scale(0.9); }
         }
-        @keyframes star-float-5 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          30% { transform: translateY(-18px) rotate(108deg) scale(1.05); opacity: 0.8; }
-          70% { transform: translateY(12px) rotate(252deg) scale(0.95); opacity: 0.6; }
-        }
-        @keyframes star-float-6 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          60% { transform: translateY(-22px) rotate(216deg) scale(1.08); opacity: 0.7; }
-        }
-
-        /* Mobile optimized star animations - gentler movement */
-        @keyframes star-float-mobile-1 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          50% { transform: translateY(-12px) rotate(180deg) scale(1.05); opacity: 0.8; }
-        }
-        @keyframes star-float-mobile-2 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          33% { transform: translateY(-8px) rotate(120deg) scale(1.1); opacity: 0.7; }
-          66% { transform: translateY(5px) rotate(240deg) scale(0.95); opacity: 0.6; }
-        }
-        @keyframes star-float-mobile-3 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          40% { transform: translateY(-15px) rotate(144deg) scale(1.08); opacity: 0.8; }
-          80% { transform: translateY(8px) rotate(288deg) scale(0.92); opacity: 0.6; }
-        }
-        @keyframes star-float-mobile-4 {
-          0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }
-          50% { transform: translateY(-10px) rotate(180deg) scale(1.03); opacity: 0.7; }
-        }
-
-        /* Twinkling animations */
-        @keyframes twinkle-1 {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.5); }
-        }
-        @keyframes twinkle-2 {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          30% { opacity: 1; transform: scale(1.3); }
-          70% { opacity: 0.6; transform: scale(1.1); }
-        }
-        @keyframes twinkle-3 {
-          0%, 100% { opacity: 0.2; transform: scale(1); }
-          60% { opacity: 0.9; transform: scale(1.4); }
-        }
-        @keyframes twinkle-4 {
-          0%, 100% { opacity: 0.5; transform: scale(1); }
-          40% { opacity: 1; transform: scale(1.2); }
-        }
-        @keyframes twinkle-5 {
-          0%, 100% { opacity: 0.3; transform: scale(1); }
-          25% { opacity: 0.8; transform: scale(1.6); }
-          75% { opacity: 0.4; transform: scale(1.1); }
-        }
-        @keyframes twinkle-6 {
-          0%, 100% { opacity: 0.4; transform: scale(1); }
-          50% { opacity: 1; transform: scale(1.3); }
-        }
-
-        /* Apply animations with different durations and delays */
-        .animate-star-float-1 { animation: star-float-1 20s ease-in-out infinite; }
-        .animate-star-float-2 { animation: star-float-2 15s ease-in-out infinite 2s; }
-        .animate-star-float-3 { animation: star-float-3 18s ease-in-out infinite 1s; }
-        .animate-star-float-4 { animation: star-float-4 22s ease-in-out infinite 3s; }
-        .animate-star-float-5 { animation: star-float-5 16s ease-in-out infinite 4s; }
-        .animate-star-float-6 { animation: star-float-6 19s ease-in-out infinite 1.5s; }
-
-        .animate-star-float-mobile-1 { animation: star-float-mobile-1 12s ease-in-out infinite; }
-        .animate-star-float-mobile-2 { animation: star-float-mobile-2 10s ease-in-out infinite 1s; }
-        .animate-star-float-mobile-3 { animation: star-float-mobile-3 14s ease-in-out infinite 2s; }
-        .animate-star-float-mobile-4 { animation: star-float-mobile-4 11s ease-in-out infinite 0.5s; }
-
-        .animate-twinkle-1 { animation: twinkle-1 3s ease-in-out infinite; }
-        .animate-twinkle-2 { animation: twinkle-2 2.5s ease-in-out infinite 0.5s; }
-        .animate-twinkle-3 { animation: twinkle-3 4s ease-in-out infinite 1s; }
-        .animate-twinkle-4 { animation: twinkle-4 3.5s ease-in-out infinite 1.5s; }
-        .animate-twinkle-5 { animation: twinkle-5 2.8s ease-in-out infinite 0.8s; }
-        .animate-twinkle-6 { animation: twinkle-6 3.2s ease-in-out infinite 2s; }
-
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fadeIn {
-          animation: fadeIn 0.4s ease-out;
-        }
-
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-          .animate-star-float-mobile-1,
-          .animate-star-float-mobile-2,
-          .animate-star-float-mobile-3,
-          .animate-star-float-mobile-4 {
-            animation-duration: 8s;
-          }
-        }
+        .animate-float-1 { animation: float-1 20s ease-in-out infinite; }
+        .animate-float-2 { animation: float-2 15s ease-in-out infinite 2s; }
+        .animate-float-3 { animation: float-3 18s ease-in-out infinite 1s; }
+        .animate-float-4 { animation: float-4 22s ease-in-out infinite 3s; }
       `}</style>
-      <div className="fixed inset-0 pointer-events-none z-[1]">
-        <ResponsiveStarPattern />
-      </div>
 
       <div 
-        className="relative min-h-screen flex items-center justify-start overflow-hidden bg-gradient-to-br scroll-smooth px-4 sm:px-8 md:px-16"
+        className="relative min-h-screen flex items-center justify-start overflow-hidden bg-gradient-to-br scroll-smooth px-8 md:px-16"
         style={{
           // Reserve space to prevent CLS
           minHeight: '100vh',
           contain: 'layout style paint'
         }}
       >
-        {/* Grid background - responsive opacity */}
-        <div className="absolute inset-0 opacity-10 sm:opacity-15 md:opacity-20">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.1)_1px,transparent_1px)] bg-[size:30px_30px] sm:bg-[size:40px_40px] md:bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_70%,transparent_110%)]" />
+        {/* Grid background - static to prevent repaints */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_70%,transparent_110%)]" />
         </div>
         
-        {/* Responsive star pattern */}
-        <ResponsiveStarPattern />
+        {/* Lightweight floating elements */}
+        <FloatingElements />
         
         {/* Heavy components - load after initial render */}
         {enhancementsReady && (
@@ -455,32 +224,33 @@ export function HeroSection() {
         )}
 
         {/* Gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/60 z-[4]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/60 z-[2]" />
 
         {/* Main content - Render immediately without animations */}
         <div 
-          className="relative z-20 max-w-3xl text-center mx-auto w-full"
+          className="relative z-20 max-w-3xl text-center mx-auto"
           style={{
             // Fixed positioning to prevent CLS
+            width: '100%',
             maxWidth: '48rem'
           }}
         >
           
-          {/* Badge - responsive sizing */}
+          {/* Badge - fixed size */}
           <div 
-            className="inline-flex items-center px-3 py-2 sm:px-4 mb-6 sm:mb-8 bg-green-500/10 border border-green-500/30 rounded-full backdrop-blur-sm"
-            style={{ minHeight: '36px' }}
+            className="inline-flex items-center px-4 py-2 mb-8 bg-green-500/10 border border-green-500/30 rounded-full backdrop-blur-sm"
+            style={{ minHeight: '40px' }}
           >
-            <Zap className="h-3 w-3 sm:h-4 sm:w-4 mr-2 text-green-400" />
-            <span className="text-xs sm:text-sm font-medium text-green-400">North India&apos;s Premier Tech Festival</span>
+            <Zap className="h-4 w-4 mr-2 text-green-400" />
+            <span className="text-sm font-medium text-green-400">North India&apos;s Premier Tech Festival</span>
           </div>
 
-          {/* Title - Responsive sizing */}
+          {/* Title - Critical for LCP, render immediately */}
           <h1 
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black mb-4 sm:mb-6 leading-tight opacity-100 transition-none"
+            className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight opacity-100 transition-none"
             style={{
               // Ensure consistent sizing to prevent CLS
-              minHeight: '120px',
+              minHeight: '200px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -489,7 +259,7 @@ export function HeroSection() {
             }}
           >
             <div className="block">
-              <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 mr-2 sm:mr-4">
+              <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 mr-4">
                 TECH
               </span>
               <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400">
@@ -498,11 +268,11 @@ export function HeroSection() {
             </div>
           </h1>
 
-          {/* Stats grid - Responsive grid */}
+          {/* Stats grid - Fixed dimensions to prevent CLS */}
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10 max-w-xl mx-auto opacity-0 animate-fadeIn"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-xl mx-auto opacity-0 animate-fadeIn"
             style={{
-              minHeight: '100px',
+              minHeight: '120px',
               animationDelay: '0.2s',
               animationFillMode: 'forwards'  
             }}
@@ -512,28 +282,28 @@ export function HeroSection() {
             ))}
           </div>
 
-          {/* Event details - Responsive layout */}
+          {/* Event details - Fixed size */}
           <div
-            className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 opacity-0 animate-fadeIn"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 opacity-0 animate-fadeIn"
             style={{
               minHeight: '60px',
               animationDelay: '0.3s',
               animationFillMode: 'forwards'
             }}
           >
-            <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
-              <Calendar className="h-3 w-3 sm:h-4 sm:w-4 text-green-400" />
-              <span className="text-white text-xs sm:text-sm font-medium">{siteConfig.date}</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
+              <Calendar className="h-4 w-4 text-green-400" />
+              <span className="text-white text-sm font-medium">{siteConfig.date}</span>
             </div>
-            <div className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
-              <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-green-400" />
-              <span className="text-white text-xs sm:text-sm font-medium">{siteConfig.venue}</span>
+            <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
+              <MapPin className="h-4 w-4 text-green-400" />
+              <span className="text-white text-sm font-medium">{siteConfig.venue}</span>
             </div>
           </div>
 
-          {/* CTA buttons - Responsive sizing */}
+          {/* CTA buttons - Optimized for INP */}
           <div
-            className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 opacity-0 animate-fadeIn px-4 sm:px-0"
+            className="flex flex-col sm:flex-row justify-center gap-4 opacity-0 animate-fadeIn"
             style={{
               minHeight: '60px',
               animationDelay: '0.4s',
@@ -542,19 +312,19 @@ export function HeroSection() {
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.4)] transition-all duration-200 transform-gpu hover:scale-105 will-change-transform"
+              className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold px-6 rounded-full shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.4)] transition-all duration-200 transform-gpu hover:scale-105 will-change-transform"
               onClick={handleRegisterClick}
               asChild
             >
               <Link href="/register">
                 Register Now
-                <ArrowRight className="ml-2 h-3 w-3 sm:h-4 sm:w-4" />
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-green-400 text-green-400 hover:bg-green-200/10 font-semibold px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base rounded-full backdrop-blur-sm transition-all duration-200 transform-gpu hover:scale-105 will-change-transform"
+              className="border-2 border-green-400 text-green-400 hover:bg-green-200/10 font-semibold px-6 py-3 rounded-full backdrop-blur-sm transition-all duration-200 transform-gpu hover:scale-105 will-change-transform"
               onClick={handleExploreClick}
               asChild
             >
@@ -566,6 +336,17 @@ export function HeroSection() {
         {/* Bottom gradient */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-[2]" />
       </div>
+
+      {/* CSS animations */}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.4s ease-out;
+        }
+      `}</style>
     </>
   )
 }
