@@ -108,30 +108,245 @@ body {
 html {
   scroll-behavior: smooth;
 }
-@keyframes float-1 {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  33% { transform: translateY(-20px) rotate(120deg) scale(1.1); }
-  66% { transform: translateY(10px) rotate(240deg) scale(0.9); }
+
+/* ===== HERO SECTION ANIMATIONS & STYLES ===== */
+
+/* Hero container optimization */
+.hero-container {
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height */
+  contain: layout style paint;
 }
 
-@keyframes float-2 {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  50% { transform: translateY(-15px) rotate(180deg) scale(1.05); }
+/* Grid background optimization */
+.hero-grid {
+  background-size: 40px 40px;
+  opacity: 0.15;
 }
 
-@keyframes float-3 {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  25% { transform: translateY(-10px) rotate(90deg) scale(1.1); }
-  75% { transform: translateY(5px) rotate(270deg) scale(0.95); }
+@media (max-width: 767px) {
+  .hero-grid {
+    background-size: 25px 25px;
+    opacity: 0.1;
+  }
 }
 
-@keyframes float-4 {
-  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-  40% { transform: translateY(-25px) rotate(144deg) scale(1.05); }
-  80% { transform: translateY(15px) rotate(288deg) scale(0.9); }
+@media (min-width: 1024px) {
+  .hero-grid {
+    background-size: 50px 50px;
+    opacity: 0.2;
+  }
 }
 
-.animate-float-1 { animation: float-1 20s ease-in-out infinite; }
-.animate-float-2 { animation: float-2 15s ease-in-out infinite 2s; }
-.animate-float-3 { animation: float-3 18s ease-in-out infinite 1s; }
-.animate-float-4 { animation: float-4 22s ease-in-out infinite 3s; }
+/* Fast fade-in animation for critical elements */
+.fade-in-fast {
+  animation: fadeInFast 0.3s ease-out forwards;
+}
+
+@keyframes fadeInFast {
+  from { 
+    opacity: 0; 
+    transform: translateY(15px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* ===== STAR PATTERN ANIMATIONS ===== */
+
+/* Ultra-lightweight mobile stars - pulse only */
+@media (max-width: 767px) {
+  .mobile-star {
+    animation: pulse-mobile 4s ease-in-out infinite;
+  }
+  .mobile-star:nth-child(2) { 
+    animation-delay: 1s; 
+  }
+  .mobile-star:nth-child(3) { 
+    animation-delay: 2s; 
+  }
+  .mobile-star:nth-child(4) { 
+    animation-delay: 3s; 
+  }
+  
+  @keyframes pulse-mobile {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+}
+
+/* Tablet optimized star animations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tablet-star {
+    animation: float-tablet 8s ease-in-out infinite;
+  }
+  .tablet-star:nth-child(2) { 
+    animation-delay: 2s; 
+  }
+  .tablet-star:nth-child(3) { 
+    animation-delay: 4s; 
+  }
+  
+  @keyframes float-tablet {
+    0%, 100% { 
+      transform: translateY(0px); 
+      opacity: 0.6; 
+    }
+    50% { 
+      transform: translateY(-10px); 
+      opacity: 1; 
+    }
+  }
+}
+
+/* Desktop full star animations */
+@media (min-width: 1024px) {
+  .desktop-star {
+    animation: float-desktop 12s ease-in-out infinite;
+  }
+  .desktop-star:nth-child(2) { 
+    animation-delay: 3s; 
+  }
+  .desktop-star:nth-child(3) { 
+    animation-delay: 6s; 
+  }
+  .desktop-star:nth-child(4) { 
+    animation-delay: 9s; 
+  }
+  
+  @keyframes float-desktop {
+    0%, 100% { 
+      transform: translateY(0px) rotate(0deg); 
+      opacity: 0.7; 
+    }
+    33% { 
+      transform: translateY(-20px) rotate(120deg); 
+      opacity: 1; 
+    }
+    66% { 
+      transform: translateY(10px) rotate(240deg); 
+      opacity: 0.5; 
+    }
+  }
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+
+/* Touch optimization for mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+/* GPU acceleration for smooth animations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent layout shifts */
+.prevent-cls {
+  contain: layout style paint;
+}
+
+/* ===== ADDITIONAL UTILITY ANIMATIONS ===== */
+
+/* Smooth hover transitions */
+.smooth-hover {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Scale on hover (desktop only) */
+@media (min-width: 768px) {
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+}
+
+/* Glow effect for interactive elements */
+.glow-green {
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.glow-green:hover {
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+/* Backdrop blur optimization */
+.backdrop-blur-optimized {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* ===== ACCESSIBILITY & REDUCED MOTION ===== */
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .fade-in-fast {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .mobile-star,
+  .tablet-star,
+  .desktop-star {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hero-grid {
+    opacity: 0.3;
+  }
+  
+  .mobile-star,
+  .tablet-star,
+  .desktop-star {
+    opacity: 1 !important;
+  }
+}
+
+/* ===== CUSTOM SCROLLBAR (Optional) ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.7);
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .mobile-star,
+  .tablet-star,
+  .desktop-star,
+  .hero-grid {
+    display: none;
+  }
+  
+  .fade-in-fast {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

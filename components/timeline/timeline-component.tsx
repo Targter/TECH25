@@ -1,12 +1,12 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { MapPin, Calendar, Users, Trophy, Clock, Star } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import dynamic from 'next/dynamic';
 import {competitions} from '@/lib/constants'
-
 
 const FlyingSpaceship = dynamic(() => 
   import('@/components/FlyingSpaceship/FlyingSpaceship'), 
@@ -16,385 +16,291 @@ const FlyingSpaceship = dynamic(() =>
   }
 );
 
-
-
-
-// function CountdownTimer() {
-//   const [timeLeft, setTimeLeft] = useState(24 * 60 * 60);
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 24 * 60 * 60));
-//     }, 1000);
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   const hours = Math.floor(timeLeft / 3600);
-//   const minutes = Math.floor((timeLeft % 3600) / 60);
-//   const seconds = timeLeft % 60;
-
-//   return (
-//     <motion.div
-//       className="text-center text-green-400 font-mono text-3xl font-bold mb-12 relative"
-//       animate={{
-//         textShadow: ["0 0 10px rgba(34,197,94,0.8)", "0 0 20px rgba(34,197,94,1)", "0 0 10px rgba(34,197,94,0.8)"]
-//       }}
-//       transition={{
-//         duration: 2,
-//         repeat: Infinity,
-//         ease: "easeInOut"
-//       }}
-//     >
-//       <div className="flex justify-center space-x-4">
-//         <motion.div
-//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-//           whileHover={{ scale: 1.1, rotateY: 15 }}
-//           style={{ transformStyle: "preserve-3d" }}
-//         >
-//           {hours.toString().padStart(2, "0")}
-//           <div className="text-xs text-green-300">HOURS</div>
-//         </motion.div>
-//         <motion.div
-//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-//           whileHover={{ scale: 1.1, rotateY: 15 }}
-//           style={{ transformStyle: "preserve-3d" }}
-//         >
-//           {minutes.toString().padStart(2, "0")}
-//           <div className="text-xs text-green-300">MINS</div>
-//         </motion.div>
-//         <motion.div
-//           className="bg-green-900/30 px-4 py-2 rounded-lg border border-green-500/50"
-//           whileHover={{ scale: 1.1, rotateY: 15 }}
-//           style={{ transformStyle: "preserve-3d" }}
-//         >
-//           {seconds.toString().padStart(2, "0")}
-//           <div className="text-xs text-green-300">SECS</div>
-//         </motion.div>
-//       </div>
-//     </motion.div>
-//   );
-// }
-
 export default function TimelineComponent() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const containerVariants = {
+  // Memoized animation variants to prevent recreation
+  const containerVariants = useMemo(() => ({
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
+      transition: { staggerChildren: 0.15 }, // Reduced stagger
     },
-  };
+  }), []);
 
-  const itemVariants = {
+  const itemVariants = useMemo(() => ({
     hidden: {
-      y: 100,
+      y: 60, // Reduced movement
       opacity: 0,
-      scale: 0.8,
-      rotateX: 25
+      scale: 0.9, // Less dramatic scale change
     },
     visible: {
       y: 0,
       opacity: 1,
       scale: 1,
-      rotateX: 0,
       transition: {
-        duration: 0.8,
+        duration: 0.6, // Faster animation
         ease: [0.25, 0.46, 0.45, 0.94]
       },
     },
-  };
+  }), []);
+
+  // Simplified text glow animation
+  const textGlowAnimation = useMemo(() => ({
+    textShadow: [
+      "0 0 10px rgba(34,197,94,0.6)",
+      "0 0 20px rgba(34,197,94,0.8)",
+      "0 0 10px rgba(34,197,94,0.6)"
+    ]
+  }), []);
 
   return (
-    <section className="py-20 text-white w-full relative overflow-hidden">
-      {/* Flying Spaceship */}
-      <FlyingSpaceship top="top-[10%]" left="left-[5%]" duration={18} color="green" direction="leftToRight" />
-      <FlyingSpaceship top="top-[35%]" left="left-[90%]" duration={22} color="blue" direction="rightToLeft" />
-      <FlyingSpaceship top="top-[50%]" left="left-[30%]" duration={15} color="purple" direction="leftToRight" />
-
-      {/* Enhanced 3D Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating 3D Cubes */}
-        <motion.div
-          className="absolute top-20 left-10 w-16 h-16 border-2 border-green-400/30"
-          animate={{
-            rotateX: [0, 360],
-            rotateY: [0, 360],
-            rotateZ: [0, 180],
-            translateY: [-10, 10, -10]
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{ transformStyle: "preserve-3d" }}
-        />
-
-        <motion.div
-          className="absolute top-1/3 right-16 w-12 h-12 bg-green-500/20 rounded-full"
-          animate={{
-            rotateY: [0, 360],
-            translateZ: [0, 30, 0],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-20 h-20 border border-green-300/40 rotate-45"
-          animate={{
-            rotateZ: [45, 405],
-            rotateX: [0, 180, 360],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
-
+    <section className="py-12 md:py-20 text-white w-full relative overflow-hidden">
+      {/* Reduced number of flying spaceships - hide on mobile for performance */}
+      <div className="hidden lg:block">
+        <FlyingSpaceship top="top-[15%]" left="left-[5%]" duration={20} color="green" direction="leftToRight" />
       </div>
 
-      <div className="max-w-[75rem] mx-auto px-6 relative z-10">
+      {/* Simplified background elements - responsive sizing */}
+      <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="text-center max-w-4xl mx-auto mb-16"
-          initial={{ opacity: 0, y: 50, rotateX: 30 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ duration: 0.8 }}
+          className="absolute top-16 md:top-20 left-6 md:left-10 w-8 h-8 md:w-12 md:h-12 border border-green-400/20"
+          animate={{
+            rotateZ: [0, 360],
+            translateY: [-5, 5, -5]
+          }}
+          transition={{
+            duration: 20, // Slower animation
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-24 md:bottom-32 right-1/4 w-12 h-12 md:w-16 md:h-16 border border-green-300/30 rotate-45"
+          animate={{
+            rotateZ: [45, 405],
+          }}
+          transition={{
+            duration: 25, // Slower animation
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </div>
+
+      <div className="max-w-[75rem] mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div
+          className="text-center max-w-4xl mx-auto mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <motion.h1
-            className="text-5xl lg:text-6xl font-bold mb-6 text-green-400"
-            animate={{
-              textShadow: [
-                "0 0 10px rgba(34,197,94,0.8)",
-                "0 0 30px rgba(34,197,94,1)",
-                "0 0 10px rgba(34,197,94,0.8)"
-              ]
-            }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-green-400 px-2"
+            animate={textGlowAnimation}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             Event Schedule
           </motion.h1>
           <motion.p
-            className="text-xl text-gray-300 mb-8"
+            className="text-base sm:text-lg md:text-xl text-gray-300 mb-6 md:mb-8 px-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
           >
             Mark your calendar for these exciting competitions at TECHNASIA&apos;25.
             Join us for an unforgettable journey through innovation, technology, and excellence.
           </motion.p>
-          {/* <CountdownTimer /> */}
         </motion.div>
-        <FlyingSpaceship />
+
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="relative space-y-32"
+          className="relative space-y-16 md:space-y-24" // Responsive spacing
         >
-          {/* Enhanced Timeline line with 3D effect */}
+          {/* Simplified timeline line - responsive positioning */}
           <motion.div
-            className="absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-2 bg-gradient-to-b from-green-400 via-green-500 to-green-600 rounded-full"
+            className="absolute left-4 sm:left-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-green-400 via-green-500 to-green-600 rounded-full"
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            style={{
-              boxShadow: "0 0 20px rgba(34,197,94,0.6), inset 0 0 10px rgba(0,0,0,0.3)"
-            }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           />
 
           {competitions.map((comp, index) => (
             <motion.div
               key={comp.id}
               variants={itemVariants}
-              className="relative grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
-              whileHover={{
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
+              className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start lg:items-center" // Responsive gap and alignment
             >
-              {/* Enhanced Timeline dot with 3D effect */}
+              {/* Enhanced timeline dot with responsive positioning */}
               <motion.div
-                className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
+                className="absolute left-4 sm:left-8 lg:left-1/2 top-8 lg:top-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 z-20 transform -translate-x-1/2"
                 whileHover={{
-                  scale: 1.5,
-                  rotateZ: 360,
-                  transition: { duration: 0.6 }
+                  scale: 1.3,
+                  transition: { duration: 0.3 }
                 }}
               >
                 <motion.div
-                  className="w-8 h-8 bg-gradient-to-br from-green-400 to-green-600 rounded-full border-4 border-white shadow-lg relative"
+                  className="w-6 h-6 bg-gradient-to-br from-green-400 to-green-600 rounded-full border-2 border-white shadow-lg relative"
                   animate={{
                     boxShadow: [
-                      "0 0 20px rgba(34,197,94,0.8)",
-                      "0 0 40px rgba(34,197,94,1)",
-                      "0 0 20px rgba(34,197,94,0.8)"
+                      "0 0 15px rgba(34,197,94,0.6)",
+                      "0 0 25px rgba(34,197,94,0.8)",
+                      "0 0 15px rgba(34,197,94,0.6)"
                     ]
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  style={{ transformStyle: "preserve-3d" }}
+                  transition={{ duration: 3, repeat: Infinity }}
                 >
-                  <div className="absolute inset-2 bg-white rounded-full animate-pulse" />
+                  <div className="absolute inset-1 bg-white rounded-full animate-pulse opacity-60" />
                 </motion.div>
               </motion.div>
 
-              {/* Enhanced Text Section */}
-              <motion.div
-                className={`${index % 2 === 1 ? "lg:order-2" : "lg:order-1"} px-4 relative`}
+              {/* Text Section with responsive positioning and padding */}
+              <motion.div 
+                className={`${index % 2 === 1 ? "lg:order-2" : "lg:order-1"} pl-12 sm:pl-16 lg:px-4 relative`}
                 whileHover={{
-                  x: index % 2 === 1 ? -10 : 10,
+                  x: index % 2 === 1 ? -5 : 5,
                   transition: { duration: 0.3 }
                 }}
-                style={{ transformStyle: "preserve-3d" }}
               >
-                {/* 3D Floating Badge */}
-                <motion.div
-                  className="mb-6 inline-block"
-                  whileHover={{
-                    rotateY: 15,
-                    rotateX: 10,
-                    scale: 1.05
-                  }}
-                  style={{ transformStyle: "preserve-3d" }}
+                {/* Date badge with responsive sizing */}
+                <motion.div 
+                  className="mb-4 md:mb-6 inline-block"
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.2 }}
                 >
-                  <div className="bg-green-600/80 text-white px-4 py-2 rounded-full border border-green-400/50 relative overflow-hidden">
+                  <div className="bg-green-600/80 text-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-green-400/50 relative overflow-hidden">
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                       animate={{ x: [-100, 200] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
                     />
                     <div className="relative flex items-center space-x-2">
-                      <Calendar className="h-4 w-4" />
-                      <span className="font-semibold">{comp.date}</span>
+                      <Calendar className="h-3 w-3 md:h-4 md:w-4" />
+                      <span className="font-semibold text-sm md:text-base">{comp.date}</span>
                     </div>
                   </div>
                 </motion.div>
 
-                <motion.h2
-                  className="text-4xl font-bold mb-4 text-green-400"
+                <motion.h2 
+                  className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-green-400"
                   whileHover={{
-                    scale: 1.05,
-                    textShadow: "0 0 20px rgba(34,197,94,1)",
-                    transition: { duration: 0.3 }
+                    scale: 1.02,
+                    textShadow: "0 0 15px rgba(34,197,94,0.8)",
+                    transition: { duration: 0.2 }
                   }}
                 >
                   {comp.title}
                 </motion.h2>
 
-                <motion.p
-                  className="text-lg text-gray-300 mb-6 leading-relaxed"
+                <motion.p 
+                  className="text-base md:text-lg text-gray-300 mb-4 md:mb-6 leading-relaxed"
                   whileHover={{ color: "#d1d5db" }}
+                  transition={{ duration: 0.2 }}
                 >
                   {comp.description}
                 </motion.p>
 
-                {/* Enhanced Info Grid */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <motion.div
-                    className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                {/* Responsive info grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
+                  <motion.div 
+                    className="flex items-center text-green-300 bg-green-900/20 p-2 md:p-3 rounded-lg border border-green-500/30"
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.02,
                       backgroundColor: "rgba(34, 197, 94, 0.1)",
-                      rotateY: 5
+                      transition: { duration: 0.2 }
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <Clock className="h-5 w-5 mr-2" />
-                    <div>
+                    <Clock className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
+                    <div className="min-w-0">
                       <div className="text-xs text-gray-400">Time</div>
-                      <div className="font-semibold">{comp.time}</div>
+                      <div className="font-semibold text-sm md:text-base truncate">{comp.time}</div>
                     </div>
                   </motion.div>
 
-                  <motion.div
-                    className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  <motion.div 
+                    className="flex items-center text-green-300 bg-green-900/20 p-2 md:p-3 rounded-lg border border-green-500/30"
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.02,
                       backgroundColor: "rgba(34, 197, 94, 0.1)",
-                      rotateY: -5
+                      transition: { duration: 0.2 }
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <Users className="h-5 w-5 mr-2" />
-                    <div>
+                    <Users className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
+                    <div className="min-w-0">
                       <div className="text-xs text-gray-400">Participants</div>
-                      <div className="font-semibold">{comp.participants}</div>
+                      <div className="font-semibold text-sm md:text-base truncate">{comp.participants}</div>
                     </div>
                   </motion.div>
 
-                  <motion.div
-                    className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  <motion.div 
+                    className="flex items-center text-green-300 bg-green-900/20 p-2 md:p-3 rounded-lg border border-green-500/30"
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.02,
                       backgroundColor: "rgba(34, 197, 94, 0.1)",
-                      rotateY: 5
+                      transition: { duration: 0.2 }
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <Trophy className="h-5 w-5 mr-2" />
-                    <div>
+                    <Trophy className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
+                    <div className="min-w-0">
                       <div className="text-xs text-gray-400">Prize Pool</div>
-                      <div className="font-semibold">{comp.prize}</div>
+                      <div className="font-semibold text-sm md:text-base truncate">{comp.prize}</div>
                     </div>
                   </motion.div>
 
-                  <motion.div
-                    className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  <motion.div 
+                    className="flex items-center text-green-300 bg-green-900/20 p-2 md:p-3 rounded-lg border border-green-500/30"
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.02,
                       backgroundColor: "rgba(34, 197, 94, 0.1)",
-                      rotateY: -5
+                      transition: { duration: 0.2 }
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    <Star className="h-5 w-5 mr-2" />
-                    <div>
+                    <Star className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
+                    <div className="min-w-0">
                       <div className="text-xs text-gray-400">Difficulty</div>
-                      <div className="font-semibold">{comp.difficulty}</div>
+                      <div className="font-semibold text-sm md:text-base truncate">{comp.difficulty}</div>
                     </div>
                   </motion.div>
                 </div>
 
-                <motion.div
-                  className="flex items-center text-green-300 mb-6 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                <motion.div 
+                  className="flex items-center text-green-300 mb-4 md:mb-6 bg-green-900/20 p-2 md:p-3 rounded-lg border border-green-500/30"
                   whileHover={{
-                    scale: 1.02,
-                    backgroundColor: "rgba(34, 197, 94, 0.1)"
+                    scale: 1.01,
+                    backgroundColor: "rgba(34, 197, 94, 0.1)",
+                    transition: { duration: 0.2 }
                   }}
                 >
-                  <MapPin className="h-5 w-5 mr-2" />
-                  <div>
+                  <MapPin className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
+                  <div className="min-w-0">
                     <div className="text-xs text-gray-400">Location</div>
-                    <div className="font-semibold">{comp.location}</div>
+                    <div className="font-semibold text-sm md:text-base truncate">{comp.location}</div>
                   </div>
                 </motion.div>
 
-                {/* Highlights Section */}
-                <div className="mb-8">
-                  <h4 className="text-green-400 font-semibold mb-3">Key Highlights:</h4>
-                  <div className="grid grid-cols-2 gap-2">
+                {/* Responsive highlights */}
+                <div className="mb-6 md:mb-8">
+                  <h4 className="text-green-400 font-semibold mb-3 text-sm md:text-base">Key Highlights:</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {comp.highlights.map((highlight, idx) => (
                       <motion.div
                         key={idx}
-                        className="text-sm text-gray-300 bg-green-900/10 px-3 py-2 rounded-full border border-green-500/20"
+                        className="text-xs md:text-sm text-gray-300 bg-green-900/10 px-2 md:px-3 py-1.5 md:py-2 rounded-full border border-green-500/20"
                         whileHover={{
-                          scale: 1.05,
-                          backgroundColor: "rgba(34, 197, 94, 0.15)",
-                          color: "#bbf7d0"
+                          scale: 1.02,
+                          backgroundColor: "rgba(34, 197, 94, 0.12)",
+                          color: "#bbf7d0",
+                          transition: { duration: 0.2 }
                         }}
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
+                        transition={{ delay: idx * 0.05 }}
                       >
                         • {highlight}
                       </motion.div>
@@ -404,17 +310,16 @@ export default function TimelineComponent() {
 
                 <Link href={`/timeline/${comp.id}`}>
                   <motion.button
-                    className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 px-8 rounded-lg transition-all duration-300 relative overflow-hidden group font-semibold"
+                    className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto"
                     whileHover={{
-                      scale: 1.05,
-                      rotateY: 5,
-                      boxShadow: "0 10px 25px rgba(34, 197, 94, 0.3)"
+                      scale: 1.03,
+                      boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)",
+                      transition: { duration: 0.2 }
                     }}
                     whileTap={{ scale: 0.98 }}
-                    style={{ transformStyle: "preserve-3d" }}
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/40 to-white/20"
+                      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
                       transition={{ duration: 0.6 }}
@@ -424,262 +329,144 @@ export default function TimelineComponent() {
                 </Link>
               </motion.div>
 
-              {/* Enhanced Image Section with Increased Height and 3D Objects */}
+              {/* Enhanced image section with responsive sizing */}
               <motion.div
-                className={`relative w-full h-[650px] rounded-2xl overflow-hidden shadow-2xl border-2 border-green-500/50 ${index % 2 === 1 ? "lg:order-1" : "lg:order-2"
-                  }`}
+                className={`relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[750px] rounded-2xl overflow-hidden shadow-2xl border border-green-500/30 ${
+                  index % 2 === 1 ? "lg:order-1" : "lg:order-2"
+                }`}
                 whileHover={{
-                  scale: 1.05,
-                  rotateY: index % 2 === 1 ? -8 : 8,
-                  rotateX: -5,
-                  boxShadow: "0 25px 50px rgba(34, 197, 94, 0.4)",
+                  scale: 1.03,
+                  rotateY: index % 2 === 1 ? -3 : 3,
+                  boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)",
                   transition: { duration: 0.4 }
                 }}
                 style={{ transformStyle: "preserve-3d" }}
               >
                 <div className="w-full h-full bg-gradient-to-br from-green-900/20 to-black/40 flex items-center justify-center relative">
-                  <motion.div
-                    className="text-8xl font-bold text-green-400/50"
-                    whileHover={{
-                      scale: 1.2,
-                      rotateZ: 10,
-                      color: "rgba(34, 197, 94, 0.8)"
-                    }}
-                  >
-                    {comp.title.charAt(0)}
-                  </motion.div>
-                  {comp.image && (
-                    <motion.img
+                  {comp.image ? (
+                    <Image
                       src={comp.image}
                       alt={comp.title}
-                      className="absolute w-[95%] h-[98%] object-cover rounded-xl shadow-xl"
-                      initial={{ opacity: 1, scale: 1 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                      style={{ zIndex: 0 }}
+                      fill
+                      className="object-cover"
+                      priority={index < 2} // Priority loading for first 2 images
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 650px"
                     />
+                  ) : (
+                    <motion.div 
+                      className="text-4xl sm:text-5xl md:text-6xl font-bold text-green-400/50"
+                      whileHover={{
+                        scale: 1.1,
+                        color: "rgba(34, 197, 94, 0.8)",
+                        transition: { duration: 0.3 }
+                      }}
+                    >
+                      {comp.title.charAt(0)}
+                    </motion.div>
                   )}
 
-
-
-                  {/* 3D Floating Objects */}
+                  {/* Enhanced floating objects with responsive sizing */}
                   <motion.div
-                    className="absolute top-16 left-12 w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
+                    className="absolute top-4 md:top-8 left-4 md:left-8 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
                     animate={{
-                      rotateX: [0, 360],
-                      rotateY: [0, 180],
-                      translateZ: [0, 30, 0],
-                      translateY: [-10, 10, -10]
+                      rotateZ: [0, 360],
+                      translateY: [-5, 5, -5]
+                    }}
+                    transition={{
+                      duration: 12,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                    whileHover={{
+                      scale: 1.2,
+                      transition: { duration: 0.2 }
+                    }}
+                  />
+
+                  <motion.div
+                    className="absolute bottom-4 md:bottom-8 right-4 md:right-8 w-8 h-8 md:w-12 md:h-12 border-2 border-green-400/50 rounded-full"
+                    animate={{
+                      scale: [1, 1.2, 1],
+                      rotateZ: [0, 180, 360]
                     }}
                     transition={{
                       duration: 8,
                       repeat: Infinity,
-                      ease: "linear",
+                      ease: "easeInOut",
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
-                  />
+                    whileHover={{
+                      borderColor: "rgba(34, 197, 94, 0.8)",
+                      transition: { duration: 0.2 }
+                    }}
+                  >
+                    <div className="absolute inset-2 bg-green-400/30 rounded-full" />
+                  </motion.div>
 
                   <motion.div
-                    className="absolute bottom-20 right-16 w-16 h-16 border-4 border-green-400/60 rounded-full"
+                    className="absolute top-1/3 right-6 md:right-12 w-4 h-8 md:w-6 md:h-16 bg-gradient-to-t from-green-500 to-green-300 rounded-full"
                     animate={{
-                      rotateZ: [0, 360],
-                      scale: [1, 1.3, 1],
-                      translateZ: [0, -20, 0]
+                      translateX: [-3, 3, -3],
+                      rotateY: [0, 180, 360]
                     }}
                     transition={{
                       duration: 6,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
-                  >
-                    <div className="absolute inset-4 bg-green-400/40 rounded-full" />
-                  </motion.div>
-
-                  <motion.div
-                    className="absolute top-1/3 right-8 w-8 h-20 bg-gradient-to-t from-green-500 to-green-300 rounded-full"
-                    animate={{
-                      rotateX: [0, 180, 360],
-                      translateX: [-5, 5, -5],
-                      translateZ: [0, 25, 0]
+                    whileHover={{
+                      scale: 1.1,
+                      transition: { duration: 0.2 }
                     }}
-                    transition={{
-                      duration: 5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    style={{ transformStyle: "preserve-3d" }}
                   />
 
                   <motion.div
-                    className="absolute bottom-1/3 left-8 w-10 h-10 bg-green-400/30 transform rotate-45"
+                    className="absolute bottom-1/3 left-6 md:left-12 w-6 h-6 md:w-8 md:h-8 bg-green-400/40 transform rotate-45"
                     animate={{
                       rotateZ: [45, 405],
-                      rotateY: [0, 180],
-                      translateZ: [0, 15, 0]
                     }}
                     transition={{
-                      duration: 7,
+                      duration: 10,
                       repeat: Infinity,
                       ease: "linear",
                     }}
-                    style={{ transformStyle: "preserve-3d" }}
+                    whileHover={{
+                      backgroundColor: "rgba(34, 197, 94, 0.6)",
+                      transition: { duration: 0.2 }
+                    }}
                   />
 
-                  {/* Orbiting Spheres */}
+                  {/* Additional decorative elements with responsive sizing */}
                   <motion.div
-                    className="absolute top-1/2 left-1/2 w-32 h-32 transform -translate-x-1/2 -translate-y-1/2"
-                    animate={{ rotateZ: [0, 360] }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                  >
-                    <motion.div
-                      className="absolute -top-2 left-1/2 w-4 h-4 bg-green-400 rounded-full transform -translate-x-1/2"
-                      animate={{
-                        scale: [1, 1.5, 1],
-                        opacity: [0.7, 1, 0.7]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <motion.div
-                      className="absolute -bottom-2 left-1/2 w-3 h-3 bg-green-300 rounded-full transform -translate-x-1/2"
-                      animate={{
-                        scale: [1, 1.3, 1],
-                        opacity: [0.5, 0.8, 0.5]
-                      }}
-                      transition={{ duration: 2.5, repeat: Infinity }}
-                    />
-                    <motion.div
-                      className="absolute top-1/2 -left-2 w-3 h-3 bg-green-500 rounded-full transform -translate-y-1/2"
-                      animate={{
-                        scale: [1, 1.4, 1],
-                        opacity: [0.6, 1, 0.6]
-                      }}
-                      transition={{ duration: 1.8, repeat: Infinity }}
-                    />
-                    <motion.div
-                      className="absolute top-1/2 -right-2 w-3 h-3 bg-green-200 rounded-full transform -translate-y-1/2"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.4, 0.9, 0.4]
-                      }}
-                      transition={{ duration: 2.2, repeat: Infinity }}
-                    />
-                  </motion.div>
-                </div>
-
-                {/* 3D Overlay Effects */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ rotateX: 90 }}
-                  whileHover={{ rotateX: 0 }}
-                  style={{ transformOrigin: "bottom", transformStyle: "preserve-3d" }}
-                />
-
-                {/* More Floating 3D Elements */}
-                <motion.div
-                  className="absolute top-4 right-4 w-4 h-4 bg-green-400 rounded-full"
-                  animate={{
-                    translateZ: [0, 20, 0],
-                    rotateY: [0, 360],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-                <motion.div
-                  className="absolute bottom-4 left-4 w-3 h-3 bg-green-300 rounded-full"
-                  animate={{
-                    translateZ: [0, -15, 0],
-                    rotateX: [0, 360],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-
-                {/* Additional 3D Geometric Shapes */}
-                <motion.div
-                  className="absolute top-8 left-1/3 w-6 h-6 bg-gradient-to-br from-cyan-400 to-blue-500 transform rotate-45"
-                  animate={{
-                    rotateZ: [45, 405],
-                    rotateX: [0, 180],
-                    translateZ: [0, 20, -10, 0],
-                    scale: [1, 1.2, 0.8, 1]
-                  }}
-                  transition={{
-                    duration: 9,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ transformStyle: "preserve-3d" }}
-                />
-
-                <motion.div
-                  className="absolute bottom-12 right-1/3 w-8 h-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full"
-                  animate={{
-                    rotateY: [0, 360],
-                    translateY: [-5, 5, -5],
-                    translateZ: [0, 15, 0],
-                    scaleX: [1, 1.5, 1]
-                  }}
-                  transition={{
-                    duration: 6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  style={{ transformStyle: "preserve-3d" }}
-                />
-
-                {/* Hexagonal 3D Shape */}
-                <motion.div
-                  className="absolute top-1/2 left-8 w-10 h-10 border-2 border-yellow-400/60"
-                  style={{
-                    clipPath: "polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)"
-                  }}
-                  animate={{
-                    rotateZ: [0, 360],
-                    rotateY: [0, 180, 360],
-                    translateZ: [0, 25, 0],
-                    scale: [1, 1.3, 1]
-                  }}
-                  transition={{
-                    duration: 10,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-
-                {/* Pulsing Energy Rings */}
-                <motion.div
-                  className="absolute top-1/4 right-1/4 w-16 h-16 border border-green-400/40 rounded-full"
-                  animate={{
-                    scale: [1, 1.8, 1],
-                    opacity: [0.8, 0.2, 0.8],
-                    rotateZ: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-2 border border-green-300/60 rounded-full"
+                    className="absolute top-12 md:top-16 right-1/4 w-3 h-3 md:w-4 md:h-4 bg-yellow-400/60 rounded-full"
                     animate={{
-                      scale: [1, 0.5, 1],
+                      translateY: [-8, 8, -8],
                       opacity: [0.6, 1, 0.6]
                     }}
                     transition={{
-                      duration: 2,
+                      duration: 4,
                       repeat: Infinity,
                       ease: "easeInOut",
                     }}
                   />
-                </motion.div>
+
+                  <motion.div
+                    className="absolute bottom-12 md:bottom-16 left-1/3 w-4 h-4 md:w-6 md:h-6 border border-purple-400/50"
+                    style={{
+                      clipPath: "polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)"
+                    }}
+                    animate={{
+                      rotateZ: [0, 360],
+                      scale: [1, 1.2, 1]
+                    }}
+                    transition={{
+                      duration: 8,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                </div>
               </motion.div>
             </motion.div>
           ))}
