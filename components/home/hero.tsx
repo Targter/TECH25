@@ -84,90 +84,163 @@ const StatCard = memo<StatCardProps>(({ stat }) => {
 StatCard.displayName = 'StatCard'
 
 // Responsive star pattern with mobile optimization
+// Fixed ResponsiveStarPattern component with better coverage
 const ResponsiveStarPattern = memo(() => (
-  <div className="absolute inset-0 w-screen h-screen pointer-events-none overflow-hidden">
-    {/* Desktop stars - larger and more spread out */}
+  <div className="fixed inset-0 w-full h-full pointer-events-none overflow-hidden z-[1]">
+    {/* Desktop stars - better distributed across full viewport */}
     <div className="hidden lg:block">
-      {/* Large stars */}
+      {/* Large stars - more spread out */}
       <div 
         className="absolute w-6 h-6 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-1"
-        style={{ left: '15%', top: '20%' }}
+        style={{ left: '5%', top: '10%' }}
       />
       <div 
         className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-2"
-        style={{ left: '85%', top: '15%' }}
+        style={{ left: '95%', top: '8%' }}
       />
       <div 
         className="absolute w-7 h-7 bg-gradient-to-br from-green-400/35 to-green-600/35 rounded-full backdrop-blur-sm border border-green-500/45 animate-star-float-3"
-        style={{ left: '70%', top: '60%' }}
+        style={{ left: '85%', top: '25%' }}
       />
       <div 
         className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-4"
-        style={{ left: '25%', top: '70%' }}
+        style={{ left: '12%', top: '35%' }}
       />
       <div 
         className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-5"
-        style={{ left: '90%', top: '80%' }}
+        style={{ left: '92%', top: '50%' }}
       />
       <div 
-        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-6"
-        style={{ left: '10%', top: '85%' }}
+        className="absolute w-6 h-6 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-6"
+        style={{ left: '3%', top: '60%' }}
+      />
+      <div 
+        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-1"
+        style={{ left: '78%', top: '75%' }}
+      />
+      <div 
+        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-2"
+        style={{ left: '25%', top: '85%' }}
+      />
+      <div 
+        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-3"
+        style={{ left: '88%', top: '92%' }}
+      />
+      <div 
+        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/22 to-green-600/22 rounded-full backdrop-blur-sm border border-green-500/32 animate-star-float-4"
+        style={{ left: '45%', top: '5%' }}
+      />
+      <div 
+        className="absolute w-6 h-6 bg-gradient-to-br from-green-400/28 to-green-600/28 rounded-full backdrop-blur-sm border border-green-500/38 animate-star-float-5"
+        style={{ left: '65%', top: '12%' }}
+      />
+      <div 
+        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/18 to-green-600/18 rounded-full backdrop-blur-sm border border-green-500/28 animate-star-float-6"
+        style={{ left: '35%', top: '22%' }}
       />
     </div>
 
-    {/* Tablet stars - medium sized */}
+    {/* Tablet stars - medium sized, better coverage */}
     <div className="hidden md:block lg:hidden">
       <div 
         className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-1"
-        style={{ left: '20%', top: '25%' }}
+        style={{ left: '8%', top: '15%' }}
       />
       <div 
         className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-2"
-        style={{ left: '80%', top: '20%' }}
+        style={{ left: '90%', top: '12%' }}
       />
       <div 
         className="absolute w-5 h-5 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-3"
-        style={{ left: '75%', top: '65%' }}
+        style={{ left: '85%', top: '40%' }}
       />
       <div 
         className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-4"
-        style={{ left: '30%', top: '75%' }}
+        style={{ left: '15%', top: '55%' }}
+      />
+      <div 
+        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-1"
+        style={{ left: '92%', top: '70%' }}
+      />
+      <div 
+        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-2"
+        style={{ left: '22%', top: '85%' }}
+      />
+      <div 
+        className="absolute w-5 h-5 bg-gradient-to-br from-green-400/30 to-green-600/30 rounded-full backdrop-blur-sm border border-green-500/40 animate-star-float-mobile-3"
+        style={{ left: '75%', top: '88%' }}
+      />
+      <div 
+        className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-4"
+        style={{ left: '50%', top: '8%' }}
       />
     </div>
 
-    {/* Mobile stars - smaller and fewer */}
+    {/* Mobile stars - smaller but better distributed */}
     <div className="block md:hidden">
       <div 
         className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-1"
-        style={{ left: '15%', top: '15%' }}
+        style={{ left: '5%', top: '12%' }}
       />
       <div 
         className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-2"
-        style={{ left: '85%', top: '20%' }}
+        style={{ left: '92%', top: '18%' }}
       />
       <div 
         className="absolute w-4 h-4 bg-gradient-to-br from-green-400/25 to-green-600/25 rounded-full backdrop-blur-sm border border-green-500/35 animate-star-float-mobile-3"
-        style={{ left: '80%', top: '70%' }}
+        style={{ left: '88%', top: '45%' }}
       />
       <div 
         className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-4"
-        style={{ left: '20%', top: '80%' }}
+        style={{ left: '8%', top: '65%' }}
+      />
+      <div 
+        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-star-float-mobile-1"
+        style={{ left: '85%', top: '82%' }}
+      />
+      <div 
+        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/15 to-green-600/15 rounded-full backdrop-blur-sm border border-green-500/25 animate-star-float-mobile-2"
+        style={{ left: '25%', top: '88%' }}
+      />
+      <div 
+        className="absolute w-3 h-3 bg-gradient-to-br from-green-400/18 to-green-600/18 rounded-full backdrop-blur-sm border border-green-500/28 animate-star-float-mobile-3"
+        style={{ left: '50%', top: '8%' }}
+      />
+      <div 
+        className="absolute w-2 h-2 bg-gradient-to-br from-green-400/16 to-green-600/16 rounded-full backdrop-blur-sm border border-green-500/26 animate-star-float-mobile-4"
+        style={{ left: '72%', top: '28%' }}
       />
     </div>
 
-    {/* Additional twinkling stars for all screen sizes */}
+    {/* Enhanced twinkling stars for all screen sizes - much better coverage */}
     <div className="absolute inset-0">
-      {/* Small twinkling stars scattered across the screen */}
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-1" style={{ left: '12%', top: '10%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-2" style={{ left: '88%', top: '12%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-3" style={{ left: '45%', top: '8%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-4" style={{ left: '65%', top: '25%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-5" style={{ left: '25%', top: '30%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-6" style={{ left: '92%', top: '45%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-1" style={{ left: '8%', top: '55%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-2" style={{ left: '55%', top: '85%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-3" style={{ left: '75%', top: '90%' }} />
-      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-4" style={{ left: '35%', top: '95%' }} />
+      {/* Corner stars */}
+      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-1" style={{ left: '2%', top: '5%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-2" style={{ left: '97%', top: '3%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-3" style={{ left: '1%', top: '95%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-4" style={{ left: '98%', top: '97%' }} />
+      
+      {/* Edge stars */}
+      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-5" style={{ left: '0.5%', top: '30%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-6" style={{ left: '99%', top: '60%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-1" style={{ left: '15%', top: '1%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-2" style={{ left: '85%', top: '99%' }} />
+      
+      {/* Mid-section stars */}
+      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-3" style={{ left: '25%', top: '18%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-4" style={{ left: '75%', top: '22%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/35 rounded-full animate-twinkle-5" style={{ left: '35%', top: '45%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/25 rounded-full animate-twinkle-6" style={{ left: '65%', top: '55%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/40 rounded-full animate-twinkle-1" style={{ left: '20%', top: '75%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/30 rounded-full animate-twinkle-2" style={{ left: '80%', top: '78%' }} />
+      
+      {/* Additional scattered stars for better coverage */}
+      <div className="absolute w-1 h-1 bg-green-400/32 rounded-full animate-twinkle-3" style={{ left: '42%', top: '12%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/28 rounded-full animate-twinkle-4" style={{ left: '58%', top: '35%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/36 rounded-full animate-twinkle-5" style={{ left: '28%', top: '52%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/24 rounded-full animate-twinkle-6" style={{ left: '72%', top: '68%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/38 rounded-full animate-twinkle-1" style={{ left: '48%', top: '85%' }} />
+      <div className="absolute w-1 h-1 bg-green-400/26 rounded-full animate-twinkle-2" style={{ left: '38%', top: '92%' }} />
     </div>
   </div>
 ))
@@ -219,7 +292,7 @@ export function HeroSection() {
   return (
     <>
       {/* Enhanced CSS animations for responsive star pattern */}
-      <style jsx>{`
+       <style jsx>{`
         /* Desktop star animations */
         @keyframes star-float-1 {
           0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 1; }

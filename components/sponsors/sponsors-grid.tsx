@@ -148,8 +148,8 @@ export default function SponsorsGrid() {
       y: 0,
       opacity: 1,
       scale: 1,
-      transition: { 
-        duration: 0.7, 
+      transition: {
+        duration: 0.7,
         ease: [0.25, 0.46, 0.45, 0.94],
         type: "spring",
         stiffness: 100,
@@ -158,12 +158,12 @@ export default function SponsorsGrid() {
     },
   };
 
- 
+
 
   const logoHoverVariants = {
     initial: { scale: 1, rotate: 0 },
-    hover: { 
-      scale: 1.1, 
+    hover: {
+      scale: 1.1,
       rotate: 2,
       transition: { duration: 0.3, ease: "easeOut" }
     }
@@ -200,10 +200,10 @@ export default function SponsorsGrid() {
 
       <div className="container relative z-10 max-w-7xl mx-auto px-6">
         {/* Enhanced Header Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.8, ease: "easeOut" }} 
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-center max-w-4xl mx-auto mb-16"
         >
           <motion.div
@@ -216,7 +216,7 @@ export default function SponsorsGrid() {
             <span className="text-sm font-semibold text-green-400 tracking-wide">Trusted Partners</span>
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -226,8 +226,8 @@ export default function SponsorsGrid() {
               Sponsors & Partners
             </span>
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -271,7 +271,7 @@ export default function SponsorsGrid() {
               }}
             >
               {/* Animated border gradient */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 style={{
                   background: 'linear-gradient(45deg, #10b981, #34d399, #6ee7b7, #10b981)',
@@ -284,10 +284,8 @@ export default function SponsorsGrid() {
                 <div className="w-full h-full bg-gradient-to-br from-gray-900/60 to-gray-800/40 rounded-2xl" />
               </motion.div>
 
-              {/* Glow effect */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400/20 to-lime-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
 
-              <motion.div 
+              <motion.div
                 variants={logoHoverVariants}
                 className="relative w-32 h-20 mb-4 flex-shrink-0 transition-all duration-300"
               >
@@ -302,7 +300,7 @@ export default function SponsorsGrid() {
                 />
               </motion.div>
 
-              <motion.h3 
+              <motion.h3
                 className="font-bold text-lg text-green-400 mb-3 text-center group-hover:text-green-300 transition-all duration-300"
                 initial={{ y: 0 }}
                 whileHover={{ y: -2 }}
@@ -311,7 +309,7 @@ export default function SponsorsGrid() {
                 {sponsor.name}
               </motion.h3>
 
-              <motion.p 
+              <motion.p
                 className="text-sm text-gray-300 text-center line-clamp-3 mb-4 flex-grow group-hover:text-gray-200 transition-colors duration-300"
                 initial={{ opacity: 0.8 }}
                 whileHover={{ opacity: 1 }}
@@ -319,7 +317,7 @@ export default function SponsorsGrid() {
                 {sponsor.description}
               </motion.p>
 
-              <motion.div 
+              <motion.div
                 className="px-4 py-2 rounded-full text-xs font-semibold bg-gradient-to-r from-green-700/40 to-lime-700/40 text-green-100 border border-green-600/30 group-hover:border-green-400/50 group-hover:from-green-600/50 group-hover:to-lime-600/50 transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
@@ -328,7 +326,7 @@ export default function SponsorsGrid() {
               </motion.div>
 
               {/* Enhanced hover effects */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 rounded-2xl ring-2 ring-green-400/0 group-hover:ring-green-400/60 transition-all duration-300 pointer-events-none"
                 initial={{ scale: 1 }}
                 whileHover={{ scale: 1.02 }}
@@ -347,29 +345,27 @@ export default function SponsorsGrid() {
       <AnimatePresence>
         {selectedSponsor && (
           <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            className="fixed inset-0 z-50 flex items-center justify-center border-4 p-4 bg-black/80 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleBackdropClick}
           >
             <motion.div
-              className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-8 shadow-2xl border border-green-600/50 backdrop-blur-sm"
+              className="relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl max-w-4xl w-full max-h-[80vh] overflow-y-auto p-4 shadow-xl border border-green-600/50 backdrop-blur-sm"
               initial={{ scale: 0.8, opacity: 0, y: 50, rotateX: -15 }}
               animate={{ scale: 1, opacity: 1, y: 0, rotateX: 0 }}
               exit={{ scale: 0.8, opacity: 0, y: 50, rotateX: 15 }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 300, 
+              transition={{
+                type: "spring",
+                stiffness: 300,
                 damping: 25,
                 duration: 0.5
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Animated background glow */}
-              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-lime-500/10 rounded-3xl blur-xl opacity-50" />
-              
-              {/* Enhanced Close Button */}
+
+
               <motion.button
                 aria-label="Close sponsor details"
                 className="absolute top-6 right-6 text-gray-400 hover:text-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full p-3 hover:bg-gray-800/50 transition-all duration-300 z-10"
@@ -381,14 +377,14 @@ export default function SponsorsGrid() {
                 <X className="w-6 h-6" />
               </motion.button>
 
-              <motion.div 
+              <motion.div
                 className="flex flex-col md:flex-row items-center md:items-start gap-8 mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 {/* Enhanced Logo */}
-                <motion.div 
+                <motion.div
                   className="relative w-48 h-28 flex-shrink-0 rounded-xl overflow-hidden border border-green-500/40 shadow-lg bg-gradient-to-br from-gray-800/50 to-gray-700/50 p-4"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.3 }}
@@ -406,7 +402,7 @@ export default function SponsorsGrid() {
 
                 {/* Enhanced Basic Info */}
                 <div className="flex-1 text-center md:text-left">
-                  <motion.h2 
+                  <motion.h2
                     className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-lime-400 mb-4"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -414,8 +410,8 @@ export default function SponsorsGrid() {
                   >
                     {selectedSponsor.name}
                   </motion.h2>
-                  
-                  <motion.p 
+
+                  <motion.p
                     className="text-gray-300 text-lg leading-relaxed mb-6"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -443,7 +439,7 @@ export default function SponsorsGrid() {
               </motion.div>
 
               {/* Rest of the modal content remains the same but with enhanced animations */}
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-1 lg:grid-cols-2 gap-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -451,7 +447,7 @@ export default function SponsorsGrid() {
               >
                 {/* Partnership Details */}
                 <div className="space-y-6">
-                  <motion.div 
+                  <motion.div
                     className="flex items-center gap-3 text-gray-300 p-4 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors duration-300"
                     whileHover={{ scale: 1.02 }}
                   >
@@ -461,8 +457,8 @@ export default function SponsorsGrid() {
                       <p className="text-xl font-bold">{selectedSponsor.since}</p>
                     </div>
                   </motion.div>
-                  
-                  <motion.div 
+
+                  <motion.div
                     className="flex items-center gap-3 text-gray-300 p-4 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors duration-300"
                     whileHover={{ scale: 1.02 }}
                   >
@@ -478,7 +474,7 @@ export default function SponsorsGrid() {
                       <Award className="w-5 h-5" />
                       Partnership Type
                     </h3>
-                    <motion.div 
+                    <motion.div
                       className="px-4 py-3 bg-gradient-to-r from-green-700/20 to-lime-700/20 border border-green-600/30 rounded-lg hover:border-green-500/50 transition-colors duration-300"
                       whileHover={{ scale: 1.02 }}
                     >
@@ -509,7 +505,7 @@ export default function SponsorsGrid() {
 
                   <div>
                     <h3 className="text-green-400 font-semibold text-lg mb-3">Contributions</h3>
-                    <motion.p 
+                    <motion.p
                       className="text-gray-300 leading-relaxed p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors duration-300"
                       whileHover={{ scale: 1.01 }}
                     >
@@ -520,7 +516,7 @@ export default function SponsorsGrid() {
               </motion.div>
 
               {/* Enhanced Benefits Section */}
-              <motion.div 
+              <motion.div
                 className="mt-8 pt-8 border-t border-gray-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -537,7 +533,7 @@ export default function SponsorsGrid() {
                       transition={{ delay: 0.6 + index * 0.1, duration: 0.3 }}
                       whileHover={{ scale: 1.02, y: -2 }}
                     >
-                      <motion.div 
+                      <motion.div
                         className="w-2 h-2 bg-green-400 rounded-full mt-2 flex-shrink-0"
                         animate={{ scale: [1, 1.2, 1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
