@@ -18,11 +18,11 @@ import Image from "next/image";
 
 const navLinks = [
   { title: "Home", href: "/", special: true, isRoute: true },
-  { title: "About", href: "video" },
-  { title: "Timeline", href: "timeline" },
-  { title: "Sponsors", href: "sponsors" },
+  
+  { title: "Timeline", href: "/timeline",isRoute:true },
+  { title: "Sponsors", href: "sponsors",isRoute:true },
   { title: "Previous Events", href: "/previous-events", isRoute: true },
-  { title: "FAQs", href: "faqs" },
+  
   { title: "Team", href: "/team", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
@@ -66,11 +66,11 @@ export function Navbar() {
             <Image
               src="/logo/logo_technisia.svg"
               alt="Technisia Logo"
-              width={isScrolled ? 24 : 32}
-              height={isScrolled ? 24 : 32}
+              width={isScrolled ? 40 : 50}
+              height={isScrolled ? 40 : 50}
               className={cn(
                 "block",
-                isScrolled ? "h-6 w-6" : "h-8 w-8"
+                isScrolled ? "h-19 w-19" : "h-20 w-20"
               )}
             />
           </motion.div>

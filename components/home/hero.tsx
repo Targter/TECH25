@@ -328,7 +328,7 @@ export function HeroSection() {
               onClick={handleExploreClick}
               asChild
             >
-              <Link href="#timeline">Explore Competitions</Link>
+              <Link href="/timeline">Explore Competitions</Link>
             </Button>
           </div>
         </div>

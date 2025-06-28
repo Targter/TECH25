@@ -1,7 +1,5 @@
 import { HeroSection } from "@/components/home/hero";
 import { HighlightsSection } from "@/components/home/highlights";
-import TimelineComponent from "@/components/timeline/timeline-component";
-import SponsorGrid from "@/components/sponsors/sponsors-grid";
 import { FaqAccordion } from "@/components/faqs/faq-accordion";
 import { ParticleWrapper } from "@/components/ParticleWrapper/ParticleWrapper";
 import { Video } from "@/components/videotrailer/videopage";
@@ -26,13 +24,8 @@ export default function Home() {
         <PreviousPosterMain />
       </section>
 
-      <section id="timeline">
-        <TimelineComponent />
-      </section>
 
-      <section id="sponsors">
-        <SponsorGrid />
-      </section>
+   
 
      
 
