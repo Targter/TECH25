@@ -155,11 +155,11 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
               <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
                 Welcome to the Amazing<br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-                  TECHNISIA&apos;25
+                  TECHNICIA&apos;25
                 </span>
               </h2>
               <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                TECHNISIA is not just an event, it&apos;s an interstellar journey through the cosmos of technology.
+                TECHNICIA is not just an event, it&apos;s an interstellar journey through the cosmos of technology.
                 With over 5000 participants from across the galaxy, our annual tech extravaganza brings together
                 the brightest minds to innovate, compete, and celebrate the future of tech.
               </p>
@@ -257,7 +257,7 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
                   width="100%"
                   height="100%"
                   src={src || "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"}
-                  title="Technisia 2024 Recap"
+                  title="Techniia 2024 Recap"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen

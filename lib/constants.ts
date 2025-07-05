@@ -1,8 +1,8 @@
 // import { picture } from "framer-motion/client";
 
 export const siteConfig = {
-  name: "TECHNASIA'25",
-  organisation:"ISTE    ",
+  name: "TECHNICIA'25",
+  organisation:"ISTE",
   logo:"/logo/logotechnisia.svg",
   
   description: "The biggest tech fest of Asia - Where Innovation Meets Opportunity",
@@ -11,10 +11,10 @@ export const siteConfig = {
   email: "gauravthakur83551@gmial.com",
   phone: "6284001268",
   links: {
-    twitter: "https://twitter.com/technasia",
-    github: "https://github.com/technasia",
-    instagram: "https://instagram.com/technasia",
-    linkedin: "https://linkedin.com/company/technasia",
+    twitter: "https://twitter.com/technicia",
+    github: "https://github.com/technicia",
+    instagram: "https://instagram.com/technicia",
+    linkedin: "https://linkedin.com/company/technicia",
   },
 };
 
@@ -399,8 +399,8 @@ export const previousEvents = [
 
 export const faqs = [
   {
-    question: "When and where is TECHNASIA'25 taking place?",
-    answer: "TECHNASIA'25 will be held from March 13-16, 2025, at the Tech Innovation Center in Asia. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
+    question: "When and where is TECHNICIA'25 taking place?",
+    answer: "TECHNICIA'25 will be held from March 13-16, 2025, at the Tech Innovation Center in Asia. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
   },
   {
     question: "How can I register for the event?",
@@ -408,11 +408,11 @@ export const faqs = [
   },
   {
     question: "Is there a registration fee?",
-    answer: "General admission to TECHNASIA'25 is free, but some competitions and workshops may have a nominal fee. Early bird registrants receive discounted rates. Please check the specific competition or workshop page for fee details.",
+    answer: "General admission to TECHNICIA'25 is free, but some competitions and workshops may have a nominal fee. Early bird registrants receive discounted rates. Please check the specific competition or workshop page for fee details.",
   },
   {
     question: "Can international students participate?",
-    answer: "Absolutely! TECHNASIA'25 welcomes participants from around the world. International participants may need to arrange their own travel and accommodation, but we offer guidance and may provide special rates with partner hotels.",
+    answer: "Absolutely! TECHNICIA'25 welcomes participants from around the world. International participants may need to arrange their own travel and accommodation, but we offer guidance and may provide special rates with partner hotels.",
   },
   {
     question: "What should I bring to the event?",

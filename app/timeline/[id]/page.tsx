@@ -1,369 +1,466 @@
-import React from 'react';
-import Image from 'next/image';
-import { Calendar, MapPin, Users, Trophy, Star, Zap, ArrowLeft, ExternalLink, Rocket, Satellite } from 'lucide-react';
-import Link from 'next/link';
+// app/timeline/[id]/page.tsx
+"use client"
 
-// Competition data type
-interface Competition {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  time: string;
-  location: string;
-  participants: string;
-  prize: string;
-  difficulty: string;
-  category: string;
-  highlights: string[];
-  image: string;
-}
-interface PageProps {
-  params: Promise<{ id: string }>
+import { useMemo } from "react"
+import { motion } from "framer-motion"
+import { MapPin, Calendar, Users, Trophy, Clock, Star, ArrowLeft } from "lucide-react"
+import Link from "next/link"
+import Image from "next/image"
+import { useParams } from "next/navigation"
+
+// Updated event data (same as in timeline-component.tsx for consistency)
+const eventsByDay = {
+  day1: {
+    title: "Day 1 - Tech Focus",
+    date: "March 15, 2025",
+    description: "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
+    events: [
+      {
+        id: "hackathon",
+        title: "Hackathon",
+        description:
+          "A 48-hour coding marathon where innovation meets creativity. Build solutions that can change the world.",
+        time: "9:00 AM - 9:00 AM (Next Day)",
+        participants: "Teams of 4",
+        prize: "₹50,000",
+        difficulty: "Advanced",
+        location: "Tech Hub, Main Campus",
+        highlights: ["48-hour coding", "Mentorship sessions", "Industry judges", "Real-world problems"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "striver-dsa",
+        title: "Striver DSA Session",
+        description:
+          "Master Data Structures and Algorithms with industry expert Striver. Interactive problem-solving session.",
+        time: "2:00 PM - 4:00 PM",
+        participants: "200+ Students",
+        prize: "Certificates",
+        difficulty: "Intermediate",
+        location: "Auditorium A",
+        highlights: ["Live coding", "Problem solving", "Career guidance", "Q&A session"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "tech-treasure-hunt",
+        title: "Tech Treasure Hunt",
+        description:
+          "A thrilling scavenger hunt testing your tech knowledge and problem-solving skills across the campus.",
+        time: "11:00 AM - 1:00 PM",
+        participants: "Teams of 2-3",
+        prize: "₹10,000",
+        difficulty: "Intermediate",
+        location: "Campus-wide",
+        highlights: ["Clues based on tech concepts", "Physical and digital challenges", "Teamwork focus"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "tech-expo-student",
+        title: "Tech Expo: Student Innovations",
+        description: "Showcase your innovative projects and prototypes to a panel of experts and peers.",
+        time: "1:00 PM - 5:00 PM",
+        participants: "Individual/Teams",
+        prize: "Best Project Award",
+        difficulty: "All Levels",
+        location: "Exhibition Hall",
+        highlights: ["Live demonstrations", "Networking opportunities", "Feedback from industry professionals"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "panel-discussion",
+        title: "Panel Discussion: Future of AI",
+        description: "Engage with leading experts on the latest trends and ethical considerations in Artificial Intelligence.",
+        time: "4:00 PM - 5:30 PM",
+        participants: "Open to All",
+        prize: "Knowledge & Insights",
+        difficulty: "All Levels",
+        location: "Auditorium B",
+        highlights: ["Expert speakers", "Interactive Q&A", "Emerging AI technologies", "Career insights"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "adopt-a-planet",
+        title: "Adopt a Planet",
+        description: "A creative challenge to develop sustainable solutions for an assigned planetary scenario, focusing on environmental technology.",
+        time: "10:00 AM - 6:00 PM",
+        participants: "Teams of 3",
+        prize: "₹18,000",
+        difficulty: "Intermediate",
+        location: "Sustainability Lab",
+        highlights: ["Environmental tech solutions", "Resource management", "Innovative design", "Presentation skills"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "flight-forge",
+        title: "Flight Forge",
+        description: "Design, build, and fly your own custom aircraft in this exciting aviation challenge.",
+        time: "10:00 AM - 4:00 PM",
+        participants: "Individual/Teams",
+        prize: "₹20,000",
+        difficulty: "Advanced",
+        location: "Open Grounds, Aeromodelling Zone",
+        highlights: ["Aircraft design", "Aerodynamics principles", "Flight testing", "Innovation in aviation"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "capture-flag",
+        title: "Capture The Flag",
+        description: "Cybersecurity challenge testing your hacking and security skills in a controlled environment.",
+        time: "10:00 AM - 6:00 PM",
+        participants: "Individual/Teams",
+        prize: "₹25,000",
+        difficulty: "Advanced",
+        location: "Cyber Lab",
+        highlights: ["Web exploitation", "Cryptography", "Reverse engineering", "Network security"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+    ],
+  },
+  day2: {
+    title: "Day 2 - Innovation & Robotics",
+    date: "March 16, 2025",
+    description: "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
+    events: [
+      {
+        id: "cumun",
+        title: "CUMUN",
+        description: "Chandigarh University Model United Nations - Debate, diplomacy, and global awareness.",
+        time: "9:00 AM - 6:00 PM",
+        participants: "100+ Delegates",
+        prize: "₹40,000",
+        difficulty: "Intermediate",
+        location: "Conference Hall",
+        highlights: ["Diplomatic debates", "Global issues", "Leadership skills", "International exposure"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "company-expo",
+        title: "Company Expo",
+        description: "Connect with leading companies showcasing career opportunities, internships, and industry insights.",
+        time: "10:00 AM - 4:00 PM",
+        participants: "Open to All",
+        prize: "Networking Opportunities",
+        difficulty: "All Levels",
+        location: "Exhibition Center",
+        highlights: ["Recruitment drives", "Company presentations", "Career guidance", "Industry insights"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "non-tech-treasure-hunt",
+        title: "Non-Tech Treasure Hunt",
+        description: "A fun and challenging scavenger hunt focusing on general knowledge, puzzles, and teamwork.",
+        time: "11:00 AM - 1:00 PM",
+        participants: "Teams of 3",
+        prize: "₹8,000",
+        difficulty: "Easy",
+        location: "Campus Gardens",
+        highlights: ["Riddles and clues", "Physical challenges", "Observation skills", "Fun for all"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "among-us",
+        title: "Among Us Live!",
+        description: "Experience the popular social deduction game in a real-life, immersive setting.",
+        time: "2:00 PM - 5:00 PM",
+        participants: "10-15 players per round",
+        prize: "Bragging Rights & Small Prizes",
+        difficulty: "Easy",
+        location: "Activity Zone",
+        highlights: ["Strategy and deception", "Team dynamics", "Interactive gameplay", "Fun and laughter"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "tech-csr-bootcamp",
+        title: "Tech + CSR Bootcamps",
+        description: "Learn how technology can solve social problems and create sustainable solutions.",
+        time: "9:00 AM - 5:00 PM",
+        participants: "50 Students",
+        prize: "Certificates & Internships",
+        difficulty: "Intermediate",
+        location: "Innovation Center",
+        highlights: ["Social impact projects", "Sustainability focus", "Mentorship", "Real implementations"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+    ],
+  },
+  day3: {
+    title: "Day 3 - Cultural & Non-Tech",
+    date: "March 17, 2025",
+    description: "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
+    events: [
+      {
+        id: "short-film-making",
+        title: "Short Film Making Competition",
+        description: "Unleash your creativity and tell a compelling story through the art of filmmaking.",
+        time: "9:00 AM - 5:00 PM (Submission)",
+        participants: "Individual/Teams",
+        prize: "₹20,000",
+        difficulty: "Intermediate",
+        location: "Film Studio / Online Submission",
+        highlights: ["Scriptwriting", "Videography", "Editing techniques", "Storytelling"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "cultural-night",
+        title: "One Stage One Vibe",
+        description: "Grand cultural showcase featuring music, dance, and artistic performances.",
+        time: "6:00 PM - 10:00 PM",
+        participants: "Open to All",
+        prize: "₹50,000",
+        difficulty: "All Levels",
+        location: "Main Stage",
+        highlights: ["Live performances", "Cultural diversity", "Talent showcase", "Grand finale"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "rc-car-race",
+        title: "RC Car Race",
+        description: "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
+        time: "1:00 PM - 5:00 PM",
+        participants: "Individual",
+        prize: "₹15,000",
+        difficulty: "Intermediate",
+        location: "Racing Track",
+        highlights: ["Precision driving", "Speed trials", "Custom car builds", "Agility challenges"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+      {
+        id: "drone-race",
+        title: "Drone Race",
+        description: "High-speed drone racing competition testing piloting skills and drone technology.",
+        time: "3:00 PM - 7:00 PM",
+        participants: "Individual",
+        prize: "₹25,000",
+        difficulty: "Advanced",
+        location: "Drone Arena",
+        highlights: ["FPV racing", "Obstacle courses", "Speed challenges", "Precision flying"],
+        image: "/placeholder.svg?height=600&width=800",
+      },
+    ],
+  },
 }
 
-const getCompetitionData = (id: string): Competition | null => {
-  const competitions: { [key: string]: Competition } = {
-    "1": {
-      id: 1,
-      title: "CU MUN",
-      description: "Showcase your artificial intelligence prowess in this cutting-edge competition where innovation meets technology in the vast expanse of digital space.",
-      date: "March 15, 2025",
-      time: "09:00 AM - 06:00 PM",
-      location: "Main Auditorium, Tech Block",
-      participants: "150+ Teams",
-      prize: "₹50,000",
-      difficulty: "Advanced",
-      category: "Technology",
-      highlights: ["Machine Learning Models", "Neural Networks", "Real-world Problem Solving", "Industry Mentorship"],
-      image: "/competition/1.png"
-    },
-    "2": {
-      id: 2,
-      title: "CodeFest Marathon",
-      description: "The ultimate coding showdown where algorithms dance and logic reigns supreme in the cosmic realm of programming excellence.",
-      date: "March 16, 2025",
-      time: "10:00 AM - 08:00 PM",
-      location: "Computer Lab Complex",
-      participants: "200+ Coders",
-      prize: "₹30,000",
-      difficulty: "Intermediate",
-      category: "Programming",
-      highlights: ["Data Structures", "Algorithm Optimization", "Competitive Programming", "Live Coding Sessions"],
-      image: "/competition/2.png"
-    },
-    "3": {
-      id: 3,
-      title: "RoboWars Championship",
-      description: "Enter the arena where metal meets mayhem! Design, build, and battle your way to robotic supremacy in this thrilling intergalactic competition.",
-      date: "March 17, 2025",
-      time: "11:00 AM - 07:00 PM",
-      location: "Engineering Workshop Arena",
-      participants: "80+ Robots",
-      prize: "₹75,000",
-      difficulty: "Expert",
-      category: "Robotics",
-      highlights: ["Combat Robotics", "Mechanical Design", "Strategic Warfare", "Live Battle Arena"],
-      image: "/competition/3.png"
-    },
-    "4": {
-      id: 4,
-      title: "Web Dev Wizardry",
-      description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition across the digital cosmos.",
-      date: "March 18, 2025",
-      time: "09:30 AM - 05:30 PM",
-      location: "Digital Innovation Center",
-      participants: "120+ Developers",
-      prize: "₹40,000",
-      difficulty: "Intermediate",
-      category: "Web Development",
-      highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-      image: "/competition/4.png"
-    },
-    "5": {
-      id: 5,
-      title: "AI Innovation Summit",
-      description: "Push the boundaries of artificial intelligence in this elite competition where machine learning meets creative problem-solving.",
-      date: "March 19, 2025",
-      time: "09:00 AM - 06:00 PM",
-      location: "AI Research Lab",
-      participants: "100+ Innovators",
-      prize: "₹60,000",
-      difficulty: "Expert",
-      category: "Artificial Intelligence",
-      highlights: ["Deep Learning", "Computer Vision", "Natural Language Processing", "AI Ethics"],
-      image: "/competition/5.png"
-    },
-    "6": {
-      id: 6,
-      title: "Cyber Security Challenge",
-      description: "Defend the digital frontier in this intense cybersecurity competition where white-hat hackers battle against digital threats.",
-      date: "March 20, 2025",
-      time: "10:00 AM - 08:00 PM",
-      location: "Security Operations Center",
-      participants: "90+ Security Experts",
-      prize: "₹45,000",
-      difficulty: "Advanced",
-      category: "Cybersecurity",
-      highlights: ["Penetration Testing", "Forensics Analysis", "Threat Detection", "Incident Response"],
-      image: "/competition/6.png"
+export default function EventDetailsPage() {
+  const params = useParams()
+  const eventId = params.id as string
+
+  // Find the event details
+  const event = useMemo(() => {
+    for (const dayKey in eventsByDay) {
+      const day = eventsByDay[dayKey as keyof typeof eventsByDay]
+      const foundEvent = day.events.find((e) => e.id === eventId)
+      if (foundEvent) {
+        return foundEvent
+      }
     }
-  };
+    return null
+  }, [eventId])
 
-  return competitions[id] || null;
-};
-
-
-
-const SpaceCompetitionPage = async ({ params }: PageProps) => {
-  const { id } = await params;
-  const competition = getCompetitionData(id);
-
-  if (!competition) {
+  if (!event) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <Rocket className="w-16 h-16 text-red-400 mx-auto" />
-          <h1 className="text-4xl font-bold text-red-400">Mission Not Found</h1>
-          <p className="text-gray-400">The requested competition does not exist in our space database.</p>
-          <button className="bg-green-500 text-black px-6 py-3 rounded-xl font-semibold hover:bg-green-400 transition-colors">
-            Return to Mission Control
-          </button>
-        </div>
-      </div>
-    );
-  }
-  const getDifficultyColor = (difficulty: string) => {
-    switch (difficulty.toLowerCase()) {
-      case 'beginner':
-        return 'bg-green-900/30 text-green-300 border-green-500/50';
-      case 'intermediate':
-        return 'bg-yellow-900/30 text-yellow-300 border-yellow-500/50';
-      case 'advanced':
-        return 'bg-red-900/30 text-red-300 border-red-500/50';
-      case 'expert':
-        return 'bg-purple-900/30 text-purple-300 border-purple-500/50';
-      default:
-        return 'bg-gray-900/30 text-gray-300 border-gray-500/50';
-    }
-  };
-
-  const getCategoryColor = (category: string) => {
-    switch (category.toLowerCase()) {
-      case 'technology':
-        return 'bg-cyan-900/30 text-cyan-300 border-cyan-500/50';
-      case 'programming':
-        return 'bg-green-900/30 text-green-300 border-green-500/50';
-      case 'robotics':
-        return 'bg-orange-900/30 text-orange-300 border-orange-500/50';
-      case 'web development':
-        return 'bg-blue-900/30 text-blue-300 border-blue-500/50';
-      default:
-        return 'bg-gray-900/30 text-gray-300 border-gray-500/50';
-    }
-  };
-
-  return (
-    <div className="min-h-screen text-white relative overflow-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 z-0">
-        {/* Floating particles */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-cyan-400 rounded-full animate-ping"></div>
-        <div className="absolute bottom-20 left-20 w-3 h-3 bg-emerald-400 rounded-full animate-bounce"></div>
-        <div className="absolute top-60 left-1/3 w-1 h-1 bg-lime-400 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-40 right-1/3 w-2 h-2 bg-teal-400 rounded-full animate-ping"></div>
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-20 grid-rows-20 h-full w-full">
-            {Array.from({ length: 400 }).map((_, i) => (
-              <div key={i} className="border border-green-500/20"></div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Navigation */}
-      <div className="relative z-10 bg-black/40 backdrop-blur-xl border-b border-green-500/30 top-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link href={'/#previous-event'}>
-            <button className="inline-flex items-center space-x-2 text-green-400 hover:text-green-300 transition-all duration-300 group">
-              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-              <span className="font-medium">Back to Home</span>
-            </button>
+      <section className="py-20 text-white w-full min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-red-500 mb-4">Event Not Found</h1>
+          <p className="text-lg text-gray-300 mb-8">
+            The event you are looking for does not exist or has been removed.
+          </p>
+          <Link href="/timeline">
+            <motion.button
+              className="bg-red-600 hover:bg-red-700 text-white py-3 px-8 rounded-lg transition-colors duration-300 font-semibold flex items-center mx-auto"
+              whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(239, 68, 68, 0.3)" }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              Back to Timeline
+            </motion.button>
           </Link>
         </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="py-12 md:py-20 text-white w-full relative overflow-hidden bg-gray-900">
+      <div className="absolute inset-0 pointer-events-none">
+        <motion.div
+          className="absolute top-16 md:top-20 left-6 md:left-10 w-8 h-8 md:w-12 md:h-12 border border-green-400/20"
+          animate={{
+            rotateZ: [0, 360],
+            translateY: [-5, 5, -5],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.div
+          className="absolute bottom-24 md:bottom-32 right-1/4 w-12 h-12 md:w-16 md:h-16 border border-green-300/30 rotate-45"
+          animate={{
+            rotateZ: [45, 405],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[75rem] mx-auto px-4 sm:px-6 relative z-10">
+        <Link href="/timeline">
+          <motion.button
+            className="mb-8 md:mb-12 bg-green-700 hover:bg-green-800 text-white py-2 px-5 rounded-lg transition-colors duration-300 font-semibold flex items-center"
+            whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(34, 197, 94, 0.2)" }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <ArrowLeft className="h-4 w-4 mr-2" />
+            Back to Timeline
+          </motion.button>
+        </Link>
 
-          {/* Hero Section - Split Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
-
-            {/* Left Side - Text Content */}
-            <div className="space-y-8">
-              {/* Title and Description */}
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 mb-6">
-                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md transition-all duration-300 hover:scale-105 ${getCategoryColor(competition.category)}`}>
-                    <Rocket className="w-4 h-4 inline mr-2" />
-                    {competition.category}
-                  </span>
-                  <span className={`px-4 py-2 rounded-full text-sm font-semibold border backdrop-blur-md transition-all duration-300 hover:scale-105 ${getDifficultyColor(competition.difficulty)}`}>
-                    <Satellite className="w-4 h-4 inline mr-2" />
-                    {competition.difficulty}
-                  </span>
-                </div>
-
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight hover:text-green-400 transition-colors duration-500">
-                  {competition.title}
+        <motion.div
+          className="bg-gray-800 rounded-3xl p-6 md:p-10 shadow-lg border border-green-700/50 mb-12"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <motion.div
+              className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden shadow-xl border border-green-500/40"
+              whileHover={{ scale: 1.02, boxShadow: "0 15px 30px rgba(34, 197, 94, 0.3)" }}
+              transition={{ duration: 0.3 }}
+            >
+              <Image
+                src={event.image || "/placeholder.svg"}
+                alt={event.title}
+                fill
+                className="object-cover"
+                priority
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAREBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
+                  {event.title}
                 </h1>
-
-                <p className="text-xl text-green-200 leading-relaxed">
-                  {competition.description}
-                </p>
               </div>
+            </motion.div>
 
-              {/* Key Info Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Date & Time */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-green-500/25">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-xl border border-green-500/30">
-                      <Calendar className="w-6 h-6 text-green-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-green-400 mb-1">Competition Timeline</h3>
-                      <p className="text-white font-semibold">{competition.date}</p>
-                      <p className="text-green-300 text-sm">{competition.time}</p>
-                    </div>
+            <div>
+              <motion.p
+                className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                {event.description}
+              </motion.p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 md:mb-8">
+                <motion.div
+                  className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
+                  <Clock className="h-5 w-5 mr-3 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-gray-400">Time</div>
+                    <div className="font-semibold text-base md:text-lg">{event.time}</div>
                   </div>
-                </div>
-
-                {/* Location */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 rounded-xl border border-cyan-500/30">
-                      <MapPin className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-cyan-400 mb-1">Venue</h3>
-                      <p className="text-white font-semibold">{competition.location}</p>
-                    </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  <MapPin className="h-5 w-5 mr-3 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-gray-400">Location</div>
+                    <div className="font-semibold text-base md:text-lg">{event.location}</div>
                   </div>
-                </div>
-
-                {/* Participants */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-purple-500/25">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-xl border border-purple-500/30">
-                      <Users className="w-6 h-6 text-purple-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-purple-400 mb-1">participants</h3>
-                      <p className="text-white font-semibold">{competition.participants}</p>
-                    </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                >
+                  <Users className="h-5 w-5 mr-3 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-gray-400">Participants</div>
+                    <div className="font-semibold text-base md:text-lg">{event.participants}</div>
                   </div>
-                </div>
-
-                {/* Prize */}
-                <div className="group bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-xl rounded-2xl p-6 border border-yellow-500/30 hover:border-yellow-400/50 transition-all duration-300 hover:transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-500/25">
-                  <div className="flex items-center space-x-4">
-                    <div className="p-3 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-xl border border-yellow-500/30">
-                      <Trophy className="w-6 h-6 text-yellow-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-yellow-400 mb-1">Crazy Rewards</h3>
-                      <p className="text-2xl font-bold text-white">{competition.prize}</p>
-                    </div>
+                </motion.div>
+                <motion.div
+                  className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                >
+                  <Trophy className="h-5 w-5 mr-3 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-gray-400">Prize Pool</div>
+                    <div className="font-semibold text-base md:text-lg">{event.prize}</div>
                   </div>
-                </div>
-              </div>
-
-              {/* Action Button */}
-              <div className="pt-4">
-                <Link href='/register'>
-                  <button className="group bg-gradient-to-r from-green-500 to-emerald-600 text-black px-8 py-4 rounded-2xl font-bold hover:from-green-400 hover:to-emerald-500 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-green-500/25">
-                    <span className="flex items-center space-x-2">
-                      <Rocket className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                      <span>Registration</span>
-                      <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </button>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Side - Image */}
-            <div className="relative group">
-  <div className="relative bg-gradient-to-br from-gray-800/50 to-black/50 backdrop-blur-lg rounded-2xl p-4 border border-green-500/30 shadow-1xl group-hover:border-green-400/50 transition-all duration-500 transform group-hover:scale-105">
-    <Image
-      src={competition.image}
-      alt={competition.title}
-      width={600}
-      height={700}
-      className="w-full h-auto max-h-[679px] object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105"
-      unoptimized
-    />
-    <div className="absolute inset-4 rounded-2xl bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-  </div>
-</div>
-
-          </div>
-
-          {/* Mission Objectives */}
-          <div className="mb-12">
-            <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-8 border border-green-500/30 hover:border-green-400/40 transition-all duration-500 hover:shadow-lg hover:shadow-green-500/10">
-              <h2 className="text-3xl font-bold text-green-400 mb-6 flex items-center hover:text-green-300 transition-colors duration-300">
-                <Star className="w-8 h-8 text-green-400 mr-3 hover:rotate-180 transition-transform duration-500" />
-                Mission Objectives
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {competition.highlights.map((highlight, index) => (
-                  <div key={index} className="group flex items-center space-x-4 p-4 bg-gradient-to-r from-green-900/30 to-emerald-900/30 rounded-xl border border-green-500/20 hover:border-green-400/40 transition-all duration-300 hover:scale-105 hover:shadow-md hover:shadow-green-500/20">
-                    <div className="p-3 bg-gradient-to-br from-green-500/30 to-emerald-500/30 rounded-full border border-green-500/40 group-hover:rotate-12 transition-transform duration-300">
-                      <Zap className="w-5 h-5 text-green-400" />
-                    </div>
-                    <span className="text-white font-medium group-hover:text-green-300 transition-colors duration-300">{highlight}</span>
+                </motion.div>
+                <motion.div
+                  className="flex items-center text-green-300 bg-green-900/20 p-3 rounded-lg border border-green-500/30 col-span-1 sm:col-span-2"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                >
+                  <Star className="h-5 w-5 mr-3 flex-shrink-0" />
+                  <div>
+                    <div className="text-xs text-gray-400">Difficulty</div>
+                    <div className="font-semibold text-base md:text-lg">{event.difficulty}</div>
                   </div>
-                ))}
+                </motion.div>
               </div>
-            </div>
-          </div>
 
-          {/* System Status */}
-          <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-xl rounded-2xl p-6 border border-cyan-500/30 hover:border-cyan-400/40 transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/10">
-            <h3 className="text-xl font-bold text-cyan-400 mb-4 hover:text-cyan-300 transition-colors duration-300">System Status</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
-                <span className="text-gray-300">Registration</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-green-400 text-sm font-medium">ACTIVE</span>
+              <motion.div
+                className="mb-6 md:mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+              >
+                <h2 className="text-green-400 font-bold mb-4 text-xl md:text-2xl">Key Highlights:</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {event.highlights.map((highlight, idx) => (
+                    <motion.div
+                      key={idx}
+                      className="flex items-start text-sm md:text-base text-gray-300 bg-green-900/10 px-3 py-2 rounded-lg border border-green-500/20"
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.9 + idx * 0.1, duration: 0.4 }}
+                    >
+                      <span className="mr-2 text-green-400">•</span> {highlight}
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
-                <span className="text-gray-300">Launch Pad</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                  <span className="text-cyan-400 text-sm font-medium">READY</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-700/50 to-gray-800/50 rounded-lg hover:bg-gradient-to-r hover:from-gray-600/50 hover:to-gray-700/50 transition-all duration-300 hover:scale-105">
-                <span className="text-gray-300">Mission Control</span>
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-yellow-400 rounded-full animate-bounce"></div>
-                  <span className="text-yellow-400 text-sm font-medium">STANDBY</span>
-                </div>
-              </div>
+              </motion.div>
+
+              {/* Dummy registration/interest button */}
+              <motion.button
+                className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-3 md:py-4 px-8 rounded-lg transition-colors duration-300 font-bold text-lg relative overflow-hidden"
+                whileHover={{ scale: 1.03, boxShadow: "0 8px 25px rgba(34, 197, 94, 0.4)" }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                <span className="relative z-10">Register for {event.title}</span>
+              </motion.button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
-  );
-};
-
-export default SpaceCompetitionPage;
+    </section>
+  )
+}
