@@ -260,7 +260,7 @@ export function HeroSection() {
           >
             <div className="block">
               <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 mr-4">
-                TECHNICIA'25
+                TECHNICIA&apos;25
               </span>
             </div>
           </h1>

@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useMemo, useState } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion} from "framer-motion"
 import { MapPin, Calendar, Users, Trophy, Clock, Star } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
@@ -248,7 +248,7 @@ const eventsByDay = {
 export default function TimelineComponent() {
   const [selectedDay, setSelectedDay] = useState<"day1" | "day2" | "day3">("day1")
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.1 })
+  // const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   const containerVariants = useMemo(
     () => ({
@@ -353,7 +353,7 @@ export default function TimelineComponent() {
             transition={{ delay: 0.5, duration: 0.6 }}
             viewport={{ once: true }}
           >
-            {Object.entries(eventsByDay).map(([dayKey, dayData], index) => (
+            {Object.entries(eventsByDay).map(([dayKey, dayData]) => (
               <motion.button
                 key={dayKey}
                 onClick={() => setSelectedDay(dayKey as "day1" | "day2" | "day3")}

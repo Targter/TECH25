@@ -3,7 +3,7 @@
 
 import { useMemo } from "react"
 import { motion } from "framer-motion"
-import { MapPin, Calendar, Users, Trophy, Clock, Star, ArrowLeft } from "lucide-react"
+import { MapPin, Users, Trophy, Clock, Star, ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import { useParams } from "next/navigation"
