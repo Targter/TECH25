@@ -67,7 +67,7 @@ const StatCard = memo<StatCardProps>(({ stat }) => {
       style={{
         // Fixed dimensions to prevent CLS
         minHeight: '120px',
-        width: '100%'
+        width: '100px'
       }}
     >
       <stat.icon className="h-6 w-6 text-green-400 mx-auto mb-3 group-hover:text-green-300 transition-colors duration-200" />

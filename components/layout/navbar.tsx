@@ -18,11 +18,9 @@ import Image from "next/image";
 
 const navLinks = [
   { title: "Home", href: "/", special: true, isRoute: true },
-  
-  { title: "Events", href: "/timeline",isRoute:true },
-  { title: "Sponsors", href: "sponsors",isRoute:true },
+  { title: "Events", href: "/timeline", isRoute: true },
+  { title: "Sponsors", href: "sponsors", isRoute: true },
   { title: "Previous Events", href: "/previous-events", isRoute: true },
-  
   { title: "Team", href: "/team", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
@@ -70,7 +68,7 @@ export function Navbar() {
               height={isScrolled ? 40 : 50}
               className={cn(
                 "block",
-                isScrolled ? "h-19 w-19" : "h-20 w-20"
+                isScrolled ? "h-10 w-10" : "h-12 w-12"
               )}
             />
           </motion.div>
@@ -92,13 +90,16 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "px-2 xl:px-3 py-2 text-xs xl:text-sm font-medium rounded-md transition-colors cursor-pointer select-none whitespace-nowrap",
+                  "relative px-3 xl:px-4 py-2.5 text-sm xl:text-base font-medium rounded-md transition-all duration-300 cursor-pointer select-none whitespace-nowrap group",
                   link.special
-                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-blue-600/40"
+                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700 shadow-lg hover:shadow-blue-600/40 hover:scale-105"
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 )}
               >
                 {link.title}
+                {!link.special && (
+                  <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                )}
               </Link>
             ) : (
               <ScrollLink
@@ -110,13 +111,14 @@ export function Navbar() {
                 duration={500}
                 onSetActive={() => setActiveSection(link.href)}
                 className={cn(
-                  "px-2 xl:px-3 py-2 text-xs xl:text-sm font-medium rounded-md transition-colors cursor-pointer select-none whitespace-nowrap",
+                  "relative px-3 xl:px-4 py-2.5 text-sm xl:text-base font-medium rounded-md transition-all duration-300 cursor-pointer select-none whitespace-nowrap group",
                   activeSection === link.href
                     ? "text-purple-400 bg-purple-950/30"
                     : "text-white/80 hover:text-white hover:bg-white/10"
                 )}
               >
                 {link.title}
+                <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
               </ScrollLink>
             )
           )}
@@ -125,7 +127,7 @@ export function Navbar() {
         {/* Desktop Contact Button */}
         <Button
           asChild
-          className="hidden lg:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-3 xl:px-4 py-2 text-xs xl:text-sm flex-shrink-0"
+          className="hidden lg:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 xl:px-6 py-3 text-sm xl:text-base flex-shrink-0 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
         >
           <a href="mailto:contact@example.com" className="cursor-pointer">
             Contact Us
@@ -135,7 +137,7 @@ export function Navbar() {
         {/* Mobile/Tablet Contact Button - Visible on medium screens and below */}
         <Button
           asChild
-          className="lg:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-3 py-2 text-xs flex-shrink-0"
+          className="lg:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-4 py-2.5 text-sm flex-shrink-0 hover:scale-105 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
         >
           <a href="mailto:contact@example.com" className="cursor-pointer">
             Contact
@@ -145,8 +147,12 @@ export function Navbar() {
         {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild className="lg:hidden">
-            <Button variant="ghost" size="icon" className="text-white flex-shrink-0">
-              <Menu className="h-5 w-5" />
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-white flex-shrink-0 hover:bg-white/10 transition-colors duration-300 p-2.5"
+            >
+              <Menu className="h-6 w-6" />
             </Button>
           </SheetTrigger>
           <SheetContent side="right" className="bg-black/95 border-white/10 w-80 sm:w-96">
@@ -169,13 +175,16 @@ export function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors",
+                      "relative px-4 py-3.5 rounded-md text-base font-medium cursor-pointer select-none transition-all duration-300 group",
                       link.special
-                        ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg"
+                        ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:from-purple-700 hover:to-blue-700 hover:scale-105"
                         : "text-white/80 hover:text-white hover:bg-white/10"
                     )}
                   >
                     {link.title}
+                    {!link.special && (
+                      <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                    )}
                   </Link>
                 ) : (
                   <ScrollLink
@@ -185,9 +194,10 @@ export function Navbar() {
                     smooth={true}
                     offset={-100}
                     duration={500}
-                    className="px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors text-white/80 hover:text-white hover:bg-white/10"
+                    className="relative px-4 py-3.5 rounded-md text-base font-medium cursor-pointer select-none transition-all duration-300 text-white/80 hover:text-white hover:bg-white/10 group"
                   >
                     {link.title}
+                    <span className="absolute inset-x-0 -bottom-0.5 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
                   </ScrollLink>
                 )
               )}
@@ -196,7 +206,7 @@ export function Navbar() {
               <div className="border-t border-white/20 pt-4 mt-4">
                 <a
                   href="mailto:contact@example.com"
-                  className="block px-4 py-3 rounded-md text-sm font-medium cursor-pointer select-none transition-colors bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg text-center"
+                  className="block px-4 py-3.5 rounded-md text-base font-medium cursor-pointer select-none transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg text-center hover:from-purple-700 hover:to-blue-700 hover:scale-105"
                 >
                   Contact Us
                 </a>
