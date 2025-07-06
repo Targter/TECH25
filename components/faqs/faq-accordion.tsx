@@ -2,7 +2,6 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { faqs } from "@/lib/constants";
 import {
   Accordion,
   AccordionContent,
@@ -10,7 +9,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, HelpCircle,MapPin } from "lucide-react";
+import { faqs } from "@/lib/constants";
 
 export function FaqAccordion() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,62 +23,182 @@ export function FaqAccordion() {
       faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <section className="py-16 px-4 md:px-8 lg:px-12 flex justify-center  text-white min-h-screen">
-      <div className="w-full max-w-7xl">
+    <section className="py-20 px-4 md:px-8 lg:px-12 min-h-screen">
+      <div className="max-w-7xl mx-auto">
         <motion.div
           ref={ref}
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-r  to-green-900/70 backdrop-blur-xl border border-green-500/40 rounded-3xl shadow-xl p-10 md:p-16"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={containerVariants}
         >
-          <div className="text-center mb-14">
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-3 text-white">
+          {/* Header Section */}
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-emerald-600/20 backdrop-blur-xl border border-green-500/30 rounded-full px-6 py-3 mb-6">
+              <HelpCircle className="w-5 h-5 text-green-400" />
+              <span className="text-green-400 font-semibold">FAQ Center</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-black mb-4 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
               Frequently Asked Questions
             </h1>
-            <p className="text-green-300 text-lg md:text-xl max-w-2xl mx-auto">
-              Find answers to common questions about TECHNICIA&apos;25
+            <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+              Everything you need to know about TECHNASIA&apos;25. Find quick answers to common questions about registration, events, and participation.
             </p>
+          </motion.div>
 
-            <div className="relative max-w-xl mx-auto mt-10">
-              <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-green-300 h-5 w-5" />
-              <Input
-                type="text"
-                placeholder="Search FAQs..."
-                className="pl-14 py-3 rounded-full bg-green-900/50 text-green-200 border border-green-700 placeholder-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 transition"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-          </div>
-
-          <Accordion type="single" collapsible className="space-y-5 max-w-3xl mx-auto">
-            {filteredFaqs.length > 0 ? (
-              filteredFaqs.map((faq, index) => (
-                <AccordionItem
-                  key={index}
-                  value={`item-${index}`}
-                  className="border border-green-600 rounded-2xl bg-green-900/30 hover:border-green-400 transition"
-                >
-                  <AccordionTrigger className="flex justify-between items-center px-7 py-5 text-green-200 font-semibold text-lg hover:text-green-400 select-none">
-                    {faq.question}
-                    {/* <ChevronDown
-                      className="w-6 h-6 text-green-400 transition-transform duration-300 data-[state=open]:rotate-180"
-                      aria-hidden="true"
-                    /> */}
-                  </AccordionTrigger>
-                  <AccordionContent className="px-7 pb-6 pt-0 text-green-300 text-base leading-relaxed">
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))
-            ) : (
-              <div className="text-center py-16 text-green-500 text-lg">
-                No FAQs found matching your search. Please try different keywords.
+          {/* Search Section */}
+          <motion.div variants={itemVariants} className="mb-12">
+            <div className="bg-gradient-to-r from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 shadow-2xl">
+              <div className="relative max-w-3xl mx-auto">
+                <div className="relative">
+                  <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 text-green-400 h-6 w-6" />
+                  <Input
+                    type="text"
+                    placeholder="Search FAQs... (e.g., registration, accommodation, competitions, prizes)"
+                    className="pl-14 pr-12 py-5 text-lg rounded-xl bg-slate-800/50 text-slate-200 border border-slate-600/50 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-green-400/50 focus:border-green-400/50 transition-all shadow-lg"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="absolute right-5 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-300 transition-colors text-xl font-bold"
+                    >
+                      ×
+                    </button>
+                  )}
+                </div>
               </div>
-            )}
-          </Accordion>
+            </div>
+          </motion.div>
+
+        
+
+          {/* FAQ Content */}
+          <motion.div variants={itemVariants}>
+            <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden">
+              <div className="p-8">
+                <motion.div
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate={isInView ? "visible" : "hidden"}
+                >
+                  <Accordion type="single" collapsible className="space-y-4">
+                    {filteredFaqs.length > 0 ? (
+                      filteredFaqs.map((faq, index) => (
+                        <motion.div key={index} variants={itemVariants}>
+                          <AccordionItem
+                            value={`item-${index}`}
+                            className="border border-slate-600/30 rounded-xl bg-gradient-to-r from-slate-800/30 to-slate-900/30 hover:border-green-400/50 transition-all duration-300 overflow-hidden group"
+                          >
+                            <AccordionTrigger className="flex justify-between items-center px-6 py-6 text-slate-200 font-semibold text-lg hover:text-green-400 transition-colors group-hover:bg-slate-800/20 [&[data-state=open]>svg]:rotate-0">
+                              <div className="flex items-center gap-4 text-left">
+                                <span className="leading-relaxed">{faq.question}</span>
+                              </div>
+                            </AccordionTrigger>
+                            <AccordionContent className="px-6 pb-6 pt-0">
+                              <div className="pl-14 pr-4">
+                                <div className="bg-gradient-to-r from-slate-700/20 to-slate-800/20 rounded-xl p-6 border-l-4 border-green-400/50">
+                                  <p className="text-slate-300 text-base leading-relaxed">
+                                    {faq.answer}
+                                  </p>
+                                </div>
+                              </div>
+                            </AccordionContent>
+                          </AccordionItem>
+                        </motion.div>
+                      ))
+                    ) : (
+                      <motion.div
+                        variants={itemVariants}
+                        className="text-center py-20"
+                      >
+                        <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-xl border border-slate-700/50 rounded-xl p-12">
+                          <div className="w-20 h-20 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Search className="w-10 h-10 text-slate-400" />
+                          </div>
+                          <h3 className="text-2xl font-bold text-slate-300 mb-3">
+                            No FAQs Found
+                          </h3>
+                          <p className="text-slate-400 text-lg leading-relaxed mb-6">
+                            No FAQs found matching your search query. Try different keywords or browse all available questions.
+                          </p>
+                          <button
+                            onClick={() => setSearchQuery("")}
+                            className="px-8 py-3 bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-400 rounded-xl hover:from-green-500/30 hover:to-emerald-600/30 transition-all border border-green-500/30 font-semibold"
+                          >
+                            Show All FAQs
+                          </button>
+                        </div>
+                      </motion.div>
+                    )}
+                  </Accordion>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Location Map Section */}
+          <motion.div variants={itemVariants} className="mt-20">
+            <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden">
+              <div className="p-8">
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500/20 to-emerald-600/20 backdrop-blur-xl border border-green-500/30 rounded-full px-6 py-3 mb-6">
+                    <MapPin className="w-5 h-5 text-green-400" />
+                    <span className="text-green-400 font-semibold">Event Location</span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-4xl font-black mb-4 bg-gradient-to-r from-green-400 to-emerald-300 bg-clip-text text-transparent">
+                    Where To Find Us
+                  </h2>
+                  
+                  <div className="flex items-center justify-center gap-3 text-green-400 font-semibold text-lg mb-6">
+                    <MapPin className="w-6 h-6" />
+                    <p>Chandigarh University</p>
+                  </div>
+                </div>
+                
+                <div className="max-w-5xl mx-auto">
+                  <div className="bg-gradient-to-r from-slate-700/20 to-slate-800/20 rounded-xl p-6 border border-slate-600/30">
+                    <iframe
+                      title="TECHNASIA'25 Location"
+                      src="https://maps.google.com/maps?q=Chandigarh%20University&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                      width="100%"
+                      height="350"
+                      className="rounded-lg shadow-lg border border-slate-600/30"
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

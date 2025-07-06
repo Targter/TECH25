@@ -438,4 +438,33 @@ export const faqs = [
     question: "Are there food options available at the venue?",
     answer: "Yes, food courts and cafes will be operating throughout the event. Participants in full-day competitions like the Hackathon will be provided with meals as part of their registration.",
   },
+  {
+    question: "What programming languages and technologies can I use?",
+    answer: "Participants are free to use any programming language or technology stack they prefer. Popular choices include Python, JavaScript, Java, C++, React, Node.js, and various AI/ML frameworks. Our venue provides support for most development environments.",
+  },
+  {
+    question: "Are there workshops available for beginners?",
+    answer: "Yes! We have beginner-friendly workshops covering topics like Web Development, Mobile App Development, AI/ML fundamentals, and Cybersecurity basics. These workshops are designed to help newcomers get started with technology.",
+  },
+  {
+    question: "Can I attend if I'm not a student?",
+    answer: "TECHNASIA'25 is primarily designed for students and young professionals. However, industry professionals are welcome to attend as mentors, judges, or workshop facilitators. Please contact us for more information about professional participation.",
+  },
+  {
+    question: "Is there a dress code for the event?",
+    answer: "There is no strict dress code, but we recommend comfortable casual or smart-casual attire. For presentation rounds, business casual is preferred. Comfortable shoes are recommended as you'll be moving around different venues.",
+  },
+  {
+    question: "What prizes are available for winners?",
+    answer: "Winners receive cash prizes, internship opportunities, mentorship programs, and tech gadgets. Grand prize winners also get featured on our platform and may receive job placement assistance. Prize pools vary by competition category.",
+  },
+  {
+    question: "Are there networking opportunities?",
+    answer: "Absolutely! TECHNASIA'25 includes dedicated networking sessions, industry meet-and-greets, company showcases, and informal social events. It's a great opportunity to connect with like-minded individuals and potential employers.",
+  },
+  {
+    question: "Can I get a certificate of participation?",
+    answer: "Yes, all registered participants will receive a digital certificate of participation. Competition winners and workshop attendees will receive additional certificates recognizing their achievements and completed training.",
+  },
+ 
 ];
