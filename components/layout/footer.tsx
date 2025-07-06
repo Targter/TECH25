@@ -36,7 +36,7 @@ export function Footer() {
 
                   <Image
                     src="/logo/logo_technisia.svg"
-                    alt="Technisia Logo"
+                    alt="Technicia Logo"
                     width={40}
                     height={40}
                     className="filter drop-shadow-lg group-hover:drop-shadow-xl transition-all duration-300"

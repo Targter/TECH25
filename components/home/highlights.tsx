@@ -66,7 +66,7 @@ export function HighlightsSection() {
             Event Highlights
           </h2>
           <p className="text-gray-400 text-lg">
-            Discover what makes TECHNASIA&apos;25 the most anticipated tech event of the year
+            Discover what makes TECHNICIA&apos;25 the most anticipated tech event of the year
           </p>
         </div>
 
