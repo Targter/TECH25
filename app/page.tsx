@@ -13,7 +13,7 @@ export default function Home() {
       </section>
 
       <section id="video">
-        <Video src="https://www.youtube.com/watch?v=dQw4w9WgXcQ" />
+        <Video src="./video/tech-vid.mp4" />
       </section>
 
       <section id="highlights">
