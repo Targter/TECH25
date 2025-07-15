@@ -1,22 +1,40 @@
-"use client"
-import { useRef, useMemo, useState } from "react"
-import { motion} from "framer-motion"
-import { MapPin, Calendar, Users, Trophy, Clock, Star } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import dynamic from "next/dynamic"
+"use client";
+import { useRef, useMemo, useState } from "react";
+import { motion } from "framer-motion";
+import { MapPin, Calendar, Users, Trophy, Clock, Star, X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import { useCartStore } from "@/store/data";
+import CartIndicator from "../CartIndicator";
 
-const FlyingSpaceship = dynamic(() => import("@/components/FlyingSpaceship/FlyingSpaceship"), {
-  loading: () => null,
-  ssr: false,
-})
+type Event = {
+  id: string;
+  title: string;
+  description: string;
+  time: string;
+  participants: string;
+  prize: string;
+  difficulty: string;
+  location: string;
+  highlights: string[];
+  image: string;
+};
+const FlyingSpaceship = dynamic(
+  () => import("@/components/FlyingSpaceship/FlyingSpaceship"),
+  {
+    loading: () => null,
+    ssr: false,
+  }
+);
 
 // Updated event data
 const eventsByDay = {
   day1: {
     title: "Day 1 - Tech Focus",
     date: "March 15, 2025",
-    description: "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
+    description:
+      "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
     events: [
       {
         id: "hackathon",
@@ -28,7 +46,12 @@ const eventsByDay = {
         prize: "₹50,000",
         difficulty: "Advanced",
         location: "Tech Hub, Main Campus",
-        highlights: ["48-hour coding", "Mentorship sessions", "Industry judges", "Real-world problems"],
+        highlights: [
+          "48-hour coding",
+          "Mentorship sessions",
+          "Industry judges",
+          "Real-world problems",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
@@ -41,7 +64,12 @@ const eventsByDay = {
         prize: "Certificates",
         difficulty: "Intermediate",
         location: "Auditorium A",
-        highlights: ["Live coding", "Problem solving", "Career guidance", "Q&A session"],
+        highlights: [
+          "Live coding",
+          "Problem solving",
+          "Career guidance",
+          "Q&A session",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
@@ -54,67 +82,100 @@ const eventsByDay = {
         prize: "₹10,000",
         difficulty: "Intermediate",
         location: "Campus-wide",
-        highlights: ["Clues based on tech concepts", "Physical and digital challenges", "Teamwork focus"],
+        highlights: [
+          "Clues based on tech concepts",
+          "Physical and digital challenges",
+          "Teamwork focus",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "tech-expo-student",
         title: "Tech Expo: Student Innovations",
-        description: "Showcase your innovative projects and prototypes to a panel of experts and peers.",
+        description:
+          "Showcase your innovative projects and prototypes to a panel of experts and peers.",
         time: "1:00 PM - 5:00 PM",
         participants: "Individual/Teams",
         prize: "Best Project Award",
         difficulty: "All Levels",
         location: "Exhibition Hall",
-        highlights: ["Live demonstrations", "Networking opportunities", "Feedback from industry professionals"],
+        highlights: [
+          "Live demonstrations",
+          "Networking opportunities",
+          "Feedback from industry professionals",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "panel-discussion",
         title: "Panel Discussion: Future of AI",
-        description: "Engage with leading experts on the latest trends and ethical considerations in Artificial Intelligence.",
+        description:
+          "Engage with leading experts on the latest trends and ethical considerations in Artificial Intelligence.",
         time: "4:00 PM - 5:30 PM",
         participants: "Open to All",
         prize: "Knowledge & Insights",
         difficulty: "All Levels",
         location: "Auditorium B",
-        highlights: ["Expert speakers", "Interactive Q&A", "Emerging AI technologies", "Career insights"],
+        highlights: [
+          "Expert speakers",
+          "Interactive Q&A",
+          "Emerging AI technologies",
+          "Career insights",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "adopt-a-planet",
         title: "Adopt a Planet",
-        description: "A creative challenge to develop sustainable solutions for an assigned planetary scenario, focusing on environmental technology.",
+        description:
+          "A creative challenge to develop sustainable solutions for an assigned planetary scenario, focusing on environmental technology.",
         time: "10:00 AM - 6:00 PM",
         participants: "Teams of 3",
         prize: "₹18,000",
         difficulty: "Intermediate",
         location: "Sustainability Lab",
-        highlights: ["Environmental tech solutions", "Resource management", "Innovative design", "Presentation skills"],
+        highlights: [
+          "Environmental tech solutions",
+          "Resource management",
+          "Innovative design",
+          "Presentation skills",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "flight-forge",
         title: "Flight Forge",
-        description: "Design, build, and fly your own custom aircraft in this exciting aviation challenge.",
+        description:
+          "Design, build, and fly your own custom aircraft in this exciting aviation challenge.",
         time: "10:00 AM - 4:00 PM",
         participants: "Individual/Teams",
         prize: "₹20,000",
         difficulty: "Advanced",
         location: "Open Grounds, Aeromodelling Zone",
-        highlights: ["Aircraft design", "Aerodynamics principles", "Flight testing", "Innovation in aviation"],
+        highlights: [
+          "Aircraft design",
+          "Aerodynamics principles",
+          "Flight testing",
+          "Innovation in aviation",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
-       {
+      {
         id: "capture-flag",
         title: "Capture The Flag",
-        description: "Cybersecurity challenge testing your hacking and security skills in a controlled environment.",
+        description:
+          "Cybersecurity challenge testing your hacking and security skills in a controlled environment.",
         time: "10:00 AM - 6:00 PM",
         participants: "Individual/Teams",
         prize: "₹25,000",
         difficulty: "Advanced",
         location: "Cyber Lab",
-        highlights: ["Web exploitation", "Cryptography", "Reverse engineering", "Network security"],
+        highlights: [
+          "Web exploitation",
+          "Cryptography",
+          "Reverse engineering",
+          "Network security",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
     ],
@@ -122,66 +183,97 @@ const eventsByDay = {
   day2: {
     title: "Day 2 - Innovation & Robotics",
     date: "March 16, 2025",
-    description: "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
+    description:
+      "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
     events: [
       {
         id: "cumun",
         title: "CUMUN",
-        description: "Chandigarh University Model United Nations - Debate, diplomacy, and global awareness.",
+        description:
+          "Chandigarh University Model United Nations - Debate, diplomacy, and global awareness.",
         time: "9:00 AM - 6:00 PM",
         participants: "100+ Delegates",
         prize: "₹40,000",
         difficulty: "Intermediate",
         location: "Conference Hall",
-        highlights: ["Diplomatic debates", "Global issues", "Leadership skills", "International exposure"],
+        highlights: [
+          "Diplomatic debates",
+          "Global issues",
+          "Leadership skills",
+          "International exposure",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "company-expo",
         title: "Company Expo",
-        description: "Connect with leading companies showcasing career opportunities, internships, and industry insights.",
+        description:
+          "Connect with leading companies showcasing career opportunities, internships, and industry insights.",
         time: "10:00 AM - 4:00 PM",
         participants: "Open to All",
         prize: "Networking Opportunities",
         difficulty: "All Levels",
         location: "Exhibition Center",
-        highlights: ["Recruitment drives", "Company presentations", "Career guidance", "Industry insights"],
+        highlights: [
+          "Recruitment drives",
+          "Company presentations",
+          "Career guidance",
+          "Industry insights",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "non-tech-treasure-hunt",
         title: "Non-Tech Treasure Hunt",
-        description: "A fun and challenging scavenger hunt focusing on general knowledge, puzzles, and teamwork.",
+        description:
+          "A fun and challenging scavenger hunt focusing on general knowledge, puzzles, and teamwork.",
         time: "11:00 AM - 1:00 PM",
         participants: "Teams of 3",
         prize: "₹8,000",
         difficulty: "Easy",
         location: "Campus Gardens",
-        highlights: ["Riddles and clues", "Physical challenges", "Observation skills", "Fun for all"],
+        highlights: [
+          "Riddles and clues",
+          "Physical challenges",
+          "Observation skills",
+          "Fun for all",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "among-us",
         title: "Among Us Live!",
-        description: "Experience the popular social deduction game in a real-life, immersive setting.",
+        description:
+          "Experience the popular social deduction game in a real-life, immersive setting.",
         time: "2:00 PM - 5:00 PM",
         participants: "10-15 players per round",
         prize: "Bragging Rights & Small Prizes",
         difficulty: "Easy",
         location: "Activity Zone",
-        highlights: ["Strategy and deception", "Team dynamics", "Interactive gameplay", "Fun and laughter"],
+        highlights: [
+          "Strategy and deception",
+          "Team dynamics",
+          "Interactive gameplay",
+          "Fun and laughter",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "tech-csr-bootcamp",
         title: "Tech + CSR Bootcamps",
-        description: "Learn how technology can solve social problems and create sustainable solutions.",
+        description:
+          "Learn how technology can solve social problems and create sustainable solutions.",
         time: "9:00 AM - 5:00 PM",
         participants: "50 Students",
         prize: "Certificates & Internships",
         difficulty: "Intermediate",
         location: "Innovation Center",
-        highlights: ["Social impact projects", "Sustainability focus", "Mentorship", "Real implementations"],
+        highlights: [
+          "Social impact projects",
+          "Sustainability focus",
+          "Mentorship",
+          "Real implementations",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
     ],
@@ -189,67 +281,100 @@ const eventsByDay = {
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
     date: "March 17, 2025",
-    description: "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
+    description:
+      "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
-      
       {
         id: "short-film-making",
         title: "Short Film Making Competition",
-        description: "Unleash your creativity and tell a compelling story through the art of filmmaking.",
+        description:
+          "Unleash your creativity and tell a compelling story through the art of filmmaking.",
         time: "9:00 AM - 5:00 PM (Submission)",
         participants: "Individual/Teams",
         prize: "₹20,000",
         difficulty: "Intermediate",
         location: "Film Studio / Online Submission",
-        highlights: ["Scriptwriting", "Videography", "Editing techniques", "Storytelling"],
+        highlights: [
+          "Scriptwriting",
+          "Videography",
+          "Editing techniques",
+          "Storytelling",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "cultural-night",
         title: "One Stage One Vibe",
-        description: "Grand cultural showcase featuring music, dance, and artistic performances.",
+        description:
+          "Grand cultural showcase featuring music, dance, and artistic performances.",
         time: "6:00 PM - 10:00 PM",
         participants: "Open to All",
         prize: "₹50,000",
         difficulty: "All Levels",
         location: "Main Stage",
-        highlights: ["Live performances", "Cultural diversity", "Talent showcase", "Grand finale"],
+        highlights: [
+          "Live performances",
+          "Cultural diversity",
+          "Talent showcase",
+          "Grand finale",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
-            
+
       {
         id: "rc-car-race",
         title: "RC Car Race",
-        description: "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
+        description:
+          "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
         time: "1:00 PM - 5:00 PM",
         participants: "Individual",
         prize: "₹15,000",
         difficulty: "Intermediate",
         location: "Racing Track",
-        highlights: ["Precision driving", "Speed trials", "Custom car builds", "Agility challenges"],
+        highlights: [
+          "Precision driving",
+          "Speed trials",
+          "Custom car builds",
+          "Agility challenges",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
       {
         id: "drone-race",
         title: "Drone Race",
-        description: "High-speed drone racing competition testing piloting skills and drone technology.",
+        description:
+          "High-speed drone racing competition testing piloting skills and drone technology.",
         time: "3:00 PM - 7:00 PM",
         participants: "Individual",
         prize: "₹25,000",
         difficulty: "Advanced",
         location: "Drone Arena",
-        highlights: ["FPV racing", "Obstacle courses", "Speed challenges", "Precision flying"],
+        highlights: [
+          "FPV racing",
+          "Obstacle courses",
+          "Speed challenges",
+          "Precision flying",
+        ],
         image: "/placeholder.svg?height=600&width=800",
       },
     ],
   },
-}
+};
 
 export default function TimelineComponent() {
-  const [selectedDay, setSelectedDay] = useState<"day1" | "day2" | "day3">("day1")
-  const ref = useRef(null)
+  const [selectedDay, setSelectedDay] = useState<"day1" | "day2" | "day3">(
+    "day1"
+  );
+  const ref = useRef(null);
   // const isInView = useInView(ref, { once: true, amount: 0.1 })
 
+  //
+  const { addEvent, isEventInCart, removeEvent } = useCartStore();
+  const handleAddToCart = (event: Event) => {
+    addEvent(event);
+  };
+
+  //
   const containerVariants = useMemo(
     () => ({
       hidden: { opacity: 0 },
@@ -258,8 +383,8 @@ export default function TimelineComponent() {
         transition: { staggerChildren: 0.15 },
       },
     }),
-    [],
-  )
+    []
+  );
 
   const itemVariants = useMemo(
     () => ({
@@ -278,20 +403,30 @@ export default function TimelineComponent() {
         },
       },
     }),
-    [],
-  )
+    []
+  );
 
   const textGlowAnimation = useMemo(
     () => ({
-      textShadow: ["0 0 10px rgba(34,197,94,0.6)", "0 0 20px rgba(34,197,94,0.8)", "0 0 10px rgba(34,197,94,0.6)"],
+      textShadow: [
+        "0 0 10px rgba(34,197,94,0.6)",
+        "0 0 20px rgba(34,197,94,0.8)",
+        "0 0 10px rgba(34,197,94,0.6)",
+      ],
     }),
-    [],
-  )
+    []
+  );
 
   return (
     <section className="py-12 md:py-20 text-white w-full relative overflow-hidden">
       <div className="hidden lg:block">
-        <FlyingSpaceship top="top-[15%]" left="left-[5%]" duration={20} color="green" direction="leftToRight" />
+        <FlyingSpaceship
+          top="top-[15%]"
+          left="left-[5%]"
+          duration={20}
+          color="green"
+          direction="leftToRight"
+        />
       </div>
 
       <div className="absolute inset-0 pointer-events-none">
@@ -331,7 +466,11 @@ export default function TimelineComponent() {
           <motion.h1
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 text-green-400 px-2"
             animate={textGlowAnimation}
-            transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 4,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           >
             TECHNICIA&apos;25 Schedule
           </motion.h1>
@@ -341,8 +480,9 @@ export default function TimelineComponent() {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.5 }}
           >
-            Three days of innovation, technology, and cultural celebration. Join us for an unforgettable journey through
-            the future of tech and creativity.
+            Three days of innovation, technology, and cultural celebration. Join
+            us for an unforgettable journey through the future of tech and
+            creativity.
           </motion.p>
 
           {/* Day Selector */}
@@ -356,7 +496,9 @@ export default function TimelineComponent() {
             {Object.entries(eventsByDay).map(([dayKey, dayData]) => (
               <motion.button
                 key={dayKey}
-                onClick={() => setSelectedDay(dayKey as "day1" | "day2" | "day3")}
+                onClick={() =>
+                  setSelectedDay(dayKey as "day1" | "day2" | "day3")
+                }
                 className={`relative px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 border-2 min-w-[200px] ${
                   selectedDay === dayKey
                     ? "bg-gradient-to-r from-green-600 to-green-700 text-white border-green-400 shadow-lg shadow-green-500/25"
@@ -366,7 +508,9 @@ export default function TimelineComponent() {
                 {/* REMOVED whileHover and transition from this motion.div */}
                 <motion.div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 rounded-xl" />
                 <div className="relative z-10 flex flex-col items-center">
-                  <span className="font-bold text-lg">{dayData.title.split(" - ")[0]}</span>
+                  <span className="font-bold text-lg">
+                    {dayData.title.split(" - ")[0]}
+                  </span>
                   <span className="text-xs opacity-80">{dayData.date}</span>
                 </div>
               </motion.button>
@@ -397,13 +541,17 @@ export default function TimelineComponent() {
             >
               <div className="flex items-center space-x-3">
                 <Calendar className="h-5 w-5 md:h-6 md:w-6" />
-                <span className="font-bold text-lg md:text-xl">{eventsByDay[selectedDay].date}</span>
+                <span className="font-bold text-lg md:text-xl">
+                  {eventsByDay[selectedDay].date}
+                </span>
               </div>
             </motion.div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-green-400 mb-4">
               {eventsByDay[selectedDay].title}
             </h2>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">{eventsByDay[selectedDay].description}</p>
+            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              {eventsByDay[selectedDay].description}
+            </p>
           </motion.div>
 
           {/* Events for selected day */}
@@ -445,14 +593,19 @@ export default function TimelineComponent() {
                         "0 0 15px rgba(34,197,94,0.6)",
                       ],
                     }}
-                    transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+                    transition={{
+                      duration: 3,
+                      repeat: Number.POSITIVE_INFINITY,
+                    }}
                   >
                     <div className="absolute inset-1 bg-white rounded-full animate-pulse opacity-60" />
                   </motion.div>
                 </motion.div>
 
                 <motion.div
-                  className={`${eventIndex % 2 === 1 ? "lg:order-2" : "lg:order-1"} pl-12 sm:pl-16 lg:px-4 relative`}
+                  className={`${
+                    eventIndex % 2 === 1 ? "lg:order-2" : "lg:order-1"
+                  } pl-12 sm:pl-16 lg:px-4 relative`}
                   whileHover={{
                     x: eventIndex % 2 === 1 ? -5 : 5,
                     transition: { duration: 0.3 },
@@ -467,11 +620,17 @@ export default function TimelineComponent() {
                       <motion.div
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
                         animate={{ x: [-100, 200] }}
-                        transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                        transition={{
+                          duration: 4,
+                          repeat: Number.POSITIVE_INFINITY,
+                          ease: "linear",
+                        }}
                       />
                       <div className="relative flex items-center space-x-2">
                         <Clock className="h-3 w-3 md:h-4 md:w-4" />
-                        <span className="font-semibold text-sm md:text-base">{event.time}</span>
+                        <span className="font-semibold text-sm md:text-base">
+                          {event.time}
+                        </span>
                       </div>
                     </div>
                   </motion.div>
@@ -506,8 +665,12 @@ export default function TimelineComponent() {
                     >
                       <Users className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
                       <div className="min-w-0">
-                        <div className="text-xs text-gray-400">Participants</div>
-                        <div className="font-semibold text-sm md:text-base truncate">{event.participants}</div>
+                        <div className="text-xs text-gray-400">
+                          Participants
+                        </div>
+                        <div className="font-semibold text-sm md:text-base truncate">
+                          {event.participants}
+                        </div>
                       </div>
                     </motion.div>
 
@@ -522,7 +685,9 @@ export default function TimelineComponent() {
                       <Trophy className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
                       <div className="min-w-0">
                         <div className="text-xs text-gray-400">Prize Pool</div>
-                        <div className="font-semibold text-sm md:text-base truncate">{event.prize}</div>
+                        <div className="font-semibold text-sm md:text-base truncate">
+                          {event.prize}
+                        </div>
                       </div>
                     </motion.div>
 
@@ -537,7 +702,9 @@ export default function TimelineComponent() {
                       <Star className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
                       <div className="min-w-0">
                         <div className="text-xs text-gray-400">Difficulty</div>
-                        <div className="font-semibold text-sm md:text-base truncate">{event.difficulty}</div>
+                        <div className="font-semibold text-sm md:text-base truncate">
+                          {event.difficulty}
+                        </div>
                       </div>
                     </motion.div>
 
@@ -552,13 +719,17 @@ export default function TimelineComponent() {
                       <MapPin className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
                       <div className="min-w-0">
                         <div className="text-xs text-gray-400">Location</div>
-                        <div className="font-semibold text-sm md:text-base truncate">{event.location}</div>
+                        <div className="font-semibold text-sm md:text-base truncate">
+                          {event.location}
+                        </div>
                       </div>
                     </motion.div>
                   </div>
 
                   <div className="mb-6 md:mb-8">
-                    <h4 className="text-green-400 font-semibold mb-3 text-sm md:text-base">Key Highlights:</h4>
+                    <h4 className="text-green-400 font-semibold mb-3 text-sm md:text-base">
+                      Key Highlights:
+                    </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {event.highlights.map((highlight, idx) => (
                         <motion.div
@@ -599,6 +770,98 @@ export default function TimelineComponent() {
                       <span className="relative z-10">View More Details</span>
                     </motion.button>
                   </Link>
+
+                  {/*
+                   */}
+
+                  {/* <motion.button
+                    onClick={() => handleAddToCart(event)}
+                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto"
+                    whileHover={{
+                      scale: 1.03,
+                      boxShadow: "0 8px 20px rgba(37, 99, 235, 0.3)",
+                      transition: { duration: 0.2 },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <span className="relative z-10">
+                      Add Event For Registration
+                    </span>
+                  </motion.button> */}
+
+                  <motion.button
+                    onClick={() => {
+                      if (isEventInCart(event.id)) {
+                        removeEvent(event.id);
+                      } else {
+                        handleAddToCart(event);
+                      }
+                    }}
+                    className={`group ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto ${
+                      isEventInCart(event.id)
+                        ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                        : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                    }`}
+                    whileHover={{
+                      scale: 1.03,
+                      boxShadow: isEventInCart(event.id)
+                        ? "0 8px 20px rgba(34, 197, 94, 0.3)"
+                        : "0 8px 20px rgba(37, 99, 235, 0.3)",
+                      transition: { duration: 0.2 },
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.6 }}
+                    />
+
+                    {/* Delete button that appears on hover */}
+                    {isEventInCart(event.id) && (
+                      <motion.div
+                        className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                        initial={{ scale: 0.9 }}
+                        whileHover={{ scale: 1 }}
+                      >
+                        <X className="h-5 w-5" />
+                      </motion.div>
+                    )}
+
+                    <span
+                      className={`relative z-10 flex items-center justify-center gap-2 transition-all duration-200 ${
+                        isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+                      }`}
+                    >
+                      {isEventInCart(event.id) ? (
+                        <>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          >
+                            <path d="M20 6L9 17l-5-5" />
+                          </svg>
+                          Added for Registration
+                        </>
+                      ) : (
+                        "Add Event For Registration"
+                      )}
+                    </span>
+                  </motion.button>
                 </motion.div>
 
                 <motion.div
@@ -668,5 +931,5 @@ export default function TimelineComponent() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
