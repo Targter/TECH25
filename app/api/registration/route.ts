@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
     if (existingRegistrations.length > 0) {
       const registeredEvents = existingRegistrations.map(reg => 
-        reg.events.map((e:any) => e.title)
+        reg.events.map((e:Event) => e.title)
       ).flat();
       
       return NextResponse.json(

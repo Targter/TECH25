@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useCartStore } from "@/store/data";
-import CartIndicator from "../CartIndicator";
 
 type Event = {
   id: string;
