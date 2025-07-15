@@ -178,23 +178,34 @@ function PreviousPosterMain() {
                     animate={isLinkInView ? "visible" : "hidden"}
                     className="text-center space-y-6"
                 >
-                    <a
-                        href='/previous-events'
-                        className="group inline-block relative"
-                    >
-                        <h3 className="text-4xl lg:text-5xl font-bold text-white 
-              group-hover:text-transparent group-hover:bg-clip-text 
-              group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:via-blue-400 group-hover:to-pink-400
-              transition-all duration-700 leading-tight
-              group-hover:scale-105 transform-gpu">
-                            A visual walkthrough of all our previous events
-                        </h3>
+                
+<a
+  href="/previous-events"
+  className="group inline-block relative border-2 border-white/40 rounded-2xl p-6 
+             hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20
+             transition-all duration-300 bg-gradient-to-br from-white/5 to-transparent"
+>
+  {/* Inner content */}
+  <div className="relative z-10">
+    <h3
+      className="text-2xl lg:text-3xl font-bold text-white 
+                 group-hover:text-transparent group-hover:bg-clip-text 
+                 group-hover:bg-gradient-to-r group-hover:from-purple-400 
+                 group-hover:to-blue-400 transition-all duration-300 leading-tight"
+    >
+      A visual walkthrough of all our previous events
+    </h3>
 
-                        {/* Animated underline */}
-                        <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-1 
-              bg-gradient-to-r from-purple-400 to-blue-400 rounded-full
-              group-hover:w-full transition-all duration-700 ease-out" />
-                    </a>
+    {/* Animated underline */}
+    <div
+      className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-1 
+                 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full
+                 group-hover:w-full transition-all duration-500 ease-out"
+    />
+  </div>
+</a>
+
+          
 
                     {/* Enhanced progress bars with staggered animation */}
                     <div className="flex items-center justify-center space-x-3 mt-8">

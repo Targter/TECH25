@@ -1,669 +1,557 @@
-"use client";
+"use client"
+import React, { useState } from 'react';
+import TeamMemberModal from "@/components/TeamMemberModal"; // update path if needed
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
 
-const teamMembers = [
-  {
-    name: "Gaurav the Geek",
-    role: "Chief Debugger",
-    bio: "Known for fixing bugs at 3AM and crashing the server at 3:05AM. Gaurav once tried to run an ML model on his toaster. Still pending results.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "gaurav@funcollege.in",
-    },
-  },
-  {
-    name: "Abhay aka API King",
-    role: "Backend Wizard",
-    bio: "Built 57 microservices to serve Maggi in the hostel canteen. If it's not crashing, it's not deployed yet – his mantra for production readiness.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "abhay@funcollege.in",
-    },
-  },
-  {
-    name: "Yash the Yolo Coder",
-    role: "Frontend Magician",
-    bio: "Believes in 'push to main' as a lifestyle. Famous for making buttons that look too good to click. Once made a portfolio site that only works in dark mode.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "yash@funcollege.in",
-    },
-  },
-  {
-    name: "Tilli Don",
-    role: "Design Mafia",
-    bio: "Designs with such swag that even Figma asks for his permission. Owns more fonts than books. Once created a UI that made a professor cry (tears of joy… maybe).",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "tilli@funcollege.in",
-    },
-  },
-  {
-    name: "Billu Don",
-    role: "Meme Strategist",
-    bio: "Runs the official college meme page. Converts daily struggles into viral reels. Once turned a coding error into a trending meme.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "billu@funcollege.in",
-    },
-  },
-  {
-    name: "Rajesh the Rocket",
-    role: "DevOps Destroyer",
-    bio: "Deploys on Fridays just for the thrill. Once brought down production with a single semicolon. Claims it was 'feature testing'.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "rajesh@funcollege.in",
-    },
-  },
-  {
-    name: "Priya the Prodigy",
-    role: "AI Whisperer",
-    bio: "Talks to neural networks in their sleep. Built a chatbot so smart it started giving her life advice. Currently in therapy with GPT-4.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "priya@funcollege.in",
-    },
-  },
-  {
-    name: "Rohit the Rockstar",
-    role: "Full Stack Phantom",
-    bio: "Codes in 12 languages but still googles 'how to center a div'. Built an app so good that it got featured in his own portfolio. Debugging master by day, Stack Overflow hero by night.",
-    image: "",
-    social: {
-      linkedin: "#",
-      twitter: "#",
-      email: "rohit@funcollege.in",
-    },
-  },
-];
+import {
+  Crown,
+  Star,
+  Sparkles,
+  Zap,
+  Shield,
+  Users,
+  Megaphone,
+  DollarSign,
+  BookOpen,
+  Newspaper,
+  Code,
+  Palette,
+  LucideIcon
+} from 'lucide-react';
 
-export default function TeamSection() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
+interface TeamMember {
+  id: number;
+  name: string;
+  position: string;
+  department: string;
+  bio: string;
+  image: string;
+  icon: LucideIcon; // or the correct icon type
+}
+
+interface TeamCardProps {
+  member: TeamMember;
+  isLead?: boolean;
+  size?: "large" | "default" | "small";
+  onProfileClick?: (member: TeamMember) => void; // new
+}
+
+interface Department {
+  id: string;
+  name: string;
+  icon: LucideIcon;
+  lead: TeamMember;
+  team: TeamMember[];
+}
+const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProps) => {
+
+  const IconComponent = member.icon;
+
+  const sizeClasses = {
+    large: "p-8",
+    default: "p-6",
+    small: "p-4",
   };
 
-  const itemVariants = {
-    hidden: { 
-      y: 60, 
-      opacity: 0, 
-      scale: 0.8,
-      rotateX: 25,
-      rotateY: -15,
-    },
-    visible: {
-      y: 0,
-      opacity: 1,
-      scale: 1,
-      rotateX: 0,
-      rotateY: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        type: "spring",
-        stiffness: 120,
-        damping: 15,
-      },
-    },
+  const imageHeights = {
+    large: "h-96",
+    default: "h-56",
+    small: "h-48",
   };
 
-  // Split members into two rows (4 each)
-  const firstRow = teamMembers.slice(0, 4);
-  const secondRow = teamMembers.slice(4, 8);
+  const iconSizes = {
+    large: "w-8 h-8",
+    default: "w-6 h-6",
+    small: "w-5 h-5",
+  };
 
   return (
-    <section className="py-20 flex justify-center relative overflow-hidden">
-      {/* Enhanced Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-green-900/20 to-slate-900">
-        {/* Floating 3D Geometric Shapes */}
-        <motion.div
-          className="absolute top-20 left-10 w-20 h-20 border-2 border-green-400/30"
-          animate={{
-            rotateX: [0, 360],
-            rotateY: [0, 360],
-            rotateZ: [0, 180],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-          style={{
-            transformStyle: "preserve-3d",
-          }}
-        />
-        
-        <motion.div
-          className="absolute top-32 right-20 w-16 h-16 bg-green-400/10 rotate-45"
-          animate={{
-            rotateX: [0, 180, 360],
-            rotateZ: [0, 360],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          style={{
-            transformStyle: "preserve-3d",
-          }}
-        />
+    <div className="group bg-black/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 border border-gray-800/50 hover:border-blue-500/50 cursor-pointer transform hover:-translate-y-2 hover:scale-105">
+      {/* Card Header with Full Image */}
+      <div className="relative overflow-hidden rounded-t-2xl">
+        <div className={`${imageHeights[size]} relative bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center`}>
+          {/* Starfield Background Effect */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-black/70 to-slate-900/50"></div>
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-4 left-4 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
+            <div className="absolute top-12 right-8 w-0.5 h-0.5 bg-indigo-300 rounded-full animate-pulse delay-100"></div>
+            <div className="absolute bottom-8 left-12 w-0.5 h-0.5 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
+            <div className="absolute bottom-16 right-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-300"></div>
+            <div className="absolute top-20 left-1/2 w-0.5 h-0.5 bg-blue-300 rounded-full animate-pulse delay-500"></div>
+          </div>
 
-        <motion.div
-          className="absolute bottom-32 left-1/4 w-12 h-12 border border-green-300/40 rounded-full"
-          animate={{
-            rotateY: [0, 360],
-            translateZ: [0, 50, 0],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "linear",
-          }}
-        />
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            className="object-cover"
+          />
+          {/* Large Avatar with Glow */}
 
-        {/* Animated Grid Background
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 grid-rows-12 h-full gap-1">
-            {Array.from({ length: 144 }).map((_, i) => (
-              <motion.div
-                key={i}
-                className="border border-green-400/20"
-                animate={{
-                  opacity: [0.1, 0.3, 0.1],
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.02,
-                  ease: "easeInOut",
-                }}
+
+          {/* Icon Badge */}
+          {IconComponent && (
+            <div className="absolute top-4 right-4 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full p-3 shadow-lg border border-white/10">
+              <IconComponent className={`${iconSizes[size]} text-white`} />
+            </div>
+          )}
+
+          {/* Status Badge */}
+          <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-blue-400 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30">
+            Active
+          </div>
+
+          {/* Name Overlay */}
+          <div className="absolute bottom-4 left-4 right-4 z-20">
+            <h3 className={`font-bold text-white mb-1 drop-shadow-lg ${size === "large" ? "text-2xl" : size === "small" ? "text-lg" : "text-xl"
+              }`}>
+              {member.name}
+            </h3>
+            <p className={`text-blue-300 font-semibold drop-shadow ${size === "large" ? "text-lg" : "text-base"
+              }`}>
+              {member.position}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Card Content */}
+      <div className={sizeClasses[size]}>
+        <div className="text-center">
+          <div className="mb-4">
+            {member.department && (
+              <p className="text-gray-400 text-sm">{member.department}</p>
+            )}
+          </div>
+
+          {member.bio && (
+            <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3 group-hover:text-gray-200 transition-colors duration-300">
+              {member.bio}
+            </p>
+          )}
+
+          {/* Action Buttons */}
+         <div className="flex justify-center space-x-2 pt-4 border-t border-gray-800">
+  <button
+    onClick={() => onProfileClick?.(member)}
+    className="flex items-center justify-center space-x-2 px-6 py-3 w-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-blue-500/30"
+  >
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+    </svg>
+    <span>Profile</span>
+  </button>
+</div>
+        </div>
+      </div>
+    </div>
+  );
+};
+interface DepartmentSectionProps {
+  department: Department;
+  onProfileClick: (member: TeamMember) => void;
+}
+const DepartmentSection = ({ department, onProfileClick }: DepartmentSectionProps) => {
+  const IconComponent = department.icon;
+
+  return (
+    <div className="mb-16">
+      <div className="flex items-center gap-4 mb-8">
+        <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg border border-blue-400/20">
+          <IconComponent className="w-8 h-8 text-white" />
+        </div>
+        <div>
+          <h2 className="text-4xl font-bold text-white drop-shadow-lg">{department.name}</h2>
+          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mt-2 shadow-lg"></div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-1">
+          <h3 className="text-xl font-semibold text-blue-400 mb-4 drop-shadow">Department Head</h3>
+          <TeamMemberCard
+            member={department.lead}
+            isLead={true}
+            onProfileClick={onProfileClick}
+          />
+        </div>
+
+        <div className="lg:col-span-2">
+          <h3 className="text-xl font-semibold text-blue-400 mb-4 drop-shadow">Team Members</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {department.team.map((member, index) => (
+              <TeamMemberCard
+                key={index}
+                member={member}
+                onProfileClick={onProfileClick}
+              />
+
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const TeamsPage = () => {
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  const secretariatBoard = [
+    {
+      id: 1,
+      name: "Sahil Wadhwa",
+      position: "Secretary General",
+      department: "",
+      bio: "Leading the conference with vision and dedication, ensuring excellence in every aspect of the MUN experience.",
+      image: "/team/sahil.jpg",
+      icon: Crown,
+    },
+    {
+      id: 2,
+      name: "Yatin Berry",
+      position: "Deputy Secretary General",
+      department: "",
+      bio: "Supporting the Secretary General in strategic planning and operational oversight.",
+      image: "/team/Yatin Berry.jpg",
+      icon: Star,
+    },
+    {
+      id: 3,
+      name: "Srishti Nautiyal",
+      position: "Director General",
+      department: "",
+      bio: "Overseeing committee operations and ensuring seamless conference execution.",
+      image: "/team/Srishti.jpg",
+      icon: Sparkles,
+    },
+    {
+      id: 4,
+      name: "Jatin Mittal",
+      position: "Deputy Director General",
+      department: "",
+      bio: "Coordinating between committees and ensuring seamless operational excellence.",
+      image: "/team/jatin Mittal.png",
+      icon: Zap,
+    },
+  ];
+
+  const advisorBoard = [
+    {
+      id: 5,
+      name: "Animesh",
+      position: "Advisor to Secretariat",
+      department: "",
+      bio: "Providing strategic guidance and mentorship to ensure the highest standards of conference execution.",
+      image: "/team/ani.jpg",
+      icon: Shield,
+    },
+  ];
+
+  const usgPositions = [
+    {
+      id: 1,
+      name: "Dinky Khurrana",
+      position: "USG Delegate Affairs",
+      department: "",
+      bio: "Managing delegate experience and ensuring smooth committee proceedings.",
+      image: "/team/Dinky.jpg",
+      icon: Users,
+    },
+    {
+      id: 2,
+      name: "Shreyanshi Soor",
+      position: "USG Delegate Affairs",
+      department: "",
+      bio: "Managing delegate experience and ensuring smooth committee proceedings.",
+      image: "/team/Shreyanshi.jpg",
+      icon: Users,
+    },
+    {
+      id: 3,
+      name: "Tanisha Goyal",
+      position: "USG Outreach and Marketing",
+      department: "",
+      bio: "Building partnerships and expanding conference reach through strategic marketing.",
+      image: "/team/Tanisha Goyal_.jpg",
+      icon: Megaphone,
+    },
+    {
+      id: 4,
+      name: "Krishnam Gupta",
+      position: "USG Finance",
+      department: "",
+      bio: "Managing conference budget and financial operations with precision.",
+      image: "/team/Krishnam Gupta.jpg",
+      icon: DollarSign,
+    },
+    {
+      id: 5,
+      name: "Amit Kumar",
+      position: "USG Training and Workshop",
+      department: "",
+      bio: "Conducting delegate training sessions and educational workshops.",
+      image: "/team/Amit Kumar.jpg",
+      icon: BookOpen,
+    },
+    {
+      id: 6,
+      name: "Avleenjot Kaur",
+      position: "USG Public Relations and Media",
+      department: "",
+      bio: "Managing media relations and public communications for the conference.",
+      image: "/team/Avleen.jpg",
+      icon: Newspaper,
+    },
+    {
+      id: 7,
+      name: "Khushi",
+      position: "USG Press and Journalism",
+      department: "",
+      bio: "Overseeing press coverage and journalistic documentation of proceedings.",
+      image: "/team/Khushi.jpg",
+      icon: Newspaper,
+    },
+    {
+      id: 8,
+      name: "Abhay Bansal",
+      position: "USG IT/Tech",
+      department: "",
+      bio: "Managing technical infrastructure and digital systems for the conference.",
+      image: "/team/Abhay Bansal.jpg",
+      icon: Code,
+    },
+  ];
+
+  const departments: Department[] = [
+    {
+      id: "creatives",
+      name: "Creatives Department",
+      icon: Palette,
+      lead: {
+        id: 1,
+        name: "Aditi Anand",
+        position: "USG Creatives",
+        department: "",
+        bio: "Leading creative vision and design excellence for the conference.",
+        image: "/team/Aditi Anand .jpg",
+        icon: Users,
+      },
+      team: [
+        {
+          id: 2,
+          name: "Anjani",
+          position: "Creative Designer",
+          department: "Design Team",
+          bio: "Crafting visual elements that bring the conference to life.",
+          image: "/team/Anjani thakur_.jpg",
+          icon: Users,
+        },
+        {
+          id: 3,
+          name: "Soham",
+          position: "Visual Content Creator",
+          department: "Design Team",
+          bio: "Creating engaging visual content for all conference materials.",
+          image: "/team/SOHAM THAKER.png",
+          icon: Users,
+        },
+      ],
+    },
+    {
+      id: "tech",
+      name: "Technology Department",
+      icon: Code,
+      lead: {
+        id: 4,
+        name: "Gaurav Thakur",
+        position: "Web Developer",
+        department: "Tech Team",
+        bio: "Developing and maintaining technical infrastructure for the conference.",
+        image: "/team/Gaurav Thakur.jpg",
+        icon: Users,
+      },
+      team: [
+        {
+          id: 5,
+          name: "Abhay Bansal",
+          position: "USG IT/Tech",
+          department: "",
+          bio: "Ensuring seamless technical operations throughout the conference.",
+          image: "/team/Abhay Bansal.jpg",
+          icon: Users,
+        },
+        {
+          id: 6,
+          name: "Piyush",
+          position: "Technical Support",
+          department: "Tech Team",
+          bio: "Providing technical support and troubleshooting during the event.",
+          image: "/team/Piyush Aggarwal_.jpg",
+          icon: Users,
+        },
+      ],
+    },
+    {
+      id: "outreach",
+      name: "Outreach & Marketing",
+      icon: Megaphone,
+      lead: {
+        id: 7,
+        name: "Tanisha Goyal",
+        position: "USG Outreach and Marketing",
+        department: "",
+        bio: "Building strategic partnerships and expanding conference reach.",
+        image: "/team/Tanisha Goyal_.jpg",
+        icon: Users,
+      },
+      team: [
+        {
+          id: 8,
+          name: "Jay Thakur",
+          position: "Outreach Coordinator",
+          department: "Outreach Team",
+          bio: "Coordinating outreach efforts and building community connections.",
+          image: "/team/Jay.png",
+          icon: Users,
+        },
+        {
+          id: 9,
+          name: "Prashant",
+          position: "Partnership Manager",
+          department: "Outreach Team",
+          bio: "Managing partnerships and sponsorship relationships.",
+          image: "/team/Prashant.png",
+          icon: Users,
+        },
+      ],
+    },
+  ];
+
+
+  return (
+  <>
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative">
+      {/* Space Background Effects */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+        <div className="absolute top-20 right-20 w-1 h-1 bg-indigo-300 rounded-full animate-pulse delay-100"></div>
+        <div className="absolute bottom-32 left-16 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
+        <div className="absolute bottom-40 right-12 w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-300"></div>
+        <div className="absolute top-40 left-1/2 w-1 h-1 bg-blue-300 rounded-full animate-pulse delay-500"></div>
+        <div className="absolute top-60 right-1/3 w-1 h-1 bg-indigo-400 rounded-full animate-pulse delay-700"></div>
+        <div className="absolute bottom-20 left-1/4 w-2 h-2 bg-cyan-300 rounded-full animate-pulse delay-900"></div>
+        <div className="absolute top-80 right-1/4 w-1 h-1 bg-purple-300 rounded-full animate-pulse delay-1100"></div>
+      </div>
+
+      <div className="container mx-auto px-6 py-12 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
+            Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Team</span>
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto drop-shadow">
+            Dedicated individuals working together to create an exceptional MUN conference experience in the cosmos of diplomacy
+          </p>
+          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mx-auto mt-6 shadow-lg"></div>
+        </div>
+
+        {/* Secretariat Board */}
+        <section className="mb-16">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl shadow-lg border border-amber-400/20">
+              <Crown className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Secretariat Board</h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full mt-2 shadow-lg"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {secretariatBoard.map((member) => (
+              <TeamMemberCard
+                key={member.id}
+                member={member}
+                onProfileClick={setSelectedMember}
               />
             ))}
           </div>
-        </div> */}
-      </div>
+        </section>
 
-      <div className="container relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20, rotateX: 30 }}
-          whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
-        >
-          <motion.h2 
-            className="text-3xl font-bold mb-4 text-green-400 drop-shadow-[0_0_6px_rgba(0,255,180,0.7)]"
-            animate={{
-              textShadow: [
-                "0 0 6px rgba(0,255,180,0.7)",
-                "0 0 20px rgba(0,255,180,0.9)",
-                "0 0 6px rgba(0,255,180,0.7)",
-              ],
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          >
-            Meet the Team
-          </motion.h2>
-          <motion.p 
-            className="text-green-300"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-          >
-            The dedicated professionals behind TECHNASIA&apos;25 working to create an exceptional event experience.
-          </motion.p>
-        </motion.div>
-
-        {/* First Row - 4 Members */}
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8"
-        >
-          {firstRow.map((member, index) => (
-            <motion.div 
-              key={index} 
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 8,
-                rotateX: -5,
-                z: 100,
-                transition: { duration: 0.3 }
-              }}
-              className="group"
-              style={{ 
-                transformStyle: "preserve-3d",
-                perspective: "1000px"
-              }}
-            >
-              <motion.div
-                className="
-                  relative overflow-hidden border border-green-500 bg-black/10
-                  transition-all duration-500 rounded-2xl
-                  group-hover:border-green-400
-                "
-                whileHover={{
-                  boxShadow: [
-                    "0 0 20px rgba(0,255,180,0.7)",
-                    "0 0 40px rgba(0,255,180,0.9)",
-                    "0 0 60px rgba(0,255,180,1)",
-                    "0 0 40px rgba(0,255,180,0.9)",
-                    "0 0 20px rgba(0,255,180,0.7)",
-                  ],
-                }}
-                transition={{
-                  boxShadow: { duration: 2, repeat: Infinity }
-                }}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                <div className="relative h-64 w-full overflow-hidden">
-                  {member.image ? (
-                    <motion.img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ 
-                        scale: 1.15,
-                        rotateZ: 2,
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full bg-green-900/20 text-green-400 text-2xl font-bold relative">
-                      <motion.div
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateY: 180,
-                          color: "#00ffb4"
-                        }}
-                        transition={{ 
-                          duration: 0.6,
-                          type: "spring",
-                          stiffness: 200
-                        }}
-                        style={{ transformStyle: "preserve-3d" }}
-                      >
-                        {member.name.charAt(0)}
-                      </motion.div>
-                       <motion.div
-                  className="absolute top-1/4 right-1/4 w-16 h-16 border border-green-400/40 rounded-full"
-                  animate={{
-                    scale: [1, 1.8, 1],
-                    opacity: [0.8, 0.2, 0.8],
-                    rotateZ: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <motion.div
-                    className="absolute inset-2 border border-green-300/60 rounded-full"
-                    animate={{
-                      scale: [1, 0.5, 1],
-                      opacity: [0.6, 1, 0.6]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  />
-                </motion.div>
-                
-                      
-                      {/* 3D Floating Elements */}
-                      {/* <motion.div
-                        className="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full"
-                        animate={{
-                          translateZ: [0, 20, 0],
-                          rotateY: [0, 360],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                      <motion.div
-                        className="absolute bottom-4 left-4 w-2 h-2 bg-green-300 rounded-full"
-                        animate={{
-                          translateZ: [0, -15, 0],
-                          rotateX: [0, 360],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      /> */}
-                    </div>
-                  )}
-                  
-                  {/* Enhanced Hover Overlay */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4"
-                    initial={{ rotateX: 90 }}
-                    whileHover={{ rotateX: 0 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ transformOrigin: "bottom" }}
-                  >
-                    <div className="flex space-x-3">
-                      <motion.a
-                        href={member.social.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-green-400 hover:text-green-300 transition-colors p-2 rounded-full bg-green-600/20"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateZ: 360,
-                          backgroundColor: "rgba(34, 197, 94, 0.3)"
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Linkedin className="h-5 w-5" />
-                      </motion.a>
-                      <motion.a
-                        href={`mailto:${member.social.email}`}
-                        className="text-green-400 hover:text-green-300 transition-colors p-2 rounded-full bg-green-600/20"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateZ: -360,
-                          backgroundColor: "rgba(34, 197, 94, 0.3)"
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Mail className="h-5 w-5" />
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <div className="p-6 text-center relative">
-                  <motion.h3 
-                    className="text-xl font-semibold mb-1 text-green-300 drop-shadow-[0_0_6px_rgba(0,255,180,0.7)]"
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotateX: 10,
-                      textShadow: "0 0 15px rgba(0,255,180,1)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {member.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-green-400 text-sm mb-3"
-                    whileHover={{ 
-                      scale: 1.05,
-                      color: "#00ffb4"
-                    }}
-                  >
-                    {member.role}
-                  </motion.p>
-                  <motion.p 
-                    className="text-green-200 text-sm"
-                    whileHover={{ 
-                      scale: 1.02,
-                      opacity: 0.9
-                    }}
-                  >
-                    {member.bio}
-                  </motion.p>
-                </div>
-
-                {/* 3D Glow Effect */}
-                {/* <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-green-600 via-green-400 to-green-600 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 -z-10"
-                  animate={{
-                    rotateZ: [0, 360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                /> */}
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Second Row - 4 Members */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center"
-        >
-          {secondRow.map((member, index) => (
-            <motion.div 
-              key={index + 4} 
-              variants={itemVariants}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 8,
-                rotateX: -5,
-                z: 100,
-                transition: { duration: 0.3 }
-              }}
-              className="group"
-              style={{ 
-                transformStyle: "preserve-3d",
-                perspective: "1000px"
-              }}
-            >
-              <motion.div
-                className="
-                  relative overflow-hidden border border-green-500 bg-black/10
-                  transition-all duration-500 rounded-2xl
-                  group-hover:border-green-400
-                "
-                whileHover={{
-                  boxShadow: [
-                    "0 0 20px rgba(0,255,180,0.7)",
-                    "0 0 40px rgba(0,255,180,0.9)",
-                    "0 0 60px rgba(0,255,180,1)",
-                    "0 0 40px rgba(0,255,180,0.9)",
-                    "0 0 20px rgba(0,255,180,0.7)",
-                  ],
-                }}
-                transition={{
-                  boxShadow: { duration: 2, repeat: Infinity }
-                }}
-                style={{
-                  transformStyle: "preserve-3d",
-                }}
-              >
-                <div className="relative h-64 w-full overflow-hidden">
-                  {member.image ? (
-                    <motion.img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ 
-                        scale: 1.15,
-                        rotateZ: 2,
-                      }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full bg-green-900/20 text-green-400 text-2xl font-bold relative">
-                      <motion.div
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateY: 180,
-                          color: "#00ffb4"
-                        }}
-                        transition={{ 
-                          duration: 0.6,
-                          type: "spring",
-                          stiffness: 200
-                        }}
-                        style={{ transformStyle: "preserve-3d" }}
-                      >
-                        {member.name.charAt(0)}
-                      </motion.div>
-                      
-                      {/* 3D Floating Elements */}
-                      <motion.div
-                        className="absolute top-4 right-4 w-3 h-3 bg-green-400 rounded-full"
-                        animate={{
-                          translateZ: [0, 20, 0],
-                          rotateY: [0, 360],
-                        }}
-                        transition={{
-                          duration: 4,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                      <motion.div
-                        className="absolute bottom-4 left-4 w-2 h-2 bg-green-300 rounded-full"
-                        animate={{
-                          translateZ: [0, -15, 0],
-                          rotateX: [0, 360],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    </div>
-                  )}
-                  
-                  {/* Enhanced Hover Overlay */}
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-4"
-                    initial={{ rotateX: 90 }}
-                    whileHover={{ rotateX: 0 }}
-                    transition={{ duration: 0.4 }}
-                    style={{ transformOrigin: "bottom" }}
-                  >
-                    <div className="flex space-x-3">
-                      <motion.a
-                        href={member.social.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-green-400 hover:text-green-300 transition-colors p-2 rounded-full bg-green-600/20"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateZ: 360,
-                          backgroundColor: "rgba(34, 197, 94, 0.3)"
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Linkedin className="h-5 w-5" />
-                      </motion.a>
-                      <motion.a
-                        href={`mailto:${member.social.email}`}
-                        className="text-green-400 hover:text-green-300 transition-colors p-2 rounded-full bg-green-600/20"
-                        whileHover={{ 
-                          scale: 1.3, 
-                          rotateZ: -360,
-                          backgroundColor: "rgba(34, 197, 94, 0.3)"
-                        }}
-                        whileTap={{ scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Mail className="h-5 w-5" />
-                      </motion.a>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <div className="p-6 text-center relative">
-                  <motion.h3 
-                    className="text-xl font-semibold mb-1 text-green-300 drop-shadow-[0_0_6px_rgba(0,255,180,0.7)]"
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotateX: 10,
-                      textShadow: "0 0 15px rgba(0,255,180,1)"
-                    }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {member.name}
-                  </motion.h3>
-                  <motion.p 
-                    className="text-green-400 text-sm mb-3"
-                    whileHover={{ 
-                      scale: 1.05,
-                      color: "#00ffb4"
-                    }}
-                  >
-                    {member.role}
-                  </motion.p>
-                  <motion.p 
-                    className="text-green-200 text-sm"
-                    whileHover={{ 
-                      scale: 1.02,
-                      opacity: 0.9
-                    }}
-                  >
-                    {member.bio}
-                  </motion.p>
-                </div>
-
-                {/* 3D Glow Effect */}
-                <motion.div
-                  className="absolute -inset-1 bg-gradient-to-r from-green-600 via-green-400 to-green-600 rounded-2xl opacity-0 group-hover:opacity-30 blur-xl transition-opacity duration-500 -z-10"
-                  animate={{
-                    rotateZ: [0, 360],
-                  }}
-                  transition={{
-                    duration: 8,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
+        {/* Advisor Board */}
+        <section className="mb-16">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg border border-emerald-400/20">
+              <Shield className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Advisory Board</h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mt-2 shadow-lg"></div>
+            </div>
+          </div>
+          <div className="grid w-full grid-cols-1 place-items-center">
+            {advisorBoard.map((member) => (
+              <div key={member.id} className="w-full max-w-sm">
+                <TeamMemberCard
+                  member={member}
+                  onProfileClick={setSelectedMember}
                 />
-              </motion.div>
-            </motion.div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* USG Positions */}
+        <section className="mb-16">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl shadow-lg border border-purple-400/20">
+              <Users className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Under Secretary General Positions</h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full mt-2 shadow-lg"></div>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {usgPositions.map((member) => (
+              <TeamMemberCard
+                key={member.id}
+                member={member}
+                onProfileClick={setSelectedMember}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Departments */}
+        <section>
+          <div className="text-center mb-12">
+            <h2 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">Departments</h2>
+            <div className="w-40 h-1 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mx-auto shadow-lg"></div>
+          </div>
+          {departments.map((department) => (
+            <DepartmentSection
+              key={department.id}
+              department={department}
+              onProfileClick={setSelectedMember}
+            />
           ))}
-        </motion.div>
+        </section>
       </div>
-    </section>
-  );
-}
+    </div>
+
+    {selectedMember && (
+      <TeamMemberModal
+        member={selectedMember}
+        onClose={() => setSelectedMember(null)}
+      />
+    )}
+  </>
+);
+
+
+};
+
+export default TeamsPage;
