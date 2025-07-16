@@ -246,7 +246,7 @@ export function HeroSection() {
               </span> */}
 
 
-          <div className="flex flex-col items-center space-y-10">
+          <div className="flex flex-col items-center space-y-5">
             <div className="flex items-center justify-center gap-4">
               <Image
                 src="/logo/iste01logo.png"
@@ -259,8 +259,8 @@ export function HeroSection() {
               <Image
                 src="/logo/culogo.png"
                 alt="CU Logo"
-                width={110}
-                height={110}
+                width={170}
+                height={1700}
                 className="h-auto"
               />
             </div>
