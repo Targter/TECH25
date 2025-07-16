@@ -159,7 +159,7 @@ const Registration = () => {
               Your Cart is Empty
             </h2>
             <p className="text-gray-300 mb-6">
-              You haven't selected any events to register for.
+              You haven&apos;t selected any events to register for.
             </p>
             <Link href="/timeline">
               <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-black">
