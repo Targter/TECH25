@@ -35,7 +35,7 @@ export function Footer() {
                 <div className="relative">
 
                   <Image
-                    src="/logo/logo_technisia.svg"
+                    src="/logo/technisia.jpg"
                     alt="Technicia Logo"
                     width={40}
                     height={40}
@@ -177,7 +177,7 @@ export function Footer() {
               </p>
               <div className="hidden md:block w-px h-4 bg-green-500/30"></div>
               <p className="text-xs text-gray-500">
-                Built with ❤️ for innovation
+                Built with ❤️ By Gaurav
               </p>
             </div>
 

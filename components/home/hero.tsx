@@ -8,6 +8,8 @@ import { useState, useEffect, useMemo, memo, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { LucideProps } from 'lucide-react'
 import { ForwardRefExoticComponent, RefAttributes } from 'react'
+import Image from 'next/image'
+
 
 // Type definitions
 interface StatData {
@@ -29,10 +31,10 @@ const PlanetScene = dynamic(() => import('@/components/planet-3d/planet-3d').cat
   ssr: false
 })
 
-const FlyingSpaceship = dynamic(() => 
+const FlyingSpaceship = dynamic(() =>
   import('@/components/FlyingSpaceship/FlyingSpaceship').catch(() => ({
     default: () => null
-  })), 
+  })),
   {
     loading: () => null,
     ssr: false
@@ -42,12 +44,12 @@ const FlyingSpaceship = dynamic(() =>
 // Optimized stats component - no framer motion to reduce JS overhead
 const StatCard = memo<StatCardProps>(({ stat }) => {
   const [isHovered, setIsHovered] = useState(false)
-  
+
   // Debounced hover handlers for better INP
   const handleMouseEnter = useCallback(() => {
     setIsHovered(true)
   }, [])
-  
+
   const handleMouseLeave = useCallback(() => {
     setIsHovered(false)
   }, [])
@@ -87,19 +89,19 @@ StatCard.displayName = 'StatCard'
 const FloatingElements = memo(() => (
   <div className="absolute inset-0 pointer-events-none overflow-hidden">
     {/* Static positioned elements to prevent CLS */}
-    <div 
+    <div
       className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-1"
       style={{ left: '15%', top: '20%' }}
     />
-    <div 
+    <div
       className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-2"
       style={{ left: '85%', top: '15%' }}
     />
-    <div 
+    <div
       className="absolute w-5 h-5 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-3"
       style={{ left: '70%', top: '60%' }}
     />
-    <div 
+    <div
       className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-4"
       style={{ left: '25%', top: '70%' }}
     />
@@ -114,7 +116,7 @@ export function HeroSection() {
 
   useEffect(() => {
     // setIsClient(true);
-    
+
     // Use requestIdleCallback for non-critical enhancements
     const scheduleEnhancements = () => {
       if ('requestIdleCallback' in window) {
@@ -125,7 +127,7 @@ export function HeroSection() {
         setTimeout(() => setEnhancementsReady(true), 1000)
       }
     }
-    
+
     scheduleEnhancements()
   }, [])
 
@@ -182,7 +184,7 @@ export function HeroSection() {
         .animate-float-4 { animation: float-4 22s ease-in-out infinite 3s; }
       `}</style>
 
-      <div 
+      <div
         className="relative min-h-screen flex items-center justify-start overflow-hidden bg-gradient-to-br scroll-smooth px-8 md:px-16"
         style={{
           // Reserve space to prevent CLS
@@ -194,22 +196,22 @@ export function HeroSection() {
         <div className="absolute inset-0 opacity-20">
           <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black_70%,transparent_110%)]" />
         </div>
-        
+
         {/* Lightweight floating elements */}
         <FloatingElements />
-        
+
         {/* Heavy components - load after initial render */}
         {enhancementsReady && (
           <>
-            <FlyingSpaceship 
-              top="top-[35%]" 
-              left="left-[90%]" 
-              duration={22} 
-              color="blue" 
-              direction="rightToLeft" 
+            <FlyingSpaceship
+              top="top-[35%]"
+              left="left-[90%]"
+              duration={22}
+              color="blue"
+              direction="rightToLeft"
             />
             <div className="hidden lg:flex absolute inset-0 pointer-events-none z-10 justify-center items-center">
-              <div 
+              <div
                 className="w-full h-full max-w-[1400px] max-h-[900px]"
                 style={{
                   // Reserve space for 3D scene to prevent CLS
@@ -227,7 +229,7 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/40 to-black/60 z-[2]" />
 
         {/* Main content - Render immediately without animations */}
-        <div 
+        <div
           className="relative z-20 max-w-3xl text-center mx-auto"
           style={{
             // Fixed positioning to prevent CLS
@@ -235,35 +237,51 @@ export function HeroSection() {
             maxWidth: '48rem'
           }}
         >
-          
-          {/* Badge - fixed size */}
-          <div 
-            className="inline-flex items-center px-4 py-2 mb-8 bg-green-500/10 border border-green-500/30 rounded-full backdrop-blur-sm"
-            style={{ minHeight: '40px' }}
-          >
-            <Zap className="h-4 w-4 mr-2 text-green-400" />
-            <span className="text-sm font-medium text-green-400">North India&apos;s Premier Tech Festival</span>
-          </div>
 
-          {/* Title - Critical for LCP, render immediately */}
-          <h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight opacity-100 transition-none"
-            style={{
-              // Ensure consistent sizing to prevent CLS
-              minHeight: '200px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              animationDelay: '0.1s',
-              animationFillMode: 'forwards'
-            }}
-          >
-            <div className="block">
-              <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400 mr-4">
+
+
+
+          {/* <span className="text-2xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400">
+                PRESENTED BY
+              </span> */}
+
+
+          <div className="flex flex-col items-center space-y-10">
+            <div className="flex items-center justify-center gap-4">
+              <Image
+                src="/logo/iste01logo.png"
+                alt="ISTE Logo"
+                width={100}
+                height={100}
+                className="h-auto"
+              />
+              <span className="text-2xl font-bold text-gray-400">×</span>
+              <Image
+                src="/logo/culogo.png"
+                alt="CU Logo"
+                width={110}
+                height={110}
+                className="h-auto"
+              />
+            </div>
+
+            <h1
+              className="text-4xl md:text-8xl lg:text-7xl font-black leading-tight opacity-100 transition-none"
+              style={{
+                minHeight: 'unset',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                animationDelay: '0.1s',
+                animationFillMode: 'forwards'
+              }}
+            >
+              <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400">
                 TECHNICIA&apos;25
               </span>
-            </div>
-          </h1>
+            </h1>
+          </div>
+
 
           {/* Stats grid - Fixed dimensions to prevent CLS */}
           <div
@@ -271,7 +289,7 @@ export function HeroSection() {
             style={{
               minHeight: '120px',
               animationDelay: '0.2s',
-              animationFillMode: 'forwards'  
+              animationFillMode: 'forwards'
             }}
           >
             {stats.map((stat, index) => (

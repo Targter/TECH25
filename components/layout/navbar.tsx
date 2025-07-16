@@ -62,13 +62,13 @@ export function Navbar() {
             transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
           >
             <Image
-              src="/logo/logo_technisia.svg"
+              src="/logo/technisia.jpg" 
               alt="Technisia Logo"
               width={isScrolled ? 40 : 50}
               height={isScrolled ? 40 : 50}
               className={cn(
                 "block",
-                isScrolled ? "h-10 w-10" : "h-12 w-12"
+                isScrolled ? "h-10 w-10" : "h-14 w-14"
               )}
             />
           </motion.div>

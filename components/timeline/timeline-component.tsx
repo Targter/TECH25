@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useCartStore } from "@/store/data";
-import CartIndicator from "../CartIndicator";
 
 type Event = {
   id: string;
@@ -87,7 +86,7 @@ const eventsByDay = {
           "Physical and digital challenges",
           "Teamwork focus",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/treasure_hunt.png",
       },
       {
         id: "tech-expo-student",
@@ -104,7 +103,7 @@ const eventsByDay = {
           "Networking opportunities",
           "Feedback from industry professionals",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/tech_expo.png",
       },
       {
         id: "panel-discussion",
@@ -122,7 +121,7 @@ const eventsByDay = {
           "Emerging AI technologies",
           "Career insights",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/ai_panel.png",
       },
       {
         id: "adopt-a-planet",
@@ -140,7 +139,7 @@ const eventsByDay = {
           "Innovative design",
           "Presentation skills",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/adopt_planet.png",
       },
       {
         id: "flight-forge",
@@ -158,7 +157,7 @@ const eventsByDay = {
           "Flight testing",
           "Innovation in aviation",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/flight_forge.png",
       },
       {
         id: "capture-flag",
@@ -176,7 +175,7 @@ const eventsByDay = {
           "Reverse engineering",
           "Network security",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/cft.png",
       },
     ],
   },
@@ -300,7 +299,7 @@ const eventsByDay = {
           "Editing techniques",
           "Storytelling",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/film.png",
       },
       {
         id: "cultural-night",
@@ -318,7 +317,8 @@ const eventsByDay = {
           "Talent showcase",
           "Grand finale",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/cultural.png",
+
       },
 
       {
@@ -337,7 +337,7 @@ const eventsByDay = {
           "Custom car builds",
           "Agility challenges",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/rc.png",
       },
       {
         id: "drone-race",
@@ -355,7 +355,7 @@ const eventsByDay = {
           "Speed challenges",
           "Precision flying",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/drone.png",
       },
     ],
   },
