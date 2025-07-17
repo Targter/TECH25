@@ -29,254 +29,256 @@ const FlyingSpaceship = dynamic(
 
 // Updated event data
 const eventsByDay = {
-  day1: {
-    title: "Day 1 - Tech Focus",
-    date: "March 15, 2025",
-    description:
-      "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
-    events: [
-      {
-        id: "hackathon",
-        title: "Hackathon",
-        description:
-          "A 48-hour coding marathon where innovation meets creativity. Build solutions that can change the world.",
-        time: "9:00 AM - 9:00 AM (Next Day)",
-        participants: "Teams of 4",
-        prize: "₹50,000",
-        difficulty: "Advanced",
-        location: "Tech Hub, Main Campus",
-        highlights: [
-          "48-hour coding",
-          "Mentorship sessions",
-          "Industry judges",
-          "Real-world problems",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "striver-dsa",
-        title: "Striver DSA Session",
-        description:
-          "Master Data Structures and Algorithms with industry expert Striver. Interactive problem-solving session.",
-        time: "2:00 PM - 4:00 PM",
-        participants: "200+ Students",
-        prize: "Certificates",
-        difficulty: "Intermediate",
-        location: "Auditorium A",
-        highlights: [
-          "Live coding",
-          "Problem solving",
-          "Career guidance",
-          "Q&A session",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "tech-treasure-hunt",
-        title: "Tech Treasure Hunt",
-        description:
-          "A thrilling scavenger hunt testing your tech knowledge and problem-solving skills across the campus.",
-        time: "11:00 AM - 1:00 PM",
-        participants: "Teams of 2-3",
-        prize: "₹10,000",
-        difficulty: "Intermediate",
-        location: "Campus-wide",
-        highlights: [
-          "Clues based on tech concepts",
-          "Physical and digital challenges",
-          "Teamwork focus",
-        ],
-        image: "/competition/treasure_hunt.png",
-      },
-      {
-        id: "tech-expo-student",
-        title: "Tech Expo: Student Innovations",
-        description:
-          "Showcase your innovative projects and prototypes to a panel of experts and peers.",
-        time: "1:00 PM - 5:00 PM",
-        participants: "Individual/Teams",
-        prize: "Best Project Award",
-        difficulty: "All Levels",
-        location: "Exhibition Hall",
-        highlights: [
-          "Live demonstrations",
-          "Networking opportunities",
-          "Feedback from industry professionals",
-        ],
-        image: "/competition/tech_expo.png",
-      },
-      {
-        id: "panel-discussion",
-        title: "Panel Discussion: Future of AI",
-        description:
-          "Engage with leading experts on the latest trends and ethical considerations in Artificial Intelligence.",
-        time: "4:00 PM - 5:30 PM",
-        participants: "Open to All",
-        prize: "Knowledge & Insights",
-        difficulty: "All Levels",
-        location: "Auditorium B",
-        highlights: [
-          "Expert speakers",
-          "Interactive Q&A",
-          "Emerging AI technologies",
-          "Career insights",
-        ],
-        image: "/competition/ai_panel.png",
-      },
-      {
-        id: "adopt-a-planet",
-        title: "Adopt a Planet",
-        description:
-          "A creative challenge to develop sustainable solutions for an assigned planetary scenario, focusing on environmental technology.",
-        time: "10:00 AM - 6:00 PM",
-        participants: "Teams of 3",
-        prize: "₹18,000",
-        difficulty: "Intermediate",
-        location: "Sustainability Lab",
-        highlights: [
-          "Environmental tech solutions",
-          "Resource management",
-          "Innovative design",
-          "Presentation skills",
-        ],
-        image: "/competition/adopt_planet.png",
-      },
-      {
-        id: "flight-forge",
-        title: "Flight Forge",
-        description:
-          "Design, build, and fly your own custom aircraft in this exciting aviation challenge.",
-        time: "10:00 AM - 4:00 PM",
-        participants: "Individual/Teams",
-        prize: "₹20,000",
-        difficulty: "Advanced",
-        location: "Open Grounds, Aeromodelling Zone",
-        highlights: [
-          "Aircraft design",
-          "Aerodynamics principles",
-          "Flight testing",
-          "Innovation in aviation",
-        ],
-        image: "/competition/flight_forge.png",
-      },
-      {
-        id: "capture-flag",
-        title: "Capture The Flag",
-        description:
-          "Cybersecurity challenge testing your hacking and security skills in a controlled environment.",
-        time: "10:00 AM - 6:00 PM",
-        participants: "Individual/Teams",
-        prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "Cyber Lab",
-        highlights: [
-          "Web exploitation",
-          "Cryptography",
-          "Reverse engineering",
-          "Network security",
-        ],
-        image: "/competition/cft.png",
-      },
-    ],
-  },
-  day2: {
-    title: "Day 2 - Innovation & Robotics",
-    date: "March 16, 2025",
-    description:
-      "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
-    events: [
-      {
-        id: "cumun",
-        title: "CUMUN",
-        description:
-          "Chandigarh University Model United Nations - Debate, diplomacy, and global awareness.",
-        time: "9:00 AM - 6:00 PM",
-        participants: "100+ Delegates",
-        prize: "₹40,000",
-        difficulty: "Intermediate",
-        location: "Conference Hall",
-        highlights: [
-          "Diplomatic debates",
-          "Global issues",
-          "Leadership skills",
-          "International exposure",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "company-expo",
-        title: "Company Expo",
-        description:
-          "Connect with leading companies showcasing career opportunities, internships, and industry insights.",
-        time: "10:00 AM - 4:00 PM",
-        participants: "Open to All",
-        prize: "Networking Opportunities",
-        difficulty: "All Levels",
-        location: "Exhibition Center",
-        highlights: [
-          "Recruitment drives",
-          "Company presentations",
-          "Career guidance",
-          "Industry insights",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "non-tech-treasure-hunt",
-        title: "Non-Tech Treasure Hunt",
-        description:
-          "A fun and challenging scavenger hunt focusing on general knowledge, puzzles, and teamwork.",
-        time: "11:00 AM - 1:00 PM",
-        participants: "Teams of 3",
-        prize: "₹8,000",
-        difficulty: "Easy",
-        location: "Campus Gardens",
-        highlights: [
-          "Riddles and clues",
-          "Physical challenges",
-          "Observation skills",
-          "Fun for all",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "among-us",
-        title: "Among Us Live!",
-        description:
-          "Experience the popular social deduction game in a real-life, immersive setting.",
-        time: "2:00 PM - 5:00 PM",
-        participants: "10-15 players per round",
-        prize: "Bragging Rights & Small Prizes",
-        difficulty: "Easy",
-        location: "Activity Zone",
-        highlights: [
-          "Strategy and deception",
-          "Team dynamics",
-          "Interactive gameplay",
-          "Fun and laughter",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-      {
-        id: "tech-csr-bootcamp",
-        title: "Tech + CSR Bootcamps",
-        description:
-          "Learn how technology can solve social problems and create sustainable solutions.",
-        time: "9:00 AM - 5:00 PM",
-        participants: "50 Students",
-        prize: "Certificates & Internships",
-        difficulty: "Intermediate",
-        location: "Innovation Center",
-        highlights: [
-          "Social impact projects",
-          "Sustainability focus",
-          "Mentorship",
-          "Real implementations",
-        ],
-        image: "/placeholder.svg?height=600&width=800",
-      },
-    ],
-  },
+  day1 : {
+  title: "Day 1 - Tech Focus",
+  date: "March 15, 2025",
+  description:
+    "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
+  events: [
+    {
+      id: "hackathon",
+      title: "HackChrono: The Technicia’ 48-hour Challenge",
+      description:
+        "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
+      time: "9:00 AM - 9:00 AM (Next Day)",
+      participants: "Teams of 2-4 UG/PG Students",
+      prize: "₹50,000",
+      difficulty: "Advanced",
+      location: "D-Block Open Area",
+      highlights: [
+        "48-hour open-source hackathon",
+        "Mentorship rounds & tech talks",
+        "Real-world problem statements",
+        "Pitch prep and final demos"
+      ],
+      image: "/competition/hackchrono.png",
+    },
+    {
+      id: "striver-dsa",
+      title: "Striver DSA Session",
+      description:
+        "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
+      time: "2:00 PM - 4:00 PM",
+      participants: "800–1000+ Students",
+      prize: "Certificates & Merchandise",
+      difficulty: "Intermediate",
+      location: "A1 Auditorium",
+      highlights: [
+        "Live DSA roadmap",
+        "Interview cracking tips",
+        "Fireside chat",
+        "Open Q&A session"
+      ],
+      image: "/placeholder.svg?height=600&width=800",
+    },
+    {
+      id: "tech-treasure-hunt",
+      title: "VOID Protocol: The Final Code",
+      description:
+        "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
+      time: "10:00 AM - 12:00 PM",
+      participants: "Teams of 3–4",
+      prize: "₹5,000",
+      difficulty: "Intermediate",
+      location: "D7 (Seminar Hall)",
+      highlights: [
+        "Binary & DNA puzzles",
+        "QR scavenger hunt",
+        "Timed decoding levels",
+        "Alien-themed storyline"
+      ],
+      image: "/competition/treasure_hunt.png",
+    },
+    {
+      id: "tech-expo-student",
+      title: "Tech Expo: Student & Industry Innovations",
+      description:
+        "Tech Expo is a platform for showcasing student innovations alongside company CSR demos, facilitating networking between academia and industry.",
+      time: "9:00 AM – 4:30 PM",
+      participants: "Individual/Team & Corporate",
+      prize: "Best Project Award & Industry Mentorship",
+      difficulty: "All Levels",
+      location: "Exhibition Hall",
+      highlights: [
+        "Company stalls and demos",
+        "Student prototype exhibition",
+        "CSR partnerships and evaluation",
+        "Panel talks and pitch sessions"
+      ],
+      image: "/competition/tech_expo.png",
+    },
+    {
+      id: "panel-discussion",
+      title: "Panel Discussion: Viksit Bharat 2047",
+      description:
+        "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
+      time: "10:00 AM - 5:00 PM",
+      participants: "Open to All",
+      prize: "Knowledge & Certification",
+      difficulty: "All Levels",
+      location: "C2 Auditorium",
+      highlights: [
+        "AI & Deep Tech Ecosystem",
+        "Innovation & Leadership in India",
+        "Cybersecurity & Data Privacy",
+        "National development vision 2047"
+      ],
+      image: "/competition/ai_panel.png",
+    },
+    {
+      id: "adopt-a-planet",
+      title: "Adopt a Planet",
+      description:
+        "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
+      time: "10:00 AM - 4:00 PM",
+      participants: "Teams of 3",
+      prize: "₹18,000",
+      difficulty: "Intermediate",
+      location: "B3 Seminar Hall",
+      highlights: [
+        "Story-based problem solving",
+        "Sustainable innovation",
+        "Team presentations",
+        "Judged pitch sessions"
+      ],
+      image: "/competition/adopt_planet.png",
+    },
+    {
+      id: "flight-forge",
+      title: "FlightForge – Aeromodelling Challenge",
+      description:
+        "Design and fly RC aircrafts in two rounds: one for payload capacity and the other for precision drop. A showcase of engineering and control.",
+      time: "10:00 AM - 4:00 PM",
+      participants: "Teams of 2–4 (UG/Engineering Students)",
+      prize: "₹20,000",
+      difficulty: "Advanced",
+      location: "C1 Main Ground",
+      highlights: [
+        "Payload lift challenge",
+        "Precision payload drop",
+        "Aerodynamics application",
+        "Engineering creativity"
+      ],
+      image: "/competition/flight_forge.png",
+    },
+    {
+      id: "capture-flag",
+      title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
+      description:
+        "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
+      time: "10:00 AM - 10:00 AM (Next Day)",
+      participants: "Teams of 2–4",
+      prize: "₹25,000",
+      difficulty: "Advanced",
+      location: "D Block Closed Area",
+      highlights: [
+        "CTFd platform with scoreboard",
+        "Challenges in 6 cyber domains",
+        "Mentorship support",
+        "Alien hacking theme"
+      ],
+      image: "/competition/cft.png",
+    }
+  ],
+},
+  day2 : {
+  title: "Day 2 - Innovation & Robotics",
+  date: "March 16, 2025",
+  description:
+    "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
+  events: [
+    {
+      id: "cumun",
+      title: "CUMUN – Chandigarh University Model United Nations",
+      description:
+        "An intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
+      time: "9:00 AM - 6:00 PM",
+      participants: "100+ Delegates (Open to All Streams)",
+      prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
+      difficulty: "Intermediate",
+      location: "Conference Hall, Block A",
+      highlights: [
+        "UN-style committee simulations",
+        "Global policy debate",
+        "Leadership and diplomacy",
+        "Awards for Best Delegates & Verbal Mentions",
+      ],
+      image: "/competition/cumun.png",
+    },
+    {
+      id: "company-expo",
+      title: "Internship & Company Expo",
+      description:
+        "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
+      time: "10:00 AM - 4:30 PM",
+      participants: "Open to All (Approx. 150–200 Footfall Expected)",
+      prize: "Networking, Internship Offers, CSR Collaboration",
+      difficulty: "All Levels",
+      location: "University Exhibition Center",
+      highlights: [
+        "Live product demos",
+        "Company stalls & networking",
+        "CSR project mentoring",
+        "Panel talks & awards",
+      ],
+      image: "/competition/internship_expo.png",
+    },
+    {
+      id: "non-tech-treasure-hunt",
+      title: "The Order of the Obsidian Quill",
+      description:
+        "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
+      time: "10:00 AM - 5:00 PM",
+      participants: "Teams of 3–4 | Max 35 Teams",
+      prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
+      difficulty: "Easy",
+      location: "B1–B3 Blocks, Library, Fountain Park, Amphitheatre",
+      highlights: [
+        "6 lore-based stations",
+        "Logic & map puzzles",
+        "Live skit duels",
+        "Fantasy-themed props & storyline",
+      ],
+      image: "/competition/obsidian_quill.png",
+    },
+    {
+      id: "among-us",
+      title: "Among Us Live!",
+      description:
+        "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
+      time: "2:00 PM - 5:00 PM",
+      participants: "10–15 players per round",
+      prize: "Bragging Rights & Fun Hampers",
+      difficulty: "Easy",
+      location: "Student Activity Zone",
+      highlights: [
+        "Live-action roleplay",
+        "Sabotage and strategy",
+        "Group deception and deduction",
+        "Rounds with elimination",
+      ],
+      image: "/placeholder.svg?height=600&width=800",
+    },
+    {
+      id: "tech-csr-bootcamp",
+      title: "Tech + CSR Bootcamps",
+      description:
+        "Day-long guided bootcamps focusing on how emerging technologies can drive social change through innovation and corporate responsibility.",
+      time: "9:00 AM - 5:00 PM",
+      participants: "50 Shortlisted Students",
+      prize: "Certificates + Internship Shortlisting",
+      difficulty: "Intermediate",
+      location: "CSR Innovation Center, CU",
+      highlights: [
+        "Hands-on CSR prototyping",
+        "Mentorship from CSR experts",
+        "Social impact brainstorming",
+        "Implementation frameworks",
+      ],
+      image: "/placeholder.svg?height=600&width=800",
+    },
+  ],
+},
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
     date: "March 17, 2025",
@@ -348,7 +350,7 @@ const eventsByDay = {
         participants: "Individual",
         prize: "₹25,000",
         difficulty: "Advanced",
-        location: "Drone Arena",
+        location: "In Front LC girsl Hostel",
         highlights: [
           "FPV racing",
           "Obstacle courses",
@@ -499,11 +501,10 @@ export default function TimelineComponent() {
                 onClick={() =>
                   setSelectedDay(dayKey as "day1" | "day2" | "day3")
                 }
-                className={`relative px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 border-2 min-w-[200px] ${
-                  selectedDay === dayKey
+                className={`relative px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 border-2 min-w-[200px] ${selectedDay === dayKey
                     ? "bg-gradient-to-r from-green-600 to-green-700 text-white border-green-400 shadow-lg shadow-green-500/25"
                     : "bg-transparent text-green-400 border-green-500/50 hover:border-green-400 hover:bg-green-900/20"
-                }`}
+                  }`}
               >
                 {/* REMOVED whileHover and transition from this motion.div */}
                 <motion.div className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10 rounded-xl" />
@@ -603,9 +604,8 @@ export default function TimelineComponent() {
                 </motion.div>
 
                 <motion.div
-                  className={`${
-                    eventIndex % 2 === 1 ? "lg:order-2" : "lg:order-1"
-                  } pl-12 sm:pl-16 lg:px-4 relative`}
+                  className={`${eventIndex % 2 === 1 ? "lg:order-2" : "lg:order-1"
+                    } pl-12 sm:pl-16 lg:px-4 relative`}
                   whileHover={{
                     x: eventIndex % 2 === 1 ? -5 : 5,
                     transition: { duration: 0.3 },
@@ -803,11 +803,10 @@ export default function TimelineComponent() {
                         handleAddToCart(event);
                       }
                     }}
-                    className={`group ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto ${
-                      isEventInCart(event.id)
+                    className={`group ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto ${isEventInCart(event.id)
                         ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
                         : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                    }`}
+                      }`}
                     whileHover={{
                       scale: 1.03,
                       boxShadow: isEventInCart(event.id)
@@ -836,9 +835,8 @@ export default function TimelineComponent() {
                     )}
 
                     <span
-                      className={`relative z-10 flex items-center justify-center gap-2 transition-all duration-200 ${
-                        isEventInCart(event.id) ? "group-hover:opacity-0" : ""
-                      }`}
+                      className={`relative z-10 flex items-center justify-center gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+                        }`}
                     >
                       {isEventInCart(event.id) ? (
                         <>
@@ -865,9 +863,8 @@ export default function TimelineComponent() {
                 </motion.div>
 
                 <motion.div
-                  className={`relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[750px] rounded-2xl overflow-hidden shadow-2xl border border-green-500/30 ${
-                    eventIndex % 2 === 1 ? "lg:order-1" : "lg:order-2"
-                  }`}
+                  className={`relative w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[750px] rounded-2xl overflow-hidden shadow-2xl border border-green-500/30 ${eventIndex % 2 === 1 ? "lg:order-1" : "lg:order-2"
+                    }`}
                   whileHover={{
                     scale: 1.03,
                     rotateY: eventIndex % 2 === 1 ? -3 : 3,
