@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import TeamMemberModal from "@/components/TeamMemberModal"; // update path if needed
 
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
 
 import {
   Crown,
@@ -46,7 +48,6 @@ interface Department {
   team: TeamMember[];
 }
 const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProps) => {
-
   const IconComponent = member.icon;
 
   const sizeClasses = {
@@ -56,99 +57,83 @@ const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProp
   };
 
   const imageHeights = {
-    large: "h-96",
-    default: "h-56",
-    small: "h-48",
-  };
-
-  const iconSizes = {
-    large: "w-8 h-8",
-    default: "w-6 h-6",
-    small: "w-5 h-5",
+    large: "h-[28rem]",
+    default: "h-80",
+    small: "h-56",
   };
 
   return (
-    <div className="group bg-black/80 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500 border border-gray-800/50 hover:border-blue-500/50 cursor-pointer transform hover:-translate-y-2 hover:scale-105">
-      {/* Card Header with Full Image */}
-      <div className="relative overflow-hidden rounded-t-2xl">
-        <div className={`${imageHeights[size]} relative bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center`}>
-          {/* Starfield Background Effect */}
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/50 via-black/70 to-slate-900/50"></div>
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-4 left-4 w-1 h-1 bg-blue-400 rounded-full animate-pulse"></div>
-            <div className="absolute top-12 right-8 w-0.5 h-0.5 bg-indigo-300 rounded-full animate-pulse delay-100"></div>
-            <div className="absolute bottom-8 left-12 w-0.5 h-0.5 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
-            <div className="absolute bottom-16 right-4 w-1 h-1 bg-purple-400 rounded-full animate-pulse delay-300"></div>
-            <div className="absolute top-20 left-1/2 w-0.5 h-0.5 bg-blue-300 rounded-full animate-pulse delay-500"></div>
-          </div>
-
-          <Image
-            src={member.image}
-            alt={member.name}
-            fill
-            className="object-cover"
-          />
-          {/* Large Avatar with Glow */}
-
-
-          {/* Icon Badge */}
-          {IconComponent && (
-            <div className="absolute top-4 right-4 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full p-3 shadow-lg border border-white/10">
-              <IconComponent className={`${iconSizes[size]} text-white`} />
+    <motion.div
+      className={`relative group rounded-2xl border-2 border-border/50 bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-xl transition-all duration-300 shadow-lg hover:shadow-xl ${sizeClasses[size]}`}
+      whileHover={{ 
+        y: -6, 
+        boxShadow: "0px 12px 32px rgba(0, 0, 0, 0.15)",
+        scale: 1.02
+      }}
+      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      style={{
+        boxShadow: "0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1)"
+      }}
+    >
+      {/* Outer glow effect */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      
+      {/* Inner glow overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      
+      {/* Content boundary */}
+      <div className="relative z-10 h-full border border-white/10 rounded-xl">
+        <div className="flex flex-col items-center text-center gap-4 h-full p-2">
+          {/* Image container with boundary */}
+          <div className="relative -mx-8 px-2">
+            <div className="relative w-full overflow-hidden rounded-xl border border-border/30 shadow-md">
+              <div className="relative w-full">
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={500}
+                  height={500}
+                  className={`w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 ${imageHeights[size]}`}
+                />
+                {/* Image overlay glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </div>
-          )}
-
-          {/* Status Badge */}
-          <div className="absolute top-4 left-4 bg-black/70 backdrop-blur-sm text-blue-400 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30">
-            Active
           </div>
-
-          {/* Name Overlay */}
-          <div className="absolute bottom-4 left-4 right-4 z-20">
-            <h3 className={`font-bold text-white mb-1 drop-shadow-lg ${size === "large" ? "text-2xl" : size === "small" ? "text-lg" : "text-xl"
-              }`}>
-              {member.name}
-            </h3>
-            <p className={`text-blue-300 font-semibold drop-shadow ${size === "large" ? "text-lg" : "text-base"
-              }`}>
-              {member.position}
-            </p>
+          
+          {/* Name section */}
+          <div className="border-b border-border/20 pb-2 w-full">
+            <h3 className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">{member.name}</h3>
           </div>
+          
+          {/* Button section */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            className="mt-auto"
+          >
+            <Button
+              onClick={() => onProfileClick?.(member)}
+              size="sm"
+              className="z-10 shadow-md border border-border/30 bg-gradient-to-r from-background to-muted/50 hover:from-muted/70 hover:to-muted/40 transition-all duration-200"
+            >
+              View Profile
+            </Button>
+          </motion.div>
         </div>
       </div>
-
-      {/* Card Content */}
-      <div className={sizeClasses[size]}>
-        <div className="text-center">
-          <div className="mb-4">
-            {member.department && (
-              <p className="text-gray-400 text-sm">{member.department}</p>
-            )}
-          </div>
-
-          {member.bio && (
-            <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-3 group-hover:text-gray-200 transition-colors duration-300">
-              {member.bio}
-            </p>
-          )}
-
-          {/* Action Buttons */}
-         <div className="flex justify-center space-x-2 pt-4 border-t border-gray-800">
-  <button
-    onClick={() => onProfileClick?.(member)}
-    className="flex items-center justify-center space-x-2 px-6 py-3 w-50 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg hover:from-blue-700 hover:to-purple-700 active:from-blue-800 active:to-purple-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 border border-blue-500/30"
-  >
-    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
-    <span>Profile</span>
-  </button>
-</div>
+      
+      {/* Icon badge with enhanced styling */}
+      <div className="absolute -top-2 -right-2 z-20">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border/60 bg-muted/70 backdrop-blur-md shadow-lg group-hover:shadow-xl transition-all duration-300">
+          <IconComponent className="h-5 w-5 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300" />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
+
 interface DepartmentSectionProps {
   department: Department;
   onProfileClick: (member: TeamMember) => void;

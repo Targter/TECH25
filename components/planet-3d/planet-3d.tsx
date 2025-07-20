@@ -169,7 +169,7 @@ function Rings({ position = [0, 0, 0] }) {
     }
   }, []);
   
-  // Memoize ring assets with better quality
+  // Memoize ring assets with better quality and increased rotation speeds
   const ringAssets = useMemo(() => ({
     material: new THREE.MeshPhongMaterial({
       color: "#9F7AEA",
@@ -182,9 +182,9 @@ function Rings({ position = [0, 0, 0] }) {
     geometry: new THREE.TorusGeometry(1, 0.04, 12, 48), // Higher quality for hero
     finalSize: 3,
     transitionDuration: 4,
-    baseSpinSpeed: 0.015, // Much slower base rotation
-    maxSpinSpeed: 1.5, // Reduced max speed
-    rotationMultiplier: 0.01
+    baseSpinSpeed: 0.08, // Increased from 0.015 - much faster base rotation
+    maxSpinSpeed: 4, // Increased from 1.5 - faster max speed during animation
+    rotationMultiplier: 0.05 // Increased from 0.01 - higher rotation multiplier
   }), []);
 
   const updateRingAnimation = useCallback((state: RootState) => {
@@ -198,7 +198,7 @@ function Rings({ position = [0, 0, 0] }) {
 
     if (!meshRef.current) return;
 
-    // Gentle rotation when animation completed
+    // Faster rotation when animation completed
     if (animationCompleted) {
       meshRef.current.rotation.x = Math.PI / 2;
       meshRef.current.rotation.y += ringAssets.baseSpinSpeed * ringAssets.rotationMultiplier;
@@ -221,7 +221,7 @@ function Rings({ position = [0, 0, 0] }) {
       setRingScale(THREE.MathUtils.lerp(0.1, ringAssets.finalSize, elasticProgress));
     }
 
-    // Moderate spin during animation
+    // Faster spin during animation
     const spinSpeed = ringAssets.baseSpinSpeed + (ringAssets.maxSpinSpeed * (1 - progress * 0.8));
     meshRef.current.rotation.x = Math.PI / 2;
     meshRef.current.rotation.y += spinSpeed * ringAssets.rotationMultiplier;
