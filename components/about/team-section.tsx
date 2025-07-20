@@ -370,7 +370,7 @@ const TeamsPage = () => {
         },
         {
           id: 6,
-          name: "Piyush",
+          name: "Piyush Aggarwal",
           position: "Technical Support",
           department: "Tech Team",
           bio: "Providing technical support and troubleshooting during the event.",
