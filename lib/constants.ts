@@ -6,8 +6,8 @@ export const siteConfig = {
   logo:"/logo/logotechnisia.svg",
   
   description: "The biggest tech fest of Asia - Where Innovation Meets Opportunity",
-  date: "SEPT 13-16, 2025",
-  venue: "CHANDIGARH UNIVERSITY,MOHALI",
+  date: "SEPT 10-12, 2025",
+  venue: "Chandigarh University,Mohali",
   email: "gauravthakur83551@gmial.com",
   phone: "6284001268",
   links: {
