@@ -181,10 +181,11 @@ function PreviousPosterMain() {
                 >
                     <Link
                         href="/previous-events"
-                        className="group inline-block relative border-2 border-white/40 rounded-xl sm:rounded-2xl 
+                        className="group inline-block relative border-2 border-solid border-white/60 rounded-xl sm:rounded-2xl 
                    p-3 sm:p-4 md:p-6 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20
                    transition-all duration-300 bg-gradient-to-br from-white/5 to-transparent
-                   w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
+                   w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto
+                   shadow-[0_0_0_1px_rgba(255,255,255,0.15)]"
                     >
                         {/* Inner content */}
                         <div className="relative z-10">
@@ -217,10 +218,11 @@ function PreviousPosterMain() {
                 >
                     <Link
                         href="/timeline"
-                        className="group inline-block relative border border-white/30 rounded-lg sm:rounded-xl 
+                        className="group inline-block relative border-2 border-solid border-white/50 rounded-lg sm:rounded-xl 
                    p-3 sm:p-4 md:p-6 hover:border-purple-300 hover:shadow-md hover:shadow-purple-400/15
                    transition-all duration-300 bg-gradient-to-br from-white/3 to-transparent
-                   overflow-hidden w-full max-w-xs sm:max-w-sm md:max-w-lg mx-auto"
+                   overflow-hidden w-full max-w-xs sm:max-w-sm md:max-w-lg mx-auto
+                   shadow-[0_0_0_1px_rgba(255,255,255,0.12)]"
                     >
                         {/* Morphing geometric shapes - scaled for mobile */}
                         <div className="absolute inset-0 overflow-hidden">
