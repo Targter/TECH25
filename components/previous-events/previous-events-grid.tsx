@@ -26,10 +26,10 @@ function GalleryImage({ event, className }: { event: Event; className: string })
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent 
                       opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <div className="absolute bottom-0 left-0 right-0 p-3">
+        {/* <div className="absolute bottom-0 left-0 right-0 p-3">
           <h3 className="text-white font-semibold text-xs sm:text-sm mb-1">{event.title}</h3>
           <p className="text-white/80 text-xs">{event.year}{event.location ? ` • ${event.location}` : ""}</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );
@@ -156,7 +156,7 @@ export default function PreviousEventsGrid() {
                   {/* CTA with expanding background */}
                   <div className="relative text-white/70 text-base group-hover:text-white/85 
                                  transition-colors duration-300 inline-block">
-                      <span className="relative z-10">Be part of the biggest 2025 tech event</span>
+                      <span className="relative z-10">Be A part of the biggest tech event Of 2025</span>
                       <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-blue-400/20 
                                      scale-x-0 group-hover:scale-x-100 rounded-full
                                      transition-transform duration-400 ease-out origin-left" />

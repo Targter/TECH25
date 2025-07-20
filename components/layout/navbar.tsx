@@ -20,7 +20,7 @@ import Image from "next/image";
 const navLinks = [
   { title: "Home", href: "/", special: true, isRoute: true },
   { title: "Events", href: "/timeline", isRoute: true },
-  { title: "Sponsors", href: "sponsors", isRoute: false },
+  { title: "Sponsors", href: "/sponsors", isRoute: true },
   { title: "Previous Events", href: "/previous-events", isRoute: true },
   { title: "Team", href: "/team", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },

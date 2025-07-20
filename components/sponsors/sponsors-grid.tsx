@@ -338,8 +338,14 @@ export default function SponsorsGrid() {
               </div>
             </motion.article>
           ))}
+
+          
         </motion.div>
+
+
+        
       </div>
+      
 
       {/* Enhanced Sponsor Details Modal */}
       <AnimatePresence>
