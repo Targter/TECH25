@@ -140,7 +140,7 @@ export default function PreviousEventsGrid() {
               <div className="relative z-10">
                   {/* Text with letter stagger effect */}
                   <h3 className="text-xl lg:text-2xl font-semibold text-white mb-3 leading-tight">
-                      {"Click Here to Enter Technicia'25".split('').map((char, index) => (
+                      {"Click Here to Enter cia'25".split('').map((char, index) => (
                           <span 
                               key={index}
                               className="inline-block group-hover:text-transparent group-hover:bg-clip-text 
