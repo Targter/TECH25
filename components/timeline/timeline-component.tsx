@@ -323,13 +323,6 @@ export default function TimelineComponent() {
                     {event.description}
                   </motion.p>
                    <div className="hidden lg:block">
-        <FlyingSpaceship
-          top="top-[15%]"
-          left="left-[5%]"
-          duration={20}
-          color="green"
-          direction="leftToRight"
-        />
       </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
