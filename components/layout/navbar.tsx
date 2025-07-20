@@ -485,7 +485,7 @@ export function Navbar() {
                 <SheetHeader className="border-b border-white/20 pb-4">
                   <SheetTitle className="text-purple-400 text-lg sm:text-xl font-bold flex items-center gap-2">
                     <Image 
-                      src="/logo/logo_technisia.svg" 
+                      src="/logo/technisia.jpg" 
                       alt="Technisia Logo" 
                       width={28} 
                       height={28}

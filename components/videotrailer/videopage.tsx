@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import { Play, Users, Calendar, Trophy, Building } from "lucide-react";
+import {  Users, Calendar, Trophy, Building, Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";
 
 interface VideoProps {
@@ -8,6 +8,7 @@ interface VideoProps {
   order?: "left" | "right";
   src?: string;
 }
+
 const scrollToPreviousEvent = () => {
   const element = document.getElementById('previous-events');
   if (element) {
@@ -92,8 +93,46 @@ const formatNumber = (num: number) => {
   return num.toLocaleString();
 };
 
+// Custom hook for video auto-play
+const useVideoAutoPlay = (threshold: number = 0.3) => {
+  const [isInView, setIsInView] = React.useState(false);
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  React.useEffect(() => {
+    if (videoRef.current) {
+      if (isInView) {
+        // Start playing when in view
+        videoRef.current.play().catch(console.error);
+      } else {
+        // Pause when out of view
+        videoRef.current.pause();
+      }
+    }
+  }, [isInView]);
+
+  return { videoRef, containerRef, isInView };
+};
+
 export const Video = ({ className = "", order = "right", src }: VideoProps) => {
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
+  const [isMuted, setIsMuted] = React.useState(true);
+  const { videoRef, containerRef} = useVideoAutoPlay(0.3);
 
   const participants = useCounter(5000, 2000, 200);
   const events = useCounter(20, 1500, 400);
@@ -134,6 +173,14 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
       color: 'text-green-400'
     }
   ];
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
 
   return (
     <section className={`w-full py-16 text-white relative overflow-hidden ${className}`}>
@@ -198,39 +245,48 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
                   <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </button>
               </Link>
-
-
             </div>
           </div>
 
-          {/* Right Side - Enhanced Video */}
-          <div className="relative group">
+          {/* Right Side - Enhanced Video with Auto-play */}
+          <div className="relative group" ref={containerRef}>
             {/* Glow effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-green-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
 
-            <div
-              className="relative w-full h-[400px] lg:h-[500px] rounded-lg overflow-hidden shadow-2xl border border-green-600/50 cursor-pointer"
-              onClick={() => setIsVideoOpen(true)}
-            >
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/40 via-purple-900/20 to-black/40 group-hover:from-black/30 group-hover:via-purple-900/10 group-hover:to-black/30 transition-all duration-500">
-                <div className="text-center space-y-4">
-                  <div className="bg-black/50 backdrop-blur-sm rounded-full p-6 group-hover:bg-black/70 group-hover:scale-110 transition-all duration-300 border border-white/20">
-                    <Play className="w-16 h-16 text-white drop-shadow-lg" strokeWidth={1.5} />
-                  </div>
-                  <div className="space-y-2">
-                    <p className="text-3xl md:text-4xl text-white font-bold tracking-wide text-center drop-shadow-lg">
-                      Click it. Feel it.
-                    </p>
-                    <p className="text-2xl md:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-green-400 font-bold tracking-wide italic animate-pulse text-center">
-                      Live the Thrill!
-                    </p>
-                  </div>
-                </div>
+            <div className="relative w-full max-w-2xl mx-auto h-[380px] lg:h-[450px] rounded-lg overflow-hidden shadow-2xl border border-green-600/50">
+              {/* Auto-playing video */}
+              <video
+                ref={videoRef}
+                className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+                loop
+                muted={isMuted}
+                playsInline
+                preload="metadata"
+                poster="/api/placeholder/800/600" // Add your poster image here
+                onClick={() => setIsVideoOpen(true)}
+              >
+                <source src={src || "/path/to/your/video.mp4"} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              {/* Overlay with controls only */}
+              <div className="absolute inset-0 pointer-events-none">
+                {/* Mute/Unmute button */}
+                <button
+                  onClick={toggleMute}
+                  className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2 hover:bg-black/70 transition-all duration-300 border border-white/20 pointer-events-auto"
+                >
+                  {isMuted ? (
+                    <VolumeX className="w-5 h-5 text-white" />
+                  ) : (
+                    <Volume2 className="w-5 h-5 text-white" />
+                  )}
+                </button>
               </div>
 
-              {/* Background pattern */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-800" />
-              <div className="absolute inset-0 opacity-10">
+              {/* Fallback background pattern (shows if no video) */}
+              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-800 -z-10" />
+              <div className="absolute inset-0 opacity-10 -z-10">
                 <div className="w-full h-full bg-[radial-gradient(circle_at_center,#10b981_1px,transparent_1px)] bg-[length:50px_50px]" />
               </div>
             </div>
