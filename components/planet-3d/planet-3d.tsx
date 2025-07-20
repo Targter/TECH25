@@ -244,71 +244,6 @@ function Rings({ position = [0, 0, 0] }) {
   );
 }
 
-function Stars() {
-  const starsRef = useRef<THREE.Points>(null);
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const lastFrameTime = useRef(0);
-  
-  // Optimized star field for hero page
-  const starAssets = useMemo(() => {
-    const count = 1200; // More stars for hero page
-    const pos = new Float32Array(count * 3);
-    
-    // Deterministic random for consistent star field
-    let seedValue = 12345;
-    const seedRandom = () => {
-      seedValue = (seedValue * 9301 + 49297) % 233280;
-      return seedValue / 233280;
-    };
-
-    for (let i = 0; i < count; i++) {
-      const i3 = i * 3;
-      const radius = 25 + seedRandom() * 20; // Varied distance
-      const theta = seedRandom() * Math.PI * 2;
-      const phi = seedRandom() * Math.PI;
-      
-      pos[i3] = radius * Math.sin(phi) * Math.cos(theta);
-      pos[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-      pos[i3 + 2] = radius * Math.cos(phi);
-    }
-
-    const geom = new THREE.BufferGeometry();
-    geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
-    
-    const mat = new THREE.PointsMaterial({
-      size: 0.06,
-      color: "#ffffff",
-      sizeAttenuation: true,
-      transparent: true,
-      opacity: 0.8
-    });
-
-    return { geometry: geom, material: mat, rotationSpeed: 0.003 }; // Very slow rotation
-  }, []);
-
-  const updateStars = useCallback((state: RootState) => {
-    const currentTime = state.clock.getElapsedTime();
-    
-    // Lower frequency updates for stars
-    if (currentTime - lastFrameTime.current < 0.05) return; // ~20fps
-    lastFrameTime.current = currentTime;
-
-    if (!starsRef.current) return;
-
-    if (startTime === null) {
-      setStartTime(currentTime);
-      return;
-    }
-
-    const elapsed = currentTime - startTime;
-    starsRef.current.rotation.y = elapsed * starAssets.rotationSpeed;
-  }, [startTime, starAssets.rotationSpeed]);
-
-  useFrame(updateStars);
-
-  return <points ref={starsRef} geometry={starAssets.geometry} material={starAssets.material} />;
-}
-
 function ResponsiveCamera() {
   const [viewport, setViewport] = useState({ width: 1920, height: 1080 }); // Default to desktop
 
@@ -354,20 +289,20 @@ export default function PlanetScene({ containerClass = "" }) {
     setPixelRatio(optimalRatio);
   }, []);
 
-  // Optimized Canvas props for hero page
+  // Optimized Canvas props for hero page - removed radial gradient background
   const canvasProps = useMemo(() => ({
     camera: { position, fov, near: 0.1, far: 100 },
     dpr: pixelRatio,
     gl: { 
       antialias: true, // Enable for hero page quality
       powerPreference: "high-performance" as const,
-      alpha: true,
+      alpha: true, // Keep alpha for transparency
       depth: true,
       stencil: false,
       preserveDrawingBuffer: false
     },
     style: { 
-      background: 'radial-gradient(ellipse at center, #1a0a2e 0%, #0a0a0a 70%)',
+      background: 'transparent', // Made transparent to use your existing background
       touchAction: 'none',
       willChange: 'transform',
       transform: 'translateZ(0)'
@@ -407,7 +342,6 @@ export default function PlanetScene({ containerClass = "" }) {
         <pointLight position={[-10, -10, -10]} intensity={0.3} color="#5D3FD3" />
         <Planet position={[0, 0, 0]} />
         <Rings position={[0, 0, 0]} />
-        <Stars />
         <OrbitControls {...controlsSettings} />
       </Canvas>
     </div>

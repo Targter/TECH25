@@ -59,7 +59,7 @@ export function HighlightsSection() {
   }
 
   return (
-    <section className="py-20 bg-black text-white">
+    <section className="py-20 text-white">
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl font-extrabold mb-4 tracking-tight text-green-400 drop-shadow-[0_0_8px_rgba(0,255,180,0.7)]">

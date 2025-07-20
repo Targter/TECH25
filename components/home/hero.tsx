@@ -86,29 +86,29 @@ const StatCard = memo<StatCardProps>(({ stat }) => {
 StatCard.displayName = 'StatCard'
 
 // Lightweight floating elements using CSS animations instead of JS
-const FloatingElements = memo(() => (
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    {/* Static positioned elements to prevent CLS */}
-    <div
-      className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-1"
-      style={{ left: '15%', top: '20%' }}
-    />
-    <div
-      className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-2"
-      style={{ left: '85%', top: '15%' }}
-    />
-    <div
-      className="absolute w-5 h-5 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-3"
-      style={{ left: '70%', top: '60%' }}
-    />
-    <div
-      className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-4"
-      style={{ left: '25%', top: '70%' }}
-    />
-  </div>
-))
+// const FloatingElements = memo(() => (
+//   <div className="absolute inset-0 pointer-events-none overflow-hidden">
+//     {/* Static positioned elements to prevent CLS */}
+//     <div
+//       className="absolute w-4 h-4 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-1"
+//       style={{ left: '15%', top: '20%' }}
+//     />
+//     <div
+//       className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-2"
+//       style={{ left: '85%', top: '15%' }}
+//     />
+//     <div
+//       className="absolute w-5 h-5 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-3"
+//       style={{ left: '70%', top: '60%' }}
+//     />
+//     <div
+//       className="absolute w-3 h-3 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-full backdrop-blur-sm border border-green-500/30 animate-float-4"
+//       style={{ left: '25%', top: '70%' }}
+//     />
+//   </div>
+// ))
 
-FloatingElements.displayName = 'FloatingElements'
+// FloatingElements.displayName = 'FloatingElements'
 
 export function HeroSection() {
   // const [isClient, setIsClient] = useState(false)
@@ -198,7 +198,7 @@ export function HeroSection() {
         </div>
 
         {/* Lightweight floating elements */}
-        <FloatingElements />
+        
 
         {/* Heavy components - load after initial render */}
         {enhancementsReady && (

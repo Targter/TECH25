@@ -1,254 +1,186 @@
 "use client";
 
-import { useEffect, useRef, ReactNode } from "react";
+import { useRef, useState, useMemo, useEffect, useCallback } from "react";
+import { Canvas, useFrame, RootState } from "@react-three/fiber";
+import * as THREE from "three";
 
-interface Particle {
-  x: number;
-  y: number;
-  size: number;
-  speedX: number;
-  speedY: number;
-  opacity: number;
-  life?: number;
-}
-
-interface ParticleWrapperProps {
-  children: ReactNode;
-}
-
-export function ParticleWrapper({ children }: ParticleWrapperProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const particlesRef = useRef<Particle[]>([]);
-  const sparklesRef = useRef<Particle[]>([]);
-  const animationFrameIdRef = useRef<number>(0);
-  const scrollYRef = useRef<number>(0);
+function Stars({ intensity = 0.7, rotationSpeed = 0.002, starCount = 1500 }: { 
+  intensity?: number; 
+  rotationSpeed?: number; 
+  starCount?: number; 
+}) {
+  const starsRef = useRef<THREE.Points>(null);
+  const [startTime, setStartTime] = useState<number | null>(null);
+  const lastFrameTime = useRef(0);
   
-  // Performance optimization refs
-  const frameCountRef = useRef<number>(0);
-  const lastResizeTimeRef = useRef<number>(0);
-  const sparklePoolRef = useRef<Particle[]>([]);
+  // Enhanced star field for website background
+  const starAssets = useMemo(() => {
+    const count = starCount;
+    const pos = new Float32Array(count * 3);
+    
+    // Deterministic random for consistent star field
+    let seedValue = 12345;
+    const seedRandom = () => {
+      seedValue = (seedValue * 9301 + 49297) % 233280;
+      return seedValue / 233280;
+    };
+
+    for (let i = 0; i < count; i++) {
+      const i3 = i * 3;
+      const radius = 30 + seedRandom() * 25; // Wider spread for background
+      const theta = seedRandom() * Math.PI * 2;
+      const phi = seedRandom() * Math.PI;
+      
+      pos[i3] = radius * Math.sin(phi) * Math.cos(theta);
+      pos[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+      pos[i3 + 2] = radius * Math.cos(phi);
+    }
+
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    
+    const mat = new THREE.PointsMaterial({
+      size: 0.08,
+      color: "#ffffff",
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: intensity
+    });
+
+    return { geometry: geom, material: mat, rotationSpeed };
+  }, [intensity, rotationSpeed, starCount]);
+
+  const updateStars = useCallback((state: RootState) => {
+    const currentTime = state.clock.getElapsedTime();
+    
+    // Lower frequency updates for stars
+    if (currentTime - lastFrameTime.current < 0.05) return; // ~20fps
+    lastFrameTime.current = currentTime;
+
+    if (!starsRef.current) return;
+
+    if (startTime === null) {
+      setStartTime(currentTime);
+      return;
+    }
+
+    const elapsed = currentTime - startTime;
+    starsRef.current.rotation.y = elapsed * starAssets.rotationSpeed;
+  }, [startTime, starAssets.rotationSpeed]);
+
+  useFrame(updateStars);
+
+  return <points ref={starsRef} geometry={starAssets.geometry} material={starAssets.material} />;
+}
+
+function ResponsiveCamera() {
+  const [viewport, setViewport] = useState({ width: 1920, height: 1080 });
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    const container = canvas?.parentElement;
-
-    if (!canvas || !ctx || !container) return;
-
-    // Enable performance optimizations
-    ctx.imageSmoothingEnabled = false;
-
-    // Debounced resize function
-    const resizeCanvas = () => {
-      const now = performance.now();
-      if (now - lastResizeTimeRef.current < 100) return; // Debounce resize
-      lastResizeTimeRef.current = now;
-      
-      canvas.width = container.clientWidth;
-      canvas.height = container.clientHeight;
-      createParticles();
+    let timeoutId: NodeJS.Timeout;
+    
+    const updateViewport = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setViewport({ width: window.innerWidth, height: window.innerHeight });
+      }, 150);
     };
 
-    const createParticles = () => {
-      const width = canvas.width;
-      const height = canvas.height;
-      const particles = particlesRef.current;
-      particles.length = 0;
-      
-      // Reduced particle count with adaptive scaling
-      const baseCount = 30;
-      const screenFactor = Math.min(width * height / (1920 * 1080), 1);
-      const count = Math.floor(baseCount * screenFactor);
-
-      for (let i = 0; i < count; i++) {
-        particles.push({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          size: Math.random() * 1.5 + 0.5,
-          speedX: (Math.random() - 0.5) * 0.5,
-          speedY: (Math.random() - 0.5) * 0.5,
-          opacity: Math.random() * 0.4 + 0.3,
-        });
-      }
-    };
-
-    // Object pool for sparkles
-    const getSparkle = (): Particle => {
-      return sparklePoolRef.current.pop() || {
-        x: 0, y: 0, size: 0, speedX: 0, speedY: 0, opacity: 0, life: 0
-      };
-    };
-
-    const releaseSparkle = (sparkle: Particle) => {
-      if (sparklePoolRef.current.length < 50) {
-        sparklePoolRef.current.push(sparkle);
-      }
-    };
-
-    // Optimized line drawing with reduced frequency
-    const drawLines = (particles: Particle[]) => {
-      // Only draw lines every other frame for performance
-      if (frameCountRef.current % 2 !== 0) return;
-      
-      const threshold = 100 * 100; // Reduced threshold
-      const maxLines = 15; // Limit maximum lines drawn
-      let lineCount = 0;
-      
-      for (let i = 0; i < particles.length && lineCount < maxLines; i++) {
-        const p1 = particles[i];
-        for (let j = i + 1; j < particles.length && lineCount < maxLines; j++) {
-          const p2 = particles[j];
-          const dx = p1.x - p2.x;
-          const dy = p1.y - p2.y;
-          const distSq = dx * dx + dy * dy;
-
-          if (distSq < threshold) {
-            const opacity = (1 - distSq / threshold) * 0.25;
-            ctx.strokeStyle = `rgba(0,255,180,${opacity})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(p1.x, p1.y);
-            ctx.lineTo(p2.x, p2.y);
-            ctx.stroke();
-            lineCount++;
-          }
-        }
-      }
-    };
-
-    // Reduced frame rate for better performance
-    const TARGET_FPS = 30;
-    const FRAME_INTERVAL = 1000 / TARGET_FPS;
-    let lastFrameTime = 0;
-
-    const animate = (currentTime: number) => {
-      // Frame rate limiting
-      if (currentTime - lastFrameTime < FRAME_INTERVAL) {
-        animationFrameIdRef.current = requestAnimationFrame(animate);
-        return;
-      }
-      lastFrameTime = currentTime;
-      frameCountRef.current++;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      const particles = particlesRef.current;
-      const sparkles = sparklesRef.current;
-
-      // Reduced shadow blur frequency and intensity
-      if (frameCountRef.current % 3 === 0) {
-        ctx.shadowColor = "rgba(0,255,180,0.3)";
-        ctx.shadowBlur = Math.min(5 + scrollYRef.current * 0.005, 10);
-      }
-
-      // Update and draw particles in single loop
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        // Boundary checking
-        if (p.x < 0 || p.x > canvas.width) p.speedX = -p.speedX;
-        if (p.y < 0 || p.y > canvas.height) p.speedY = -p.speedY;
-
-        // Draw particle
-        ctx.fillStyle = `rgba(0,255,180,${p.opacity})`;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, 6.28318); // Use constant instead of Math.PI * 2
-        ctx.fill();
-      }
-
-      ctx.shadowBlur = 0;
-      drawLines(particles);
-
-      // Optimized sparkle handling
-      for (let i = sparkles.length - 1; i >= 0; i--) {
-        const s = sparkles[i];
-        s.x += s.speedX;
-        s.y += s.speedY;
-        s.opacity -= 0.025;
-        s.life! -= 1;
-
-        if (s.opacity > 0 && s.life! > 0) {
-          ctx.fillStyle = `rgba(255, 255, 120, ${s.opacity})`;
-          ctx.beginPath();
-          ctx.arc(s.x, s.y, s.size, 0, 6.28318);
-          ctx.fill();
-        } else {
-          // Return to pool instead of creating garbage
-          releaseSparkle(sparkles.splice(i, 1)[0]);
-        }
-      }
-
-      animationFrameIdRef.current = requestAnimationFrame(animate);
-    };
-
-    // Throttled click handler
-    let lastClickTime = 0;
-    const handleClick = (e: MouseEvent) => {
-      const now = performance.now();
-      if (now - lastClickTime < 100) return; // Throttle clicks
-      lastClickTime = now;
-
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      // Reduced sparkle count
-      const sparkleCount = Math.min(12, 20 - sparklesRef.current.length);
-      for (let i = 0; i < sparkleCount; i++) {
-        const sparkle = getSparkle();
-        sparkle.x = x;
-        sparkle.y = y;
-        sparkle.size = Math.random() * 1.5 + 0.5;
-        sparkle.speedX = (Math.random() - 0.5) * 2.5;
-        sparkle.speedY = (Math.random() - 0.5) * 2.5;
-        sparkle.opacity = 1;
-        sparkle.life = 35;
-        sparklesRef.current.push(sparkle);
-      }
-    };
-
-    // Throttled scroll handler
-    let scrollTimeout: NodeJS.Timeout;
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        scrollYRef.current = window.scrollY;
-      }, 16);
-    };
-
-    resizeCanvas();
-    animate(performance.now());
-
-    // Use passive listeners for better performance
-    const resizeObserver = new ResizeObserver(resizeCanvas);
-    resizeObserver.observe(container);
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    canvas.addEventListener("click", handleClick, { passive: true });
-
+    updateViewport();
+    window.addEventListener('resize', updateViewport, { passive: true });
     return () => {
-      cancelAnimationFrame(animationFrameIdRef.current);
-      resizeObserver.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-      canvas.removeEventListener("click", handleClick);
-      clearTimeout(scrollTimeout);
+      window.removeEventListener('resize', updateViewport);
+      clearTimeout(timeoutId);
     };
   }, []);
 
+  // Camera settings optimized for background use
+  const cameraSettings = useMemo(() => {
+    const isMobile = viewport.width < 768;
+    const isTablet = viewport.width >= 768 && viewport.width < 1024;
+    
+    return {
+      position: (isMobile ? [0, 0, 12] : isTablet ? [0, 0, 10] : [0, 0, 8]) as [number, number, number],
+      fov: isMobile ? 65 : isTablet ? 55 : 50
+    };
+  }, [viewport.width]);
+
+  return cameraSettings;
+}
+
+interface StarfieldBackgroundProps {
+  className?: string;
+  intensity?: number;
+  rotationSpeed?: number;
+  starCount?: number;
+  children?: React.ReactNode;
+}
+
+export default function StarfieldBackground({ 
+  className = "",
+  intensity = 0.7,
+  rotationSpeed = 0.002,
+  starCount = 1500,
+  children
+}: StarfieldBackgroundProps) {
+  const { position, fov } = ResponsiveCamera();
+  const [pixelRatio, setPixelRatio] = useState(1);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    // Optimize pixel ratio for background performance
+    const optimalRatio = Math.min(window.devicePixelRatio, 1.5);
+    setPixelRatio(optimalRatio);
+  }, []);
+
+  // Canvas props optimized for background use
+  const canvasProps = useMemo(() => ({
+    camera: { position, fov, near: 0.1, far: 100 },
+    dpr: pixelRatio,
+    gl: { 
+      antialias: false, // Disable for better background performance
+      powerPreference: "default" as const,
+      alpha: true,
+      depth: false, // Disable depth buffer for background
+      stencil: false,
+      preserveDrawingBuffer: false
+    },
+    style: { 
+      background: 'radial-gradient(ellipse at center, #1a0a2e 0%, #0a0a0a 70%)',
+      touchAction: 'none',
+      pointerEvents: 'none' as const, // Allow clicks to pass through
+      position: 'fixed' as const,
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      zIndex: -1, // Behind all content
+      willChange: 'transform',
+      transform: 'translateZ(0)'
+    },
+    frameloop: 'always' as const,
+    resize: { debounce: 150 }
+  }), [position, fov, pixelRatio]);
+
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 1 }}
-      />
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-black"
-        style={{ zIndex: 2 }}
-      />
-      <div className="relative z-10 w-full">{children}</div>
-    </div>
+    <>
+      {/* Starfield background - only render on client */}
+      {isClient && (
+        <div className={`fixed inset-0 -z-10 ${className}`}>
+          <Canvas {...canvasProps}>
+            <ambientLight intensity={0.08} color="#4a5568" />
+            <Stars 
+              intensity={intensity}
+              rotationSpeed={rotationSpeed}
+              starCount={starCount}
+            />
+          </Canvas>
+        </div>
+      )}
+      
+      {/* Website content */}
+      {children}
+    </>
   );
 }

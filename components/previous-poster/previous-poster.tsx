@@ -172,127 +172,135 @@ function PreviousPosterMain() {
                 </motion.div>
 
                 {/* Enhanced CTA Section */}
-              <motion.div
-    ref={linkRef}
-    variants={linkVariants}
-    initial="hidden"
-    animate={isLinkInView ? "visible" : "hidden"}
-    className="text-center space-y-6 px-2" 
->
-    <Link
-        href="/previous-events"
-        className="group inline-block relative border-2 border-white/40 rounded-2xl p-6 
-         hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20
-         transition-all duration-300 bg-gradient-to-br from-white/5 to-transparent"
-    >
-        {/* Inner content */}
-        <div className="relative z-10">
-            <h3
-                className="text-2xl lg:text-3xl font-bold text-white 
-                 group-hover:text-transparent group-hover:bg-clip-text 
-                 group-hover:bg-gradient-to-r group-hover:from-purple-400 
-                 group-hover:to-blue-400 transition-all duration-300 leading-tight"
-            >
-                A visual walkthrough of all our previous events
-            </h3>
+                <motion.div
+                    ref={linkRef}
+                    variants={linkVariants}
+                    initial="hidden"
+                    animate={isLinkInView ? "visible" : "hidden"}
+                    className="text-center space-y-4 sm:space-y-6 px-2"
+                >
+                    <Link
+                        href="/previous-events"
+                        className="group inline-block relative border-2 border-white/40 rounded-xl sm:rounded-2xl 
+                   p-3 sm:p-4 md:p-6 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/20
+                   transition-all duration-300 bg-gradient-to-br from-white/5 to-transparent
+                   w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto"
+                    >
+                        {/* Inner content */}
+                        <div className="relative z-10">
+                            <h3
+                                className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white 
+                           group-hover:text-transparent group-hover:bg-clip-text 
+                           group-hover:bg-gradient-to-r group-hover:from-purple-400 
+                           group-hover:to-blue-400 transition-all duration-300 leading-tight
+                           px-1 sm:px-0"
+                            >
+                                A visual walkthrough of all our previous events
+                            </h3>
 
-            {/* Animated underline */}
-            <div
-                className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-1 
-                 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full
-                 group-hover:w-full transition-all duration-500 ease-out"
-            />
-        </div>
-    </Link>
-</motion.div>
+                            {/* Animated underline */}
+                            <div
+                                className="absolute -bottom-1 sm:-bottom-2 left-1/2 transform -translate-x-1/2 w-0 h-0.5 sm:h-1 
+                           bg-gradient-to-r from-purple-400 to-blue-400 rounded-full
+                           group-hover:w-full transition-all duration-500 ease-out"
+                            />
+                        </div>
+                    </Link>
+                </motion.div>
 
-<motion.div
-    ref={linkRef}
-    variants={linkVariants}
-    initial="hidden"
-    animate={isLinkInView ? "visible" : "hidden"}
-    className="text-center space-y-6 py-5"
->
-    <Link
-        href="/timeline"
-        className="group inline-block relative border border-white/30 rounded-xl p-6 
-         hover:border-purple-300 hover:shadow-md hover:shadow-purple-400/15
-         transition-all duration-300 bg-gradient-to-br from-white/3 to-transparent
-         overflow-hidden max-w-lg mx-auto w-full"
-    >
-        {/* Morphing geometric shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-2 right-2 w-3 h-3 border border-purple-400 
-                            rotate-45 group-hover:rotate-180 group-hover:scale-150 
-                            transition-all duration-700 ease-out" />
-            <div className="absolute bottom-3 left-3 w-2 h-6 bg-gradient-to-t from-blue-400 to-purple-400 
-                            group-hover:h-2 group-hover:w-6 group-hover:bg-gradient-to-r
-                            transition-all duration-500 ease-in-out" />
-            <div className="absolute top-1/2 left-2 w-1 h-1 bg-purple-300 rounded-full
-                            group-hover:w-8 group-hover:h-1 group-hover:rounded-full
-                            transition-all duration-600 ease-out delay-100" />
-        </div>
+                <motion.div
+                    ref={linkRef}
+                    variants={linkVariants}
+                    initial="hidden"
+                    animate={isLinkInView ? "visible" : "hidden"}
+                    className="text-center space-y-4 sm:space-y-6 py-3 sm:py-5"
+                >
+                    <Link
+                        href="/timeline"
+                        className="group inline-block relative border border-white/30 rounded-lg sm:rounded-xl 
+                   p-3 sm:p-4 md:p-6 hover:border-purple-300 hover:shadow-md hover:shadow-purple-400/15
+                   transition-all duration-300 bg-gradient-to-br from-white/3 to-transparent
+                   overflow-hidden w-full max-w-xs sm:max-w-sm md:max-w-lg mx-auto"
+                    >
+                        {/* Morphing geometric shapes - scaled for mobile */}
+                        <div className="absolute inset-0 overflow-hidden">
+                            <div className="absolute top-1 right-1 sm:top-2 sm:right-2 w-2 h-2 sm:w-3 sm:h-3 
+                           border border-purple-400 rotate-45 group-hover:rotate-180 group-hover:scale-150 
+                           transition-all duration-700 ease-out" />
+                            <div className="absolute bottom-2 left-2 sm:bottom-3 sm:left-3 w-1.5 h-4 sm:w-2 sm:h-6 
+                           bg-gradient-to-t from-blue-400 to-purple-400 
+                           group-hover:h-1.5 group-hover:w-4 sm:group-hover:h-2 sm:group-hover:w-6 
+                           group-hover:bg-gradient-to-r transition-all duration-500 ease-in-out" />
+                            <div className="absolute top-1/2 left-1 sm:left-2 w-0.5 h-0.5 sm:w-1 sm:h-1 
+                           bg-purple-300 rounded-full group-hover:w-4 sm:group-hover:w-8 
+                           group-hover:h-0.5 sm:group-hover:h-1 group-hover:rounded-full
+                           transition-all duration-600 ease-out delay-100" />
+                        </div>
 
-        {/* Sliding color wave */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20 
-                        -translate-x-full group-hover:translate-x-full 
-                        transition-transform duration-1000 ease-in-out" />
+                        {/* Sliding color wave */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-purple-500/20 
+                       -translate-x-full group-hover:translate-x-full 
+                       transition-transform duration-1000 ease-in-out" />
 
-        {/* Inner content */}
-        <div className="relative z-10">
-            {/* Text with letter stagger effect */}
-            <h3 className="text-xl lg:text-2xl font-semibold text-white mb-3 leading-tight">
-                {"Click Here to Enter Technisia'25".split('').map((char, index) => (
-                    <span 
-                        key={index}
-                        className="inline-block group-hover:text-transparent group-hover:bg-clip-text 
+                        {/* Inner content */}
+                        <div className="relative z-10">
+                            {/* Text with letter stagger effect */}
+                            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white 
+                          mb-2 sm:mb-3 leading-tight px-1 sm:px-0">
+                                {"Click Here to Enter Technisia'25".split('').map((char, index) => (
+                                    <span
+                                        key={index}
+                                        className="inline-block group-hover:text-transparent group-hover:bg-clip-text 
                                    group-hover:bg-gradient-to-r group-hover:from-purple-300 
                                    group-hover:to-blue-300 transition-all duration-300"
-                        style={{ transitionDelay: `${index * 30}ms` }}
-                    >
-                        {char === ' ' ? '\u00A0' : char}
-                    </span>
-                ))}
-            </h3>
+                                        style={{ transitionDelay: `${index * 30}ms` }}
+                                    >
+                                        {char === ' ' ? '\u00A0' : char}
+                                    </span>
+                                ))}
+                            </h3>
 
-            {/* CTA with expanding background */}
-            <div className="relative text-white/70 text-base group-hover:text-white/85 
-                           transition-colors duration-300 inline-block">
-                <span className="relative z-10">Be part of the biggest 2025 tech event</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-blue-400/20 
+                            {/* CTA with expanding background */}
+                            <div className="relative text-white/70 text-xs sm:text-sm md:text-base 
+                           group-hover:text-white/85 transition-colors duration-300 inline-block
+                           px-1 sm:px-0">
+                                <span className="relative z-10">Be part of the biggest 2025 tech event</span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-blue-400/20 
                                scale-x-0 group-hover:scale-x-100 rounded-full
                                transition-transform duration-400 ease-out origin-left" />
-            </div>
+                            </div>
 
-            {/* Dynamic underline that draws itself */}
-            <svg className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 group-hover:w-3/4 
-                           transition-all duration-500 ease-out" 
-                 height="2" 
-                 viewBox="0 0 100 2">
-                <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#a855f7" />
-                        <stop offset="100%" stopColor="#3b82f6" />
-                    </linearGradient>
-                </defs>
-                <path d="M 0,1 Q 50,0 100,1" 
-                      stroke="url(#lineGradient)" 
-                      strokeWidth="2" 
-                      fill="none"
-                      className="animate-pulse group-hover:animate-none" />
-            </svg>
-        </div>
+                            {/* Dynamic underline that draws itself - responsive */}
+                            <svg className="absolute -bottom-0.5 sm:-bottom-1 left-1/2 transform -translate-x-1/2 
+                           w-0 group-hover:w-2/3 sm:group-hover:w-3/4 
+                           transition-all duration-500 ease-out"
+                                height="2"
+                                viewBox="0 0 100 2">
+                                <defs>
+                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#a855f7" />
+                                        <stop offset="100%" stopColor="#3b82f6" />
+                                    </linearGradient>
+                                </defs>
+                                <path d="M 0,1 Q 50,0 100,1"
+                                    stroke="url(#lineGradient)"
+                                    strokeWidth="2"
+                                    fill="none"
+                                    className="animate-pulse group-hover:animate-none" />
+                            </svg>
+                        </div>
 
-        {/* Corner morphing triangle */}
-        <div className="absolute top-0 left-0">
-            <div className="w-0 h-0 border-l-8 border-l-transparent 
-                           border-t-8 border-t-purple-300/30
-                           group-hover:border-l-4 group-hover:border-t-12 
+                        {/* Corner morphing triangle - scaled for mobile */}
+                        <div className="absolute top-0 left-0">
+                            <div className="w-0 h-0 border-l-4 sm:border-l-8 border-l-transparent 
+                           border-t-4 sm:border-t-8 border-t-purple-300/30
+                           group-hover:border-l-2 sm:group-hover:border-l-4 
+                           group-hover:border-t-6 sm:group-hover:border-t-12 
                            group-hover:border-t-purple-300/50
                            transition-all duration-500 ease-out" />
-        </div>
-    </Link>
-</motion.div>
+                        </div>
+                    </Link>
+                </motion.div>
             </div>
         </div>
     )
