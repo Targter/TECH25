@@ -33,6 +33,7 @@ export function Navbar() {
   const [isClient, setIsClient] = useState(false);
   const [audioReady, setAudioReady] = useState(false);
   const [autoplayBlocked, setAutoplayBlocked] = useState(false);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
   const pathname = usePathname();
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
@@ -192,17 +193,22 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isClient]);
 
+  // Close sheet when route changes or scroll link is clicked
+  const handleSheetClose = () => {
+    setIsSheetOpen(false);
+  };
+
   return (
     <>
       <header
         className={cn(
           "fixed top-0 w-full z-50 transition-all duration-300",
           isScrolled
-            ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-2"
-            : "bg-transparent py-4"
+            ? "bg-black/80 backdrop-blur-md border-b border-white/10 py-2 sm:py-2"
+            : "bg-transparent py-3 sm:py-4"
         )}
       >
-        <div className="container mx-auto flex items-center justify-between gap-2 px-4 md:px-6">
+        <div className="container mx-auto flex items-center justify-between gap-2 px-3 sm:px-4 md:px-6">
           {/* Logo */}
           <ScrollLink
             to="home"
@@ -210,7 +216,7 @@ export function Navbar() {
             smooth
             offset={-100}
             duration={500}
-            className="flex items-center space-x-2 cursor-pointer select-none flex-shrink-0"
+            className="flex items-center space-x-1.5 sm:space-x-2 cursor-pointer select-none flex-shrink-0"
           >
             <motion.div
               initial={{ rotate: -10 }}
@@ -220,30 +226,34 @@ export function Navbar() {
               <Image
                 src="/logo/technisia.jpg"
                 alt="Technisia Logo"
-                width={isScrolled ? 40 : 50}
-                height={isScrolled ? 40 : 50}
-                className="block"
+                width={isScrolled ? 32 : 40}
+                height={isScrolled ? 32 : 40}
+                className="block sm:w-auto sm:h-auto"
+                style={{
+                  width: isScrolled ? '32px' : '40px',
+                  height: isScrolled ? '32px' : '40px'
+                }}
               />
             </motion.div>
             <span
               className={cn(
-                "font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 select-none",
-                isScrolled ? "text-lg" : "text-xl"
+                "font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 select-none whitespace-nowrap",
+                isScrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
               )}
             >
               TECHNICIA
             </span>
           </ScrollLink>
 
-          {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          {/* Desktop Nav - Hidden on mobile and tablet */}
+          <nav className="hidden xl:flex items-center gap-1 2xl:gap-2">
             {navLinks.map((link) => {
               const isActive = link.isRoute
                 ? pathname === link.href
                 : activeSection === link.href;
 
               const baseClasses =
-                "relative px-3 xl:px-4 py-2.5 text-sm xl:text-base font-medium rounded-md transition-all duration-300 cursor-pointer select-none whitespace-nowrap group";
+                "relative px-3 2xl:px-4 py-2.5 text-sm 2xl:text-base font-medium rounded-md transition-all duration-300 cursor-pointer select-none whitespace-nowrap group";
 
               return link.isRoute ? (
                 <Link
@@ -298,12 +308,17 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Space-themed Compact Audio Button */}
-          <div className="flex items-center gap-2">
+          {/* Right side controls container */}
+          <div className="flex items-center gap-1 sm:gap-2">
+            {/* Audio Button - Responsive sizing */}
             <button 
               onClick={toggleAudioIndicator} 
               className={cn(
-                "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full px-3 py-1.5 text-white font-medium text-xs transition-all duration-300 border",
+                "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full transition-all duration-300 border flex items-center",
+                // Mobile sizing
+                "px-2 py-1.5 text-xs",
+                // SM and up sizing
+                "sm:px-3 sm:py-1.5 sm:text-xs",
                 audioReady 
                   ? isAudioPlaying
                     ? "bg-gradient-to-r from-slate-800 to-slate-700 border-cyan-400/50 shadow-md shadow-cyan-400/20 hover:scale-105"
@@ -334,7 +349,7 @@ export function Navbar() {
 
               {/* Left Icon with Gentle Animation */}
               <motion.div
-                className="relative inline-flex mr-1.5"
+                className="relative inline-flex mr-1 sm:mr-1.5 flex-shrink-0"
                 animate={{
                   scale: isAudioPlaying && audioReady ? [1, 1.1, 1] : 1,
                 }}
@@ -345,16 +360,16 @@ export function Navbar() {
                 }}
               >
                 {!audioReady ? (
-                  <VolumeX className="w-3 h-3 text-slate-400" />
+                  <VolumeX className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
                 ) : isAudioPlaying ? (
-                  <Volume2 className="w-3 h-3 text-cyan-400" />
+                  <Volume2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" />
                 ) : (
-                  <Play className="w-3 h-3 text-slate-300" />
+                  <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-300" />
                 )}
               </motion.div>
 
-              {/* Text with Sliding Animation */}
-              <span className="relative inline-flex overflow-hidden text-xs">
+              {/* Text with Sliding Animation - Hide on very small screens */}
+              <span className="relative overflow-hidden text-xs hidden min-[475px]:inline-flex">
                 <motion.div
                   className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12"
                 >
@@ -375,8 +390,8 @@ export function Navbar() {
                 </div>
               </span>
 
-              {/* Minimal Audio Visualization */}
-              <div className="flex items-center space-x-0.5 ml-1.5">
+              {/* Minimal Audio Visualization - Smaller on mobile */}
+              <div className="flex items-center space-x-0.5 ml-1 sm:ml-1.5 flex-shrink-0">
                 {[1, 2].map((bar) => (
                   <motion.div
                     key={bar}
@@ -388,17 +403,20 @@ export function Navbar() {
                           : "bg-slate-500"
                         : "bg-slate-600"
                     )}
-                    initial={{ height: 3 }}
+                    initial={{ height: 2 }}
                     animate={{
                       height: isAudioPlaying && audioReady
-                        ? [3, 8, 5, 10, 3]
-                        : 3
+                        ? [2, 6, 4, 8, 2]
+                        : 2
                     }}
                     transition={{
                       duration: 2,
                       repeat: isAudioPlaying && audioReady ? Infinity : 0,
                       delay: bar * 0.2,
                       ease: "easeInOut"
+                    }}
+                    style={{
+                      height: isAudioPlaying && audioReady ? undefined : '2px'
                     }}
                   />
                 ))}
@@ -432,94 +450,106 @@ export function Navbar() {
                 }}
               />
             </button>
-          </div>
 
-          {/* Contact Button Desktop */}
-          <Button
-            asChild
-            className="hidden lg:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 xl:px-6 py-3 text-sm xl:text-base flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
-          >
-            <a href="mailto:contact@example.com">Contact Us</a>
-          </Button>
+            {/* Contact Button - Desktop only */}
+            <Button
+              asChild
+              className="hidden xl:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 2xl:px-6 py-3 text-sm 2xl:text-base flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
+            >
+              <a href="mailto:contact@example.com">Contact Us</a>
+            </Button>
 
-          {/* Contact Mobile Button */}
-          <Button
-            asChild
-            className="lg:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 py-2.5 text-sm flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
-          >
-            <a href="mailto:contact@example.com">Contact</a>
-          </Button>
+            {/* Contact Mobile Button - Tablet and below */}
+            <Button
+              asChild
+              className="hidden sm:flex xl:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-3 py-2.5 text-sm flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
+            >
+              <a href="mailto:contact@example.com">Contact</a>
+            </Button>
 
-          {/* Mobile Menu */}
-          <Sheet>
-            <SheetTrigger asChild className="lg:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-white flex-shrink-0 hover:bg-white/10 transition-colors duration-300 p-2.5"
+            {/* Mobile Menu */}
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+              <SheetTrigger asChild className="xl:hidden flex-shrink-0">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-white hover:bg-white/10 transition-colors duration-300 p-2 sm:p-2.5 w-8 h-8 sm:w-10 sm:h-10"
+                >
+                  <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent 
+                side="right" 
+                className="bg-black/95 border-white/10 w-full max-w-sm sm:max-w-md"
               >
-                <Menu className="h-6 w-6" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="bg-black/95 border-white/10 w-80 sm:w-96">
-              <SheetHeader className="border-b border-white/20 pb-4">
-                <SheetTitle className="text-purple-400 text-xl font-bold flex items-center gap-2">
-                  <Image src="/logo/logo_technisia.svg" alt="Technisia Logo" width={32} height={32} />
-                  Menu
-                </SheetTitle>
-              </SheetHeader>
-              <nav className="flex flex-col gap-3 mt-6">
-                {navLinks.map((link) => {
-                  const isActive = link.isRoute
-                    ? pathname === link.href
-                    : activeSection === link.href;
+                <SheetHeader className="border-b border-white/20 pb-4">
+                  <SheetTitle className="text-purple-400 text-lg sm:text-xl font-bold flex items-center gap-2">
+                    <Image 
+                      src="/logo/logo_technisia.svg" 
+                      alt="Technisia Logo" 
+                      width={28} 
+                      height={28}
+                      className="sm:w-8 sm:h-8"
+                    />
+                    Menu
+                  </SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-2 sm:gap-3 mt-4 sm:mt-6">
+                  {navLinks.map((link) => {
+                    const isActive = link.isRoute
+                      ? pathname === link.href
+                      : activeSection === link.href;
 
-                  return link.isRoute ? (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      className={cn(
-                        "relative px-4 py-3.5 rounded-md text-base font-medium cursor-pointer select-none transition-all duration-300 group",
-                        link.special
-                          ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:scale-105"
-                          : isActive
-                          ? "text-purple-400 bg-purple-950/30"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
-                      )}
+                    return link.isRoute ? (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        onClick={handleSheetClose}
+                        className={cn(
+                          "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
+                          link.special
+                            ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:scale-105"
+                            : isActive
+                            ? "text-purple-400 bg-purple-950/30"
+                            : "text-white/80 hover:text-white hover:bg-white/10"
+                        )}
+                      >
+                        {link.title}
+                      </Link>
+                    ) : (
+                      <ScrollLink
+                        key={link.href}
+                        to={link.href}
+                        spy
+                        smooth
+                        offset={-100}
+                        duration={500}
+                        onClick={handleSheetClose}
+                        onSetActive={() => setActiveSection(link.href)}
+                        className={cn(
+                          "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
+                          isActive
+                            ? "text-purple-400 bg-purple-950/30"
+                            : "text-white/80 hover:text-white hover:bg-white/10"
+                        )}
+                      >
+                        {link.title}
+                      </ScrollLink>
+                    );
+                  })}
+                  <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
+                    <a
+                      href="mailto:contact@example.com"
+                      onClick={handleSheetClose}
+                      className="block px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center hover:scale-105 transition-transform duration-300"
                     >
-                      {link.title}
-                    </Link>
-                  ) : (
-                    <ScrollLink
-                      key={link.href}
-                      to={link.href}
-                      spy
-                      smooth
-                      offset={-100}
-                      duration={500}
-                      onSetActive={() => setActiveSection(link.href)}
-                      className={cn(
-                        "relative px-4 py-3.5 rounded-md text-base font-medium cursor-pointer select-none transition-all duration-300 group",
-                        isActive
-                          ? "text-purple-400 bg-purple-950/30"
-                          : "text-white/80 hover:text-white hover:bg-white/10"
-                      )}
-                    >
-                      {link.title}
-                    </ScrollLink>
-                  );
-                })}
-                <div className="border-t border-white/20 pt-4 mt-4">
-                  <a
-                    href="mailto:contact@example.com"
-                    className="block px-4 py-3.5 rounded-md text-base font-medium cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center hover:scale-105 transition-transform duration-300"
-                  >
-                    Contact Us
-                  </a>
-                </div>
-              </nav>
-            </SheetContent>
-          </Sheet>
+                      Contact Us
+                    </a>
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </header>
     </>
