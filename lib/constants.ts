@@ -601,13 +601,13 @@ export const previousposter = [
     year: "2025",
     image: "/previous_events/postercumun.jpg",
     description: "CU-MUN was a student-led Model United Nations conference held at Chandigarh University, where participants engage in debates, diplomacy, and policy-making simulations across global issues.",
-    title: "CUMUN"
+    title: "CUMUN 2025"
   },
   {
     year: "2025",
     image: "/previous_events/postermind.jpg",
     description: "MIND-SPIRINT was a student-driven tech fest that blends creativity with innovation through hands-on activities, workshops, and tech challenges focused on real-world problem solving.",
-    title: "MIND-SPRINT"
+    title: "MIND SPRINT"
   },
   {
     year: "2025",
