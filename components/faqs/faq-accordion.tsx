@@ -102,67 +102,67 @@ export function FaqAccordion() {
 
           {/* FAQ Content */}
           <motion.div variants={itemVariants}>
-            <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden">
-              <div className="p-8">
-                <motion.div
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate={isInView ? "visible" : "hidden"}
+  <div className="bg-gradient-to-br from-slate-800/40 to-slate-900/40 backdrop-blur-xl border border-slate-700/50 rounded-2xl shadow-2xl overflow-hidden">
+    <div className="p-4 sm:p-6 lg:p-8">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+          {filteredFaqs.length > 0 ? (
+            filteredFaqs.map((faq, index) => (
+              <motion.div key={index} variants={itemVariants}>
+                <AccordionItem
+                  value={`item-${index}`}
+                  className="border border-slate-600/30 rounded-xl bg-gradient-to-r from-slate-800/30 to-slate-900/30 hover:border-green-400/50 transition-all duration-300 overflow-hidden group"
                 >
-                  <Accordion type="single" collapsible className="space-y-4">
-                    {filteredFaqs.length > 0 ? (
-                      filteredFaqs.map((faq, index) => (
-                        <motion.div key={index} variants={itemVariants}>
-                          <AccordionItem
-                            value={`item-${index}`}
-                            className="border border-slate-600/30 rounded-xl bg-gradient-to-r from-slate-800/30 to-slate-900/30 hover:border-green-400/50 transition-all duration-300 overflow-hidden group"
-                          >
-                            <AccordionTrigger className="flex justify-between items-center px-6 py-6 text-slate-200 font-semibold text-lg hover:text-green-400 transition-colors group-hover:bg-slate-800/20 [&[data-state=open]>svg]:rotate-0">
-                              <div className="flex items-center gap-4 text-left">
-                                <span className="leading-relaxed">{faq.question}</span>
-                              </div>
-                            </AccordionTrigger>
-                            <AccordionContent className="px-6 pb-6 pt-0">
-                              <div className="pl-14 pr-4">
-                                <div className="bg-gradient-to-r from-slate-700/20 to-slate-800/20 rounded-xl p-6 border-l-4 border-green-400/50">
-                                  <p className="text-slate-300 text-base leading-relaxed">
-                                    {faq.answer}
-                                  </p>
-                                </div>
-                              </div>
-                            </AccordionContent>
-                          </AccordionItem>
-                        </motion.div>
-                      ))
-                    ) : (
-                      <motion.div
-                        variants={itemVariants}
-                        className="text-center py-20"
-                      >
-                        <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-xl border border-slate-700/50 rounded-xl p-12">
-                          <div className="w-20 h-20 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <Search className="w-10 h-10 text-slate-400" />
-                          </div>
-                          <h3 className="text-2xl font-bold text-slate-300 mb-3">
-                            No FAQs Found
-                          </h3>
-                          <p className="text-slate-400 text-lg leading-relaxed mb-6">
-                            No FAQs found matching your search query. Try different keywords or browse all available questions.
-                          </p>
-                          <button
-                            onClick={() => setSearchQuery("")}
-                            className="px-8 py-3 bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-400 rounded-xl hover:from-green-500/30 hover:to-emerald-600/30 transition-all border border-green-500/30 font-semibold"
-                          >
-                            Show All FAQs
-                          </button>
-                        </div>
-                      </motion.div>
-                    )}
-                  </Accordion>
-                </motion.div>
+                  <AccordionTrigger className="flex justify-between items-center px-4 py-4 sm:px-6 sm:py-6 text-slate-200 font-semibold text-base sm:text-lg hover:text-green-400 transition-colors group-hover:bg-slate-800/20 [&[data-state=open]>svg]:rotate-0">
+                    <div className="flex items-center gap-3 sm:gap-4 text-left pr-2">
+                      <span className="leading-relaxed break-words">{faq.question}</span>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 pb-4 pt-0 sm:px-6 sm:pb-6">
+                    <div className="pl-0 sm:pl-8 lg:pl-14 pr-0 sm:pr-4">
+                      <div className="bg-gradient-to-r from-slate-700/20 to-slate-800/20 rounded-xl p-4 sm:p-6 border-l-4 border-green-400/50">
+                        <p className="text-slate-300 text-sm sm:text-base leading-relaxed break-words">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </motion.div>
+            ))
+          ) : (
+            <motion.div
+              variants={itemVariants}
+              className="text-center py-12 sm:py-16 lg:py-20"
+            >
+              <div className="bg-gradient-to-br from-slate-800/30 to-slate-900/30 backdrop-blur-xl border border-slate-700/50 rounded-xl p-6 sm:p-8 lg:p-12">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                  <Search className="w-8 h-8 sm:w-10 sm:h-10 text-slate-400" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-300 mb-2 sm:mb-3">
+                  No FAQs Found
+                </h3>
+                <p className="text-slate-400 text-base sm:text-lg leading-relaxed mb-4 sm:mb-6 px-2">
+                  No FAQs found matching your search query. Try different keywords or browse all available questions.
+                </p>
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="px-6 py-2 sm:px-8 sm:py-3 bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-400 rounded-xl hover:from-green-500/30 hover:to-emerald-600/30 transition-all border border-green-500/30 font-semibold text-sm sm:text-base"
+                >
+                  Show All FAQs
+                </button>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          )}
+        </Accordion>
+      </motion.div>
+    </div>
+  </div>
+</motion.div>
 
           {/* Location Map Section */}
           <motion.div variants={itemVariants} className="mt-20">
