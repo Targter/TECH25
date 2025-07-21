@@ -68,7 +68,7 @@ export function FaqAccordion() {
               Frequently Asked Questions
             </h1>
             <p className="text-slate-300 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-              Everything you need to know about TECHNASIA&apos;25. Find quick answers to common questions about registration, events, and participation.
+              Everything you need to know about TECHNICIA&apos;25. Find quick answers to common questions about registration, events, and participation.
             </p>
           </motion.div>
 
