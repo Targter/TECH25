@@ -6,8 +6,8 @@ export const siteConfig = {
   logo:"/logo/logotechnisia.svg",
   
   description: "The biggest tech fest of Asia - Where Innovation Meets Opportunity",
-  date: "SEPT 13-16, 2025",
-  venue: "CHANDIGARH UNIVERSITY,MOHALI",
+  date: "SEPT 10-12, 2025",
+  venue: "Chandigarh University,Mohali",
   email: "gauravthakur83551@gmial.com",
   phone: "6284001268",
   links: {
@@ -141,7 +141,7 @@ export const competitions = [
 export const eventsByDay = {
   day1 : {
   title: "Day 1 - Tech Focus",
-  date: "March 15, 2025",
+  date: "September 10, 2025",
   description:
     "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
   events: [
@@ -293,7 +293,7 @@ export const eventsByDay = {
 },
   day2 : {
   title: "Day 2 - Innovation & Robotics",
-  date: "March 16, 2025",
+  date: "September 11, 2025",
   description:
     "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
   events: [
@@ -391,7 +391,7 @@ export const eventsByDay = {
 },
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
-    date: "March 17, 2025",
+    date: "September 12, 2025",
     description:
       "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
