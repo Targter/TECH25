@@ -36,7 +36,7 @@ interface TeamCardProps {
   member: TeamMember;
   isLead?: boolean;
   size?: "large" | "default" | "small";
-  onProfileClick?: (member: TeamMember) => void; // new
+
 }
 
 interface Department {
@@ -46,7 +46,7 @@ interface Department {
   lead: TeamMember;
   team: TeamMember[];
 }
-const TeamMemberCard = ({ member, size = "large"}: TeamCardProps) => {
+const TeamMemberCard = ({ member, size = "large" }: TeamCardProps) => {
   const IconComponent = member.icon;
 
   const sizeClasses = {
@@ -69,105 +69,42 @@ const TeamMemberCard = ({ member, size = "large"}: TeamCardProps) => {
 
   return (
     <motion.div
-      className={`relative group rounded-3xl bg-gradient-to-br from-slate-900/98 via-slate-800/95 to-slate-700/98 backdrop-blur-xl transition-all duration-500 shadow-xl hover:shadow-slate-500/10 border-2 border-slate-600/30 hover:border-slate-500/50 ${cardWidths[size]} mx-auto ${sizeClasses[size]}`}
-      whileHover={{ 
-        y: -8, 
-        scale: 1.02,
-        boxShadow: "0px 12px 40px rgba(71, 85, 105, 0.12)"
-      }}
-      transition={{ type: "spring", stiffness: 200, damping: 25 }}
-      style={{
-        border: "2px solid rgba(71, 85, 105, 0.4)",
-        boxShadow: "0 0 25px rgba(71, 85, 105, 0.1), inset 0 1px 0 rgba(148, 163, 184, 0.1)"
-      }}
+      className={`relative group rounded-xl bg-gradient-to-br from-gray-900 to-black border border-cyan-400/50 ${cardWidths[size]} mx-auto ${sizeClasses[size]}`}
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.2 }}
     >
-      {/* Animated star field background */}
-      <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
-        <div className="absolute inset-0 opacity-15">
-          {[...Array(8)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-0.5 h-0.5 bg-slate-300 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                opacity: [0.3, 1, 0.3],
-                scale: [1, 1.8, 1],
-              }}
-              transition={{
-                duration: 2 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Subtle glow effect */}
-      <div className="absolute -inset-1 bg-gradient-to-r from-slate-500/15 via-slate-400/20 to-slate-500/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
+      {/* Simple neon glow */}
+      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-xl opacity-75" />
       
-      {/* Subtle overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-700/5 via-slate-600/8 to-slate-700/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
-      
-      {/* Content boundary */}
-      <div className="relative z-10 h-full border-2 border-slate-600/25 hover:border-slate-500/40 transition-colors duration-300 rounded-2xl">
-        <div className="flex flex-col items-center text-center gap-3 md:gap-4 h-full p-2">
+      <div className="relative bg-black/80 rounded-xl h-full">
+        <div className="flex flex-col items-center text-center gap-4 h-full p-2">
           {/* Image container */}
           <div className="relative w-full -mx-6 md:-mx-8 px-2">
-            <div className="relative w-full overflow-hidden rounded-2xl border-2 border-slate-500/25 shadow-lg group-hover:border-slate-400/40 transition-colors duration-300">
-              <div className="relative w-full bg-gradient-to-br from-slate-800/50 to-slate-900/50">
-                <Image
-                  src={member.image}
-                  alt={member.name}
-                  width={500}
-                  height={500}
-                  className={`w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 ${imageHeights[size]}`}
-                />
-                {/* Subtle overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-700/15 via-transparent to-slate-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Subtle scanning line effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-300/15 to-transparent opacity-0 group-hover:opacity-100 h-1"
-                  animate={{ y: [0, 300] }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatDelay: 3,
-                    ease: "easeInOut"
-                  }}
-                />
-              </div>
+            <div className="relative w-full overflow-hidden rounded-lg border border-cyan-400/40">
+              <Image
+                src={member.image}
+                alt={member.name}
+                width={500}
+                height={500}
+                className={`w-full object-cover ${imageHeights[size]}`}
+              />
             </div>
           </div>
           
           {/* Name section */}
-          <div className="border-b-2 border-slate-500/20 pb-2 w-full">
-            <h3 className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-slate-200 via-white to-slate-300 bg-clip-text text-transparent">
+          <div className="border-b border-cyan-400/30 pb-2 w-full">
+            <h3 className="text-base md:text-lg lg:text-xl font-bold text-cyan-300">
               {member.name}
             </h3>
           </div>
-          
-          {/* Bio section */}
-        
-          
-          {/* Button section */}
-        
         </div>
       </div>
       
-      {/* Icon badge */}
-      <div className="absolute -top-2 md:-top-3 -right-2 md:-right-3 z-20">
-        <motion.div 
-          className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-gradient-to-br from-slate-600/90 to-slate-700/90 backdrop-blur-md shadow-lg border-2 border-slate-400/50 group-hover:shadow-slate-400/30 transition-all duration-300"
-          whileHover={{ rotate: 180, scale: 1.1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <IconComponent className="h-4 w-4 md:h-5 md:w-5 text-slate-200 drop-shadow-sm" />
-        </motion.div>
+      {/* Simple icon badge */}
+      <div className="absolute -top-2 -right-2 z-20">
+        <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-black border border-cyan-400/60">
+          <IconComponent className="h-4 w-4 md:h-5 md:w-5 text-cyan-400" />
+        </div>
       </div>
     </motion.div>
   );
