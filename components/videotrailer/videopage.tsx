@@ -9,12 +9,7 @@ interface VideoProps {
   src?: string;
 }
 
-const scrollToPreviousEvent = () => {
-  const element = document.getElementById('previous-events');
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-};
+
 
 // Counter animation hook with dynamic jumps
 const useCounter = (end: number, duration: number = 2000, delay: number = 0) => {
@@ -159,7 +154,7 @@ export const Video = ({ className = "", src }: VideoProps) => {
     {
       icon: Trophy,
       count: prizePool.count,
-      target: 1000000,
+      target: 100000,
       label: 'Prize Pool',
       ref: prizePool.countRef,
       color: 'text-yellow-400'
@@ -209,22 +204,22 @@ export const Video = ({ className = "", src }: VideoProps) => {
           </div>
 
           {/* Enhanced Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 max-w-4xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 max-w-4xl">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
                 <div
                   key={index}
                   ref={stat.ref}
-                  className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-4 hover:border-green-500/50 transition-all duration-300 group"
+                  className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-3 md:p-4 hover:border-green-500/50 transition-all duration-300 group"
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <IconComponent className={`w-5 h-5 ${stat.color} group-hover:scale-110 transition-transform`} />
-                    <p className={`text-2xl font-bold ${stat.color} tabular-nums`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 mb-2">
+                    <IconComponent className={`w-4 h-4 sm:w-5 sm:h-5 ${stat.color} group-hover:scale-110 transition-transform flex-shrink-0`} />
+                    <p className={`text-lg sm:text-xl md:text-2xl font-bold ${stat.color} tabular-nums break-all`}>
                       {formatNumber(stat.count)}
                     </p>
                   </div>
-                  <p className="text-gray-400 text-sm font-medium">{stat.label}</p>
+                  <p className="text-gray-400 text-xs sm:text-sm font-medium leading-tight">{stat.label}</p>
                 </div>
               );
             })}
@@ -232,16 +227,31 @@ export const Video = ({ className = "", src }: VideoProps) => {
 
           {/* Enhanced CTA Button */}
           <div className="flex items-center gap-4">
-            <Link href="/timeline">
-              <button
-                onClick={scrollToPreviousEvent}
-                className="group relative px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25"
-              >
-                <span className="relative z-10">Register For Technicia&apos;25 Events</span>
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-              </button>
-            </Link>
-          </div>
+  <Link href="/timeline">
+    <button
+     
+      className="group relative px-8 py-4 bg-black border-2 border-cyan-400/50 hover:border-cyan-300 rounded-lg font-bold text-cyan-300 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 shadow-lg hover:shadow-cyan-400/50 overflow-hidden backdrop-blur-sm"
+    >
+      {/* Animated scan line */}
+      <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+      
+      {/* Glitch effect background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-600/20 to-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
+      
+      {/* Button text with glitch effect */}
+      <span className="relative z-10 inline-block group-hover:animate-pulse">
+        Register For Technicia&apos;25 Events
+      </span>
+      
+      {/* Corner accents */}
+      <div className="absolute top-1 left-1 w-3 h-3 border-l-2 border-t-2 border-cyan-400 opacity-60" />
+      <div className="absolute bottom-1 right-1 w-3 h-3 border-r-2 border-b-2 border-cyan-400 opacity-60" />
+      
+      {/* Hover glow */}
+      <div className="absolute inset-0 rounded-lg border border-cyan-300/0 group-hover:border-cyan-300/30 group-hover:shadow-[inset_0_0_20px_rgba(34,211,238,0.2)] transition-all duration-300" />
+    </button>
+  </Link>
+</div>
         </div>
 
         {/* Full Width Video Section */}
