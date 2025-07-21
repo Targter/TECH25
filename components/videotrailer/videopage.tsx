@@ -237,7 +237,7 @@ export const Video = ({ className = "", src }: VideoProps) => {
                 onClick={scrollToPreviousEvent}
                 className="group relative px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25"
               >
-                <span className="relative z-10">Register For Technisia&apos;25 Events</span>
+                <span className="relative z-10">Register For Technicia&apos;25 Events</span>
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
               </button>
             </Link>

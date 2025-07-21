@@ -5,7 +5,7 @@ export const siteConfig = {
   organisation:"ISTE",
   logo:"/logo/logotechnisia.svg",
   
-  description: "The biggest tech fest of Asia - Where Innovation Meets Opportunity",
+  description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
   date: "SEPT 10-12, 2025",
   venue: "Chandigarh University, Mohali",
   email: "gauravthakur83551@gmial.com",
