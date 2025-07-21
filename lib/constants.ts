@@ -753,7 +753,7 @@ export const faqs = [
   },
   {
     question: "Will accommodation be provided?",
-    answer: "We do not provide accommodation as part of the registration, but we have partnered with several nearby hotels to offer discounted rates for participants. Information about these hotels will be shared after registration.",
+    answer: "We do not provide accommodation as part of the registration; however, hostel accommodation is available at ₹200/day (accommodation only) or ₹500/day (accommodation with food).",
   },
   {
     question: "How are the competitions judged?",
