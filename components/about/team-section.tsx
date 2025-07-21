@@ -51,84 +51,144 @@ const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProp
   const IconComponent = member.icon;
 
   const sizeClasses = {
-    large: "p-8",
-    default: "p-6",
-    small: "p-4",
+    large: "p-6 md:p-8",
+    default: "p-4 md:p-6",
+    small: "p-3 md:p-4",
   };
 
   const imageHeights = {
-    large: "h-[28rem]",
-    default: "h-80",
-    small: "h-56",
+    large: "h-48 sm:h-64 md:h-80 lg:h-[28rem]",
+    default: "h-40 sm:h-48 md:h-64 lg:h-80",
+    small: "h-32 sm:h-40 md:h-48 lg:h-56",
+  };
+
+  const cardWidths = {
+    large: "w-full max-w-sm",
+    default: "w-full max-w-xs",
+    small: "w-full max-w-64",
   };
 
   return (
     <motion.div
-      className={`relative group rounded-2xl border-2 border-border/50 bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-xl transition-all duration-300 shadow-lg hover:shadow-xl ${sizeClasses[size]}`}
+      className={`relative group rounded-3xl bg-gradient-to-br from-slate-900/98 via-slate-800/95 to-slate-700/98 backdrop-blur-xl transition-all duration-500 shadow-xl hover:shadow-slate-500/10 border-2 border-slate-600/30 hover:border-slate-500/50 ${cardWidths[size]} mx-auto ${sizeClasses[size]}`}
       whileHover={{ 
-        y: -6, 
-        boxShadow: "0px 12px 32px rgba(0, 0, 0, 0.15)",
-        scale: 1.02
+        y: -8, 
+        scale: 1.02,
+        boxShadow: "0px 12px 40px rgba(71, 85, 105, 0.12)"
       }}
-      transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      transition={{ type: "spring", stiffness: 200, damping: 25 }}
       style={{
-        boxShadow: "0 0 0 1px rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.1)"
+        border: "2px solid rgba(71, 85, 105, 0.4)",
+        boxShadow: "0 0 25px rgba(71, 85, 105, 0.1), inset 0 1px 0 rgba(148, 163, 184, 0.1)"
       }}
     >
-      {/* Outer glow effect */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-cyan-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+      {/* Animated star field background */}
+      <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+        <div className="absolute inset-0 opacity-15">
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-0.5 h-0.5 bg-slate-300 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                opacity: [0.3, 1, 0.3],
+                scale: [1, 1.8, 1],
+              }}
+              transition={{
+                duration: 2 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Subtle glow effect */}
+      <div className="absolute -inset-1 bg-gradient-to-r from-slate-500/15 via-slate-400/20 to-slate-500/15 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
       
-      {/* Inner glow overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      {/* Subtle overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-700/5 via-slate-600/8 to-slate-700/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
       
       {/* Content boundary */}
-      <div className="relative z-10 h-full border border-white/10 rounded-xl">
-        <div className="flex flex-col items-center text-center gap-4 h-full p-2">
-          {/* Image container with boundary */}
-          <div className="relative -mx-8 px-2">
-            <div className="relative w-full overflow-hidden rounded-xl border border-border/30 shadow-md">
-              <div className="relative w-full">
+      <div className="relative z-10 h-full border-2 border-slate-600/25 hover:border-slate-500/40 transition-colors duration-300 rounded-2xl">
+        <div className="flex flex-col items-center text-center gap-3 md:gap-4 h-full p-2">
+          {/* Image container */}
+          <div className="relative w-full -mx-6 md:-mx-8 px-2">
+            <div className="relative w-full overflow-hidden rounded-2xl border-2 border-slate-500/25 shadow-lg group-hover:border-slate-400/40 transition-colors duration-300">
+              <div className="relative w-full bg-gradient-to-br from-slate-800/50 to-slate-900/50">
                 <Image
                   src={member.image}
                   alt={member.name}
                   width={500}
                   height={500}
-                  className={`w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 ${imageHeights[size]}`}
+                  className={`w-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110 ${imageHeights[size]}`}
                 />
-                {/* Image overlay glow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Subtle overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-700/15 via-transparent to-slate-600/8 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Subtle scanning line effect */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-300/15 to-transparent opacity-0 group-hover:opacity-100 h-1"
+                  animate={{ y: [0, 300] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                    ease: "easeInOut"
+                  }}
+                />
               </div>
             </div>
           </div>
           
           {/* Name section */}
-          <div className="border-b border-border/20 pb-2 w-full">
-            <h3 className="text-lg font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">{member.name}</h3>
+          <div className="border-b-2 border-slate-500/20 pb-2 w-full">
+            <h3 className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-slate-200 via-white to-slate-300 bg-clip-text text-transparent">
+              {member.name}
+            </h3>
           </div>
+          
+          {/* Bio section */}
+          {member.bio && (
+            <div className="flex-1 px-2">
+              <p className="text-slate-300 text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-4">
+                {member.bio}
+              </p>
+            </div>
+          )}
           
           {/* Button section */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
+            whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="mt-auto"
           >
             <Button
               onClick={() => onProfileClick?.(member)}
               size="sm"
-              className="z-10 shadow-md border border-border/30 bg-gradient-to-r from-background to-muted/50 hover:from-muted/70 hover:to-muted/40 transition-all duration-200"
+              className="relative overflow-hidden bg-emerald-800/60 hover:bg-emerald-700/70 text-emerald-100 hover:text-white border-2 border-emerald-600/60 hover:border-emerald-500/80 shadow-md hover:shadow-emerald-500/20 transition-all duration-300 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-lg"
             >
-              View Profile
+              <span className="relative z-10 font-medium text-xs md:text-sm">View Profile</span>
+              <div className="absolute inset-0 bg-emerald-500/15 opacity-0 hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </motion.div>
         </div>
       </div>
       
-      {/* Icon badge with enhanced styling */}
-      <div className="absolute -top-2 -right-2 z-20">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-border/60 bg-muted/70 backdrop-blur-md shadow-lg group-hover:shadow-xl transition-all duration-300">
-          <IconComponent className="h-5 w-5 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300" />
-        </div>
+      {/* Icon badge */}
+      <div className="absolute -top-2 md:-top-3 -right-2 md:-right-3 z-20">
+        <motion.div 
+          className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-full bg-gradient-to-br from-slate-600/90 to-slate-700/90 backdrop-blur-md shadow-lg border-2 border-slate-400/50 group-hover:shadow-slate-400/30 transition-all duration-300"
+          whileHover={{ rotate: 180, scale: 1.1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <IconComponent className="h-4 w-4 md:h-5 md:w-5 text-slate-200 drop-shadow-sm" />
+        </motion.div>
       </div>
     </motion.div>
   );
@@ -418,18 +478,9 @@ const TeamsPage = () => {
 
   return (
   <>
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative">
+    <div>
       {/* Space Background Effects */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-10 w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-20 right-20 w-1 h-1 bg-indigo-300 rounded-full animate-pulse delay-100"></div>
-        <div className="absolute bottom-32 left-16 w-1 h-1 bg-cyan-400 rounded-full animate-pulse delay-200"></div>
-        <div className="absolute bottom-40 right-12 w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-300"></div>
-        <div className="absolute top-40 left-1/2 w-1 h-1 bg-blue-300 rounded-full animate-pulse delay-500"></div>
-        <div className="absolute top-60 right-1/3 w-1 h-1 bg-indigo-400 rounded-full animate-pulse delay-700"></div>
-        <div className="absolute bottom-20 left-1/4 w-2 h-2 bg-cyan-300 rounded-full animate-pulse delay-900"></div>
-        <div className="absolute top-80 right-1/4 w-1 h-1 bg-purple-300 rounded-full animate-pulse delay-1100"></div>
-      </div>
+      
 
       <div className="container mx-auto px-6 py-12 relative z-10">
         {/* Header */}
