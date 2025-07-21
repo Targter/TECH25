@@ -600,13 +600,13 @@ export const previousposter = [
   {
     year: "2025",
     image: "/previous_events/postercumun.jpg",
-    description: "CU-MUN was a student-led Model United Nations conference hosted at Chandigarh University, where participants engaged in debates, diplomacy, and policy-making simulations on pressing global issues across committees like UNGA, UNSC, UNHRC, UNCTAD, and WHO.",
+    description: "CUMUN was a student-led Model United Nations conference hosted at Chandigarh University, where participants engaged in debates, diplomacy, and policy-making simulations on pressing global issues across committees like UNGA, UNSC, UNHRC, UNCTAD, and WHO.",
     title: "CUMUN 2025"
   },
   {
     year: "2025",
     image: "/previous_events/postermind.jpg",
-    description: "MIND-SPRINT was a student-driven, aptitude-based treasure hunt that blended creativity with critical thinking. Designed to challenge problem-solving skills through puzzles and logical tasks, it offered an engaging and competitive environment for participants through multiple levels of intellectual challenges.",
+    description: "MIND SPRINT was a aptitude-based treasure hunt that blended creativity with critical thinking. Designed to challenge problem-solving skills through puzzles and logical tasks, it offered an engaging and competitive environment for participants through multiple levels of intellectual challenges.",
     title: "MIND SPRINT"
   },
   {
