@@ -733,7 +733,7 @@ export const previousEvents = [
 export const faqs = [
   {
     question: "When and where is TECHNICIA'25 taking place?",
-    answer: "TECHNICIA'25 will be held from March 13-16, 2025, at the Tech Innovation Center in Asia. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
+    answer: "TECHNICIA'25 will be held from September 10-12, 2025, at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
   },
   {
     question: "How can I register for the event?",
@@ -781,7 +781,7 @@ export const faqs = [
   },
   {
     question: "Can I attend if I'm not a student?",
-    answer: "TECHNASIA'25 is primarily designed for students and young professionals. However, industry professionals are welcome to attend as mentors, judges, or workshop facilitators. Please contact us for more information about professional participation.",
+    answer: "TECHNICIA'25 is primarily designed for students and young professionals. However, industry professionals are welcome to attend as mentors, judges, or workshop facilitators. Please contact us for more information about professional participation.",
   },
   {
     question: "Is there a dress code for the event?",
@@ -793,7 +793,7 @@ export const faqs = [
   },
   {
     question: "Are there networking opportunities?",
-    answer: "Absolutely! TECHNASIA'25 includes dedicated networking sessions, industry meet-and-greets, company showcases, and informal social events. It's a great opportunity to connect with like-minded individuals and potential employers.",
+    answer: "Absolutely! TECHNICIA'25 includes dedicated networking sessions, industry meet-and-greets, company showcases, and informal social events. It's a great opportunity to connect with like-minded individuals and potential employers.",
   },
   {
     question: "Can I get a certificate of participation?",
