@@ -7,7 +7,7 @@ export const siteConfig = {
   
   description: "The biggest tech fest of Asia - Where Innovation Meets Opportunity",
   date: "SEPT 10-12, 2025",
-  venue: "Chandigarh University,Mohali",
+  venue: "Chandigarh University, Mohali",
   email: "gauravthakur83551@gmial.com",
   phone: "6284001268",
   links: {
