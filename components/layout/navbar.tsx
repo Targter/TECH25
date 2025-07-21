@@ -210,12 +210,10 @@ export function Navbar() {
       >
         <div className="container mx-auto flex items-center justify-between gap-2 px-3 sm:px-4 md:px-6">
           {/* Logo */}
-          <ScrollLink
-            to="home"
-            spy
-            smooth
-            offset={-100}
-            duration={500}
+          <Link
+            href="/"
+            
+            
             className="flex items-center space-x-1.5 sm:space-x-2 cursor-pointer select-none flex-shrink-0"
           >
             <motion.div
@@ -243,7 +241,7 @@ export function Navbar() {
             >
               TECHNICIA
             </span>
-          </ScrollLink>
+          </Link>
 
           {/* Desktop Nav - Hidden on mobile and tablet */}
           <nav className="hidden xl:flex items-center gap-1 2xl:gap-2">

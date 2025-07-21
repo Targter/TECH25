@@ -90,13 +90,13 @@ export default function TimelineComponent() {
   return (
     <section className="py-12 md:py-20 text-white w-full relative overflow-hidden">
       <div className="hidden lg:block">
-        <FlyingSpaceship
-          top="top-[15%]"
-          left="left-[5%]"
-          duration={20}
-          color="green"
-          direction="leftToRight"
-        />
+      <FlyingSpaceship
+              top="top-[35%]"
+              left="left-[90%]"
+              duration={22}
+              color="blue"
+              direction="rightToLeft"
+            />
       </div>
 
       <div className="absolute inset-0 pointer-events-none">
