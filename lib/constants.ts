@@ -606,7 +606,7 @@ export const previousposter = [
   {
     year: "2025",
     image: "/previous_events/postermind.jpg",
-    description: "MIND SPRINT was a aptitude-based treasure hunt that blended creativity with critical thinking. Designed to challenge problem-solving skills through puzzles and logical tasks, it offered an engaging and competitive environment for participants through multiple levels of intellectual challenges.",
+    description: "MIND SPRINT was a aptitude-based treasure hunt that blended creativity with critical thinking. Designed to challenge problem-solving skills through logical tasks, it offered an engaging and competitive environment for participants through multiple levels of intellectual challenges.",
     title: "MIND SPRINT"
   },
   {
