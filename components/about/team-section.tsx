@@ -1,10 +1,9 @@
 "use client"
-import React, { useState } from 'react';
-import TeamMemberModal from "@/components/TeamMemberModal"; // update path if needed
+import React from 'react';
+// update path if needed
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 
 import {
   Crown,
@@ -47,7 +46,7 @@ interface Department {
   lead: TeamMember;
   team: TeamMember[];
 }
-const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProps) => {
+const TeamMemberCard = ({ member, size = "large"}: TeamCardProps) => {
   const IconComponent = member.icon;
 
   const sizeClasses = {
@@ -153,30 +152,10 @@ const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProp
           </div>
           
           {/* Bio section */}
-          {member.bio && (
-            <div className="flex-1 px-2">
-              <p className="text-slate-300 text-xs md:text-sm leading-relaxed line-clamp-3 md:line-clamp-4">
-                {member.bio}
-              </p>
-            </div>
-          )}
+        
           
           {/* Button section */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="mt-auto"
-          >
-            <Button
-              onClick={() => onProfileClick?.(member)}
-              size="sm"
-              className="relative overflow-hidden bg-emerald-800/60 hover:bg-emerald-700/70 text-emerald-100 hover:text-white border-2 border-emerald-600/60 hover:border-emerald-500/80 shadow-md hover:shadow-emerald-500/20 transition-all duration-300 backdrop-blur-sm px-3 py-1.5 md:px-4 md:py-2 rounded-lg"
-            >
-              <span className="relative z-10 font-medium text-xs md:text-sm">View Profile</span>
-              <div className="absolute inset-0 bg-emerald-500/15 opacity-0 hover:opacity-100 transition-opacity duration-300" />
-            </Button>
-          </motion.div>
+        
         </div>
       </div>
       
@@ -196,9 +175,9 @@ const TeamMemberCard = ({ member, size = "large", onProfileClick }: TeamCardProp
 
 interface DepartmentSectionProps {
   department: Department;
-  onProfileClick: (member: TeamMember) => void;
 }
-const DepartmentSection = ({ department, onProfileClick }: DepartmentSectionProps) => {
+ 
+const  DepartmentSection = ({ department}: DepartmentSectionProps) => {
   const IconComponent = department.icon;
 
   return (
@@ -219,7 +198,6 @@ const DepartmentSection = ({ department, onProfileClick }: DepartmentSectionProp
           <TeamMemberCard
             member={department.lead}
             isLead={true}
-            onProfileClick={onProfileClick}
           />
         </div>
 
@@ -230,7 +208,6 @@ const DepartmentSection = ({ department, onProfileClick }: DepartmentSectionProp
               <TeamMemberCard
                 key={index}
                 member={member}
-                onProfileClick={onProfileClick}
               />
 
             ))}
@@ -242,7 +219,7 @@ const DepartmentSection = ({ department, onProfileClick }: DepartmentSectionProp
 };
 
 const TeamsPage = () => {
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+ 
 
   const secretariatBoard = [
     {
@@ -510,7 +487,7 @@ const TeamsPage = () => {
               <TeamMemberCard
                 key={member.id}
                 member={member}
-                onProfileClick={setSelectedMember}
+               
               />
             ))}
           </div>
@@ -532,7 +509,7 @@ const TeamsPage = () => {
               <div key={member.id} className="w-full max-w-sm">
                 <TeamMemberCard
                   member={member}
-                  onProfileClick={setSelectedMember}
+                  
                 />
               </div>
             ))}
@@ -555,7 +532,7 @@ const TeamsPage = () => {
               <TeamMemberCard
                 key={member.id}
                 member={member}
-                onProfileClick={setSelectedMember}
+               
               />
             ))}
           </div>
@@ -571,19 +548,14 @@ const TeamsPage = () => {
             <DepartmentSection
               key={department.id}
               department={department}
-              onProfileClick={setSelectedMember}
+            
             />
           ))}
         </section>
       </div>
     </div>
 
-    {selectedMember && (
-      <TeamMemberModal
-        member={selectedMember}
-        onClose={() => setSelectedMember(null)}
-      />
-    )}
+   
   </>
 );
 

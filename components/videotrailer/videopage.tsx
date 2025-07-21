@@ -1,6 +1,6 @@
 "use client";
 import * as React from "react";
-import {  Users, Calendar, Trophy, Building, Volume2, VolumeX } from "lucide-react";
+import { Users, Calendar, Trophy, Building, Volume2, VolumeX } from "lucide-react";
 import Link from "next/link";
 
 interface VideoProps {
@@ -129,10 +129,10 @@ const useVideoAutoPlay = (threshold: number = 0.3) => {
   return { videoRef, containerRef, isInView };
 };
 
-export const Video = ({ className = "", order = "right", src }: VideoProps) => {
+export const Video = ({ className = "", src }: VideoProps) => {
   const [isVideoOpen, setIsVideoOpen] = React.useState(false);
   const [isMuted, setIsMuted] = React.useState(true);
-  const { videoRef, containerRef} = useVideoAutoPlay(0.3);
+  const { videoRef, containerRef } = useVideoAutoPlay(0.3);
 
   const participants = useCounter(5000, 2000, 200);
   const events = useCounter(20, 1500, 400);
@@ -188,107 +188,102 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
       <div className=" pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div
-          className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${order === "right" ? "" : "lg:flex-row-reverse"
-            }`}
-        >
-          {/* Left Side - About Section */}
-          <div className="space-y-8">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                <h3 className="text-green-500 text-lg font-medium tracking-wider">ABOUT THE EVENT</h3>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-                Welcome to the Amazing<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
-                  TECHNICIA&apos;25
-                </span>
-              </h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                TECHNICIA is not just an event, it&apos;s an interstellar journey through the cosmos of technology.
-                With over 5000 participants from across the galaxy, our annual tech extravaganza brings together
-                the brightest minds to innovate, compete, and celebrate the future of tech.
-              </p>
+        {/* About Section - Full Width */}
+        <div className="space-y-8 mb-12">
+          <div>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              <h3 className="text-green-500 text-lg font-medium tracking-wider">ABOUT THE EVENT</h3>
             </div>
-
-            {/* Enhanced Stats Grid */}
-            <div className="grid grid-cols-2 gap-6 mb-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
-                return (
-                  <div
-                    key={index}
-                    ref={stat.ref}
-                    className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-4 hover:border-green-500/50 transition-all duration-300 group"
-                  >
-                    <div className="flex items-center gap-3 mb-2">
-                      <IconComponent className={`w-5 h-5 ${stat.color} group-hover:scale-110 transition-transform`} />
-                      <p className={`text-2xl font-bold ${stat.color} tabular-nums`}>
-                        {formatNumber(stat.count)}
-                      </p>
-                    </div>
-                    <p className="text-gray-400 text-sm font-medium">{stat.label}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Enhanced CTA Button */}
-            <div className="flex items-center gap-4">
-              <Link href="previous-events">
-                <button
-                  onClick={scrollToPreviousEvent}
-                  className="group relative px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25"
-                >
-                  <span className="relative z-10">Explore Past Events</span>
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
-                </button>
-              </Link>
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Welcome to the Amazing<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">
+                TECHNICIA&apos;25
+              </span>
+            </h2>
+            <p className="text-gray-300 text-lg mb-8 leading-relaxed max-w-4xl">
+              TECHNICIA is not just an event, it&apos;s an interstellar journey through the cosmos of technology.
+              With over 5000 participants from across the galaxy, our annual tech extravaganza brings together
+              the brightest minds to innovate, compete, and celebrate the future of tech.
+            </p>
           </div>
 
-          {/* Right Side - Enhanced Video with Auto-play */}
-          <div className="relative group" ref={containerRef}>
-            {/* Glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-green-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
-
-            <div className="relative w-full max-w-2xl mx-auto h-[380px] lg:h-[450px] rounded-lg overflow-hidden shadow-2xl border border-green-600/50">
-              {/* Auto-playing video */}
-              <video
-                ref={videoRef}
-                className="absolute inset-0 w-full h-full object-cover cursor-pointer"
-                loop
-                muted={isMuted}
-                playsInline
-                preload="metadata"
-                poster="/api/placeholder/800/600" // Add your poster image here
-                onClick={() => setIsVideoOpen(true)}
-              >
-                <source src={src || "/path/to/your/video.mp4"} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              {/* Overlay with controls only */}
-              <div className="absolute inset-0 pointer-events-none">
-                {/* Mute/Unmute button */}
-                <button
-                  onClick={toggleMute}
-                  className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2 hover:bg-black/70 transition-all duration-300 border border-white/20 pointer-events-auto"
+          {/* Enhanced Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 max-w-4xl">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div
+                  key={index}
+                  ref={stat.ref}
+                  className="bg-black/30 backdrop-blur-sm border border-gray-700/50 rounded-lg p-4 hover:border-green-500/50 transition-all duration-300 group"
                 >
-                  {isMuted ? (
-                    <VolumeX className="w-5 h-5 text-white" />
-                  ) : (
-                    <Volume2 className="w-5 h-5 text-white" />
-                  )}
-                </button>
-              </div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <IconComponent className={`w-5 h-5 ${stat.color} group-hover:scale-110 transition-transform`} />
+                    <p className={`text-2xl font-bold ${stat.color} tabular-nums`}>
+                      {formatNumber(stat.count)}
+                    </p>
+                  </div>
+                  <p className="text-gray-400 text-sm font-medium">{stat.label}</p>
+                </div>
+              );
+            })}
+          </div>
 
-              {/* Fallback background pattern (shows if no video) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-800 -z-10" />
-              <div className="absolute inset-0 opacity-10 -z-10">
-                <div className="w-full h-full bg-[radial-gradient(circle_at_center,#10b981_1px,transparent_1px)] bg-[length:50px_50px]" />
-              </div>
+          {/* Enhanced CTA Button */}
+          <div className="flex items-center gap-4">
+            <Link href="/timeline">
+              <button
+                onClick={scrollToPreviousEvent}
+                className="group relative px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 rounded-lg font-medium transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/25"
+              >
+                <span className="relative z-10">Register For Technisia&apos;25 Events</span>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        {/* Full Width Video Section */}
+        <div className="relative group w-full" ref={containerRef}>
+          {/* Glow effect */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-green-600 to-blue-600 rounded-lg blur opacity-30 group-hover:opacity-50 transition-opacity duration-300" />
+
+          <div className="relative w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] rounded-lg overflow-hidden shadow-2xl border border-green-600/50">
+            {/* Auto-playing video - stretched full width */}
+            <video
+              ref={videoRef}
+              className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+              loop
+              muted={isMuted}
+              playsInline
+              preload="metadata"
+              poster="/api/placeholder/800/600" // Add your poster image here
+              onClick={() => setIsVideoOpen(true)}
+            >
+              <source src={src || "/path/to/your/video.mp4"} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+
+            {/* Overlay with controls only */}
+            <div className="absolute inset-0 pointer-events-none">
+              {/* Mute/Unmute button */}
+              <button
+                onClick={toggleMute}
+                className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm rounded-full p-2 hover:bg-black/70 transition-all duration-300 border border-white/20 pointer-events-auto"
+              >
+                {isMuted ? (
+                  <VolumeX className="w-5 h-5 text-white" />
+                ) : (
+                  <Volume2 className="w-5 h-5 text-white" />
+                )}
+              </button>
+            </div>
+
+            {/* Fallback background pattern (shows if no video) */}
+            <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/20 to-gray-800 -z-10" />
+            <div className="absolute inset-0 opacity-10 -z-10">
+              <div className="w-full h-full bg-[radial-gradient(circle_at_center,#10b981_1px,transparent_1px)] bg-[length:50px_50px]" />
             </div>
           </div>
         </div>
@@ -297,7 +292,7 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
       {/* Video Modal */}
       {isVideoOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm">
-          <div className="relative max-w-4xl w-full mx-4">
+          <div className="relative max-w-6xl w-full mx-4">
             {/* Close button */}
             <button
               onClick={() => setIsVideoOpen(false)}
@@ -307,18 +302,15 @@ export const Video = ({ className = "", order = "right", src }: VideoProps) => {
             </button>
 
             {/* Video container */}
-            <div className="bg-black border border-purple-500/20 rounded-lg overflow-hidden">
-              <div className="aspect-video">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src={src || "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"}
-                  title="Techniia 2024 Recap"
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
+            <div className="w-full border border-purple-500/20 rounded-lg overflow-hidden bg-black">
+              <iframe
+                className="w-full h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px]"
+                src={src || "https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"}
+                title="Techniia 2024 Recap"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </div>
           </div>
         </div>
