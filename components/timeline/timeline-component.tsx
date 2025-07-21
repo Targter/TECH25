@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useCartStore } from "@/store/data";
-import {eventsByDay} from "@/lib/constants"
+import { eventsByDay } from "@/lib/constants"
 
 type Event = {
   id: string;
@@ -170,8 +170,8 @@ export default function TimelineComponent() {
                   setSelectedDay(dayKey as "day1" | "day2" | "day3")
                 }
                 className={`relative px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 border-2 min-w-[200px] ${selectedDay === dayKey
-                    ? "bg-gradient-to-r from-green-600 to-green-700 text-white border-green-400 shadow-lg shadow-green-500/25"
-                    : "bg-transparent text-green-400 border-green-500/50 hover:border-green-400 hover:bg-green-900/20"
+                  ? "bg-gradient-to-r from-green-600 to-green-700 text-white border-green-400 shadow-lg shadow-green-500/25"
+                  : "bg-transparent text-green-400 border-green-500/50 hover:border-green-400 hover:bg-green-900/20"
                   }`}
               >
                 {/* REMOVED whileHover and transition from this motion.div */}
@@ -302,7 +302,7 @@ export default function TimelineComponent() {
                       </div>
                     </div>
                   </motion.div>
-                    
+
 
                   <motion.h3
                     className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-green-400"
@@ -322,8 +322,8 @@ export default function TimelineComponent() {
                   >
                     {event.description}
                   </motion.p>
-                   <div className="hidden lg:block">
-      </div>
+                  <div className="hidden lg:block">
+                  </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 mb-4 md:mb-6">
                     <motion.div
@@ -422,115 +422,98 @@ export default function TimelineComponent() {
                     </div>
                   </div>
 
-                  <Link href={`/timeline/${event.id}`}>
-                    <motion.button
-                      className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto"
-                      whileHover={{
-                        scale: 1.03,
-                        boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)",
-                        transition: { duration: 0.2 },
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
-                      <span className="relative z-10">View More Details</span>
-                    </motion.button>
-                  </Link>
+                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:items-center">
+  <Link href={`/timeline/${event.id}`} className="w-full sm:w-auto">
+    <motion.button
+      className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full"
+      whileHover={{
+        scale: 1.03,
+        boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)",
+        transition: { duration: 0.2 },
+      }}
+      whileTap={{ scale: 0.98 }}
+    >
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+        initial={{ x: "-100%" }}
+        whileHover={{ x: "100%" }}
+        transition={{ duration: 0.6 }}
+      />
+      <span className="relative z-10">View More Details</span>
+    </motion.button>
+  </Link>
 
-                  {/*
-                   */}
+  <motion.button
+    onClick={() => {
+      if (isEventInCart(event.id)) {
+        removeEvent(event.id);
+      } else {
+        handleAddToCart(event);
+      }
+    }}
+    className={`group text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto min-w-0 ${isEventInCart(event.id)
+      ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+      : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+      }`}
+    whileHover={{
+      scale: 1.03,
+      boxShadow: isEventInCart(event.id)
+        ? "0 8px 20px rgba(34, 197, 94, 0.3)"
+        : "0 8px 20px rgba(37, 99, 235, 0.3)",
+      transition: { duration: 0.2 },
+    }}
+    whileTap={{ scale: 0.98 }}
+  >
+    <motion.div
+      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+      initial={{ x: "-100%" }}
+      whileHover={{ x: "100%" }}
+      transition={{ duration: 0.6 }}
+    />
 
-                  {/* <motion.button
-                    onClick={() => handleAddToCart(event)}
-                    className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto"
-                    whileHover={{
-                      scale: 1.03,
-                      boxShadow: "0 8px 20px rgba(37, 99, 235, 0.3)",
-                      transition: { duration: 0.2 },
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.6 }}
-                    />
-                    <span className="relative z-10">
-                      Add Event For Registration
-                    </span>
-                  </motion.button> */}
+    {isEventInCart(event.id) && (
+      <motion.div
+        className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        initial={{ scale: 0.9 }}
+        whileHover={{ scale: 1 }}
+      >
+        <X className="h-4 w-4 sm:h-5 sm:w-5" />
+      </motion.div>
+    )}
 
-                  <motion.button
-                    onClick={() => {
-                      if (isEventInCart(event.id)) {
-                        removeEvent(event.id);
-                      } else {
-                        handleAddToCart(event);
-                      }
-                    }}
-                    className={`group ml-3 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto ${isEventInCart(event.id)
-                        ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
-                        : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                      }`}
-                    whileHover={{
-                      scale: 1.03,
-                      boxShadow: isEventInCart(event.id)
-                        ? "0 8px 20px rgba(34, 197, 94, 0.3)"
-                        : "0 8px 20px rgba(37, 99, 235, 0.3)",
-                      transition: { duration: 0.2 },
-                    }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.6 }}
-                    />
+    <span
+      className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+        }`}
+    >
+      {isEventInCart(event.id) ? (
+        <>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="sm:w-4 sm:h-4"
+          >
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+          <span className="hidden xs:inline">Added for Registration</span>
+          <span className="xs:hidden">Added</span>
+        </>
+      ) : (
+        <>
+          <span className="hidden sm:inline">Add Event For Registration</span>
+          <span className="sm:hidden">Add Event</span>
+        </>
+      )}
+    </span>
+  </motion.button>
+</div>
 
-                    {/* Delete button that appears on hover */}
-                    {isEventInCart(event.id) && (
-                      <motion.div
-                        className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                        initial={{ scale: 0.9 }}
-                        whileHover={{ scale: 1 }}
-                      >
-                        <X className="h-5 w-5" />
-                      </motion.div>
-                    )}
-
-                    <span
-                      className={`relative z-10 flex items-center justify-center gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
-                        }`}
-                    >
-                      {isEventInCart(event.id) ? (
-                        <>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="16"
-                            height="16"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M20 6L9 17l-5-5" />
-                          </svg>
-                          Added for Registration
-                        </>
-                      ) : (
-                        "Add Event For Registration"
-                      )}
-                    </span>
-                  </motion.button>
                 </motion.div>
 
                 <motion.div
