@@ -537,7 +537,7 @@ export function Navbar() {
                   })}
                   <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
                     <a
-                      href="mailto:iste@cumail.in"
+                      href="mailto:ag@gmail.in"
                       onClick={handleSheetClose}
                       className="block px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center hover:scale-105 transition-transform duration-300"
                     >
