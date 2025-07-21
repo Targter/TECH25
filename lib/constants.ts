@@ -9,7 +9,7 @@ export const siteConfig = {
   date: "SEPT 10-12, 2025",
   venue: "Chandigarh University, Mohali",
   email: "gauravthakur83551@gmail.com",
-  phone: "6284001268",
+  phone: "+91 62840 01268",
   links: {
     twitter: "https://x.com/chandigarh_uni?lang=en",
     github: "https://github.com/technicia",
