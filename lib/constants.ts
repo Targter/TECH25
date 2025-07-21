@@ -8,13 +8,13 @@ export const siteConfig = {
   description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
   date: "SEPT 10-12, 2025",
   venue: "Chandigarh University, Mohali",
-  email: "gauravthakur83551@gmial.com",
+  email: "gauravthakur83551@gmail.com",
   phone: "6284001268",
   links: {
-    twitter: "https://twitter.com/technicia",
+    twitter: "https://x.com/chandigarh_uni?lang=en",
     github: "https://github.com/technicia",
-    instagram: "https://instagram.com/technicia",
-    linkedin: "https://linkedin.com/company/technicia",
+    instagram: "https://www.instagram.com/iste_cusc/",
+    linkedin: "https://www.linkedin.com/company/iste-student-chapter-chandigarh-university/posts/?feedView=all",
   },
 };
 
@@ -733,11 +733,11 @@ export const previousEvents = [
 export const faqs = [
   {
     question: "When and where is TECHNICIA'25 taking place?",
-    answer: "TECHNICIA'25 will be held from March 13-16, 2025, at the Tech Innovation Center in Asia. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
+    answer: "TECHNICIA'25 will be held from September 10-12, 2025 at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
   },
   {
     question: "How can I register for the event?",
-    answer: "Registration can be completed online through our registration page. Simply fill out the form with your details and select the competitions or workshops you wish to participate in. Early bird registration is available until January 31, 2025.",
+    answer: "Registration can be completed online through our registration page. Simply fill out the form with your details and select the competitions or workshops you wish to participate in.",
   },
   {
     question: "Is there a registration fee?",
@@ -781,7 +781,7 @@ export const faqs = [
   },
   {
     question: "Can I attend if I'm not a student?",
-    answer: "TECHNASIA'25 is primarily designed for students and young professionals. However, industry professionals are welcome to attend as mentors, judges, or workshop facilitators. Please contact us for more information about professional participation.",
+    answer: "TECHNICIA'25 is primarily designed for students and young professionals. However, industry professionals are welcome to attend as mentors, judges, or workshop facilitators. Please contact us for more information about professional participation.",
   },
   {
     question: "Is there a dress code for the event?",
@@ -793,7 +793,7 @@ export const faqs = [
   },
   {
     question: "Are there networking opportunities?",
-    answer: "Absolutely! TECHNASIA'25 includes dedicated networking sessions, industry meet-and-greets, company showcases, and informal social events. It's a great opportunity to connect with like-minded individuals and potential employers.",
+    answer: "Absolutely! TECHNICIA'25 includes dedicated networking sessions, industry meet-and-greets, company showcases, and informal social events. It's a great opportunity to connect with like-minded individuals and potential employers.",
   },
   {
     question: "Can I get a certificate of participation?",
