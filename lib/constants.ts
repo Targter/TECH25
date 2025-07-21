@@ -600,19 +600,19 @@ export const previousposter = [
   {
     year: "2025",
     image: "/previous_events/postercumun.jpg",
-    description: "CU-MUN was a student-led Model United Nations conference held at Chandigarh University, where participants engage in debates, diplomacy, and policy-making simulations across global issues.",
+    description: "CU-MUN was a student-led Model United Nations conference hosted at Chandigarh University, where participants engaged in debates, diplomacy, and policy-making simulations on pressing global issues across committees like UNGA, UNSC, UNHRC, UNCTAD, and WHO.",
     title: "CUMUN 2025"
   },
   {
     year: "2025",
     image: "/previous_events/postermind.jpg",
-    description: "MIND-SPIRINT was a student-driven tech fest that blends creativity with innovation through hands-on activities, workshops, and tech challenges focused on real-world problem solving.",
+    description: "MIND-SPRINT was a student-driven, aptitude-based treasure hunt that blended creativity with critical thinking. Designed to challenge problem-solving skills through puzzles and logical tasks, it offered an engaging and competitive environment for participants through multiple levels of intellectual challenges.",
     title: "MIND SPRINT"
   },
   {
     year: "2025",
     image: "/previous_events/posterthreejs.jpg",
-    description: "The THREE.JS workshop offered a hands-on introduction to 3D web graphics, where students learned to create immersive visual experiences using WebGL and JavaScript.",
+    description: "The THREE.JS workshop offered a hands-on introduction to 3D web graphics, where students learned to create immersive visual experiences using WebGL and JavaScript. The workshop saw enthusiastic participation from 250+ candidates in a single-day online session.",
     title: "THREE.JS WORKSHOP"
   }
 ];
