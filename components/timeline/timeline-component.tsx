@@ -481,36 +481,71 @@ export default function TimelineComponent() {
       </motion.div>
     )}
 
-    <span
-      className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
-        }`}
-    >
-      {isEventInCart(event.id) ? (
-        <>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="sm:w-4 sm:h-4"
-          >
-            <path d="M20 6L9 17l-5-5" />
-          </svg>
-          <span className="hidden xs:inline">Added for Registration</span>
-          <span className="xs:hidden">Added</span>
-        </>
-      ) : (
-        <>
-          <span className="hidden sm:inline">Add Event For Registration</span>
-          <span className="sm:hidden">Add Event</span>
-        </>
-      )}
-    </span>
+    {event.special ? (
+  <Link
+    href="https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"// change this to your redirect path
+    className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200"
+  >
+    {isEventInCart(event.id) ? (
+      <>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="sm:w-4 sm:h-4"
+        >
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+        <span className="hidden xs:inline">Added for Registration</span>
+        <span className="xs:hidden">Added</span>
+      </>
+    ) : (
+      <>
+        <span className="hidden sm:inline">Go to Special Event</span>
+        <span className="sm:hidden">Go</span>
+      </>
+    )}
+  </Link>
+) : (
+  <span
+    className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${
+      isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+    }`}
+  >
+    {isEventInCart(event.id) ? (
+      <>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="sm:w-4 sm:h-4"
+        >
+          <path d="M20 6L9 17l-5-5" />
+        </svg>
+        <span className="hidden xs:inline">Added for Registration</span>
+        <span className="xs:hidden">Added</span>
+      </>
+    ) : (
+      <>
+        <span className="hidden sm:inline">Add Event For Registration</span>
+        <span className="sm:hidden">Add Event</span>
+      </>
+    )}
+  </span>
+)}
+
   </motion.button>
 </div>
 

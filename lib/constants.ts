@@ -152,7 +152,7 @@ export const eventsByDay = {
         "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
       time: "9:00 AM - 9:00 AM (Next Day)",
       participants: "Teams of 2-4 UG/PG Students",
-      prize: "₹50,000",
+      prize: "₹1,50,000",
       difficulty: "Advanced",
       location: "D-Block Open Area",
       highlights: [
@@ -162,6 +162,8 @@ export const eventsByDay = {
         "Pitch prep and final demos"
       ],
       image: "/competition/hackchrono.png",
+      special: true,
+      
     },
     {
       id: "striver-dsa",
@@ -180,6 +182,7 @@ export const eventsByDay = {
         "Open Q&A session"
       ],
       image: "/placeholder.svg?height=600&width=800",
+      special: false,
     },
     {
       id: "tech-treasure-hunt",
@@ -198,6 +201,7 @@ export const eventsByDay = {
         "Alien-themed storyline"
       ],
       image: "/competition/treasure_hunt.png",
+      special: false,
     },
     {
       id: "tech-expo-student",
@@ -216,6 +220,7 @@ export const eventsByDay = {
         "Panel talks and pitch sessions"
       ],
       image: "/competition/tech_expo.png",
+      special: false,
     },
     {
       id: "panel-discussion",
@@ -234,6 +239,7 @@ export const eventsByDay = {
         "National development vision 2047"
       ],
       image: "/competition/ai_panel.png",
+      special: false,
     },
     {
       id: "adopt-a-planet",
@@ -252,6 +258,7 @@ export const eventsByDay = {
         "Judged pitch sessions"
       ],
       image: "/competition/adopt_planet.png",
+      special: false,
     },
     {
       id: "flight-forge",
@@ -270,6 +277,7 @@ export const eventsByDay = {
         "Engineering creativity"
       ],
       image: "/competition/flight_forge.png",
+      special: false,
     },
     {
       id: "capture-flag",
@@ -288,6 +296,7 @@ export const eventsByDay = {
         "Alien hacking theme"
       ],
       image: "/competition/cft.png",
+      special: false,
     }
   ],
 },
@@ -314,6 +323,7 @@ export const eventsByDay = {
         "Awards for Best Delegates & Verbal Mentions",
       ],
       image: "/competition/cumun.png",
+      special: false,
     },
     {
       id: "company-expo",
@@ -332,6 +342,7 @@ export const eventsByDay = {
         "Panel talks & awards",
       ],
       image: "/competition/internship_expo.png",
+      special: false,
     },
     {
       id: "non-tech-treasure-hunt",
@@ -350,6 +361,7 @@ export const eventsByDay = {
         "Fantasy-themed props & storyline",
       ],
       image: "/competition/obsidian_quill.png",
+      special: false,
     },
     {
       id: "among-us",
@@ -368,6 +380,7 @@ export const eventsByDay = {
         "Rounds with elimination",
       ],
       image: "/placeholder.svg?height=600&width=800",
+      special: false,
     },
     {
       id: "tech-csr-bootcamp",
@@ -386,6 +399,7 @@ export const eventsByDay = {
         "Implementation frameworks",
       ],
       image: "/placeholder.svg?height=600&width=800",
+      special: false,
     },
   ],
 },
@@ -412,6 +426,7 @@ export const eventsByDay = {
           "Storytelling",
         ],
         image: "/competition/film.png",
+        special: false,
       },
       {
         id: "cultural-night",
@@ -430,6 +445,7 @@ export const eventsByDay = {
           "Grand finale",
         ],
         image: "/competition/cultural.png",
+        special: false,
 
       },
 
@@ -450,6 +466,7 @@ export const eventsByDay = {
           "Agility challenges",
         ],
         image: "/competition/rc.png",
+        special: false,
       },
       {
         id: "drone-race",
@@ -468,6 +485,7 @@ export const eventsByDay = {
           "Precision flying",
         ],
         image: "/competition/drone.png",
+        special: false,
       },
     ],
   },
@@ -475,52 +493,102 @@ export const eventsByDay = {
 
 export const sponsors = [
   {
-    name: "TechCorp",
-    logo: "https://images.pexels.com/photos/5717479/pexels-photo-5717479.jpeg",
-    tier: "platinum",
-    website: "https://techcorp.example.com",
+    name: "Google",
+    logo: "/api/placeholder/200/100",
+    website: "https://google.com",
+    description:
+      "Leading the future of technology with innovative solutions in cloud computing, AI, and developer tools.",
+    partnership: "Principal Technology Partner",
+    since: 2020,
+    employees: "156,000+",
+    focus: ["Cloud Computing", "Artificial Intelligence", "Developer Tools", "Mobile Technology"],
+    contribution: "Providing cloud infrastructure and AI services for all hackathon participants",
+    benefits: ["$10,000 in Google Cloud credits", "Mentorship sessions", "Priority hiring opportunities"],
   },
   {
-    name: "InnovateX",
-    logo: "https://images.pexels.com/photos/5849592/pexels-photo-5849592.jpeg",
-    tier: "platinum",
-    website: "https://innovatex.example.com",
+    name: "Microsoft",
+    logo: "/api/placeholder/200/100",
+    website: "https://microsoft.com",
+    description: "Empowering every person and organization on the planet to achieve more through cutting-edge technology.",
+    partnership: "Cloud Infrastructure Partner",
+    since: 2019,
+    employees: "220,000+",
+    focus: ["Azure Cloud", "Office 365", "AI & Machine Learning", "Enterprise Solutions"],
+    contribution: "Azure cloud services and development tools for innovative project development",
+    benefits: ["$15,000 in Azure credits", "Technical workshops", "Direct access to Microsoft engineers"],
   },
   {
-    name: "FutureTech",
-    logo: "https://images.pexels.com/photos/6266966/pexels-photo-6266966.jpeg",
-    tier: "gold",
-    website: "https://futuretech.example.com",
+    name: "Apple",
+    logo: "/api/placeholder/200/100",
+    website: "https://apple.com",
+    description: "Creating innovative products that enrich people's lives and push the boundaries of technology.",
+    partnership: "Innovation Partner",
+    since: 2021,
+    employees: "164,000+",
+    focus: ["iOS Development", "Hardware Innovation", "User Experience", "Privacy Technology"],
+    contribution: "Supporting mobile app development and user experience innovation",
+    benefits: ["iOS development resources", "Design thinking workshops", "App Store promotion opportunities"],
   },
   {
-    name: "DigitalWave",
-    logo: "https://images.pexels.com/photos/5717410/pexels-photo-5717410.jpeg",
-    tier: "gold",
-    website: "https://digitalwave.example.com",
+    name: "Amazon",
+    logo: "/api/placeholder/200/100",
+    website: "https://amazon.com",
+    description: "Building the future of e-commerce, cloud computing, and artificial intelligence solutions.",
+    partnership: "E-commerce & AWS Partner",
+    since: 2018,
+    employees: "1,500,000+",
+    focus: ["AWS Cloud", "E-commerce", "Logistics", "Machine Learning"],
+    contribution: "AWS infrastructure and e-commerce platform integration support",
+    benefits: ["$20,000 in AWS credits", "E-commerce APIs", "Logistics optimization tools"],
   },
   {
-    name: "CloudNine",
-    logo: "https://images.pexels.com/photos/5717416/pexels-photo-5717416.jpeg",
-    tier: "silver",
-    website: "https://cloudnine.example.com",
+    name: "Meta",
+    logo: "/api/placeholder/200/100",
+    website: "https://meta.com",
+    description: "Connecting the world through social technology and building the next generation of social experiences.",
+    partnership: "Social Innovation Partner",
+    since: 2022,
+    employees: "86,000+",
+    focus: ["Social Media", "VR/AR Technology", "Metaverse", "Community Building"],
+    contribution: "VR/AR development kits and social platform integration tools",
+    benefits: ["Meta Quest development kits", "AR/VR workshops", "Social media API access"],
   },
   {
-    name: "CodeMasters",
-    logo: "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg",
-    tier: "silver",
-    website: "https://codemasters.example.com",
+    name: "Netflix",
+    logo: "/api/placeholder/200/100",
+    website: "https://netflix.com",
+    description: "Revolutionizing entertainment through streaming technology and original content creation.",
+    partnership: "Media Technology Partner",
+    since: 2023,
+    employees: "12,800+",
+    focus: ["Streaming Technology", "Content Delivery", "Data Analytics", "User Experience"],
+    contribution: "Streaming technology expertise and content delivery network solutions",
+    benefits: ["Streaming APIs", "Content recommendation algorithms", "Media processing tools"],
   },
   {
-    name: "DevHub",
-    logo: "https://images.pexels.com/photos/5849544/pexels-photo-5849544.jpeg",
-    tier: "bronze",
-    website: "https://devhub.example.com",
+    name: "Tesla",
+    logo: "/api/placeholder/200/100",
+    website: "https://tesla.com",
+    description:
+      "Accelerating the world's transition to sustainable energy through innovative electric vehicles and clean energy solutions.",
+    partnership: "Sustainable Technology Partner",
+    since: 2023,
+    employees: "140,000+",
+    focus: ["Electric Vehicles", "Battery Technology", "Autonomous Driving", "Clean Energy"],
+    contribution: "Sustainable technology solutions and autonomous driving datasets",
+    benefits: ["EV charging network access", "Battery technology insights", "Sustainability workshops"],
   },
   {
-    name: "TechStart",
-    logo: "https://images.pexels.com/photos/5849551/pexels-photo-5849551.jpeg",
-    tier: "bronze",
-    website: "https://techstart.example.com",
+    name: "Spotify",
+    logo: "/api/placeholder/200/100",
+    website: "https://spotify.com",
+    description: "Transforming the way people discover and enjoy music through innovative audio streaming technology.",
+    partnership: "Audio Technology Partner",
+    since: 2024,
+    employees: "9,800+",
+    focus: ["Audio Streaming", "Music Discovery", "Podcast Technology", "Personalization"],
+    contribution: "Audio streaming APIs and music recommendation technology",
+    benefits: ["Spotify Web API access", "Audio analysis tools", "Music recommendation engines"],
   },
 ];
 
