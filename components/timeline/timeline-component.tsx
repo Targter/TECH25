@@ -481,36 +481,19 @@ export default function TimelineComponent() {
       </motion.div>
     )}
 
-    {event.special ? (
+{event.special ? (
   <Link
-    href="https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"// change this to your redirect path
-    className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200"
+    href={
+      event.id === "cumun" 
+        ? "https://mun-iste.vercel.app/" 
+        : event.id === "hackathon"
+        ? "https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"
+        : "#"
+    }
+    className="relative z-10 flex items-center justify-center gap-1 sm:gap-2"
   >
-    {isEventInCart(event.id) ? (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="sm:w-4 sm:h-4"
-        >
-          <path d="M20 6L9 17l-5-5" />
-        </svg>
-        <span className="hidden xs:inline">Added for Registration</span>
-        <span className="xs:hidden">Added</span>
-      </>
-    ) : (
-      <>
-        <span className="hidden sm:inline">Go to Special Event</span>
-        <span className="sm:hidden">Go</span>
-      </>
-    )}
+    <span className="hidden sm:inline">Go to Special Event</span>
+    <span className="sm:hidden">Go</span>
   </Link>
 ) : (
   <span

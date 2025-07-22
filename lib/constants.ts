@@ -323,7 +323,7 @@ export const eventsByDay = {
         "Awards for Best Delegates & Verbal Mentions",
       ],
       image: "/competition/cumun.png",
-      special: false,
+      special: true,
     },
     {
       id: "company-expo",
