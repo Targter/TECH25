@@ -266,7 +266,7 @@ function PreviousPosterMain() {
                             <div className="relative text-white/70 text-xs sm:text-sm md:text-base 
                            group-hover:text-white/85 transition-colors duration-300 inline-block
                            px-1 sm:px-0">
-                                <span className="relative z-10">Be part of the biggest 2025 tech event</span>
+                                <span className="relative z-10">Be A part of the biggest 2025 tech event</span>
                                 <div className="absolute inset-0 bg-gradient-to-r from-purple-400/20 to-blue-400/20 
                                scale-x-0 group-hover:scale-x-100 rounded-full
                                transition-transform duration-400 ease-out origin-left" />

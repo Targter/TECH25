@@ -454,7 +454,7 @@ export function Navbar() {
               asChild
               className="hidden xl:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 2xl:px-6 py-3 text-sm 2xl:text-base flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
             >
-              <a href="mailto:contact@example.com">Contact Us</a>
+              <a href="mailto:iste@cumail.in">Contact Us</a>
             </Button>
 
             {/* Contact Mobile Button - Tablet and below */}

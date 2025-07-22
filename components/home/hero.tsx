@@ -266,7 +266,7 @@ export function HeroSection() {
           </div>
 
           <h1
-            className="text-4xl md:text-8xl lg:text-7xl font-black leading-tight opacity-100 transition-none"
+            className="text-4xl md:text-8xl lg:text-7xl font-black sm:py-3 leading-tight opacity-100 transition-none"
             style={{
               minHeight: 'unset',
               display: 'flex',
@@ -276,14 +276,14 @@ export function HeroSection() {
               animationFillMode: 'forwards'
             }}
           >
-            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-green-500 to-emerald-400">
-              TECHNICIA&apos;25
+            <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r sm:py-3 from-green-400 via-green-500 to-emerald-400">
+              TECHNICIA&apos; 25
             </span>
           </h1>
         </div>
 
 
-        {/* Stats grid - Fixed dimensions to prevent CLS - Now responsive for small devices */}
+        {/* Stats grid - Fixed dimensions to prevent CLS */}
         <div
           className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-10 w-full max-w-sm sm:max-w-md md:max-w-xl mx-auto opacity-0 animate-fadeIn place-items-center"
           style={{
