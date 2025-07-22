@@ -403,7 +403,7 @@ const TeamsPage = () => {
             Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Team</span>
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto drop-shadow">
-            Dedicated individuals working together to create an exceptional MUN conference experience in the cosmos of diplomacy
+            Dedicated minds crafting an extraordinary tech fest — where innovation, creativity, and collaboration unite at Technicia.
           </p>
           <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mx-auto mt-6 shadow-lg"></div>
         </div>
