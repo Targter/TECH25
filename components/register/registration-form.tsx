@@ -135,6 +135,7 @@ const Registration = () => {
       events: events.map((event) => ({
         id: event.id,
         title: event.title,
+        // time: event.time,
       })),
     };
 
