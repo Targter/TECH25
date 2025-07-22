@@ -8,8 +8,8 @@ export const siteConfig = {
   description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
   date: "SEPT 10-12, 2025",
   venue: "Chandigarh University, Mohali",
-  email: "gauravthakur83551@gmail.com",
-  phone: "+91 62840 01268",
+  email: "iste@cumail.in",
+  phone: "+91 123456789",
   links: {
     twitter: "https://x.com/chandigarh_uni?lang=en",
     github: "https://github.com/technicia",
