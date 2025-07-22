@@ -233,7 +233,7 @@ export default function SponsorsGrid() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            We&apos;re proud to collaborate with industry leaders who fuel innovation and provide unmatched support to our hackathons.
+            We&apos;re honored to join hands with visionary sponsors and partners who elevate Technicia through innovation, support, and shared passion for technology.
           </motion.p>
         </motion.div>
 
