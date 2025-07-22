@@ -1,15 +1,41 @@
 // "use client";
 
 import Link from "next/link";
-import { Twitter, Github, Linkedin, Facebook, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
-import { siteConfig, navLinks } from "@/lib/constants";
+import { Twitter, Linkedin, Facebook, Mail, Phone, MapPin} from "lucide-react";
+import { siteConfig } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import Image from 'next/image';
+ const navLinks2 = [
+  {
+    title: "Home",
+    href: "/",
+  },
+ 
+  {
+    title: "Timeline",
+    href: "/timeline",
+  },
+  {
+    title: "Sponsors",
+    href: "/sponsors2",
+  },
+  {
+    title: "Registration",
+    href: "/register",
+  },
+  {
+    title: "Previous Events",
+    href: "/previous-events",
+  },
+  {
+    title: "FAQs",
+    href: "/#faqs",
+  },
+];
 
 const socialIcons: Record<string, React.ReactNode> = {
   twitter: <Twitter className="h-5 w-5" />,
-  github: <Github className="h-5 w-5" />,
   linkedin: <Linkedin className="h-5 w-5" />,
   facebook: <Facebook className="h-5 w-5" />,
 };
@@ -89,7 +115,7 @@ export function Footer() {
                 <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-gradient-to-r from-green-400 to-green-500 mt-1"></div>
               </h3>
               <nav className="flex flex-col space-y-2">
-                {navLinks.slice(0, 4).map((link, index) => (
+                {navLinks2.slice(0, 4).map((link, index) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -110,7 +136,7 @@ export function Footer() {
                 <div className="absolute bottom-0 left-0 w-8 h-0.5 bg-gradient-to-r from-green-400 to-green-500 mt-1"></div>
               </h3>
               <nav className="flex flex-col space-y-2">
-                {navLinks.slice(4).map((link, index) => (
+                {navLinks2.slice(4).map((link, index) => (
                   <Link
                     key={link.href}
                     href={link.href}
@@ -181,22 +207,7 @@ export function Footer() {
               </p>
             </div>
 
-            <div className="flex space-x-6">
-              <Link
-                href="/privacy"
-                className="text-gray-400 hover:text-green-400 transition-all duration-300 text-sm group flex items-center gap-1"
-              >
-                Privacy Policy
-                <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-              <Link
-                href="/terms"
-                className="text-gray-400 hover:text-green-400 transition-all duration-300 text-sm group flex items-center gap-1"
-              >
-                Terms of Service
-                <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Link>
-            </div>
+            
           </div>
         </div>
 
