@@ -160,7 +160,7 @@
 //               Your Cart is Empty
 //             </h2>
 //             <p className="text-gray-300 mb-6">
-//               You haven&apos;t selected any events to register for.
+//               You havent selected any events to register for.
 //             </p>
 //             <Link href="/timeline">
 //               <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-black">
@@ -800,7 +800,7 @@ const Registration = () => {
               Your Cart is Empty
             </h2>
             <p className="text-gray-300 mb-6">
-              You haven't selected any events to register for.
+              You havent selected any events to register for.
             </p>
             <Link href="/timeline">
               <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-black">
@@ -835,7 +835,7 @@ const Registration = () => {
               Registration Successful!
             </h2>
             <p className="text-gray-300 mb-6">
-              Thank you for registering for TECHNICIA'25. Check your email for
+              Thank you for registering for TECHNICIA&apos;25. Check your email for
               confirmation.
             </p>
             <div className="space-y-3">
@@ -872,7 +872,7 @@ const Registration = () => {
       >
         <motion.div variants={itemVariants} className="text-center mb-10">
           <h1 className="text-5xl font-extrabold text-emerald-400 mb-4 tracking-wide">
-            TECHNICIA'25 Registration
+            TECHNICIA&apos;25 Registration
           </h1>
           <p className="text-xl text-emerald-200">
             Complete your registration for the selected events
