@@ -239,7 +239,7 @@ export function Navbar() {
                 isScrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
               )}
             >
-              TECHNICIA
+              TECHNICIA&apos; 25
             </span>
           </Link>
 
