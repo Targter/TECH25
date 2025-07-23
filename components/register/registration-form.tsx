@@ -775,22 +775,33 @@ const Registration = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       clearCart();
-    } catch (error) {
-      console.error("Error during submission:", error);
-      setIsSubmitting(false);
-      const errorMessage =
-        typeof error === "string"
-          ? error
-          : error instanceof Error && error.message
-          ? error.message
-          : "Registration failed. Please try again.";
-      toast.error(errorMessage, {
-        position: "bottom-center",
-        style: {
-          background: "#ef4444",
-          color: "#fff",
-        },
-      });
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) {
+        console.error(
+          "Error during submission:",
+          error.response?.data || error
+        );
+        setIsSubmitting(false);
+        const errorMessage =
+          error.response?.data?.message ||
+          "Registration failed. Please try again.";
+        toast.error(errorMessage, {
+          position: "bottom-center",
+          style: {
+            background: "#ef4444",
+            color: "#fff",
+          },
+        });
+      } else {
+        setIsSubmitting(false);
+        toast.error("Registration failed. Please try again.", {
+          position: "bottom-center",
+          style: {
+            background: "#ef4444",
+            color: "#fff",
+          },
+        });
+      }
     }
   };
 
