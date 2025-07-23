@@ -13,7 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, Volume2, VolumeX, Play } from "lucide-react";
+import { Menu } from "lucide-react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
@@ -37,25 +37,6 @@ export function Navbar() {
   const pathname = usePathname();
   const audioElementRef = useRef<HTMLAudioElement | null>(null);
 
-  const toggleAudioIndicator = async () => {
-    const audio = audioElementRef.current;
-    if (!audio || !audioReady) return;
-
-    try {
-      if (isAudioPlaying) {
-        audio.pause();
-        setIsAudioPlaying(false);
-      } else {
-        await audio.play();
-        setIsAudioPlaying(true);
-        setAutoplayBlocked(false);
-      }
-    } catch (error) {
-      console.log("Could not play audio:", error);
-      setIsAudioPlaying(false);
-      setAutoplayBlocked(true);
-    }
-  };
 
   // Handle client-side mounting
   useEffect(() => {
@@ -65,23 +46,23 @@ export function Navbar() {
   // Initialize audio and attempt autoplay
   useEffect(() => {
     if (!isClient) return;
-    
+
     const audio = audioElementRef.current;
     if (!audio) return;
 
     const handleCanPlay = async () => {
       setAudioReady(true);
-      
+
       // Attempt autoplay immediately when audio is ready
       try {
         // Set volume to a reasonable level
         audio.volume = 0.3;
-        
+
         await audio.play();
         setIsAudioPlaying(true);
         setAutoplayBlocked(false);
         console.log("Autoplay successful!");
-        
+
       } catch (error) {
         console.log("Autoplay blocked:", error);
         setIsAudioPlaying(false);
@@ -132,7 +113,7 @@ export function Navbar() {
         await audio.play();
         setIsAudioPlaying(true);
         setAutoplayBlocked(false);
-        
+
         // Remove listeners after successful play
         document.removeEventListener('click', handleFirstInteraction);
         document.removeEventListener('keydown', handleFirstInteraction);
@@ -160,7 +141,7 @@ export function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isClient]);
@@ -178,7 +159,7 @@ export function Navbar() {
         if (element) {
           const offsetTop = element.offsetTop;
           const offsetHeight = element.offsetHeight;
-          
+
           if (scrollPos >= offsetTop && scrollPos < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -189,7 +170,7 @@ export function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     handleScroll();
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isClient]);
 
@@ -212,32 +193,53 @@ export function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            
-            
             className="flex items-center space-x-1.5 sm:space-x-2 cursor-pointer select-none flex-shrink-0"
+            prefetch={false}
           >
             <motion.div
               initial={{ rotate: -10 }}
               animate={{ rotate: 10 }}
-              transition={{ repeat: Infinity, duration: 2, repeatType: "reverse" }}
+              transition={{
+                repeat: Infinity,
+                duration: 2,
+                repeatType: "reverse",
+                ease: "easeInOut" // Smoother animation for better performance
+              }}
+              style={{
+                // Force GPU acceleration and contain layout shifts
+                transform: 'translateZ(0)',
+                willChange: 'transform'
+              }}
             >
               <Image
                 src="/logo/technisia.jpg"
                 alt="Technisia Logo"
-                width={isScrolled ? 32 : 40}
-                height={isScrolled ? 32 : 40}
-                className="block sm:w-auto sm:h-auto"
+                width={40}
+                height={40}
+                sizes="(max-width: 768px) 32px, 40px"
+                priority // LCP optimization - loads logo immediately
+                className="block transition-all duration-200 ease-in-out"
                 style={{
-                  width: isScrolled ? '32px' : '40px',
-                  height: isScrolled ? '32px' : '40px'
+                  // Prevent CLS by reserving space and using transform instead of width/height changes
+                  width: '40px',
+                  height: '40px',
+                  transform: isScrolled ? 'scale(0.8)' : 'scale(1)',
+                  transformOrigin: 'center'
                 }}
+                placeholder="blur"
+                blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
               />
             </motion.div>
             <span
               className={cn(
-                "font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 select-none whitespace-nowrap",
+                "font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-cyan-500 select-none whitespace-nowrap transition-all duration-200 ease-in-out",
                 isScrolled ? "text-base sm:text-lg" : "text-lg sm:text-xl"
               )}
+              style={{
+                // Prevent text layout shifts
+                lineHeight: '1.2',
+                minWidth: 'max-content'
+              }}
             >
               TECHNICIA&apos; 25
             </span>
@@ -262,8 +264,8 @@ export function Navbar() {
                     link.special
                       ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:scale-105 shadow-lg"
                       : isActive
-                      ? "text-white bg-white/10"
-                      : "text-white/80 hover:text-white hover:bg-white/10"
+                        ? "text-white bg-white/10"
+                        : "text-white/80 hover:text-white hover:bg-white/10"
                   )}
                 >
                   {link.title}
@@ -306,248 +308,110 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Right side controls container */}
+          {/* Right side controls container
           <div className="flex items-center gap-1 sm:gap-2">
             {/* Audio Button - Responsive sizing */}
-            <button 
-              onClick={toggleAudioIndicator} 
-              className={cn(
-                "group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full transition-all duration-300 border flex items-center",
-                // Mobile sizing
-                "px-2 py-1.5 text-xs",
-                // SM and up sizing
-                "sm:px-3 sm:py-1.5 sm:text-xs",
-                audioReady 
-                  ? isAudioPlaying
-                    ? "bg-gradient-to-r from-slate-800 to-slate-700 border-cyan-400/50 shadow-md shadow-cyan-400/20 hover:scale-105"
-                    : "bg-slate-900/60 border-slate-600/50 hover:bg-slate-800/60 hover:border-cyan-400/30 hover:scale-105"
-                  : "opacity-50 cursor-not-allowed bg-slate-900/30 border-slate-700/30"
-              )}
-              title={
-                !audioReady 
-                  ? "Audio loading..." 
-                  : isAudioPlaying 
-                  ? "Pause ambient" 
-                  : "Play ambient"
-              }
-              disabled={!audioReady}
-            >
-              {/* Subtle Background Animation */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-blue-400/10 rounded-full"
-                animate={{
-                  opacity: isAudioPlaying && audioReady ? [0.2, 0.4, 0.2] : 0,
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: isAudioPlaying && audioReady ? Infinity : 0,
-                  ease: "easeInOut"
-                }}
-              />
 
-              {/* Left Icon with Gentle Animation */}
-              <motion.div
-                className="relative inline-flex mr-1 sm:mr-1.5 flex-shrink-0"
-                animate={{
-                  scale: isAudioPlaying && audioReady ? [1, 1.1, 1] : 1,
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: isAudioPlaying && audioReady ? Infinity : 0,
-                  ease: "easeInOut"
-                }}
+
+          {/* Contact Button - Desktop only */}
+          <Button
+            asChild
+            className="hidden xl:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 2xl:px-6 py-3 text-sm 2xl:text-base flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
+          >
+            <a href="mailto:iste@cumail.in">Contact Us</a>
+          </Button>
+
+          {/* Contact Mobile Button - Tablet and below */}
+          <Button
+            asChild
+            className="hidden sm:flex xl:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-3 py-2.5 text-sm flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
+          >
+            <a href="mailto:contact@example.com">Contact</a>
+          </Button>
+
+          {/* Mobile Menu */}
+          <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+            <SheetTrigger asChild className="xl:hidden flex-shrink-0">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-white hover:bg-white/10 transition-colors duration-300 p-2 sm:p-2.5 w-8 h-8 sm:w-10 sm:h-10"
               >
-                {!audioReady ? (
-                  <VolumeX className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-400" />
-                ) : isAudioPlaying ? (
-                  <Volume2 className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" />
-                ) : (
-                  <Play className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-slate-300" />
-                )}
-              </motion.div>
-
-              {/* Text with Sliding Animation - Hide on very small screens */}
-              <span className="relative overflow-hidden text-xs hidden min-[475px]:inline-flex">
-                <motion.div
-                  className="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12"
-                >
-                  {!audioReady 
-                    ? "Loading" 
-                    : isAudioPlaying 
-                    ? "Ambient" 
-                    : "Space"
-                  }
-                </motion.div>
-                <div className="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">
-                  {!audioReady 
-                    ? "..." 
-                    : isAudioPlaying 
-                    ? "Pause" 
-                    : "🚀 Play"
-                  }
-                </div>
-              </span>
-
-              {/* Minimal Audio Visualization - Smaller on mobile */}
-              <div className="flex items-center space-x-0.5 ml-1 sm:ml-1.5 flex-shrink-0">
-                {[1, 2].map((bar) => (
-                  <motion.div
-                    key={bar}
-                    className={cn(
-                      "w-0.5 rounded-sm",
-                      audioReady 
-                        ? isAudioPlaying 
-                          ? "bg-cyan-400" 
-                          : "bg-slate-500"
-                        : "bg-slate-600"
-                    )}
-                    initial={{ height: 2 }}
-                    animate={{
-                      height: isAudioPlaying && audioReady
-                        ? [2, 6, 4, 8, 2]
-                        : 2
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: isAudioPlaying && audioReady ? Infinity : 0,
-                      delay: bar * 0.2,
-                      ease: "easeInOut"
-                    }}
-                    style={{
-                      height: isAudioPlaying && audioReady ? undefined : '2px'
-                    }}
+                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="bg-black/95 border-white/10 w-full max-w-sm sm:max-w-md"
+            >
+              <SheetHeader className="border-b border-white/20 pb-4">
+                <SheetTitle className="text-purple-400 text-lg sm:text-xl font-bold flex items-center gap-2">
+                  <Image
+                    src="/logo/technisia.jpg"
+                    alt="Technisia Logo"
+                    width={28}
+                    height={28}
+                    className="sm:w-8 sm:h-8"
                   />
-                ))}
-              </div>
+                  Menu
+                </SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-2 sm:gap-3 mt-4 sm:mt-6">
+                {navLinks.map((link) => {
+                  const isActive = link.isRoute
+                    ? pathname === link.href
+                    : activeSection === link.href;
 
-              {/* Subtle Glow Effect */}
-              {!isAudioPlaying && audioReady && (
-                <motion.div
-                  className="absolute inset-0 rounded-full border border-cyan-400/30"
-                  animate={{
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-              )}
-
-              {/* Hidden Audio Element */}
-              <audio
-                ref={audioElementRef}
-                className="hidden"
-                src="/audio/loop.mp3"
-                loop
-                preload="auto"
-                onError={() => {
-                  console.log("Audio file not found: /audio/loop.mp3");
-                  setAudioReady(false);
-                }}
-              />
-            </button>
-
-            {/* Contact Button - Desktop only */}
-            <Button
-              asChild
-              className="hidden xl:flex bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-4 2xl:px-6 py-3 text-sm 2xl:text-base flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
-            >
-              <a href="mailto:iste@cumail.in">Contact Us</a>
-            </Button>
-
-            {/* Contact Mobile Button - Tablet and below */}
-            <Button
-              asChild
-              className="hidden sm:flex xl:hidden bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 text-white px-3 py-2.5 text-sm flex-shrink-0 transition-transform duration-300 shadow-lg hover:shadow-purple-600/40"
-            >
-              <a href="mailto:contact@example.com">Contact</a>
-            </Button>
-
-            {/* Mobile Menu */}
-            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-              <SheetTrigger asChild className="xl:hidden flex-shrink-0">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-white hover:bg-white/10 transition-colors duration-300 p-2 sm:p-2.5 w-8 h-8 sm:w-10 sm:h-10"
-                >
-                  <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent 
-                side="right" 
-                className="bg-black/95 border-white/10 w-full max-w-sm sm:max-w-md"
-              >
-                <SheetHeader className="border-b border-white/20 pb-4">
-                  <SheetTitle className="text-purple-400 text-lg sm:text-xl font-bold flex items-center gap-2">
-                    <Image 
-                      src="/logo/technisia.jpg" 
-                      alt="Technisia Logo" 
-                      width={28} 
-                      height={28}
-                      className="sm:w-8 sm:h-8"
-                    />
-                    Menu
-                  </SheetTitle>
-                </SheetHeader>
-                <nav className="flex flex-col gap-2 sm:gap-3 mt-4 sm:mt-6">
-                  {navLinks.map((link) => {
-                    const isActive = link.isRoute
-                      ? pathname === link.href
-                      : activeSection === link.href;
-
-                    return link.isRoute ? (
-                      <Link
-                        key={link.href}
-                        href={link.href}
-                        onClick={handleSheetClose}
-                        className={cn(
-                          "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
-                          link.special
-                            ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:scale-105"
-                            : isActive
-                            ? "text-purple-400 bg-purple-950/30"
-                            : "text-white/80 hover:text-white hover:bg-white/10"
-                        )}
-                      >
-                        {link.title}
-                      </Link>
-                    ) : (
-                      <ScrollLink
-                        key={link.href}
-                        to={link.href}
-                        spy
-                        smooth
-                        offset={-100}
-                        duration={500}
-                        onClick={handleSheetClose}
-                        onSetActive={() => setActiveSection(link.href)}
-                        className={cn(
-                          "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
-                          isActive
-                            ? "text-purple-400 bg-purple-950/30"
-                            : "text-white/80 hover:text-white hover:bg-white/10"
-                        )}
-                      >
-                        {link.title}
-                      </ScrollLink>
-                    );
-                  })}
-                  <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
-                    <a
-                      href="mailto:contact@example.com"
+                  return link.isRoute ? (
+                    <Link
+                      key={link.href}
+                      href={link.href}
                       onClick={handleSheetClose}
-                      className="block px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center hover:scale-105 transition-transform duration-300"
+                      className={cn(
+                        "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
+                        link.special
+                          ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg hover:scale-105"
+                          : isActive
+                            ? "text-purple-400 bg-purple-950/30"
+                            : "text-white/80 hover:text-white hover:bg-white/10"
+                      )}
                     >
-                      Contact Us
-                    </a>
-                  </div>
-                </nav>
-              </SheetContent>
-            </Sheet>
-          </div>
+                      {link.title}
+                    </Link>
+                  ) : (
+                    <ScrollLink
+                      key={link.href}
+                      to={link.href}
+                      spy
+                      smooth
+                      offset={-100}
+                      duration={500}
+                      onClick={handleSheetClose}
+                      onSetActive={() => setActiveSection(link.href)}
+                      className={cn(
+                        "relative px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer select-none transition-all duration-300 group",
+                        isActive
+                          ? "text-purple-400 bg-purple-950/30"
+                          : "text-white/80 hover:text-white hover:bg-white/10"
+                      )}
+                    >
+                      {link.title}
+                    </ScrollLink>
+                  );
+                })}
+                <div className="border-t border-white/20 pt-3 sm:pt-4 mt-3 sm:mt-4">
+                  <a
+                    href="mailto:contact@example.com"
+                    onClick={handleSheetClose}
+                    className="block px-3 sm:px-4 py-3 sm:py-3.5 rounded-md text-sm sm:text-base font-medium cursor-pointer bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center hover:scale-105 transition-transform duration-300"
+                  >
+                    Contact Us
+                  </a>
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
+          {/* </div> */}
         </div>
       </header>
     </>
