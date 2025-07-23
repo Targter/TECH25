@@ -183,7 +183,7 @@ const TeamsPage = () => {
       position: "Director General",
       department: "",
       bio: "Overseeing committee operations and ensuring seamless conference execution.",
-      image: "/team/Srishti.jpg",
+      image: "/team/Srishti.JPG",
       icon: Sparkles,
     },
     {
@@ -192,7 +192,7 @@ const TeamsPage = () => {
       position: "Deputy Director General",
       department: "",
       bio: "Coordinating between committees and ensuring seamless operational excellence.",
-      image: "/team/jatin Mittal.png",
+      image: "/team/Jatin Mittal.png",
       icon: Zap,
     },
   ];
