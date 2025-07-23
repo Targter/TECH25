@@ -214,8 +214,8 @@ export function Navbar() {
               <Image
                 src="/logo/technisia.jpg"
                 alt="Technisia Logo"
-                width={40}
-                height={40}
+                width={70}
+                height={70}
                 sizes="(max-width: 768px) 32px, 40px"
                 priority // LCP optimization - loads logo immediately
                 className="block transition-all duration-200 ease-in-out"
