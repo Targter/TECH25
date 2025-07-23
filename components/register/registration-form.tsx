@@ -775,12 +775,15 @@ const Registration = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       clearCart();
-    } catch (error: any) {
-      console.error("Error during submission:", error.response?.data || error);
+    } catch (error) {
+      console.error("Error during submission:", error);
       setIsSubmitting(false);
       const errorMessage =
-        error.response?.data?.message ||
-        "Registration failed. Please try again.";
+        typeof error === "string"
+          ? error
+          : error instanceof Error && error.message
+          ? error.message
+          : "Registration failed. Please try again.";
       toast.error(errorMessage, {
         position: "bottom-center",
         style: {
@@ -835,8 +838,8 @@ const Registration = () => {
               Registration Successful!
             </h2>
             <p className="text-gray-300 mb-6">
-              Thank you for registering for TECHNICIA&apos;25. Check your email for
-              confirmation.
+              Thank you for registering for TECHNICIA&apos;25. Check your email
+              for confirmation.
             </p>
             <div className="space-y-3">
               <Link href="/timeline">
