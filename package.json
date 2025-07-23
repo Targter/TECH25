@@ -60,6 +60,7 @@
     "react-day-picker": "^9.7.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",
+    "react-hot-toast": "^2.5.2",
     "react-resizable-panels": "^2.1.9",
     "react-router-dom": "^7.6.3",
     "react-scroll": "^1.9.3",

@@ -3,7 +3,7 @@ import { Calendar } from "lucide-react";
 import Link from "next/link";
 import { useCartStore } from "@/store/data";
 import { motion } from "framer-motion";
-
+  
 export default function RegistrationIndicator() {
   const { events } = useCartStore();
   if (events.length === 0) return;
