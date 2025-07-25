@@ -18,7 +18,7 @@ import Image from 'next/image';
   },
   {
     title: "Sponsors",
-    href: "/sponsors2",
+    href: "/sponsors",
   },
   {
     title: "Registration",
