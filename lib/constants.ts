@@ -6,13 +6,12 @@ export const siteConfig = {
   logo:"/logo/logotechnisia.svg",
   
   description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
-  date: "SEPT 10-12, 2025",
+  date: "10th - 12th September 2025",
   venue: "Chandigarh University, Mohali",
   email: "iste@cumail.in",
-  phone: "+91 123456789",
+  phone: "+91 9729507672",
   links: {
     twitter: "https://x.com/chandigarh_uni?lang=en",
-    github: "https://github.com/technicia",
     instagram: "https://www.instagram.com/iste_cusc/",
     linkedin: "https://www.linkedin.com/company/iste-student-chapter-chandigarh-university/posts/?feedView=all",
   },
