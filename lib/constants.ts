@@ -57,7 +57,7 @@ export const competitions = [
     title: "CU MUN",
       description: "Showcase your artificial intelligence prowess in this cutting-edge competition where innovation meets technology.",
     date: "March 15, 2025",
-    time: "09:00 AM - 06:00 PM",
+    time: "3 day event",
     location: "Main Auditorium, Tech Block",
     participants: "150+ Teams",
     prize: "₹50,000",
@@ -149,7 +149,7 @@ export const eventsByDay = {
       title: "HackChrono: The Technicia’ 48-hour Challenge",
       description:
         "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
-      time: "9:00 AM - 9:00 AM (Next Day)",
+      time: "3 days (September 10-12)",
       participants: "Teams of 2-4 UG/PG Students",
       prize: "₹1,50,000",
       difficulty: "Advanced",
@@ -160,7 +160,7 @@ export const eventsByDay = {
         "Real-world problem statements",
         "Pitch prep and final demos"
       ],
-      image: "/competition/hackchrono.png",
+      image: "/competition/hackathon.png",
       special: true,
       
     },
@@ -180,7 +180,7 @@ export const eventsByDay = {
         "Fireside chat",
         "Open Q&A session"
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/striver.png",
       special: false,
     },
     {
@@ -199,7 +199,7 @@ export const eventsByDay = {
         "Timed decoding levels",
         "Alien-themed storyline"
       ],
-      image: "/competition/treasure_hunt.png",
+      image: "/competition/techtr.png",
       special: false,
     },
     {
@@ -218,7 +218,7 @@ export const eventsByDay = {
         "CSR partnerships and evaluation",
         "Panel talks and pitch sessions"
       ],
-      image: "/competition/tech_expo.png",
+      image: "/competition/expost.png",
       special: false,
     },
     {
@@ -226,7 +226,7 @@ export const eventsByDay = {
       title: "Panel Discussion: Viksit Bharat 2047",
       description:
         "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
-      time: "10:00 AM - 5:00 PM",
+      time: "10:00 AM - 12:00 AM",
       participants: "Open to All",
       prize: "Knowledge & Certification",
       difficulty: "All Levels",
@@ -256,7 +256,7 @@ export const eventsByDay = {
         "Team presentations",
         "Judged pitch sessions"
       ],
-      image: "/competition/adopt_planet.png",
+      image: "/competition/adopt.png",
       special: false,
     },
     {
@@ -275,7 +275,7 @@ export const eventsByDay = {
         "Aerodynamics application",
         "Engineering creativity"
       ],
-      image: "/competition/flight_forge.png",
+      image: "/competition/flight.png",
       special: false,
     },
     {
@@ -283,7 +283,7 @@ export const eventsByDay = {
       title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
       description:
         "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
-      time: "10:00 AM - 10:00 AM (Next Day)",
+      time: "10:00 AM - 5:00 PM (2 days)",
       participants: "Teams of 2–4",
       prize: "₹25,000",
       difficulty: "Advanced",
@@ -294,7 +294,7 @@ export const eventsByDay = {
         "Mentorship support",
         "Alien hacking theme"
       ],
-      image: "/competition/cft.png",
+      image: "/competition/capture.png",
       special: false,
     }
   ],
@@ -321,7 +321,7 @@ export const eventsByDay = {
         "Leadership and diplomacy",
         "Awards for Best Delegates & Verbal Mentions",
       ],
-      image: "/competition/cumun.png",
+      image: "/competition/mun.png",
       special: true,
     },
     {
@@ -340,7 +340,7 @@ export const eventsByDay = {
         "CSR project mentoring",
         "Panel talks & awards",
       ],
-      image: "/competition/internship_expo.png",
+      image: "/competition/expoco.png",
       special: false,
     },
     {
@@ -359,7 +359,7 @@ export const eventsByDay = {
         "Live skit duels",
         "Fantasy-themed props & storyline",
       ],
-      image: "/competition/obsidian_quill.png",
+      image: "/competition/nontechtr.png",
       special: false,
     },
     {
@@ -378,7 +378,7 @@ export const eventsByDay = {
         "Group deception and deduction",
         "Rounds with elimination",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/among.png",
       special: false,
     },
     {
@@ -397,7 +397,7 @@ export const eventsByDay = {
         "Social impact brainstorming",
         "Implementation frameworks",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/boot.png",
       special: false,
     },
   ],
@@ -424,7 +424,7 @@ export const eventsByDay = {
           "Editing techniques",
           "Storytelling",
         ],
-        image: "/competition/film.png",
+        image: "/competition/films.png",
         special: false,
       },
       {

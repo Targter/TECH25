@@ -1,7 +1,7 @@
 // "use client";
 
 import Link from "next/link";
-import { Twitter, Linkedin, Facebook, Mail, Phone, MapPin} from "lucide-react";
+import { Twitter, Linkedin, Facebook, Mail, Phone, MapPin, Instagram} from "lucide-react";
 import { siteConfig } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -36,8 +36,8 @@ import Image from 'next/image';
 
 const socialIcons: Record<string, React.ReactNode> = {
   twitter: <Twitter className="h-5 w-5" />,
+  instagram: <Instagram className="h-5 w-5" />,
   linkedin: <Linkedin className="h-5 w-5" />,
-  facebook: <Facebook className="h-5 w-5" />,
 };
 
 export function Footer() {
