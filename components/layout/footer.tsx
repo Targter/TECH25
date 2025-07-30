@@ -178,7 +178,7 @@ export function Footer() {
                     href={`tel:${siteConfig.phone}`}
                     className="hover:text-green-400 transition-colors duration-300 underline decoration-transparent hover:decoration-green-400"
                   >
-                    {siteConfig.phone}
+                    +91 97295 07672
                   </a>
                 </div>
               </address>
@@ -203,7 +203,7 @@ export function Footer() {
               </p>
               <div className="hidden md:block w-px h-4 bg-green-500/30"></div>
               <p className="text-xs text-gray-500">
-                Built with ❤️ By Gaurav
+                Built with ❤️ by ISTE Student Chapter - CU
               </p>
             </div>
 
