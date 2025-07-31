@@ -1,7 +1,7 @@
 // "use client";
 
 import Link from "next/link";
-import { Twitter, Linkedin, Facebook, Mail, Phone, MapPin, Instagram} from "lucide-react";
+import { Twitter, Linkedin, Mail, Phone, MapPin, Instagram} from "lucide-react";
 import { siteConfig } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
