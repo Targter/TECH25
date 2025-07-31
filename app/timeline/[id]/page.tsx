@@ -35,9 +35,9 @@ const eventsByDay = {
         title: "Hackathon",
         description:
           "A 48-hour coding marathon where innovation meets creativity. Build solutions that can change the world.",
-        time: "9:00 AM - 9:00 AM (Next Day)",
+        time: "September 10, 10:00 AM - September 12, 10:00 AM",
         participants: "Teams of 4",
-        prize: "₹50,000",
+        prize: "₹1,50,000",
         difficulty: "Advanced",
         location: "Tech Hub, Main Campus",
         highlights: [
@@ -46,7 +46,7 @@ const eventsByDay = {
           "Industry judges",
           "Real-world problems",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/hackathon.png",
       },
       {
         id: "striver-dsa",
@@ -64,7 +64,7 @@ const eventsByDay = {
           "Career guidance",
           "Q&A session",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/striver.png",
       },
       {
         id: "tech-treasure-hunt",
@@ -73,7 +73,7 @@ const eventsByDay = {
           "A thrilling scavenger hunt testing your tech knowledge and problem-solving skills across the campus.",
         time: "11:00 AM - 1:00 PM",
         participants: "Teams of 2-3",
-        prize: "₹10,000",
+        prize: "₹5,000",
         difficulty: "Intermediate",
         location: "Campus-wide",
         highlights: [
@@ -81,7 +81,7 @@ const eventsByDay = {
           "Physical and digital challenges",
           "Teamwork focus",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/techtr.png",
       },
       {
         id: "tech-expo-student",
@@ -98,7 +98,7 @@ const eventsByDay = {
           "Networking opportunities",
           "Feedback from industry professionals",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/expost.png",
       },
       {
         id: "panel-discussion",
@@ -116,7 +116,7 @@ const eventsByDay = {
           "Emerging AI technologies",
           "Career insights",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/panel.png",
       },
       {
         id: "adopt-a-planet",
@@ -134,7 +134,7 @@ const eventsByDay = {
           "Innovative design",
           "Presentation skills",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/adopt.png",
       },
       {
         id: "flight-forge",
@@ -152,7 +152,7 @@ const eventsByDay = {
           "Flight testing",
           "Innovation in aviation",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/flight.png",
       },
       {
         id: "capture-flag",
@@ -170,7 +170,7 @@ const eventsByDay = {
           "Reverse engineering",
           "Network security",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/capture.png",
       },
     ],
   },
@@ -196,7 +196,7 @@ const eventsByDay = {
           "Leadership skills",
           "International exposure",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/mun.png",
       },
       {
         id: "company-expo",
@@ -214,7 +214,7 @@ const eventsByDay = {
           "Career guidance",
           "Industry insights",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/expoco.png",
       },
       {
         id: "non-tech-treasure-hunt",
@@ -232,7 +232,7 @@ const eventsByDay = {
           "Observation skills",
           "Fun for all",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/nontechtr.png",
       },
       {
         id: "among-us",
@@ -250,7 +250,7 @@ const eventsByDay = {
           "Interactive gameplay",
           "Fun and laughter",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/among.png",
       },
       {
         id: "tech-csr-bootcamp",
@@ -268,7 +268,7 @@ const eventsByDay = {
           "Mentorship",
           "Real implementations",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/boot.png",
       },
     ],
   },
@@ -294,7 +294,7 @@ const eventsByDay = {
           "Editing techniques",
           "Storytelling",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/films.png",
       },
       {
         id: "cultural-night",
@@ -312,7 +312,7 @@ const eventsByDay = {
           "Talent showcase",
           "Grand finale",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/cultural.png",
       },
       {
         id: "rc-car-race",
@@ -330,7 +330,7 @@ const eventsByDay = {
           "Custom car builds",
           "Agility challenges",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/rc.png",
       },
       {
         id: "drone-race",
@@ -348,7 +348,7 @@ const eventsByDay = {
           "Speed challenges",
           "Precision flying",
         ],
-        image: "/placeholder.svg?height=600&width=800",
+        image: "/competition/drone.png",
       },
     ],
   },
