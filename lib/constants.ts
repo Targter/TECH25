@@ -237,7 +237,7 @@ export const eventsByDay = {
         "Cybersecurity & Data Privacy",
         "National development vision 2047"
       ],
-      image: "/competition/ai_panel.png",
+      image: "/competition/panel.png",
       special: false,
     },
     {
