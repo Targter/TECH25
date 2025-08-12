@@ -800,7 +800,7 @@ export const previousEvents = [
 export const faqs = [
   {
     question: "When and where is TECHNICIA'25 taking place?",
-    answer: "TECHNICIA'25 will be held from September 10-12, 2025 at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
+    answer: "TECHNICIA'25 will be held from October 13-15, 2025 at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
   },
   {
     question: "How can I register for the event?",
