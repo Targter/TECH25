@@ -558,7 +558,7 @@ export default function TimelineComponent() {
                     />
 
                     {/* Floating decorative elements */}
-                    {/* <motion.div
+{/* <motion.div
                       className="absolute top-4 md:top-8 left-4 md:left-8 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
                       animate={{
                         rotateZ: [0, 360],
