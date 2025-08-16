@@ -300,7 +300,7 @@ export function HeroSection() {
           >
             <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
               <Calendar className="h-4 w-4 text-green-400" />
-              <span className="text-white text-sm font-medium">10th - 12th September 2025</span>
+              <span className="text-white text-sm font-medium">13th - 15th October 2025</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
               <MapPin className="h-4 w-4 text-green-400" />
