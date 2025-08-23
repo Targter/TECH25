@@ -243,11 +243,11 @@ const TeamsPage = () => {
     },
     {
       id: 8,
-      name: "Abhay Bansal",
+      name: "Piyush Aggarwal",
       position: "USG IT/Tech",
       department: "",
       bio: "Managing technical infrastructure and digital systems for the conference.",
-      image: "/team/Abhay Bansal.jpg",
+      image: "/team/Piyush Aggarwal_.jpg",
       icon: Code,
     },
   ];
@@ -303,20 +303,20 @@ const TeamsPage = () => {
       team: [
         {
           id: 5,
-          name: "Abhay Bansal",
+          name: "Piyush Aggarwal",
           position: "USG IT/Tech",
           department: "",
           bio: "Ensuring seamless technical operations throughout the conference.",
-          image: "/team/Abhay Bansal.jpg",
+          image: "/team/Piyush Aggarwal_.jpg",
           icon: Users,
         },
         {
           id: 6,
-          name: "Piyush Aggarwal",
+          name: "Abhay Bansal",
           position: "Technical Support",
           department: "Tech Team",
           bio: "Providing technical support and troubleshooting during the event.",
-          image: "/team/Piyush Aggarwal_.jpg",
+          image: "/team/Abhay Bansal.jpg",
           icon: Users,
         },
       ],
