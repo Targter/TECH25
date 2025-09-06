@@ -1,9 +1,20 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, BookOpen, Crown, Star, Mail, Phone, GraduationCap, Building, Award } from "lucide-react"
+import { Users, BookOpen, Crown, Star, Mail, Phone, GraduationCap, Building, Award, LucideIcon } from "lucide-react"
+import Image from "next/image"
 
-const facultyLeadership = [
+interface FacultyMember {
+  id: number
+  name: string
+  position: string
+  department: string
+  bio: string
+  image: string
+  icon: LucideIcon
+}
+
+const facultyLeadership: FacultyMember[] = [
   {
     id: 1,
     name: "S. Satnam Singh Sandhu",
@@ -33,7 +44,7 @@ const facultyLeadership = [
   },
 ]
 
-const engineeringLeadership = [
+const engineeringLeadership: FacultyMember[] = [
   {
     id: 4,
     name: "Prof. (Dr.) Sachin Ahuja",
@@ -54,7 +65,7 @@ const engineeringLeadership = [
   },
 ]
 
-const departmentalFaculty = [
+const departmentalFaculty: FacultyMember[] = [
   {
     id: 6,
     name: "Dr. Sandeep Singh Kang",
@@ -85,7 +96,7 @@ const departmentalFaculty = [
 ]
 
 const FacultyStructure = () => {
-  const [selectedMember, setSelectedMember] = useState<any>(null)
+  const [selectedMember, setSelectedMember] = useState<FacultyMember | null>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -97,7 +108,7 @@ const FacultyStructure = () => {
     index,
     size = "large",
   }: {
-    member: any
+    member: FacultyMember
     index: number
     size?: "large" | "default" | "small"
   }) => {
@@ -132,9 +143,11 @@ const FacultyStructure = () => {
         {/* Card Header with Full Image */}
         <div className="relative overflow-hidden rounded-t-2xl">
           <div className={`${imageHeights[size]} relative bg-gray-800`}>
-            <img
-              src={member.image || "/placeholder.svg?height=400&width=400&query=professional portrait"}
+            <Image
+              src={member.image}
               alt={member.name}
+              width={400}
+              height={400}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               onError={(e) => {
                 const target = e.target as HTMLImageElement
@@ -294,9 +307,11 @@ const FacultyStructure = () => {
             <div className="relative h-48 bg-gradient-to-br from-red-500 to-red-700 rounded-t-2xl flex items-center justify-center">
               <div className="text-center">
                 <div className="relative inline-block mb-4">
-                  <img
-                    src={selectedMember.image || "/placeholder.svg"}
+                  <Image
+                    src={selectedMember.image}
                     alt={selectedMember.name}
+                    width={96}
+                    height={96}
                     className="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-lg"
                   />
                   {selectedMember.icon && (
