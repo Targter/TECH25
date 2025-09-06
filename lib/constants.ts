@@ -149,11 +149,11 @@ export const eventsByDay = {
       title: "HackChrono: The Technicia’ 48-hour Challenge",
       description:
         "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
-      time: "3 days (September 10-12)",
+      time: "13th - 15th October, 2025 (48 hours)",
       participants: "Teams of 2-4 UG/PG Students",
       prize: "₹1,50,000",
       difficulty: "Advanced",
-      location: "D-Block Open Area",
+      location: "Chandigarh University",
       highlights: [
         "48-hour open-source hackathon",
         "Mentorship rounds & tech talks",
@@ -164,147 +164,6 @@ export const eventsByDay = {
       special: true,
       
     },
-    {
-      id: "striver-dsa",
-      title: "Striver DSA Session",
-      description:
-        "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
-      time: "2:00 PM - 4:00 PM",
-      participants: "800–1000+ Students",
-      prize: "Certificates & Merchandise",
-      difficulty: "Intermediate",
-      location: "A1 Auditorium",
-      highlights: [
-        "Live DSA roadmap",
-        "Interview cracking tips",
-        "Fireside chat",
-        "Open Q&A session"
-      ],
-      image: "/competition/striver.png",
-      special: false,
-    },
-    {
-      id: "tech-treasure-hunt",
-      title: "VOID Protocol: The Final Code",
-      description:
-        "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
-      time: "10:00 AM - 12:00 PM",
-      participants: "Teams of 3–4",
-      prize: "₹5,000",
-      difficulty: "Intermediate",
-      location: "D7 (Seminar Hall)",
-      highlights: [
-        "Binary & DNA puzzles",
-        "QR scavenger hunt",
-        "Timed decoding levels",
-        "Alien-themed storyline"
-      ],
-      image: "/competition/techtr.png",
-      special: false,
-    },
-    {
-      id: "tech-expo-student",
-      title: "Tech Expo: Student & Industry Innovations",
-      description:
-        "Tech Expo is a platform for showcasing student innovations alongside company CSR demos, facilitating networking between academia and industry.",
-      time: "9:00 AM – 4:30 PM",
-      participants: "Individual/Team & Corporate",
-      prize: "Best Project Award & Industry Mentorship",
-      difficulty: "All Levels",
-      location: "Exhibition Hall",
-      highlights: [
-        "Company stalls and demos",
-        "Student prototype exhibition",
-        "CSR partnerships and evaluation",
-        "Panel talks and pitch sessions"
-      ],
-      image: "/competition/expost.png",
-      special: false,
-    },
-    {
-      id: "panel-discussion",
-      title: "Panel Discussion: Viksit Bharat 2047",
-      description:
-        "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
-      time: "10:00 AM - 12:00 AM",
-      participants: "Open to All",
-      prize: "Knowledge & Certification",
-      difficulty: "All Levels",
-      location: "C2 Auditorium",
-      highlights: [
-        "AI & Deep Tech Ecosystem",
-        "Innovation & Leadership in India",
-        "Cybersecurity & Data Privacy",
-        "National development vision 2047"
-      ],
-      image: "/competition/panel.png",
-      special: false,
-    },
-    {
-      id: "adopt-a-planet",
-      title: "Adopt a Planet",
-      description:
-        "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
-      time: "10:00 AM - 4:00 PM",
-      participants: "Teams of 3",
-      prize: "₹18,000",
-      difficulty: "Intermediate",
-      location: "B3 Seminar Hall",
-      highlights: [
-        "Story-based problem solving",
-        "Sustainable innovation",
-        "Team presentations",
-        "Judged pitch sessions"
-      ],
-      image: "/competition/adopt.png",
-      special: false,
-    },
-    {
-      id: "flight-forge",
-      title: "FlightForge – Aeromodelling Challenge",
-      description:
-        "Design and fly RC aircrafts in two rounds: one for payload capacity and the other for precision drop. A showcase of engineering and control.",
-      time: "10:00 AM - 4:00 PM",
-      participants: "Teams of 2–4 (UG/Engineering Students)",
-      prize: "₹20,000",
-      difficulty: "Advanced",
-      location: "C1 Main Ground",
-      highlights: [
-        "Payload lift challenge",
-        "Precision payload drop",
-        "Aerodynamics application",
-        "Engineering creativity"
-      ],
-      image: "/competition/flight.png",
-      special: false,
-    },
-    {
-      id: "capture-flag",
-      title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
-      description:
-        "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
-      time: "10:00 AM - 5:00 PM (2 days)",
-      participants: "Teams of 2–4",
-      prize: "₹25,000",
-      difficulty: "Advanced",
-      location: "D Block Closed Area",
-      highlights: [
-        "CTFd platform with scoreboard",
-        "Challenges in 6 cyber domains",
-        "Mentorship support",
-        "Alien hacking theme"
-      ],
-      image: "/competition/capture.png",
-      special: false,
-    }
-  ],
-},
-  day2 : {
-  title: "Day 2 - Innovation & Robotics",
-  date: "October 14, 2025",
-  description:
-    "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
-  events: [
     {
       id: "cumun",
       title: "CUMUN – Chandigarh University Model United Nations",
@@ -325,32 +184,156 @@ export const eventsByDay = {
       special: true,
     },
     {
-      id: "company-expo",
-      title: "Internship & Company Expo",
+      id: "capture-flag",
+      title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
       description:
-        "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
-      time: "10:00 AM - 4:30 PM",
-      participants: "Open to All (Approx. 150–200 Footfall Expected)",
-      prize: "Networking, Internship Offers, CSR Collaboration",
-      difficulty: "All Levels",
-      location: "University Exhibition Center",
+        "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
+      time: "13th-14th October, 2025 (24 hours)",
+      participants: "Teams of 2–4",
+      prize: "₹50,000",
+      difficulty: "Advanced",
+      location: "Chandigarh University",
       highlights: [
-        "Live product demos",
-        "Company stalls & networking",
-        "CSR project mentoring",
-        "Panel talks & awards",
+        "CTFd platform with scoreboard",
+        "Challenges in 6 cyber domains",
+        "Mentorship support",
+        "Alien hacking theme"
       ],
-      image: "/competition/expoco.png",
+      image: "/competition/capture.png",
       special: false,
+    },
+    {
+      id: "tech-treasure-hunt",
+      title: "VOID Protocol: The Final Code",
+      description:
+        "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
+      time: "13th October, 2025",
+      participants: "Teams of 3–4",
+      prize: "₹50,000",
+      difficulty: "Intermediate",
+      location: "Chandigarh University",
+      highlights: [
+        "Binary & DNA puzzles",
+        "QR scavenger hunt",
+        "Timed decoding levels",
+        "Alien-themed storyline"
+      ],
+      image: "/competition/techtr.png",
+      special: false,
+    },
+    {
+      id: "adopt-a-planet",
+      title: "Adopt a Planet",
+      description:
+        "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
+      time: "13th-15th October, 2025",
+      participants: "Teams of 3",
+      prize: "Trophies, Certificates",
+      difficulty: "Intermediate",
+      location: "Chandigarh University",
+      highlights: [
+        "Story-based problem solving",
+        "Sustainable innovation",
+        "Team presentations",
+        "Judged pitch sessions"
+      ],
+      image: "/competition/adopt.png",
+      special: false,
+    },
+    {
+      id: "tech-expo-student",
+      title: "Tech Expo: Student & Industry Innovations",
+      description:
+        "Tech Expo is a platform for showcasing student innovations alongside company CSR demos, facilitating networking between academia and industry.",
+      time: "13th - 15th October, 2025",
+      participants: "Individual/Team & Corporate",
+      prize: "Best Project Award & Industry Mentorship",
+      difficulty: "All Levels",
+      location: "Chandigarh University",
+      highlights: [
+        "Company stalls and demos",
+        "Student prototype exhibition",
+        "CSR partnerships and evaluation",
+        "Panel talks and pitch sessions"
+      ],
+      image: "/competition/expost.png",
+      special: false,
+    }
+    // {
+    //   id: "flight-forge",
+    //   title: "FlightForge – Aeromodelling Challenge",
+    //   description:
+    //     "Design and fly RC aircrafts in two rounds: one for payload capacity and the other for precision drop. A showcase of engineering and control.",
+    //   time: "10:00 AM - 4:00 PM",
+    //   participants: "Teams of 2–4 (UG/Engineering Students)",
+    //   prize: "₹20,000",
+    //   difficulty: "Advanced",
+    //   location: "C1 Main Ground",
+    //   highlights: [
+    //     "Payload lift challenge",
+    //     "Precision payload drop",
+    //     "Aerodynamics application",
+    //     "Engineering creativity"
+    //   ],
+    //   image: "/competition/flight.png",
+    //   special: false,
+    // },
+    
+  ],
+},
+  day2 : {
+  title: "Day 2 - Innovation & Robotics",
+  date: "October 14, 2025",
+  description:
+    "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
+  events: [
+    {
+      id: "striver-dsa",
+      title: "Striver DSA Session",
+      description:
+        "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
+      time: "14th October, 2025",
+      participants: "Open to All",
+      prize: "Certificates & Merchandise",
+      difficulty: "Intermediate",
+      location: "Chandigarh University",
+      highlights: [
+        "Live DSA roadmap",
+        "Interview cracking tips",
+        "Fireside chat",
+        "Open Q&A session"
+      ],
+      image: "/competition/striver.png",
+      special: false,
+    },
+    {
+      id: "bgmi-tournament",
+      title: "GameX BGMI Tournament",
+      description:
+        "An adrenaline-packed competitive Battlegrounds Mobile India (BGMI) tournament—test your reflexes, strategies, and squad coordination in the ultimate gaming showdown.",
+      time: "13th-15th October, 2025",
+      participants: "Solo, Duo & Squad Modes",
+      prize: "₹1,00,000",
+      difficulty: "Hard",
+      location: "Chandigarh University",
+      highlights: [
+        "Intense squad battles",
+        "Strategic gameplay",
+        "Knockout and survival rounds",
+        "Live leaderboard updates",
+        "Professional casting & streaming"
+      ],
+      image: "/competition/bgmi.png",
+      special: true,
     },
     {
       id: "non-tech-treasure-hunt",
       title: "The Order of the Obsidian Quill",
       description:
         "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
-      time: "10:00 AM - 5:00 PM",
+      time: "14th October, 2025",
       participants: "Teams of 3–4 | Max 35 Teams",
-      prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
+      prize: "₹20,000",
       difficulty: "Easy",
       location: "B1–B3 Blocks, Library, Fountain Park, Amphitheatre",
       highlights: [
@@ -362,16 +345,17 @@ export const eventsByDay = {
       image: "/competition/nontechtr.png",
       special: false,
     },
+    
     {
       id: "among-us",
       title: "Among Us Live!",
       description:
         "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
-      time: "2:00 PM - 5:00 PM",
+      time: "13th-15th October, 2025",
       participants: "10–15 players per round",
       prize: "Bragging Rights & Fun Hampers",
       difficulty: "Easy",
-      location: "Student Activity Zone",
+      location: "Chandigarh University",
       highlights: [
         "Live-action roleplay",
         "Sabotage and strategy",
@@ -382,24 +366,44 @@ export const eventsByDay = {
       special: false,
     },
     {
-      id: "tech-csr-bootcamp",
-      title: "Tech + CSR Bootcamps",
+      id: "panel-discussion",
+      title: "Panel Discussion: Viksit Bharat 2047",
       description:
-        "Day-long guided bootcamps focusing on how emerging technologies can drive social change through innovation and corporate responsibility.",
-      time: "9:00 AM - 5:00 PM",
-      participants: "50 Shortlisted Students",
-      prize: "Certificates + Internship Shortlisting",
-      difficulty: "Intermediate",
-      location: "CSR Innovation Center, CU",
+        "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
+      time: "14th October, 2025",
+      participants: "Open to All",
+      prize: "Knowledge & Certification",
+      difficulty: "All Levels",
+      location: "Chandigarh University",
       highlights: [
-        "Hands-on CSR prototyping",
-        "Mentorship from CSR experts",
-        "Social impact brainstorming",
-        "Implementation frameworks",
+        "AI & Deep Tech Ecosystem",
+        "Innovation & Leadership in India",
+        "Cybersecurity & Data Privacy",
+        "National development vision 2047"
       ],
-      image: "/competition/boot.png",
+      image: "/competition/panel.png",
       special: false,
     },
+    {
+      id: "company-expo",
+      title: "Internship & Company Expo",
+      description:
+        "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
+      time: "13th-15th October, 2025",
+      participants: "Open to All",
+      prize: "Networking, Internship Offers, CSR Collaboration",
+      difficulty: "All Levels",
+      location: "Chandigarh University",
+      highlights: [
+        "Live product demos",
+        "Company stalls & networking",
+        "CSR project mentoring",
+        "Panel talks & awards",
+      ],
+      image: "/competition/expoco.png",
+      special: false,
+    },
+    
   ],
 },
   day3: {
@@ -409,70 +413,11 @@ export const eventsByDay = {
       "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
       {
-        id: "short-film-making",
-        title: "Short Film Making Competition",
-        description:
-          "Unleash your creativity and tell a compelling story through the art of filmmaking.",
-        time: "9:00 AM - 5:00 PM (Submission)",
-        participants: "Individual/Teams",
-        prize: "₹20,000",
-        difficulty: "Intermediate",
-        location: "Film Studio / Online Submission",
-        highlights: [
-          "Scriptwriting",
-          "Videography",
-          "Editing techniques",
-          "Storytelling",
-        ],
-        image: "/competition/films.png",
-        special: false,
-      },
-      {
-        id: "cultural-night",
-        title: "One Stage One Vibe",
-        description:
-          "Grand cultural showcase featuring music, dance, and artistic performances.",
-        time: "6:00 PM - 10:00 PM",
-        participants: "Open to All",
-        prize: "₹50,000",
-        difficulty: "All Levels",
-        location: "Main Stage",
-        highlights: [
-          "Live performances",
-          "Cultural diversity",
-          "Talent showcase",
-          "Grand finale",
-        ],
-        image: "/competition/cultural.png",
-        special: false,
-
-      },
-
-      {
-        id: "rc-car-race",
-        title: "RC Car Race",
-        description:
-          "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
-        time: "1:00 PM - 5:00 PM",
-        participants: "Individual",
-        prize: "₹15,000",
-        difficulty: "Intermediate",
-        location: "Racing Track",
-        highlights: [
-          "Precision driving",
-          "Speed trials",
-          "Custom car builds",
-          "Agility challenges",
-        ],
-        image: "/competition/rc.png",
-        special: false,
-      },
-      {
         id: "drone-race",
         title: "Drone Race",
         description:
           "High-speed drone racing competition testing piloting skills and drone technology.",
-        time: "3:00 PM - 7:00 PM",
+        time: "14th-15th October, 2025",
         participants: "Individual",
         prize: "₹25,000",
         difficulty: "Advanced",
@@ -486,6 +431,85 @@ export const eventsByDay = {
         image: "/competition/drone.png",
         special: false,
       },
+      {
+      id: "tech-csr-bootcamp",
+      title: "Tech + CSR Bootcamps",
+      description:
+        "Day-long guided bootcamps focusing on how emerging technologies can drive social change through innovation and corporate responsibility.",
+      time: "9:00 AM - 5:00 PM",
+      participants: "50 Shortlisted Students",
+      prize: "Certificates + Internship Shortlisting",
+      difficulty: "Intermediate",
+      location: "Chandigarh University",
+      highlights: [
+        "Hands-on CSR prototyping",
+        "Mentorship from CSR experts",
+        "Social impact brainstorming",
+        "Implementation frameworks",
+      ],
+      image: "/competition/boot.png",
+      special: false,
+    },
+      {
+        id: "short-film-making",
+        title: "Short Film Making Competition",
+        description:
+          "Unleash your creativity and tell a compelling story through the art of filmmaking.",
+        time: "15th October, 2025",
+        participants: "Individual/Teams",
+        prize: "Trophies, Certificates",
+        difficulty: "Intermediate",
+        location: "Chandigarh University",
+        highlights: [
+          "Scriptwriting",
+          "Videography",
+          "Editing techniques",
+          "Storytelling",
+        ],
+        image: "/competition/films.png",
+        special: false,
+      },
+      // {
+      //   id: "cultural-night",
+      //   title: "One Stage One Vibe",
+      //   description:
+      //     "Grand cultural showcase featuring music, dance, and artistic performances.",
+      //   time: "6:00 PM - 10:00 PM",
+      //   participants: "Open to All",
+      //   prize: "₹50,000",
+      //   difficulty: "All Levels",
+      //   location: "Main Stage",
+      //   highlights: [
+      //     "Live performances",
+      //     "Cultural diversity",
+      //     "Talent showcase",
+      //     "Grand finale",
+      //   ],
+      //   image: "/competition/cultural.png",
+      //   special: false,
+
+      // },
+
+      {
+        id: "rc-car-race",
+        title: "RC Car Race",
+        description:
+          "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
+        time: "15th October, 2025",
+        participants: "Individual",
+        prize: "Experience & Fun Hampers",
+        difficulty: "Intermediate",
+        location: "Racing Track",
+        highlights: [
+          "Precision driving",
+          "Speed trials",
+          "Custom car builds",
+          "Agility challenges",
+        ],
+        image: "/competition/rc.png",
+        special: false,
+      },
+      
     ],
   },
 };
