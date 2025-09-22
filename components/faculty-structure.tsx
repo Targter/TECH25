@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Users, BookOpen, Crown, Star, Mail, Phone, GraduationCap, Building, Award, LucideIcon } from "lucide-react"
+import { Users, BookOpen, Crown, Star, Mail, Phone, GraduationCap, Building,LucideIcon } from "lucide-react"
 import Image from "next/image"
 
 interface FacultyMember {

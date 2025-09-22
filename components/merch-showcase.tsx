@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ShoppingCart, Star, Search, Plus, Minus, Heart, Eye, X } from "lucide-react"
+import { ShoppingCart, Search, Plus, Minus, Heart, Eye, X } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
@@ -113,12 +113,12 @@ const merchData: MerchItem[] = [
   },
 ]
 
-const categories = [
-  { id: "all", name: "All Items", count: merchData.length, icon: "🔥" },
-  { id: "apparel", name: "Apparel", count: merchData.filter((i) => i.category === "apparel").length, icon: "👕" },
-  { id: "accessories", name: "Accessories", count: merchData.filter((i) => i.category === "accessories").length, icon: "🎒" },
-  { id: "tech", name: "Tech", count: merchData.filter((i) => i.category === "tech").length, icon: "💻" },
-]
+// const categories = [
+//   { id: "all", name: "All Items", count: merchData.length, icon: "🔥" },
+//   { id: "apparel", name: "Apparel", count: merchData.filter((i) => i.category === "apparel").length, icon: "👕" },
+//   { id: "accessories", name: "Accessories", count: merchData.filter((i) => i.category === "accessories").length, icon: "🎒" },
+//   { id: "tech", name: "Tech", count: merchData.filter((i) => i.category === "tech").length, icon: "💻" },
+// ]
 
 // Starfield background
 const StarField = () => {
@@ -297,7 +297,7 @@ const ProductModal = ({
 }
 
 export default function MerchShowcase() {
-  const [selectedCategory, setSelectedCategory] = useState("all")
+  const [selectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
   const [cart, setCart] = useState<{ [key: string]: number }>({})
   const [wishlist, setWishlist] = useState<string[]>([])

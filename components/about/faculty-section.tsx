@@ -3,7 +3,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useEffect } from "react"
 
-import { Crown, Star, Sparkles, GraduationCap, BookOpen, Users, Award, Building, type LucideIcon } from "lucide-react"
+import { Crown, Star, Sparkles, GraduationCap, BookOpen, Users, Building, type LucideIcon } from "lucide-react"
 
 interface FacultyMember {
   id: number

@@ -1,11 +1,31 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
 
+// Types
+type Particle = {
+  id: number
+  size: number
+  color: string
+  delay: number
+  x: string
+  y: string
+}
+
+type Sponsor = {
+  id: number
+  name: string
+  logo: string
+}
+
 // Sample sponsor logos (replace with your actual URLs)
-const sponsorsData = {
+const sponsorsData: {
+  title: Sponsor[]
+  startup: Sponsor[]
+  organization: Sponsor[]
+} = {
   title: [
     { id: 1, name: "TechCorp", logo: "/sponsors/techcorp.png" },
     { id: 2, name: "InnovateX", logo: "/sponsors/innovatex.png" },
@@ -23,21 +43,21 @@ const sponsorsData = {
 }
 
 // Floating particle component
-const FloatingParticle = ({ size, color, delay, x, y }: { size: number; color: string; delay: number; x: number; y: number }) => (
+const FloatingParticle = ({ size, color, delay, x, y }: Particle) => (
   <motion.div
     className={`absolute rounded-full ${color}`}
     style={{ width: size, height: size, top: y, left: x }}
     animate={{ y: [0, -20, 0], x: [0, 10, -10, 0] }}
-    transition={{ repeat: Infinity, duration: 6 + delay, delay: delay, ease: "easeInOut" }}
+    transition={{ repeat: Infinity, duration: 6 + delay, delay, ease: "easeInOut" }}
   />
 )
 
 const SponsorPage = () => {
-  const [particles, setParticles] = useState<any[]>([])
+  const [particles, setParticles] = useState<Particle[]>([])
 
   useEffect(() => {
     // Generate random floating particles
-    const newParticles = Array.from({ length: 30 }, (_, i) => ({
+    const newParticles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
       id: i,
       size: Math.random() * 6 + 4,
       color: ["bg-cyan-400/50", "bg-pink-400/50", "bg-yellow-400/50"][i % 3],
@@ -48,7 +68,7 @@ const SponsorPage = () => {
     setParticles(newParticles)
   }, [])
 
-  const renderSponsorSection = (title: string, data: any[]) => (
+  const renderSponsorSection = (title: string, data: Sponsor[]) => (
     <div className="my-16 text-center relative z-10">
       <motion.h2
         className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-yellow-400 mb-8 animate-pulse"

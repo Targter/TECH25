@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 
-import { Crown, Star, Sparkles, Users, type LucideIcon, GraduationCap, Building2, UserCheck } from "lucide-react"
+import { Crown, Star, Users, type LucideIcon, GraduationCap, Building2, UserCheck } from "lucide-react"
 
 interface TeamMember {
   id: number
