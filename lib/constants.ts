@@ -264,7 +264,7 @@ export const eventsByDay = {
         title: "Drone Race",
         description:
           "High-speed drone racing competition testing piloting skills and drone technology.",
-        time: "13th October, 2025",
+        time: "15th October, 2025",
         participants: "Individual",
         prize: "₹25,000",
         difficulty: "Advanced",
@@ -370,7 +370,7 @@ export const eventsByDay = {
       title: "The Order of the Obsidian Quill",
       description:
         "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
-      time: "14th October, 2025",
+      time: "16th October, 2025",
       participants: "Teams of 3–4 | Max 35 Teams",
       prize: "₹20,000",
       difficulty: "Easy",
