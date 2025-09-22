@@ -6,7 +6,7 @@ export const siteConfig = {
   logo:"/logo/logotechnisia.svg",
   
   description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
-  date: "13th - 15th October, 2025",
+  date: "15th - 17th October, 2025",
   venue: "Chandigarh University, Mohali",
   email: "iste@cumail.in",
   phone: "+91 9729507672",
@@ -140,7 +140,7 @@ export const competitions = [
 export const eventsByDay = {
   day1 : {
   title: "Day 1 - Tech Focus",
-  date: "October 13, 2025",
+  date: "October 15, 2025",
   description:
     "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
   events: [
@@ -149,7 +149,7 @@ export const eventsByDay = {
       title: "HackChrono: The Technicia’ 48-hour Challenge",
       description:
         "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
-      time: "13th - 15th October, 2025 (48 hours)",
+      time: "15th - 17th October, 2025 (48 hours)",
       participants: "Teams of 2-4 UG/PG Students",
       prize: "₹1,50,000",
       difficulty: "Advanced",
@@ -169,7 +169,7 @@ export const eventsByDay = {
       title: "CUMUN – Chandigarh University Model United Nations",
       description:
         "An intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
-      time: "9:00 AM - 6:00 PM",
+      time: "15th-16th October, 2025",
       participants: "100+ Delegates (Open to All Streams)",
       prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
       difficulty: "Intermediate",
@@ -188,7 +188,7 @@ export const eventsByDay = {
       title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
       description:
         "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
-      time: "13th-14th October, 2025 (24 hours)",
+      time: "16th October, 2025 (24 hours)",
       participants: "Teams of 2–4",
       prize: "₹50,000",
       difficulty: "Advanced",
@@ -207,7 +207,7 @@ export const eventsByDay = {
       title: "VOID Protocol: The Final Code",
       description:
         "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
-      time: "13th October, 2025",
+      time: "15th October, 2025",
       participants: "Teams of 3–4",
       prize: "₹50,000",
       difficulty: "Intermediate",
@@ -226,7 +226,7 @@ export const eventsByDay = {
       title: "Adopt a Planet",
       description:
         "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
-      time: "13th-15th October, 2025",
+      time: "16th October, 2025",
       participants: "Teams of 3",
       prize: "Trophies, Certificates",
       difficulty: "Intermediate",
@@ -245,7 +245,7 @@ export const eventsByDay = {
       title: "Tech Expo: Student & Industry Innovations",
       description:
         "Tech Expo is a platform for showcasing student innovations alongside company CSR demos, facilitating networking between academia and industry.",
-      time: "13th - 15th October, 2025",
+      time: "15th-17th October, 2025",
       participants: "Individual/Team & Corporate",
       prize: "Best Project Award & Industry Mentorship",
       difficulty: "All Levels",
@@ -258,7 +258,26 @@ export const eventsByDay = {
       ],
       image: "/competition/expost.png",
       special: false,
-    }
+    },
+    {
+        id: "drone-race",
+        title: "Drone Race",
+        description:
+          "High-speed drone racing competition testing piloting skills and drone technology.",
+        time: "13th October, 2025",
+        participants: "Individual",
+        prize: "₹25,000",
+        difficulty: "Advanced",
+        location: "In Front LC girsl Hostel",
+        highlights: [
+          "FPV racing",
+          "Obstacle courses",
+          "Speed challenges",
+          "Precision flying",
+        ],
+        image: "/competition/drone.png",
+        special: false,
+      }
     // {
     //   id: "flight-forge",
     //   title: "FlightForge – Aeromodelling Challenge",
@@ -283,35 +302,35 @@ export const eventsByDay = {
 },
   day2 : {
   title: "Day 2 - Innovation & Robotics",
-  date: "October 14, 2025",
+  date: "October 16, 2025",
   description:
     "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
   events: [
-    {
-      id: "striver-dsa",
-      title: "Striver DSA Session",
-      description:
-        "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
-      time: "14th October, 2025",
-      participants: "Open to All",
-      prize: "Certificates & Merchandise",
-      difficulty: "Intermediate",
-      location: "Chandigarh University",
-      highlights: [
-        "Live DSA roadmap",
-        "Interview cracking tips",
-        "Fireside chat",
-        "Open Q&A session"
-      ],
-      image: "/competition/striver.png",
-      special: false,
-    },
+    // {
+    //   id: "striver-dsa",
+    //   title: "Striver DSA Session",
+    //   description:
+    //     "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
+    //   time: "14th October, 2025",
+    //   participants: "Open to All",
+    //   prize: "Certificates & Merchandise",
+    //   difficulty: "Intermediate",
+    //   location: "Chandigarh University",
+    //   highlights: [
+    //     "Live DSA roadmap",
+    //     "Interview cracking tips",
+    //     "Fireside chat",
+    //     "Open Q&A session"
+    //   ],
+    //   image: "/competition/striver.png",
+    //   special: false,
+    // },
     {
       id: "bgmi-tournament",
       title: "GameX BGMI Tournament",
       description:
         "An adrenaline-packed competitive Battlegrounds Mobile India (BGMI) tournament—test your reflexes, strategies, and squad coordination in the ultimate gaming showdown.",
-      time: "13th-15th October, 2025",
+      time: "15th-17th October, 2025",
       participants: "Solo, Duo & Squad Modes",
       prize: "₹1,00,000",
       difficulty: "Hard",
@@ -323,7 +342,27 @@ export const eventsByDay = {
         "Live leaderboard updates",
         "Professional casting & streaming"
       ],
-      image: "/competition/bgmi.png",
+      image: "/competition/gamebg.png",
+      special: true,
+    },
+    {
+      id: "valorant-tournament",
+      title: "GameX Valorant Tournament",
+      description:
+        "An adrenaline-packed competitive Battlegrounds Mobile India (BGMI) tournament—test your reflexes, strategies, and squad coordination in the ultimate gaming showdown.",
+      time: "15th-17th October, 2025",
+      participants: "Solo, Duo & Squad Modes",
+      prize: "₹1,00,000",
+      difficulty: "Hard",
+      location: "Chandigarh University",
+      highlights: [
+        "Intense squad battles",
+        "Strategic gameplay",
+        "Knockout and survival rounds",
+        "Live leaderboard updates",
+        "Professional casting & streaming"
+      ],
+      image: "/competition/gameval.png",
       special: true,
     },
     {
@@ -351,7 +390,7 @@ export const eventsByDay = {
       title: "Among Us Live!",
       description:
         "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
-      time: "13th-15th October, 2025",
+      time: "15th-17th October, 2025",
       participants: "10–15 players per round",
       prize: "Bragging Rights & Fun Hampers",
       difficulty: "Easy",
@@ -370,7 +409,7 @@ export const eventsByDay = {
       title: "Panel Discussion: Viksit Bharat 2047",
       description:
         "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
-      time: "14th October, 2025",
+      time: "15th-17th October, 2025",
       participants: "Open to All",
       prize: "Knowledge & Certification",
       difficulty: "All Levels",
@@ -389,7 +428,7 @@ export const eventsByDay = {
       title: "Internship & Company Expo",
       description:
         "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
-      time: "13th-15th October, 2025",
+      time: "15th-17th October, 2025",
       participants: "Open to All",
       prize: "Networking, Internship Offers, CSR Collaboration",
       difficulty: "All Levels",
@@ -408,35 +447,17 @@ export const eventsByDay = {
 },
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
-    date: "October 15, 2025",
+    date: "October 17, 2025",
     description:
       "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
-      {
-        id: "drone-race",
-        title: "Drone Race",
-        description:
-          "High-speed drone racing competition testing piloting skills and drone technology.",
-        time: "14th-15th October, 2025",
-        participants: "Individual",
-        prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "In Front LC girsl Hostel",
-        highlights: [
-          "FPV racing",
-          "Obstacle courses",
-          "Speed challenges",
-          "Precision flying",
-        ],
-        image: "/competition/drone.png",
-        special: false,
-      },
+      
       {
       id: "tech-csr-bootcamp",
       title: "Tech + CSR Bootcamps",
       description:
         "Day-long guided bootcamps focusing on how emerging technologies can drive social change through innovation and corporate responsibility.",
-      time: "9:00 AM - 5:00 PM",
+      time: "15th-17th October, 2025",
       participants: "50 Shortlisted Students",
       prize: "Certificates + Internship Shortlisting",
       difficulty: "Intermediate",
@@ -455,7 +476,7 @@ export const eventsByDay = {
         title: "Short Film Making Competition",
         description:
           "Unleash your creativity and tell a compelling story through the art of filmmaking.",
-        time: "15th October, 2025",
+        time: "17th October, 2025",
         participants: "Individual/Teams",
         prize: "Trophies, Certificates",
         difficulty: "Intermediate",
@@ -495,7 +516,7 @@ export const eventsByDay = {
         title: "RC Car Race",
         description:
           "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
-        time: "15th October, 2025",
+        time: "17th October, 2025",
         participants: "Individual",
         prize: "Experience & Fun Hampers",
         difficulty: "Intermediate",

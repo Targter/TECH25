@@ -69,7 +69,7 @@ const FacultyPage = () => {
       position: "Chancellor",
       department: "",
       bio: "Head of the university, providing ceremonial leadership and strategic vision for institutional excellence.",
-      image: "/professional-chancellor-portrait.jpg",
+      image: "/faculty/Satnam.jpg",
       icon: Crown,
     },
     {
@@ -78,16 +78,16 @@ const FacultyPage = () => {
       position: "Vice Chancellor",
       department: "",
       bio: "Chief executive officer of the university, overseeing all academic and administrative operations.",
-      image: "/professional-vice-chancellor-portrait.jpg",
+      image: "/faculty/manna.jpg",
       icon: Star,
     },
     {
       id: 3,
-      name: "Prof. (Dr.) Vinay Kumar Mittal",
+      name: "Prof. (Dr.) V. R. Raghuveer",
       position: "Pro Vice Chancellor (Academic Affairs)",
       department: "",
       bio: "Leading academic initiatives and ensuring excellence in educational programs and research.",
-      image: "/professional-academic-administrator-portrait.jpg",
+      image: "/faculty/raghu.jpg",
       icon: GraduationCap,
     },
   ]
@@ -99,18 +99,9 @@ const FacultyPage = () => {
       position: "Executive Director (Engineering)",
       department: "",
       bio: "Overseeing engineering programs and fostering innovation in technical education.",
-      image: "/professional-engineering-dean-portrait.jpg",
+      image: "/faculty/sachin.png",
       icon: Building2,
-    },
-    {
-      id: 5,
-      name: "Dr. Sandeep Singh Kang",
-      position: "Associate Dean (Engineering)",
-      department: "",
-      bio: "Supporting engineering operations and academic excellence in technical disciplines.",
-      image: "/professional-associate-dean-portrait.jpg",
-      icon: Sparkles,
-    },
+    }
   ]
 
   const facultyMembers = [
@@ -120,25 +111,25 @@ const FacultyPage = () => {
       position: "Deputy Head of Department",
       department: "",
       bio: "Supporting departmental operations and academic coordination.",
-      image: "/professional-deputy-hod-portrait.jpg",
+      image: "/faculty/kang.jpeg",
       icon: UserCheck,
     },
     {
       id: 7,
-      name: "Neha Dutta",
-      position: "Faculty Member",
+      name: "Dr. Neha Dutta",
+      position: "Faculty Co-Advisor",
       department: "",
       bio: "Dedicated to excellence in teaching and research, contributing to student success.",
-      image: "/professional-faculty-advisor-portrait.jpg",
+      image: "/",
       icon: Users,
     },
     {
       id: 8,
-      name: "Neetu Maam",
-      position: "Faculty Member",
+      name: "Dr. Neetu Rani",
+      position: "Faculty Advisor",
       department: "",
       bio: "Committed to academic excellence and student development through innovative teaching.",
-      image: "/professional-faculty-advisor-portrait-female.jpg",
+      image: "/faculty/neetu.jpg",
       icon: Users,
     },
   ]
@@ -171,17 +162,22 @@ const FacultyPage = () => {
         </section>
 
         {/* Engineering Leadership */}
-        <section className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-light text-white mb-2">Engineering Leadership</h2>
-            <div className="w-16 h-px bg-gray-600 mx-auto"></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {engineeringLeadership.map((member) => (
-              <TeamMemberCard key={member.id} member={member} />
-            ))}
-          </div>
-        </section>
+<section className="mb-20">
+  <div className="text-center mb-12">
+    <h2 className="text-3xl font-light text-white mb-2">Engineering Leadership</h2>
+    <div className="w-16 h-px bg-gray-600 mx-auto"></div>
+  </div>
+
+  {/* Center the card */}
+  <div className="flex justify-center">
+    <div className="grid grid-cols-1 gap-8 w-full max-w-sm">
+      {engineeringLeadership.map((member) => (
+        <TeamMemberCard key={member.id} member={member} />
+      ))}
+    </div>
+  </div>
+</section>
+
 
         {/* Faculty Members */}
         <section className="mb-20">
