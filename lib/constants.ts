@@ -475,7 +475,7 @@ export const eventsByDay = {
 },
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
-    date: "September 12, 2025",
+    date: "October 17, 2025",
     description:
       "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
@@ -761,7 +761,7 @@ export const previousEvents = [
     title: "Threejs Workshop",
     description: "Exploring advancements in artificial intelligence, machine learning, and their impact on various industries.",
     location: "Online Virtual Event",
-    date: "September 20-22, 2023"
+    date: "October 20-22, 2023"
   },
   {
     year: "2023",
