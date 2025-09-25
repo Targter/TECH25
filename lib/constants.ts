@@ -141,7 +141,7 @@ export const competitions = [
 export const eventsByDay = {
   day1 : {
   title: "Day 1 - Tech Focus",
-  date: "September 10, 2025",
+  date: "October 15, 2025",
   description:
     "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
   events: [
@@ -302,7 +302,7 @@ export const eventsByDay = {
 },
   day2 : {
   title: "Day 2 - Innovation & Robotics",
-  date: "September 11, 2025",
+  date: "October 16, 2025",
   description:
     "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
   events: [
@@ -405,7 +405,7 @@ export const eventsByDay = {
 },
   day3: {
     title: "Day 3 - Cultural & Non-Tech",
-    date: "September 12, 2025",
+    date: "October 17, 2025",
     description:
       "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
     events: [
