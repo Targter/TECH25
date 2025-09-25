@@ -35,7 +35,7 @@ const eventsByDay = {
         title: "Hackathon",
         description:
           "A 48-hour coding marathon where innovation meets creativity. Build solutions that can change the world.",
-        time: "September 10, 10:00 AM - September 12, 10:00 AM",
+        time: "October 15, 10:00 AM - October 17, 10:00 AM",
         participants: "Teams of 4",
         prize: "₹1,50,000",
         difficulty: "Advanced",
