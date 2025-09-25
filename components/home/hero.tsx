@@ -245,42 +245,35 @@ export function HeroSection() {
               PRESENTED BY
             </span> */}
 
-<div className="flex flex-col items-center mb-8 sm:mb-6 lg:mb-4">
-  <div className="flex items-center justify-center gap-4">
-    <Image
-      src="/logo/iste01logo.png"
-      alt="ISTE Logo"
-      width={100}
-      height={100}
-      className="h-auto"
-    />
-    <span className="text-2xl font-bold text-gray-400">×</span>
-    <Image
-      src="/logo/culogo.png"
-      alt="CU Logo"
-      width={170}
-      height={1700}
-      className="h-auto"
-    />
-  </div>
-  <div className="sm:py-3 md:py-3">
-    <h1
-      className="text-4xl md:text-8xl lg:text-7xl font-black sm:py-3 leading-tight opacity-100 transition-none"
-      style={{
-        minHeight: 'unset',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        animationDelay: '0.1s',
-        animationFillMode: 'forwards'
-      }}
-    >
-      <span className="inline-block bg-clip-text text-transparent bg-gradient-to-r sm:py-3 from-green-400 via-green-500 to-emerald-400">
-        TECHNICIA&apos; 25
-      </span>
-    </h1>
-  </div>
-</div>
+          <div className="flex flex-col items-center mb-1">
+            <div className="flex items-center justify-center gap-3">
+              <Image
+                src="/logo/iste01logo.png"
+                alt="ISTE Logo"
+                width={160}
+                height={100}
+                className="h-auto"
+                priority 
+              />
+              <span className="text-3xl font-bold text-gray-400">×</span>
+              <Image
+                src="/logo/culogo.png"
+                alt="CU Logo"
+                width={180}
+                height={170}
+                className="h-auto"
+                priority 
+              />
+            </div>
+
+            <div className="pt-1">
+              <h1 className="text-5xl md:text-7xl font-bold leading-tight text-green-600">
+                TECHNICIA&apos; 25
+              </h1>
+            </div>
+          </div>
+
+
 
           {/* Stats grid - Fixed dimensions to prevent CLS */}
           <div
@@ -307,7 +300,7 @@ export function HeroSection() {
           >
             <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
               <Calendar className="h-4 w-4 text-green-400" />
-              <span className="text-white text-sm font-medium">{siteConfig.date}</span>
+              <span className="text-white text-sm font-medium">15th - 17th October 2025</span>
             </div>
             <div className="flex items-center gap-2 px-4 py-2 bg-black/20 backdrop-blur-sm border border-green-500/20 rounded-full">
               <MapPin className="h-4 w-4 text-green-400" />

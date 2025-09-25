@@ -1,7 +1,7 @@
 // "use client";
 
 import Link from "next/link";
-import { Twitter, Linkedin, Facebook, Mail, Phone, MapPin} from "lucide-react";
+import { Twitter, Linkedin, Mail, Phone, MapPin, Instagram} from "lucide-react";
 import { siteConfig } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -18,7 +18,7 @@ import Image from 'next/image';
   },
   {
     title: "Sponsors",
-    href: "/sponsors2",
+    href: "/sponsors",
   },
   {
     title: "Registration",
@@ -36,8 +36,8 @@ import Image from 'next/image';
 
 const socialIcons: Record<string, React.ReactNode> = {
   twitter: <Twitter className="h-5 w-5" />,
+  instagram: <Instagram className="h-5 w-5" />,
   linkedin: <Linkedin className="h-5 w-5" />,
-  facebook: <Facebook className="h-5 w-5" />,
 };
 
 export function Footer() {
@@ -178,7 +178,7 @@ export function Footer() {
                     href={`tel:${siteConfig.phone}`}
                     className="hover:text-green-400 transition-colors duration-300 underline decoration-transparent hover:decoration-green-400"
                   >
-                    {siteConfig.phone}
+                    +91 97295 07672
                   </a>
                 </div>
               </address>
@@ -203,7 +203,7 @@ export function Footer() {
               </p>
               <div className="hidden md:block w-px h-4 bg-green-500/30"></div>
               <p className="text-xs text-gray-500">
-                Built with ❤️ By Gaurav
+                Built with ❤️ by ISTE Student Chapter - CU
               </p>
             </div>
 

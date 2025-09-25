@@ -1,81 +1,139 @@
-import React from 'react';
+"use client"
 
-const SponsorPage2 = () => {
-  
+import React, { useEffect, useState } from "react"
+import { motion } from "framer-motion"
+import Image from "next/image"
+
+// Types
+type Particle = {
+  id: number
+  size: number
+  color: string
+  delay: number
+  x: string
+  y: string
+}
+
+type Sponsor = {
+  id: number
+  name: string
+  logo: string
+}
+
+// Sample sponsor logos (replace with your actual URLs)
+const sponsorsData: {
+  title: Sponsor[]
+  startup: Sponsor[]
+  organization: Sponsor[]
+} = {
+  title: [
+    { id: 1, name: "TechCorp", logo: "/sponsors/techcorp.png" },
+    { id: 2, name: "InnovateX", logo: "/sponsors/innovatex.png" },
+  ],
+  startup: [
+    { id: 3, name: "StartupHive", logo: "/sponsors/startuphive.png" },
+    { id: 4, name: "CodeNest", logo: "/sponsors/codenest.png" },
+    { id: 5, name: "LaunchPad", logo: "/sponsors/launchpad.png" },
+  ],
+  organization: [
+    { id: 6, name: "STPI", logo: "/sponsors/stpi.png" },
+    { id: 7, name: "CUNetwork", logo: "/sponsors/cunetwork.png" },
+    { id: 8, name: "Punjab Engine", logo: "/sponsors/punjabengine.png" },
+  ],
+}
+
+// Floating particle component
+const FloatingParticle = ({ size, color, delay, x, y }: Particle) => (
+  <motion.div
+    className={`absolute rounded-full ${color}`}
+    style={{ width: size, height: size, top: y, left: x }}
+    animate={{ y: [0, -20, 0], x: [0, 10, -10, 0] }}
+    transition={{ repeat: Infinity, duration: 6 + delay, delay, ease: "easeInOut" }}
+  />
+)
+
+const SponsorPage = () => {
+  const [particles, setParticles] = useState<Particle[]>([])
+
+  useEffect(() => {
+    // Generate random floating particles
+    const newParticles: Particle[] = Array.from({ length: 30 }, (_, i) => ({
+      id: i,
+      size: Math.random() * 6 + 4,
+      color: ["bg-cyan-400/50", "bg-pink-400/50", "bg-yellow-400/50"][i % 3],
+      delay: Math.random() * 3,
+      x: `${Math.random() * 90}%`,
+      y: `${Math.random() * 90}%`,
+    }))
+    setParticles(newParticles)
+  }, [])
+
+  const renderSponsorSection = (title: string, data: Sponsor[]) => (
+    <div className="my-16 text-center relative z-10">
+      <motion.h2
+        className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-yellow-400 mb-8 animate-pulse"
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        {title}
+      </motion.h2>
+
+      <motion.div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-items-center items-center px-4"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.2 } },
+        }}
+      >
+        {data.map((sponsor) => (
+          <motion.div
+            key={sponsor.id}
+            className="relative w-32 h-32 md:w-36 md:h-36 rounded-xl overflow-hidden border-2 border-cyan-400/30 hover:border-pink-400/50 cursor-pointer shadow-lg shadow-cyan-500/20 hover:shadow-pink-500/30 transition-all"
+            whileHover={{ scale: 1.1, rotate: [0, 5, -5, 0] }}
+          >
+            <Image src={sponsor.logo} alt={sponsor.name} fill className="object-contain p-4" />
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900  flex items-center justify-center px-4 py-8 sm:py-4 relative overflow-hidden">
-      {/* Animated background grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="h-full w-full bg-grid-pattern animate-pulse"></div>
-      </div>
+    <div className="relative min-h-screen bg-gradient-to-br from-black via-gray-900 px-4 py-12 overflow-hidden flex flex-col items-center">
+      {/* Background particles */}
+      {particles.map((p) => (
+        <FloatingParticle key={p.id} {...p} />
+      ))}
 
-
-
-      <div className="max-w-2xl mx-auto text-center relative z-10 w-full">
-        <div className="bg-black/50 backdrop-blur-md border border-cyan-500/30 rounded-2xl shadow-2xl p-6 sm:p-8 md:p-12 relative overflow-hidden">
-          {/* Neon glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 via-transparent to-pink-500/10 rounded-2xl"></div>
-          <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-2xl blur opacity-20"></div>
-
-          <div className="mb-6 sm:mb-8 relative">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-yellow-400 mb-4 leading-tight tracking-wider animate-pulse">
-              WANT TO BE A SPONSOR? 
-            </h1>
-            <div className="w-24 sm:w-32 h-0.5 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto animate-pulse shadow-lg shadow-cyan-400/50"></div>
-
-            {/* Decorative lines - hide on very small screens */}
-            <div className="hidden sm:block absolute -left-4 top-1/2 w-8 h-px bg-gradient-to-r from-transparent to-cyan-400 opacity-60"></div>
-            <div className="hidden sm:block absolute -right-4 top-1/2 w-8 h-px bg-gradient-to-l from-transparent to-pink-400 opacity-60"></div>
-          </div>
-
-        <a 
-          href="mailto:iste@cumail.in"
-          className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 text-white font-bold rounded-lg hover:from-cyan-500 hover:via-purple-500 hover:to-pink-500 transform hover:scale-105 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-pink-500/50 border border-cyan-400/30 uppercase tracking-wider text-sm sm:text-base"
+      <div className="max-w-7xl w-full relative z-10">
+        <motion.h1
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-pink-400 to-yellow-400 text-center mb-12"
+          initial={{ y: -60, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2 }}
         >
-          {/* Button glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-pink-600 rounded-lg blur opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+          Our Sponsors & Partners
+        </motion.h1>
 
-          <svg
-            className="w-4 h-4 sm:w-5 sm:h-5 mr-2 sm:mr-3 group-hover:animate-pulse relative z-10"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-            />
-          </svg>
-          
-          <span className="relative z-10">Contact Us</span>
+        {renderSponsorSection("Title Sponsors", sponsorsData.title)}
+        {renderSponsorSection("Startup Sponsors & Collaborations", sponsorsData.startup)}
+        {renderSponsorSection("Organization Partners", sponsorsData.organization)}
 
-          {/* Animated border */}
-          <div className="absolute inset-0 rounded-lg border-2 border-transparent bg-gradient-to-r from-cyan-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
-        </a>
-
-          <div className="mt-6 sm:mt-8 text-cyan-300/70 text-xs sm:text-sm font-mono uppercase tracking-wider animate-pulse">
-            &gt; INITIATE_PARTNERSHIP_PROTOCOL.EXE
-          </div>
-
-          {/* Corner decorations - smaller on mobile */}
-          <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-cyan-400/50"></div>
-          <div className="absolute top-3 right-3 sm:top-4 sm:right-4 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-pink-400/50"></div>
-          <div className="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-cyan-400/50"></div>
-          <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-pink-400/50"></div>
-        </div>
-      </div>
-
-      {/* Floating particles */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="w-1 h-1 bg-cyan-400 absolute top-1/4 left-1/3 animate-ping"></div>
-        <div className="w-1 h-1 bg-pink-400 absolute top-3/4 left-2/3 animate-ping animation-delay-500"></div>
-        <div className="w-1 h-1 bg-yellow-400 absolute top-1/2 right-1/4 animate-ping animation-delay-1000"></div>
+        <motion.a
+          href="mailto:iste@cumail.in"
+          className="mt-12 inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300 border border-cyan-400/30"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          Contact Us to Partner
+        </motion.a>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SponsorPage2;
+export default SponsorPage

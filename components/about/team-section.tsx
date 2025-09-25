@@ -1,7 +1,5 @@
 "use client"
 import React from 'react';
-// update path if needed
-
 import Image from "next/image";
 import { motion } from "framer-motion";
 
@@ -21,7 +19,6 @@ import {
   LucideIcon
 } from 'lucide-react';
 
-
 interface TeamMember {
   id: number;
   name: string;
@@ -29,14 +26,13 @@ interface TeamMember {
   department: string;
   bio: string;
   image: string;
-  icon: LucideIcon; // or the correct icon type
+  icon: LucideIcon;
 }
 
 interface TeamCardProps {
   member: TeamMember;
   isLead?: boolean;
   size?: "large" | "default" | "small";
-
 }
 
 interface Department {
@@ -46,64 +42,46 @@ interface Department {
   lead: TeamMember;
   team: TeamMember[];
 }
-const TeamMemberCard = ({ member, size = "large" }: TeamCardProps) => {
-  const IconComponent = member.icon;
 
+const TeamMemberCard = ({ member, size = "large" }: TeamCardProps) => {
   const sizeClasses = {
-    large: "p-6 md:p-8",
-    default: "p-4 md:p-6",
-    small: "p-3 md:p-4",
+    large: "p-4",
+    default: "p-3",
+    small: "p-2",
   };
 
   const imageHeights = {
-    large: "h-48 sm:h-64 md:h-80 lg:h-[28rem]",
-    default: "h-40 sm:h-48 md:h-64 lg:h-80",
-    small: "h-32 sm:h-40 md:h-48 lg:h-56",
-  };
-
-  const cardWidths = {
-    large: "w-full max-w-sm",
-    default: "w-full max-w-xs",
-    small: "w-full max-w-64",
+    large: "h-80",
+    default: "h-72",
+    small: "h-64",
   };
 
   return (
     <motion.div
-      className={`relative group rounded-xl bg-gradient-to-br from-gray-900 to-black border border-cyan-400/50 ${cardWidths[size]} mx-auto ${sizeClasses[size]}`}
-      whileHover={{ y: -4 }}
+      className={`relative group rounded-lg bg-gray-900/50 border border-gray-700/50 backdrop-blur-sm w-full max-w-sm mx-auto ${sizeClasses[size]}`}
+      whileHover={{ y: -2, borderColor: "rgba(156, 163, 175, 0.5)" }}
       transition={{ duration: 0.2 }}
     >
-      {/* Simple neon glow */}
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-400/20 to-purple-400/20 rounded-xl opacity-75" />
-      
-      <div className="relative bg-black/80 rounded-xl h-full">
-        <div className="flex flex-col items-center text-center gap-4 h-full p-2">
-          {/* Image container */}
-          <div className="relative w-full -mx-6 md:-mx-8 px-2">
-            <div className="relative w-full overflow-hidden rounded-lg border border-cyan-400/40">
-              <Image
-                src={member.image}
-                alt={member.name}
-                width={500}
-                height={500}
-                className={`w-full object-cover ${imageHeights[size]}`}
-              />
-            </div>
-          </div>
-          
-          {/* Name section */}
-          <div className="border-b border-cyan-400/30 pb-2 w-full">
-            <h3 className="text-base md:text-lg lg:text-xl font-bold text-cyan-300">
-              {member.name}
-            </h3>
-          </div>
+      <div className="flex flex-col items-center text-center space-y-4">
+        {/* Image container */}
+        <div className="relative w-full overflow-hidden rounded-md">
+          <Image
+            src={member.image}
+            alt={member.name}
+            width={400}
+            height={400}
+            className={`w-full object-cover ${imageHeights[size]}`}
+          />
         </div>
-      </div>
-      
-      {/* Simple icon badge */}
-      <div className="absolute -top-2 -right-2 z-20">
-        <div className="flex h-8 w-8 md:h-10 md:w-10 items-center justify-center rounded-lg bg-black border border-cyan-400/60">
-          <IconComponent className="h-4 w-4 md:h-5 md:w-5 text-cyan-400" />
+        
+        {/* Name and Position */}
+        <div className="space-y-1 pb-1">
+          <h3 className="text-lg font-medium text-white">
+            {member.name}
+          </h3>
+          <p className="text-sm text-gray-400">
+            {member.position}
+          </p>
         </div>
       </div>
     </motion.div>
@@ -114,39 +92,31 @@ interface DepartmentSectionProps {
   department: Department;
 }
  
-const  DepartmentSection = ({ department}: DepartmentSectionProps) => {
+const DepartmentSection = ({ department }: DepartmentSectionProps) => {
   const IconComponent = department.icon;
 
   return (
-    <div className="mb-16">
-      <div className="flex items-center gap-4 mb-8">
-        <div className="p-3 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl shadow-lg border border-blue-400/20">
-          <IconComponent className="w-8 h-8 text-white" />
+    <div className="mb-20">
+      <div className="flex items-center justify-center gap-3 mb-12">
+        <div className="p-2 bg-gray-800 rounded-lg border border-gray-700">
+          <IconComponent className="w-6 h-6 text-gray-300" />
         </div>
-        <div>
-          <h2 className="text-4xl font-bold text-white drop-shadow-lg">{department.name}</h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mt-2 shadow-lg"></div>
-        </div>
+        <h2 className="text-3xl font-light text-white">{department.name}</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-1">
-          <h3 className="text-xl font-semibold text-blue-400 mb-4 drop-shadow">Department Head</h3>
-          <TeamMemberCard
-            member={department.lead}
-            isLead={true}
-          />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
+        <div className="lg:col-span-1 flex justify-center">
+          <div className="w-full max-w-sm">
+            <h3 className="text-lg font-medium text-gray-300 mb-6 text-center">Department Head</h3>
+            <TeamMemberCard member={department.lead} isLead={true} />
+          </div>
         </div>
 
         <div className="lg:col-span-2">
-          <h3 className="text-xl font-semibold text-blue-400 mb-4 drop-shadow">Team Members</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <h3 className="text-lg font-medium text-gray-300 mb-6 text-center lg:text-left">Team Members</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-items-center">
             {department.team.map((member, index) => (
-              <TeamMemberCard
-                key={index}
-                member={member}
-              />
-
+              <TeamMemberCard key={index} member={member} />
             ))}
           </div>
         </div>
@@ -156,8 +126,6 @@ const  DepartmentSection = ({ department}: DepartmentSectionProps) => {
 };
 
 const TeamsPage = () => {
- 
-
   const secretariatBoard = [
     {
       id: 1,
@@ -183,7 +151,7 @@ const TeamsPage = () => {
       position: "Director General",
       department: "",
       bio: "Overseeing committee operations and ensuring seamless conference execution.",
-      image: "/team/Srishti.jpg",
+      image: "/team/Srishti.JPG",
       icon: Sparkles,
     },
     {
@@ -192,7 +160,7 @@ const TeamsPage = () => {
       position: "Deputy Director General",
       department: "",
       bio: "Coordinating between committees and ensuring seamless operational excellence.",
-      image: "/team/jatin Mittal.png",
+      image: "/team/Jatin Mittal.png",
       icon: Zap,
     },
   ];
@@ -275,11 +243,11 @@ const TeamsPage = () => {
     },
     {
       id: 8,
-      name: "Abhay Bansal",
+      name: "Piyush Aggarwal",
       position: "USG IT/Tech",
       department: "",
       bio: "Managing technical infrastructure and digital systems for the conference.",
-      image: "/team/Abhay Bansal.jpg",
+      image: "/team/Piyush Aggarwal_.jpg",
       icon: Code,
     },
   ];
@@ -335,20 +303,20 @@ const TeamsPage = () => {
       team: [
         {
           id: 5,
-          name: "Abhay Bansal",
+          name: "Piyush Aggarwal",
           position: "USG IT/Tech",
           department: "",
           bio: "Ensuring seamless technical operations throughout the conference.",
-          image: "/team/Abhay Bansal.jpg",
+          image: "/team/Piyush Aggarwal_.jpg",
           icon: Users,
         },
         {
           id: 6,
-          name: "Piyush Aggarwal",
+          name: "Abhay Bansal",
           position: "Technical Support",
           department: "Tech Team",
           bio: "Providing technical support and troubleshooting during the event.",
-          image: "/team/Piyush Aggarwal_.jpg",
+          image: "/team/Abhay Bansal.jpg",
           icon: Users,
         },
       ],
@@ -389,114 +357,72 @@ const TeamsPage = () => {
     },
   ];
 
-
   return (
-  <>
-    <div>
-      {/* Space Background Effects */}
-      
-
-      <div className="container mx-auto px-6 py-12 relative z-10">
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black">
+      <div className="container mx-auto px-6 py-16 relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            Meet Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">Team</span>
+        <div className="text-center mb-20">
+          <h1 className="text-5xl font-light text-white mb-4">
+            Meet Our <span className="font-medium text-gray-300">Team</span>
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto drop-shadow">
-            Dedicated minds crafting an extraordinary tech fest — where innovation, creativity, and collaboration unite at Technicia.
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Dedicated minds crafting an extraordinary experience
           </p>
-          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mx-auto mt-6 shadow-lg"></div>
+          <div className="w-24 h-px bg-gray-600 mx-auto mt-8"></div>
         </div>
 
         {/* Secretariat Board */}
-        <section className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl shadow-lg border border-amber-400/20">
-              <Crown className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Secretariat Board</h2>
-              <div className="w-32 h-1 bg-gradient-to-r from-amber-500 to-orange-600 rounded-full mt-2 shadow-lg"></div>
-            </div>
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-light text-white mb-2">Secretariat Board</h2>
+            <div className="w-16 h-px bg-gray-600 mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {secretariatBoard.map((member) => (
-              <TeamMemberCard
-                key={member.id}
-                member={member}
-               
-              />
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </section>
 
         {/* Advisor Board */}
-        <section className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-lg border border-emerald-400/20">
-              <Shield className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Advisory Board</h2>
-              <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full mt-2 shadow-lg"></div>
-            </div>
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-light text-white mb-2">Advisory Board</h2>
+            <div className="w-16 h-px bg-gray-600 mx-auto"></div>
           </div>
-          <div className="grid w-full grid-cols-1 place-items-center">
+          <div className="flex justify-center">
             {advisorBoard.map((member) => (
-              <div key={member.id} className="w-full max-w-sm">
-                <TeamMemberCard
-                  member={member}
-                  
-                />
-              </div>
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </section>
 
         {/* USG Positions */}
-        <section className="mb-16">
-          <div className="flex items-center gap-4 mb-8">
-            <div className="p-3 bg-gradient-to-br from-purple-500 to-violet-600 rounded-xl shadow-lg border border-purple-400/20">
-              <Users className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h2 className="text-4xl font-bold text-white drop-shadow-lg">Under Secretary General Positions</h2>
-              <div className="w-32 h-1 bg-gradient-to-r from-purple-500 to-violet-600 rounded-full mt-2 shadow-lg"></div>
-            </div>
+        <section className="mb-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-light text-white mb-2">Under Secretary General Positions</h2>
+            <div className="w-16 h-px bg-gray-600 mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
             {usgPositions.map((member) => (
-              <TeamMemberCard
-                key={member.id}
-                member={member}
-               
-              />
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </div>
         </section>
 
         {/* Departments */}
         <section>
-          <div className="text-center mb-12">
-            <h2 className="text-5xl font-bold text-white mb-4 drop-shadow-lg">Departments</h2>
-            <div className="w-40 h-1 bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-600 rounded-full mx-auto shadow-lg"></div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-light text-white mb-2">Departments</h2>
+            <div className="w-20 h-px bg-gray-600 mx-auto"></div>
           </div>
           {departments.map((department) => (
-            <DepartmentSection
-              key={department.id}
-              department={department}
-            
-            />
+            <DepartmentSection key={department.id} department={department} />
           ))}
         </section>
       </div>
     </div>
-
-   
-  </>
-);
-
-
+  );
 };
 
-export default TeamsPage;
+export default TeamsPage; 
