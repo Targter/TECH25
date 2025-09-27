@@ -139,286 +139,117 @@ export const competitions = [
   },
 ];
 export const eventsByDay = {
-  day1 : {
-  title: "Day 1 - Tech Focus",
-  date: "October 15, 2025",
-  description:
-    "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
-  events: [
-    {
-      id: "hackathon",
-      title: "HackChrono: The Technicia’ 48-hour Challenge",
-      description:
-        "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
-      time: "9:00 AM - 9:00 AM (Next Day)",
-      participants: "Teams of 2-4 UG/PG Students",
-      prize: "₹1,50,000",
-      difficulty: "Advanced",
-      location: "D-Block Open Area",
-      highlights: [
-        "48-hour open-source hackathon",
-        "Mentorship rounds & tech talks",
-        "Real-world problem statements",
-        "Pitch prep and final demos"
-      ],
-      image: "/competition/hackathon.png",
-      special: true,
-      
-    },
-    {
-      id: "striver-dsa",
-      title: "Striver DSA Session",
-      description:
-        "A live DSA masterclass and career session by Striver (Ex-Google, TakeUForward) focusing on coding interviews, problem-solving, and tech careers.",
-      time: "2:00 PM - 4:00 PM",
-      participants: "800–1000+ Students",
-      prize: "Certificates & Merchandise",
-      difficulty: "Intermediate",
-      location: "A1 Auditorium",
-      highlights: [
-        "Live DSA roadmap",
-        "Interview cracking tips",
-        "Fireside chat",
-        "Open Q&A session"
-      ],
-      image: "/competition/STRIVER.png",
-      special: false,
-    },
-    {
-      id: "tech-treasure-hunt",
-      title: "VOID Protocol: The Final Code",
-      description:
-        "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
-      time: "10:00 AM - 12:00 PM",
-      participants: "Teams of 3–4",
-      prize: "₹5,000",
-      difficulty: "Intermediate",
-      location: "D7 (Seminar Hall)",
-      highlights: [
-        "Binary & DNA puzzles",
-        "QR scavenger hunt",
-        "Timed decoding levels",
-        "Alien-themed storyline"
-      ],
-      image: "/competition/techtr.png",
-      special: false,
-    },
-    {
-      id: "tech-expo-student",
-      title: "Tech Expo: Student & Industry Innovations",
-      description:
-        "Tech Expo is a platform for showcasing student innovations alongside company CSR demos, facilitating networking between academia and industry.",
-      time: "9:00 AM – 4:30 PM",
-      participants: "Individual/Team & Corporate",
-      prize: "Best Project Award & Industry Mentorship",
-      difficulty: "All Levels",
-      location: "Exhibition Hall",
-      highlights: [
-        "Company stalls and demos",
-        "Student prototype exhibition",
-        "CSR partnerships and evaluation",
-        "Panel talks and pitch sessions"
-      ],
-      image: "/competition/tech_expo.png",
-      special: false,
-    },
-    {
-      id: "panel-discussion",
-      title: "Panel Discussion: Viksit Bharat 2047",
-      description:
-        "An elite panel discussion series covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
-      time: "10:00 AM - 5:00 PM",
-      participants: "Open to All",
-      prize: "Knowledge & Certification",
-      difficulty: "All Levels",
-      location: "C2 Auditorium",
-      highlights: [
-        "AI & Deep Tech Ecosystem",
-        "Innovation & Leadership in India",
-        "Cybersecurity & Data Privacy",
-        "National development vision 2047"
-      ],
-      image: "/competition/panel.png",
-      special: false,
-    },
-    {
-      id: "adopt-a-planet",
-      title: "Adopt a Planet",
-      description:
-        "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
-      time: "10:00 AM - 4:00 PM",
-      participants: "Teams of 3",
-      prize: "₹18,000",
-      difficulty: "Intermediate",
-      location: "B3 Seminar Hall",
-      highlights: [
-        "Story-based problem solving",
-        "Sustainable innovation",
-        "Team presentations",
-        "Judged pitch sessions"
-      ],
-      image: "/competition/adopt.png",
-      special: false,
-    },
-    {
-      id: "flight-forge",
-      title: "FlightForge – Aeromodelling Challenge",
-      description:
-        "Design and fly RC aircrafts in two rounds: one for payload capacity and the other for precision drop. A showcase of engineering and control.",
-      time: "10:00 AM - 4:00 PM",
-      participants: "Teams of 2–4 (UG/Engineering Students)",
-      prize: "₹20,000",
-      difficulty: "Advanced",
-      location: "C1 Main Ground",
-      highlights: [
-        "Payload lift challenge",
-        "Precision payload drop",
-        "Aerodynamics application",
-        "Engineering creativity"
-      ],
-      image: "/competition/flightforge.png",
-      special: false,
-    },
-    {
-      id: "capture-flag",
-      title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
-      description:
-        "A 24-hour Jeopardy-style cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
-      time: "10:00 AM - 10:00 AM (Next Day)",
-      participants: "Teams of 2–4",
-      prize: "₹25,000",
-      difficulty: "Advanced",
-      location: "D Block Closed Area",
-      highlights: [
-        "CTFd platform with scoreboard",
-        "Challenges in 6 cyber domains",
-        "Mentorship support",
-        "Alien hacking theme"
-      ],
-      image: "/competition/capture.png",
-      special: false,
-    }
-  ],
-},
-  day2 : {
-  title: "Day 2 - Innovation & Robotics",
-  date: "October 16, 2025",
-  description:
-    "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
-  events: [
-    {
-      id: "cumun",
-      title: "CUMUN – Chandigarh University Model United Nations",
-      description:
-        "An intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
-      time: "9:00 AM - 6:00 PM",
-      participants: "100+ Delegates (Open to All Streams)",
-      prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
-      difficulty: "Intermediate",
-      location: "Conference Hall, Block A",
-      highlights: [
-        "UN-style committee simulations",
-        "Global policy debate",
-        "Leadership and diplomacy",
-        "Awards for Best Delegates & Verbal Mentions",
-      ],
-      image: "/competition/cumun.png",
-      special: true,
-    },
-    {
-      id: "company-expo",
-      title: "Internship & Company Expo",
-      description:
-        "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
-      time: "10:00 AM - 4:30 PM",
-      participants: "Open to All (Approx. 150–200 Footfall Expected)",
-      prize: "Networking, Internship Offers, CSR Collaboration",
-      difficulty: "All Levels",
-      location: "University Exhibition Center",
-      highlights: [
-        "Live product demos",
-        "Company stalls & networking",
-        "CSR project mentoring",
-        "Panel talks & awards",
-      ],
-      image: "/competition/company.png",
-      special: false,
-    },
-    {
-      id: "non-tech-treasure-hunt",
-      title: "Non-Tech Treasure Hunt",
-      description:
-        "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
-      time: "10:00 AM - 5:00 PM",
-      participants: "Teams of 3–4 | Max 35 Teams",
-      prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
-      difficulty: "Easy",
-      location: "B1–B3 Blocks, Library, Fountain Park, Amphitheatre",
-      highlights: [
-        "6 lore-based stations",
-        "Logic & map puzzles",
-        "Live skit duels",
-        "Fantasy-themed props & storyline",
-      ],
-      image: "/competition/nontechtr.png",
-      special: false,
-    },
-    {
-      id: "among-us",
-      title: "Among Us Live!",
-      description:
-        "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
-      time: "2:00 PM - 5:00 PM",
-      participants: "10–15 players per round",
-      prize: "Bragging Rights & Fun Hampers",
-      difficulty: "Easy",
-      location: "Student Activity Zone",
-      highlights: [
-        "Live-action roleplay",
-        "Sabotage and strategy",
-        "Group deception and deduction",
-        "Rounds with elimination",
-      ],
-      image: "/competition/among.png",
-      special: false,
-    },
-    {
-      id: "tech-csr-bootcamp",
-      title: "Tech + CSR Bootcamps",
-      description:
-        "Day-long guided bootcamps focusing on how emerging technologies can drive social change through innovation and corporate responsibility.",
-      time: "9:00 AM - 5:00 PM",
-      participants: "50 Shortlisted Students",
-      prize: "Certificates + Internship Shortlisting",
-      difficulty: "Intermediate",
-      location: "CSR Innovation Center, CU",
-      highlights: [
-        "Hands-on CSR prototyping",
-        "Mentorship from CSR experts",
-        "Social impact brainstorming",
-        "Implementation frameworks",
-      ],
-      image: "/competition/boot.png",
-      special: false,
-    },
-  ],
-},
-  day3: {
-    title: "Day 3 - Cultural & Non-Tech",
-    date: "October 17, 2025",
+  day1: {
+    title: "Day 1 - Tech Focus",
+    date: "October 15, 2025",
     description:
-      "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
+      "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
     events: [
+      {
+        id: "web-dev-workshop",
+        title: "Web Dev Workshop",
+        description:
+          "Learn modern web development techniques and build dynamic websites using latest technologies.",
+        time: "1:30 PM - 4:30 PM",
+        participants: "Individual/Teams",
+        prize: "Certificates & Learning",
+        difficulty: "Intermediate",
+        location: "C3 Seminar Hall",
+        highlights: [
+          "Modern web development",
+          "Hands-on coding",
+          "Latest frameworks",
+          "Project building"
+        ],
+        image: "/competition/webdev.png",
+        special: false,
+      },
+      {
+        id: "ai-bootcamp",
+        title: "AI Bootcamp",
+        description:
+          "Intensive AI and machine learning bootcamp covering fundamentals to advanced concepts.",
+        time: "1:30 PM - 4:30 PM",
+        participants: "Individual/Teams",
+        prize: "Certificates & Learning",
+        difficulty: "Advanced",
+        location: "C1 Seminar Hall",
+        highlights: [
+          "AI fundamentals",
+          "Machine learning",
+          "Hands-on projects",
+          "Industry insights"
+        ],
+        image: "/competition/AI.png",
+        special: false,
+      },
+      {
+        id: "hackathon",
+        title: "HackChrono: The Technicia' 48-hour Challenge",
+        description:
+          "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
+        time: "1:30 PM - 1:30 PM (48 hours)",
+        participants: "Teams of 2-4 UG/PG Students",
+        prize: "₹1,50,000",
+        difficulty: "Advanced",
+        location: "D7 Open Area",
+        highlights: [
+          "48-hour open-source hackathon",
+          "Mentorship rounds & tech talks",
+          "Real-world problem statements",
+          "Pitch prep and final demos"
+        ],
+        image: "/competition/hackathon.png",
+        special: true,
+      },
+      {
+        id: "tech-treasure-hunt",
+        title: "VOID Protocol: The Final Code",
+        description:
+          "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
+        time: "1:30 PM onwards",
+        participants: "Teams of 3–4",
+        prize: "₹5,000",
+        difficulty: "Intermediate",
+        location: "D1 Stairs",
+        highlights: [
+          "Binary & DNA puzzles",
+          "QR scavenger hunt",
+          "Timed decoding levels",
+          "Alien-themed storyline"
+        ],
+        image: "/competition/techtr.png",
+        special: false,
+      },
+      {
+        id: "cumun-1st",
+        title: "CUMUN – Chandigarh University Model United Nations (Day 1)",
+        description:
+          "First day of an intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
+        time: "1:30 PM - 6:30 PM",
+        participants: "100+ Delegates (Open to All Streams)",
+        prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
+        difficulty: "Intermediate",
+        location: "B4 TBI Lab, B4 AI Lab, B4, B5, A1, A3, D8 Seminar Halls, Classroom-B5",
+        highlights: [
+          "UN-style committee simulations",
+          "Global policy debate",
+          "Leadership and diplomacy",
+          "Awards for Best Delegates & Verbal Mentions",
+        ],
+        image: "/competition/cumun.png",
+        special: true,
+      },
       {
         id: "short-film-making",
         title: "Short Film Making Competition",
         description:
-          "Unleash your creativity and tell a compelling story through the art of filmmaking.",
-        time: "9:00 AM - 5:00 PM (Submission)",
+          "Unleash your creativity and tell a compelling story through the art of filmmaking over 3 days.",
+        time: "All Day (3-day event)",
         participants: "Individual/Teams",
         prize: "₹20,000",
         difficulty: "Intermediate",
-        location: "Film Studio / Online Submission",
+        location: "Open Theatre - DACA",
         highlights: [
           "Scriptwriting",
           "Videography",
@@ -429,36 +260,195 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "cultural-night",
-        title: "One Stage One Vibe",
+        id: "among-us-day1",
+        title: "Among Us Live! (Day 1)",
         description:
-          "Grand cultural showcase featuring music, dance, and artistic performances.",
-        time: "6:00 PM - 10:00 PM",
-        participants: "Open to All",
-        prize: "₹50,000",
-        difficulty: "All Levels",
-        location: "Main Stage",
+          "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
+        time: "2:00 PM - 6:00 PM",
+        participants: "10–15 players per round",
+        prize: "Bragging Rights & Fun Hampers",
+        difficulty: "Easy",
+        location: "D5 Open Area",
         highlights: [
-          "Live performances",
-          "Cultural diversity",
-          "Talent showcase",
-          "Grand finale",
+          "Live-action roleplay",
+          "Sabotage and strategy",
+          "Group deception and deduction",
+          "Rounds with elimination",
         ],
-        image: "/competition/cultural.png",
+        image: "/competition/among.png",
         special: false,
-
       },
-
+    ],
+  },
+  day2: {
+    title: "Day 2 - Innovation & Robotics",
+    date: "October 16, 2025",
+    description:
+      "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
+    events: [
+      {
+        id: "glider-making-workshop",
+        title: "Flight Forge",
+        description:
+          "Build and test your own gliders while learning principles of aerodynamics and flight mechanics.",
+        time: "9:30 AM - 5:00 PM",
+        participants: "Individual/Teams",
+        prize: "Best Design Awards",
+        difficulty: "Intermediate",
+        location: "Hanger",
+        highlights: [
+          "Aerodynamics principles",
+          "Hands-on construction",
+          "Flight testing",
+          "Engineering creativity"
+        ],
+        image: "/competition/flightforge.png",
+        special: false,
+      },
+     
+      {
+        id: "investment-workshop",
+        title: "Investment Workshop",
+        description:
+          "Learn investment strategies, financial planning, and market analysis techniques.",
+        time: "1:30 PM - 4:30 PM",
+        participants: "Individual/Teams",
+        prize: "Certificates & Learning",
+        difficulty: "Intermediate",
+        location: "C3 Seminar Hall",
+        highlights: [
+          "Investment strategies",
+          "Financial planning",
+          "Market analysis",
+          "Portfolio management"
+        ],
+        image: "/competition/investment .png",
+        special: false,
+      },
+      {
+        id: "startup-launchpad-workshop",
+        title: "The Startup LaunchPad Workshop",
+        description:
+          "Learn how to launch and scale your startup with industry experts and mentors.",
+        time: "1:30 PM - 4:30 PM",
+        participants: "Individual/Teams",
+        prize: "Certificates & Mentorship",
+        difficulty: "Intermediate",
+        location: "C1 Seminar Hall",
+        highlights: [
+          "Startup fundamentals",
+          "Business planning",
+          "Pitch development",
+          "Scaling strategies"
+        ],
+        image: "/competition/startuplaunch.png",
+        special: false,
+      },
+      {
+        id: "adopt-a-planet",
+        title: "Adopt a Planet",
+        description:
+          "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
+        time: "10:00 AM - 4:00 PM",
+        participants: "Teams of 3",
+        prize: "₹18,000",
+        difficulty: "Intermediate",
+        location: "D7 Seminar Hall",
+        highlights: [
+          "Story-based problem solving",
+          "Sustainable innovation",
+          "Team presentations",
+          "Judged pitch sessions"
+        ],
+        image: "/competition/adopt.png",
+        special: false,
+      },
+      {
+        id: "capture-flag",
+        title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
+        description:
+          "A cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
+        time: "9:30 AM - 7:00 PM",
+        participants: "Teams of 2–4",
+        prize: "₹25,000",
+        difficulty: "Advanced",
+        location: "D1 Seminar Hall",
+        highlights: [
+          "CTFd platform with scoreboard",
+          "Challenges in 6 cyber domains",
+          "Mentorship support",
+          "Alien hacking theme"
+        ],
+        image: "/competition/capture.png",
+        special: false,
+      },
+      {
+        id: "cumun-2nd",
+        title: "CUMUN – Chandigarh University Model United Nations (Day 2)",
+        description:
+          "Second day of the intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
+        time: "9:00 AM - 4:30 PM",
+        participants: "100+ Delegates (Open to All Streams)",
+        prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
+        difficulty: "Intermediate",
+        location: "B4 TBI Lab, B4 AI Lab, B4, B5, A1, A3, D8 Seminar Halls, Classroom-B5",
+        highlights: [
+          "UN-style committee simulations",
+          "Global policy debate",
+          "Leadership and diplomacy",
+          "Awards for Best Delegates & Verbal Mentions",
+        ],
+        image: "/competition/cumun.png",
+        special: true,
+      },
+      {
+        id: "startup-expo",
+        title: "Startup Expo [Company]",
+        description:
+          "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
+        time: "All Day",
+        participants: "Open to All",
+        prize: "Networking, Internship Offers, CSR Collaboration",
+        difficulty: "All Levels",
+        location: "Exhibition Area",
+        highlights: [
+          "Live product demos",
+          "Company stalls & networking",
+          "CSR project mentoring",
+          "Panel talks & awards",
+        ],
+        image: "/competition/company.png",
+        special: false,
+      },
+      {
+        id: "panel-discussion-a",
+        title: "Panel Discussion - A",
+        description:
+          "An elite panel discussion covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
+        time: "All Day",
+        participants: "Open to All",
+        prize: "Knowledge & Certification",
+        difficulty: "All Levels",
+        location: "A1 Audi",
+        highlights: [
+          "AI & Deep Tech Ecosystem",
+          "Innovation & Leadership in India",
+          "Cybersecurity & Data Privacy",
+          "National development vision 2047"
+        ],
+        image: "/competition/panel.png",
+        special: false,
+      },
       {
         id: "rc-car-race",
         title: "RC Car Race",
         description:
           "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
-        time: "1:00 PM - 5:00 PM",
+        time: "10:30 AM - 2:00 PM",
         participants: "Individual",
         prize: "₹15,000",
         difficulty: "Intermediate",
-        location: "Racing Track",
+        location: "D1 to D8 Area",
         highlights: [
           "Precision driving",
           "Speed trials",
@@ -473,11 +463,11 @@ export const eventsByDay = {
         title: "Drone Race",
         description:
           "High-speed drone racing competition testing piloting skills and drone technology.",
-        time: "3:00 PM - 7:00 PM",
+        time: "6:00 PM - 8:30 PM",
         participants: "Individual",
         prize: "₹25,000",
         difficulty: "Advanced",
-        location: "In Front LC girsl Hostel",
+        location: "C1 Main Ground",
         highlights: [
           "FPV racing",
           "Obstacle courses",
@@ -485,6 +475,204 @@ export const eventsByDay = {
           "Precision flying",
         ],
         image: "/competition/drone.png",
+        special: false,
+      },
+      {
+        id: "non-tech-treasure-hunt",
+        title: "Non-Tech Treasure Hunt",
+        description:
+          "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
+        time: "9:30 AM - 2:00 PM",
+        participants: "Teams of 3–4 | Max 35 Teams",
+        prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
+        difficulty: "Easy",
+        location: "In front of A2",
+        highlights: [
+          "6 lore-based stations",
+          "Logic & map puzzles",
+          "Live skit duels",
+          "Fantasy-themed props & storyline",
+        ],
+        image: "/competition/nontechtr.png",
+        special: false,
+      },
+      {
+        id: "among-us-day2",
+        title: "Among Us Live! (Day 2)",
+        description:
+          "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
+        time: "10:00 AM - 6:00 PM",
+        participants: "10–15 players per round",
+        prize: "Bragging Rights & Fun Hampers",
+        difficulty: "Easy",
+        location: "D5 Open Area",
+        highlights: [
+          "Live-action roleplay",
+          "Sabotage and strategy",
+          "Group deception and deduction",
+          "Rounds with elimination",
+        ],
+        image: "/competition/among.png",
+        special: false,
+      },
+      {
+        id: "gamex-bgmi",
+        title: "GameX - BGMI Tournament",
+        description:
+          "Battle royale gaming tournament featuring BGMI (Battlegrounds Mobile India) with intense squad-based combat and strategic gameplay.",
+        time: "8:00 AM - 8:00 PM",
+        participants: "Teams of 4 Players",
+        prize: "Gaming Rewards & Trophies",
+        difficulty: "Intermediate",
+        location: "D8 Open Area",
+        highlights: [
+          "Squad-based battle royale",
+          "Multiple elimination rounds",
+          "Strategic gameplay",
+          "Mobile gaming tournament",
+        ],
+        image: "/competition/gamebg.png",
+        special: false,
+      },
+      {
+        id: "gamex-valorant",
+        title: "GameX - Valorant Tournament",
+        description:
+          "Tactical first-person shooter tournament featuring Valorant with team-based strategic combat and agent-based gameplay.",
+        time: "8:00 AM - 8:00 PM",
+        participants: "Teams of 5 Players",
+        prize: "Gaming Rewards & Trophies",
+        difficulty: "Intermediate",
+        location: "D8 Open Area",
+        highlights: [
+          "Tactical FPS gameplay",
+          "Agent-based abilities",
+          "Team coordination",
+          "Competitive esports format",
+        ],
+        image: "/competition/gameval.png",
+        special: false,
+      },
+    ],
+  },
+  day3: {
+    title: "Day 3 - Cultural & Non-Tech",
+    date: "October 17, 2025",
+    description:
+      "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
+    events: [
+      {
+        id: "hydrorocket-workshop",
+        title: "Hydrorocket Workshop",
+        description:
+          "Build and launch water rockets while learning principles of propulsion and aerodynamics.",
+        time: "9:30 AM - 3:00 PM",
+        participants: "Individual/Teams",
+        prize: "Best Launch Awards",
+        difficulty: "Intermediate",
+        location: "Hanger",
+        highlights: [
+          "Rocket construction",
+          "Propulsion principles",
+          "Launch competitions",
+          "Physics applications"
+        ],
+        image: "/competition/hydrorocket.png",
+        special: false,
+      },
+      {
+        id: "crime-investigation-workshop-day2",
+        title: "Crime Investigation Workshop (Day 2)",
+        description:
+          "Continue learning forensic techniques and investigation methods through advanced crime scene analysis.",
+        time: "9:30 AM - 12:30 PM",
+        participants: "Individual/Teams",
+        prize: "Certificates & Learning",
+        difficulty: "Intermediate",
+        location: "C3 Seminar Hall",
+        highlights: [
+          "Advanced forensic techniques",
+          "Complex crime scenarios",
+          "Investigation methods",
+          "Case studies"
+        ],
+        image: "/competition/crime.png",
+        special: false,
+      },
+      {
+        id: "project-expo-student",
+        title: "Project Expo [Student]",
+        description:
+          "Student innovation showcase featuring projects across various domains and technologies.",
+        time: "All Day",
+        participants: "Individual/Teams",
+        prize: "Best Project Awards & Recognition",
+        difficulty: "All Levels",
+        location: "Exhibition Area",
+        highlights: [
+          "Student innovations",
+          "Project demonstrations",
+          "Technical presentations",
+          "Industry evaluation"
+        ],
+        image: "/competition/project.png",
+        special: false,
+      },
+      {
+        id: "panel-discussion-b",
+        title: "Panel Discussion - B",
+        description:
+          "Continuation of elite panel discussions covering emerging technologies and future innovations.",
+        time: "All Day",
+        participants: "Open to All",
+        prize: "Knowledge & Certification",
+        difficulty: "All Levels",
+        location: "A1 Audi",
+        highlights: [
+          "Emerging technologies",
+          "Future innovations",
+          "Industry insights",
+          "Career guidance"
+        ],
+        image: "/competition/panel.png",
+        special: false,
+      },
+      {
+        id: "defense-talk",
+        title: "Defense Talk - Capt Dharamvir Singh",
+        description:
+          "Inspiring talk by Captain Dharamvir Singh on defense services, leadership, and national security.",
+        time: "9:30 AM - 12:30 PM",
+        participants: "Open to All",
+        prize: "Knowledge & Inspiration",
+        difficulty: "All Levels",
+        location: "D1 Audi",
+        highlights: [
+          "Defense services insights",
+          "Leadership lessons",
+          "National security awareness",
+          "Career opportunities"
+        ],
+        image: "/competition/defense.png",
+        special: false,
+      },
+      {
+        id: "among-us-day3",
+        title: "Among Us Live! (Day 3)",
+        description:
+          "Final day of the interactive live-action version of the famous social deduction game 'Among Us'.",
+        time: "10:00 AM - 2:00 PM",
+        participants: "10–15 players per round",
+        prize: "Bragging Rights & Fun Hampers",
+        difficulty: "Easy",
+        location: "D5 Open Area",
+        highlights: [
+          "Live-action roleplay",
+          "Sabotage and strategy",
+          "Group deception and deduction",
+          "Final championship rounds",
+        ],
+        image: "/competition/among.png",
         special: false,
       },
     ],
