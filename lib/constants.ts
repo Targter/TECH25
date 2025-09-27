@@ -161,7 +161,7 @@ export const eventsByDay = {
         "Real-world problem statements",
         "Pitch prep and final demos"
       ],
-      image: "/competition/hackchrono.png",
+      image: "/competition/hackathon.png",
       special: true,
       
     },
@@ -181,7 +181,7 @@ export const eventsByDay = {
         "Fireside chat",
         "Open Q&A session"
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/STRIVER.png",
       special: false,
     },
     {
@@ -200,7 +200,7 @@ export const eventsByDay = {
         "Timed decoding levels",
         "Alien-themed storyline"
       ],
-      image: "/competition/treasure_hunt.png",
+      image: "/competition/techtr.png",
       special: false,
     },
     {
@@ -238,7 +238,7 @@ export const eventsByDay = {
         "Cybersecurity & Data Privacy",
         "National development vision 2047"
       ],
-      image: "/competition/ai_panel.png",
+      image: "/competition/panel.png",
       special: false,
     },
     {
@@ -257,7 +257,7 @@ export const eventsByDay = {
         "Team presentations",
         "Judged pitch sessions"
       ],
-      image: "/competition/adopt_planet.png",
+      image: "/competition/adopt.png",
       special: false,
     },
     {
@@ -276,7 +276,7 @@ export const eventsByDay = {
         "Aerodynamics application",
         "Engineering creativity"
       ],
-      image: "/competition/flight_forge.png",
+      image: "/competition/flightforge.png",
       special: false,
     },
     {
@@ -295,7 +295,7 @@ export const eventsByDay = {
         "Mentorship support",
         "Alien hacking theme"
       ],
-      image: "/competition/cft.png",
+      image: "/competition/capture.png",
       special: false,
     }
   ],
@@ -341,12 +341,12 @@ export const eventsByDay = {
         "CSR project mentoring",
         "Panel talks & awards",
       ],
-      image: "/competition/internship_expo.png",
+      image: "/competition/company.png",
       special: false,
     },
     {
       id: "non-tech-treasure-hunt",
-      title: "The Order of the Obsidian Quill",
+      title: "Non-Tech Treasure Hunt",
       description:
         "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
       time: "10:00 AM - 5:00 PM",
@@ -360,7 +360,7 @@ export const eventsByDay = {
         "Live skit duels",
         "Fantasy-themed props & storyline",
       ],
-      image: "/competition/obsidian_quill.png",
+      image: "/competition/nontechtr.png",
       special: false,
     },
     {
@@ -379,7 +379,7 @@ export const eventsByDay = {
         "Group deception and deduction",
         "Rounds with elimination",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/among.png",
       special: false,
     },
     {
@@ -398,7 +398,7 @@ export const eventsByDay = {
         "Social impact brainstorming",
         "Implementation frameworks",
       ],
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/competition/boot.png",
       special: false,
     },
   ],
@@ -425,7 +425,7 @@ export const eventsByDay = {
           "Editing techniques",
           "Storytelling",
         ],
-        image: "/competition/film.png",
+        image: "/competition/films.png",
         special: false,
       },
       {
