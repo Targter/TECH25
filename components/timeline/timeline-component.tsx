@@ -90,13 +90,13 @@ export default function TimelineComponent() {
   return (
     <section className="py-12 md:py-20 text-white w-full relative overflow-hidden">
       <div className="hidden lg:block">
-      <FlyingSpaceship
-              top="top-[35%]"
-              left="left-[90%]"
-              duration={22}
-              color="blue"
-              direction="rightToLeft"
-            />
+        <FlyingSpaceship
+          top="top-[35%]"
+          left="left-[90%]"
+          duration={22}
+          color="blue"
+          direction="rightToLeft"
+        />
       </div>
 
       <div className="absolute inset-0 pointer-events-none">
@@ -422,115 +422,114 @@ export default function TimelineComponent() {
                     </div>
                   </div>
 
-                 <div className="flex flex-col sm:flex-row gap-3 w-full sm:items-center">
-  <Link href={`/timeline/${event.id}`} className="w-full sm:w-auto">
-    <motion.button
-      className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full"
-      whileHover={{
-        scale: 1.03,
-        boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)",
-        transition: { duration: 0.2 },
-      }}
-      whileTap={{ scale: 0.98 }}
-    >
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-        initial={{ x: "-100%" }}
-        whileHover={{ x: "100%" }}
-        transition={{ duration: 0.6 }}
-      />
-      <span className="relative z-10">View More Details</span>
-    </motion.button>
-  </Link>
+                  <div className="flex flex-col sm:flex-row gap-3 w-full sm:items-center">
+                    <Link href={`/timeline/${event.id}`} className="w-full sm:w-auto">
+                      <motion.button
+                        className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full"
+                        whileHover={{
+                          scale: 1.03,
+                          boxShadow: "0 8px 20px rgba(34, 197, 94, 0.3)",
+                          transition: { duration: 0.2 },
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: "100%" }}
+                          transition={{ duration: 0.6 }}
+                        />
+                        <span className="relative z-10">View More Details</span>
+                      </motion.button>
+                    </Link>
 
-  <motion.button
-    onClick={() => {
-      if (isEventInCart(event.id)) {
-        removeEvent(event.id);
-      } else {
-        handleAddToCart(event);
-      }
-    }}
-    className={`group text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto min-w-0 ${isEventInCart(event.id)
-      ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
-      : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-      }`}
-    whileHover={{
-      scale: 1.03,
-      boxShadow: isEventInCart(event.id)
-        ? "0 8px 20px rgba(34, 197, 94, 0.3)"
-        : "0 8px 20px rgba(37, 99, 235, 0.3)",
-      transition: { duration: 0.2 },
-    }}
-    whileTap={{ scale: 0.98 }}
-  >
-    <motion.div
-      className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-      initial={{ x: "-100%" }}
-      whileHover={{ x: "100%" }}
-      transition={{ duration: 0.6 }}
-    />
+                    <motion.button
+                      onClick={() => {
+                        if (isEventInCart(event.id)) {
+                          removeEvent(event.id);
+                        } else {
+                          handleAddToCart(event);
+                        }
+                      }}
+                      className={`group text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto min-w-0 ${isEventInCart(event.id)
+                        ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                        : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                        }`}
+                      whileHover={{
+                        scale: 1.03,
+                        boxShadow: isEventInCart(event.id)
+                          ? "0 8px 20px rgba(34, 197, 94, 0.3)"
+                          : "0 8px 20px rgba(37, 99, 235, 0.3)",
+                        transition: { duration: 0.2 },
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                        initial={{ x: "-100%" }}
+                        whileHover={{ x: "100%" }}
+                        transition={{ duration: 0.6 }}
+                      />
 
-    {isEventInCart(event.id) && (
-      <motion.div
-        className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-        initial={{ scale: 0.9 }}
-        whileHover={{ scale: 1 }}
-      >
-        <X className="h-4 w-4 sm:h-5 sm:w-5" />
-      </motion.div>
-    )}
+                      {isEventInCart(event.id) && (
+                        <motion.div
+                          className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                          initial={{ scale: 0.9 }}
+                          whileHover={{ scale: 1 }}
+                        >
+                          <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                        </motion.div>
+                      )}
 
-{event.special ? (
-  <Link
-    href={
-      event.id === "cumun" 
-        ? "https://mun-iste.vercel.app/" 
-        : event.id === "hackathon"
-        ? "https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"
-        : "#"
-    }
-    className="relative z-10 flex items-center justify-center gap-1 sm:gap-2"
-  >
-    <span className="hidden sm:inline">Go to Special Event</span>
-    <span className="sm:hidden">Go</span>
-  </Link>
-) : (
-  <span
-    className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${
-      isEventInCart(event.id) ? "group-hover:opacity-0" : ""
-    }`}
-  >
-    {isEventInCart(event.id) ? (
-      <>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="sm:w-4 sm:h-4"
-        >
-          <path d="M20 6L9 17l-5-5" />
-        </svg>
-        <span className="hidden xs:inline">Added for Registration</span>
-        <span className="xs:hidden">Added</span>
-      </>
-    ) : (
-      <>
-        <span className="hidden sm:inline">Add Event For Registration</span>
-        <span className="sm:hidden">Add Event</span>
-      </>
-    )}
-  </span>
-)}
+                      {event.special ? (
+                        <Link
+                          href={
+                            event.id === "cumun"
+                              ? "https://mun-iste.vercel.app/"
+                              : event.id === "hackathon"
+                                ? "https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"
+                                : "#"
+                          }
+                          className="relative z-10 flex items-center justify-center gap-1 sm:gap-2"
+                        >
+                          <span className="hidden sm:inline">Go to Special Event</span>
+                          <span className="sm:hidden">Go</span>
+                        </Link>
+                      ) : (
+                        <span
+                          className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+                            }`}
+                        >
+                          {isEventInCart(event.id) ? (
+                            <>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                className="sm:w-4 sm:h-4"
+                              >
+                                <path d="M20 6L9 17l-5-5" />
+                              </svg>
+                              <span className="hidden xs:inline">Added for Registration</span>
+                              <span className="xs:hidden">Added</span>
+                            </>
+                          ) : (
+                            <>
+                              <span className="hidden sm:inline">Add Event For Registration</span>
+                              <span className="sm:hidden">Add Event</span>
+                            </>
+                          )}
+                        </span>
+                      )}
 
-  </motion.button>
-</div>
+                    </motion.button>
+                  </div>
 
                 </motion.div>
 
@@ -558,7 +557,7 @@ export default function TimelineComponent() {
                     />
 
                     {/* Floating decorative elements */}
-{/* <motion.div
+                    {/* <motion.div
                       className="absolute top-4 md:top-8 left-4 md:left-8 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
                       animate={{
                         rotateZ: [0, 360],

@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useCartStore } from "@/store/data";
 import { useRouter } from "next/navigation";
-import {eventsByDay} from "@/lib/constants"
+import { eventsByDay } from "@/lib/constants"
 
 type Event = {
   id: string;
@@ -135,28 +135,27 @@ export default function EventDetailsPage() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             <motion.div
-              className="relative w-full h-[300px] sm:h-[400px] rounded-xl overflow-hidden shadow-xl border border-green-500/40"
+              className="relative w-full h-[600px] sm:h-[500px] lg:h-[600px] rounded-xl overflow-hidden shadow-xl border border-green-500/40 mb-8"
               whileHover={{
                 scale: 1.02,
                 boxShadow: "0 15px 30px rgba(34, 197, 94, 0.3)",
               }}
               transition={{ duration: 0.3 }}
-            >
+            > 
+            
+
               <Image
                 src={event.image || "/placeholder.svg"}
                 alt={event.title}
                 fill
-                className="object-cover"
+
                 priority
                 placeholder="blur"
                 blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAREBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                <h1 className="text-3xl sm:text-4xl font-bold text-white leading-tight">
-                  {event.title}
-                </h1>
-              </div>
+                />
+
+                
             </motion.div>
 
             <div>
