@@ -780,76 +780,7 @@ export const sponsors = [
   },
 ];
 
-export const timelineEvents = [
-  {
-    date: "March 13, 2025",
-    events: [
-      {
-        time: "09:00 AM - 10:30 AM",
-        title: "Opening Ceremony",
-        description: "Official inauguration with keynote speeches from industry leaders",
-        location: "Main Auditorium"
-      },
-      {
-        time: "11:00 AM - 05:00 PM",
-        title: "Workshop Series",
-        description: "Specialized workshops on AI, Blockchain, and Cloud Computing",
-        location: "Workshop Halls"
-      }
-    ]
-  },
-  {
-    date: "March 14, 2025",
-    events: [
-      {
-        time: "09:00 AM - 06:00 PM",
-        title: "Coding Contest",
-        description: "Individual programming challenge with algorithmic problems",
-        location: "Tech Building"
-      },
-      {
-        time: "10:00 AM - 08:00 PM",
-        title: "UI/UX Challenge",
-        description: "Design competition for creating innovative user interfaces",
-        location: "Design Lab"
-      }
-    ]
-  },
-  {
-    date: "March 15, 2025",
-    events: [
-      {
-        time: "08:00 AM - Next Day",
-        title: "24-Hour Hackathon",
-        description: "Team-based hackathon to build innovative solutions",
-        location: "Main Campus"
-      },
-      {
-        time: "10:00 AM - 06:00 PM",
-        title: "AI/ML Showcase",
-        description: "Exhibition of artificial intelligence projects",
-        location: "Innovation Center"
-      }
-    ]
-  },
-  {
-    date: "March 16, 2025",
-    events: [
-      {
-        time: "09:00 AM - 04:00 PM",
-        title: "Startup Pitch Competition",
-        description: "Pitch your startup idea to investors and experts",
-        location: "Business Center"
-      },
-      {
-        time: "05:00 PM - 07:00 PM",
-        title: "Closing Ceremony & Awards",
-        description: "Prize distribution and celebration of achievements",
-        location: "Main Auditorium"
-      }
-    ]
-  }
-];
+
 
 
 export const previousposter = [
