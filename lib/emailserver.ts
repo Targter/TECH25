@@ -92,7 +92,6 @@
 
 
 // 
-
 import nodemailer from 'nodemailer';
 
 // Configure transporter using your SMTP service credentials
@@ -114,6 +113,7 @@ const sendConfirmationEmail = async (
   const eventList = events
     .map((event) => `<li>${event.title}</li>`)
     .join('');
+
   const teamMemberList = teamMembers.length
     ? teamMembers
         .map((member) => `<li>${member.name} (${member.email})</li>`)
@@ -121,16 +121,17 @@ const sendConfirmationEmail = async (
     : '<li>None</li>';
 
   const mailOptions = {
-    from: `"TECHNICIA'25 Registration" <${process.env.EMAIL_USER}>`,
+    from: `"TECHNICIA'25 Registration" <${process.env.EMAIL_USER}>`, // FIXED: proper quotes for name + email
     to: toEmail,
-    subject: "✅ Confirmation of Registration | TECHNICIA’25 – Chandigarh University (Sept 10–12, 2025)",
+    subject:
+      "✅ Confirmation of Registration | TECHNICIA’25 – Chandigarh University (Oct 15–17, 2025)",
     html: `
       <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
         <p>Dear ${fullName},</p>
 
-        <p>🎉 Congratulations! Your registration for <strong>TECHNICIA'25</strong>, the most awaited 3-day techno-galactic fest organized by the <strong>ISTE Student Chapter</strong>, <strong>Chandigarh University</strong>, is successfully confirmed!</p>
+        <p>🎉 Congratulations! Your registration for <strong>TECHNICIA'25</strong>, the ISTE Annual Zonal Level Convention cum Technical Fest organized by the <strong>ISTE Student Chapter</strong>, <strong>Chandigarh University</strong>, is successfully confirmed!</p>
 
-        <p><strong>Event Dates:</strong> 10th – 12th September 2025<br/>
+        <p><strong>Event Dates:</strong> 15th – 17th October 2025<br/>
         <strong>Venue:</strong> Chandigarh University Campus</p>
 
         <p><strong>🚀 Registered Events:</strong></p>
@@ -152,7 +153,7 @@ const sendConfirmationEmail = async (
             : ''
         }
 
-        <p>TECHNICIA'25 isn't just an event — it's an interstellar journey through innovation, bringing together over <strong>5000+ technocrats</strong> from across the galaxy to collaborate, compete, and celebrate the future of technology.</p>
+        <p>TECHNICIA'25 is more than just a fest — it’s a hub of innovation, creativity, and collaboration, bringing together brilliant minds to celebrate technology, knowledge, and ideas.</p>
 
         <p><strong>Next Steps:</strong></p>
         <ul>
@@ -163,9 +164,10 @@ const sendConfirmationEmail = async (
         <p style="color: #c0392b;"><strong>📢 Important:</strong><br/>
         Please do not make any payments or consider any monetary requests unless explicitly communicated through official university channels.</p>
 
-        <p>If you have any queries, feel free to reply to this email or reach out to us at <a href="mailto:iste@cumail.in" style="color: #2980b9;">iste@cumail.in</a> or <a href="mailto:sahil04.wadhwa@gmail.com" style="color: #2980b9;">sahil04.wadhwa@gmail.com</a>.</p>
+        <p>If you have any queries, feel free to reply to this email or reach out to us at <a href="mailto:official@technicia.live" style="color: #2980b9;">official@technicia.live</a>. You can also follow us for updates on Instagram: 
+        <a href="https://www.instagram.com/iste_cusc?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="color: #2980b9;">@iste_cusc</a>.</p>
 
-        <p>We’re excited to have you on board for this cosmic celebration of tech!</p>
+        <p>We’re excited to have you on board for this grand celebration of technology and innovation!</p>
 
         <p>Warm regards,<br/>
         <strong>Organizing Committee – TECHNICIA'25</strong><br/>
