@@ -38,7 +38,9 @@ export async function GET(request: NextRequest) {
     } : {};
 
     // Build sort object
-    const sort: any = {};
+    // const sort: any = {};
+        const sort: Record<string, 1 | -1> = {};
+
     if (sortBy.includes('primaryParticipant.')) {
       const field = sortBy.replace('primaryParticipant.', '');
       sort[`primaryParticipant.${field}`] = sortOrder === 'desc' ? -1 : 1;
