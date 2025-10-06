@@ -233,7 +233,7 @@ export default function EventDetailsPage() {
                 >
                   <Star className="h-5 w-5 mr-3 flex-shrink-0" />
                   <div>
-                    <div className="text-xs text-gray-400">Difficulty</div>
+                    <div className="text-xs text-gray-400">Registration Fees</div>
                     <div className="font-semibold text-base md:text-lg">
                       {event.registrationFees}
                     </div>
