@@ -7,7 +7,7 @@ type Event = {
   time: string;
   participants: string;
   prize: string;
-  difficulty: string;
+  registrationFees: string;
   location: string;
   highlights: string[];
   image: string;

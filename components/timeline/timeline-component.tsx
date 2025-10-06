@@ -15,7 +15,7 @@ type Event = {
   time: string;
   participants: string;
   prize: string;
-  difficulty: string;
+  registrationFees: string;
   location: string;
   highlights: string[];
   image: string;
@@ -372,9 +372,9 @@ export default function TimelineComponent() {
                     >
                       <Star className="h-4 w-4 md:h-5 md:w-5 mr-2 flex-shrink-0" />
                       <div className="min-w-0">
-                        <div className="text-xs text-gray-400">Difficulty</div>
+                        <div className="text-xs text-gray-400">Registration Fees</div>
                         <div className="font-semibold text-sm md:text-base truncate">
-                          {event.difficulty}
+                          {event.registrationFees}
                         </div>
                       </div>
                     </motion.div>
@@ -485,15 +485,34 @@ export default function TimelineComponent() {
                         <Link
                           href={
                             event.id === "cumun"
-                              ? "https://mun-iste.vercel.app/"
-                              : event.id === "hackathon"
-                                ? "https://unstop.com/hackathons/hackchrono-chandigarh-university-cumohalipunjab-1514056"
-                                : "#"
+                              ? "https://www.cuchd.in/cumun/"
+                              : event.id === "rc-car-race"
+                                ? "https://unstop.com/hackathons/rc-race-car-chandigarh-univeristy-1567312"
+                                : event.id === "drone-race"
+                                  ? "https://unstop.com/hackathons/drone-race-chandigarh-univeristy-1565298"
+                                  : "#"
                           }
-                          className="relative z-10 flex items-center justify-center gap-1 sm:gap-2"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 hover:gap-2 sm:hover:gap-3 transition-all duration-200"
                         >
-                          <span className="hidden sm:inline">Go to Special Event</span>
-                          <span className="sm:hidden">Go</span>
+                          <span className="hidden sm:inline">Register To Explore</span>
+                          <span className="sm:hidden">Register</span>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="sm:w-4 sm:h-4 transition-transform group-hover:translate-x-0.5"
+                          >
+                            <path d="M7 7h10v10" />
+                            <path d="M7 17 17 7" />
+                          </svg>
                         </Link>
                       ) : (
                         <span

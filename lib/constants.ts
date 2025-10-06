@@ -52,92 +52,8 @@ export const navLinks = [
     href: "/faqs",
   },
 ];
-export const competitions = [
-  {
-    id: 1,
-    title: "CU MUN",
-      description: "Showcase your artificial intelligence prowess in this cutting-edge competition where innovation meets technology.",
-    date: "March 15, 2025",
-    time: "09:00 AM - 06:00 PM",
-    location: "Main Auditorium, Tech Block",
-    participants: "150+ Teams",
-    prize: "₹50,000",
-    difficulty: "Advanced",
-    category: "Technology",
-    highlights: ["Machine Learning Models", "Neural Networks", "Real-world Problem Solving", "Industry Mentorship"],
-    image: "/competition/1.png"
-  },
-  {
-    id: 2,
-    title: "CodeFest Marathon",
-    description: "The ultimate coding showdown where algorithms dance and logic reigns supreme. Test your programming skills against the best.",
-    date: "March 16, 2025",
-    time: "10:00 AM - 08:00 PM",
-    location: "Computer Lab Complex",
-    participants: "200+ Coders",
-    prize: "₹30,000",
-    difficulty: "Intermediate",
-    category: "Programming",
-    highlights: ["Data Structures", "Algorithm Optimization", "Competitive Programming", "Live Coding Sessions"],
-    image: "/competition/2.png"
-  },
-  {
-    id: 3,
-    title: "RoboWars Championship",
-    description: "Enter the arena where metal meets mayhem! Design, build, and battle your way to robotic supremacy in this thrilling competition.",
-    date: "March 17, 2025",
-    time: "11:00 AM - 07:00 PM",
-    location: "Engineering Workshop Arena",
-    participants: "80+ Robots",
-    prize: "₹75,000",
-    difficulty: "Expert",
-    category: "Robotics",
-    highlights: ["Combat Robotics", "Mechanical Design", "Strategic Warfare", "Live Battle Arena"],
-    image: "/competition/5.png"
-  },
-  {
-    id: 4,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/4.png"
-  },
-  {
-    id: 5,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/6.png"
-  },
-  {
-    id: 6,
-    title: "Web Dev Wizardry",
-    description: "Craft digital masterpieces and weave web magic in this comprehensive full-stack development competition.",
-    date: "March 18, 2025",
-    time: "09:30 AM - 05:30 PM",
-    location: "Digital Innovation Center",
-    participants: "120+ Developers",
-    prize: "₹40,000",
-    difficulty: "Intermediate",
-    category: "Web Development",
-    highlights: ["Frontend Frameworks", "Backend Architecture", "Database Design", "UI/UX Excellence"],
-    image: "/competition/7.png"
-  },
-];
+
+
 export const eventsByDay = {
   day1: {
     title: "Day 1 - Tech Focus",
@@ -153,7 +69,7 @@ export const eventsByDay = {
         time: "1:30 PM - 4:30 PM",
         participants: "Individual/Teams",
         prize: "Certificates & Learning",
-        difficulty: "Intermediate",
+        registrationFees: "Free",
         location: "C3 Seminar Hall",
         highlights: [
           "Modern web development",
@@ -169,10 +85,10 @@ export const eventsByDay = {
         title: "AI Bootcamp",
         description:
           "Intensive AI and machine learning bootcamp covering fundamentals to advanced concepts.",
-        time: "1:30 PM - 4:30 PM",
+        time: "2:00 PM - 5:00 PM",
         participants: "Individual/Teams",
         prize: "Certificates & Learning",
-        difficulty: "Advanced",
+        registrationFees: "Free",
         location: "C1 Seminar Hall",
         highlights: [
           "AI fundamentals",
@@ -184,25 +100,6 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "hackathon",
-        title: "HackChrono: The Technicia' 48-hour Challenge",
-        description:
-          "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
-        time: "1:30 PM - 1:30 PM (48 hours)",
-        participants: "Teams of 2-4 UG/PG Students",
-        prize: "₹1,50,000",
-        difficulty: "Advanced",
-        location: "D7 Open Area",
-        highlights: [
-          "48-hour open-source hackathon",
-          "Mentorship rounds & tech talks",
-          "Real-world problem statements",
-          "Pitch prep and final demos"
-        ],
-        image: "/competition/hackathon.png",
-        special: true,
-      },
-      {
         id: "tech-treasure-hunt",
         title: "VOID Protocol: The Final Code",
         description:
@@ -210,8 +107,8 @@ export const eventsByDay = {
         time: "1:30 PM onwards",
         participants: "Teams of 3–4",
         prize: "₹5,000",
-        difficulty: "Intermediate",
-        location: "D1 Stairs",
+        registrationFees: "₹100 per team",
+        location: "D7 Seminar Hall",
         highlights: [
           "Binary & DNA puzzles",
           "QR scavenger hunt",
@@ -222,15 +119,15 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "cumun-1st",
+        id: "cumun",
         title: "CUMUN – Chandigarh University Model United Nations (Day 1)",
         description:
           "First day of an intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
         time: "1:30 PM - 6:30 PM",
         participants: "100+ Delegates (Open to All Streams)",
         prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
-        difficulty: "Intermediate",
-        location: "B4 TBI Lab, B4 AI Lab, B4, B5, A1, A3, D8 Seminar Halls, Classroom-B5",
+        registrationFees: "₹1,700 | Outside: ₹3,300",
+        location: "Chandigarh University",
         highlights: [
           "UN-style committee simulations",
           "Global policy debate",
@@ -245,11 +142,11 @@ export const eventsByDay = {
         title: "Short Film Making Competition",
         description:
           "Unleash your creativity and tell a compelling story through the art of filmmaking over 3 days.",
-        time: "All Day (3-day event)",
+        time: "2:30 PM Onwards (3-day event)",
         participants: "Individual/Teams",
         prize: "₹20,000",
-        difficulty: "Intermediate",
-        location: "Open Theatre - DACA",
+        registrationFees: "₹300 per team",
+        location: "D1 Auditorium",
         highlights: [
           "Scriptwriting",
           "Videography",
@@ -260,15 +157,15 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "among-us-day1",
+        id: "among-us-day",
         title: "Among Us Live! (Day 1)",
         description:
           "An interactive live-action version of the famous social deduction game 'Among Us'—full of fun, mystery, and real-time betrayal.",
         time: "2:00 PM - 6:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        difficulty: "Easy",
-        location: "D5 Open Area",
+        registrationFees: "₹2000",
+        location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
           "Sabotage and strategy",
@@ -277,6 +174,25 @@ export const eventsByDay = {
         ],
         image: "/competition/among.png",
         special: false,
+      },
+      {
+        id: "hackathon",
+        title: "HackChrono: The Technicia' 48-hour Challenge",
+        description:
+          "HackChrono is a 48-hour open-source hackathon to build tech-driven solutions for real-world social challenges, especially in NGO and CSR domains.",
+        time: "1:30 PM - 1:30 PM (48 hours)",
+        participants: "Teams of 2-4 UG/PG Students",
+        prize: "₹1,50,000",
+        registrationFees: "Registration Closed",
+        location: "D7 Open Area",
+        highlights: [
+          "48-hour open-source hackathon",
+          "Mentorship rounds & tech talks",
+          "Real-world problem statements",
+          "Pitch prep and final demos"
+        ],
+        image: "/competition/hackathon.png",
+        special: true,
       },
     ],
   },
@@ -287,53 +203,14 @@ export const eventsByDay = {
       "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
     events: [
       {
-        id: "glider-making-workshop",
-        title: "Flight Forge",
-        description:
-          "Build and test your own gliders while learning principles of aerodynamics and flight mechanics.",
-        time: "9:30 AM - 5:00 PM",
-        participants: "Individual/Teams",
-        prize: "Best Design Awards",
-        difficulty: "Intermediate",
-        location: "Hanger",
-        highlights: [
-          "Aerodynamics principles",
-          "Hands-on construction",
-          "Flight testing",
-          "Engineering creativity"
-        ],
-        image: "/competition/flightforge.png",
-        special: false,
-      },
-     
-      {
-        id: "investment-workshop",
-        title: "Investment Workshop",
-        description:
-          "Learn investment strategies, financial planning, and market analysis techniques.",
-        time: "1:30 PM - 4:30 PM",
-        participants: "Individual/Teams",
-        prize: "Certificates & Learning",
-        difficulty: "Intermediate",
-        location: "C3 Seminar Hall",
-        highlights: [
-          "Investment strategies",
-          "Financial planning",
-          "Market analysis",
-          "Portfolio management"
-        ],
-        image: "/competition/investment .png",
-        special: false,
-      },
-      {
         id: "startup-launchpad-workshop",
         title: "The Startup LaunchPad Workshop",
         description:
           "Learn how to launch and scale your startup with industry experts and mentors.",
-        time: "1:30 PM - 4:30 PM",
+        time: "1:00 PM - 4:00 PM",
         participants: "Individual/Teams",
         prize: "Certificates & Mentorship",
-        difficulty: "Intermediate",
+        registrationFees: "Free",
         location: "C1 Seminar Hall",
         highlights: [
           "Startup fundamentals",
@@ -352,7 +229,7 @@ export const eventsByDay = {
         time: "10:00 AM - 4:00 PM",
         participants: "Teams of 3",
         prize: "₹18,000",
-        difficulty: "Intermediate",
+        registrationFees: "Free",
         location: "D7 Seminar Hall",
         highlights: [
           "Story-based problem solving",
@@ -368,11 +245,11 @@ export const eventsByDay = {
         title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
         description:
           "A cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
-        time: "9:30 AM - 7:00 PM",
+        time: "10:00 AM - 10:00 AM (24 Hours)",
         participants: "Teams of 2–4",
         prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "D1 Seminar Hall",
+        registrationFees: "Free",
+        location: "B1 Seminar Hall",
         highlights: [
           "CTFd platform with scoreboard",
           "Challenges in 6 cyber domains",
@@ -383,15 +260,15 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "cumun-2nd",
+        id: "cumun",
         title: "CUMUN – Chandigarh University Model United Nations (Day 2)",
         description:
           "Second day of the intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
         time: "9:00 AM - 4:30 PM",
         participants: "100+ Delegates (Open to All Streams)",
         prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
-        difficulty: "Intermediate",
-        location: "B4 TBI Lab, B4 AI Lab, B4, B5, A1, A3, D8 Seminar Halls, Classroom-B5",
+        registrationFees: "₹1,700 | Outside CU: ₹3,300",
+        location: "Chandigarh University",
         highlights: [
           "UN-style committee simulations",
           "Global policy debate",
@@ -406,11 +283,11 @@ export const eventsByDay = {
         title: "Startup Expo [Company]",
         description:
           "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
-        time: "All Day",
+        time: "10:00 AM - 4:30 PM",
         participants: "Open to All",
         prize: "Networking, Internship Offers, CSR Collaboration",
-        difficulty: "All Levels",
-        location: "Exhibition Area",
+        registrationFees: "Free Entry",
+        location: "D1 Hallway",
         highlights: [
           "Live product demos",
           "Company stalls & networking",
@@ -425,11 +302,11 @@ export const eventsByDay = {
         title: "Panel Discussion - A",
         description:
           "An elite panel discussion covering AI, Quantum Tech, Leadership, and Cybersecurity under the Viksit Bharat 2047 vision.",
-        time: "All Day",
+        time: "10:00 AM - 1:00 PM",
         participants: "Open to All",
         prize: "Knowledge & Certification",
-        difficulty: "All Levels",
-        location: "A1 Audi",
+        registrationFees: "Free Entry",
+        location: "D1 Seminar Hall",
         highlights: [
           "AI & Deep Tech Ecosystem",
           "Innovation & Leadership in India",
@@ -447,8 +324,8 @@ export const eventsByDay = {
         time: "10:30 AM - 2:00 PM",
         participants: "Individual",
         prize: "₹15,000",
-        difficulty: "Intermediate",
-        location: "D1 to D8 Area",
+        registrationFees: "₹2,000",
+        location: "C1 Main Ground",
         highlights: [
           "Precision driving",
           "Speed trials",
@@ -456,7 +333,7 @@ export const eventsByDay = {
           "Agility challenges",
         ],
         image: "/competition/rc.png",
-        special: false,
+        special: true,
       },
       {
         id: "drone-race",
@@ -466,8 +343,8 @@ export const eventsByDay = {
         time: "6:00 PM - 8:30 PM",
         participants: "Individual",
         prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "C1 Main Ground",
+        registrationFees: "₹2,000",
+        location: "C1 Main Ground/D1 Parking Area",
         highlights: [
           "FPV racing",
           "Obstacle courses",
@@ -485,7 +362,7 @@ export const eventsByDay = {
         time: "9:30 AM - 2:00 PM",
         participants: "Teams of 3–4 | Max 35 Teams",
         prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
-        difficulty: "Easy",
+        registrationFees: "₹100 per team",
         location: "In front of A2",
         highlights: [
           "6 lore-based stations",
@@ -494,7 +371,7 @@ export const eventsByDay = {
           "Fantasy-themed props & storyline",
         ],
         image: "/competition/nontechtr.png",
-        special: false,
+        special: true,
       },
       {
         id: "among-us-day2",
@@ -504,8 +381,8 @@ export const eventsByDay = {
         time: "10:00 AM - 6:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        difficulty: "Easy",
-        location: "D5 Open Area",
+        registrationFees: "₹50 per person",
+        location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
           "Sabotage and strategy",
@@ -516,25 +393,6 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "gamex-bgmi",
-        title: "GameX - BGMI Tournament",
-        description:
-          "Battle royale gaming tournament featuring BGMI (Battlegrounds Mobile India) with intense squad-based combat and strategic gameplay.",
-        time: "8:00 AM - 8:00 PM",
-        participants: "Teams of 4 Players",
-        prize: "Gaming Rewards & Trophies",
-        difficulty: "Intermediate",
-        location: "D8 Open Area",
-        highlights: [
-          "Squad-based battle royale",
-          "Multiple elimination rounds",
-          "Strategic gameplay",
-          "Mobile gaming tournament",
-        ],
-        image: "/competition/gamebg.png",
-        special: false,
-      },
-      {
         id: "gamex-valorant",
         title: "GameX - Valorant Tournament",
         description:
@@ -542,7 +400,7 @@ export const eventsByDay = {
         time: "8:00 AM - 8:00 PM",
         participants: "Teams of 5 Players",
         prize: "Gaming Rewards & Trophies",
-        difficulty: "Intermediate",
+        registrationFees: "₹250 per team",
         location: "D8 Open Area",
         highlights: [
           "Tactical FPS gameplay",
@@ -566,11 +424,11 @@ export const eventsByDay = {
         title: "Hydrorocket Workshop",
         description:
           "Build and launch water rockets while learning principles of propulsion and aerodynamics.",
-        time: "9:30 AM - 3:00 PM",
+        time: "9:30 AM - 1:30 PM",
         participants: "Individual/Teams",
         prize: "Best Launch Awards",
-        difficulty: "Intermediate",
-        location: "Hanger",
+        registrationFees: "₹150 per team",
+        location: "D8 Seminar Hall + Hanger + C1 Main Ground",
         highlights: [
           "Rocket construction",
           "Propulsion principles",
@@ -581,14 +439,14 @@ export const eventsByDay = {
         special: false,
       },
       {
-        id: "crime-investigation-workshop-day2",
-        title: "Crime Investigation Workshop (Day 2)",
+        id: "crime-investigation-workshop",
+        title: "Crime Investigation Workshop",
         description:
-          "Continue learning forensic techniques and investigation methods through advanced crime scene analysis.",
+          "Learn forensic techniques and investigation methods through advanced crime scene analysis.",
         time: "9:30 AM - 12:30 PM",
         participants: "Individual/Teams",
         prize: "Certificates & Learning",
-        difficulty: "Intermediate",
+        registrationFees: "Free",
         location: "C3 Seminar Hall",
         highlights: [
           "Advanced forensic techniques",
@@ -607,7 +465,7 @@ export const eventsByDay = {
         time: "All Day",
         participants: "Individual/Teams",
         prize: "Best Project Awards & Recognition",
-        difficulty: "All Levels",
+        registrationFees: "Free Entry",
         location: "Exhibition Area",
         highlights: [
           "Student innovations",
@@ -623,11 +481,11 @@ export const eventsByDay = {
         title: "Panel Discussion - B",
         description:
           "Continuation of elite panel discussions covering emerging technologies and future innovations.",
-        time: "All Day",
+        time: "10:00 AM - 1:00 PM",
         participants: "Open to All",
         prize: "Knowledge & Certification",
-        difficulty: "All Levels",
-        location: "A1 Audi",
+        registrationFees: "Free Entry",
+        location: "D1 Seminar Hall",
         highlights: [
           "Emerging technologies",
           "Future innovations",
@@ -645,7 +503,7 @@ export const eventsByDay = {
         time: "9:30 AM - 12:30 PM",
         participants: "Open to All",
         prize: "Knowledge & Inspiration",
-        difficulty: "All Levels",
+        registrationFees: "Free Entry",
         location: "D1 Audi",
         highlights: [
           "Defense services insights",
@@ -664,8 +522,8 @@ export const eventsByDay = {
         time: "10:00 AM - 2:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        difficulty: "Easy",
-        location: "D5 Open Area",
+        registrationFees: "₹50 per person",
+        location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
           "Sabotage and strategy",
