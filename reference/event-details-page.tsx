@@ -9,6 +9,7 @@ import Image from "next/image"
 import { useParams } from "next/navigation"
 import { useCartStore } from "@/store/data"
 import { useRouter } from "next/navigation"
+import {eventsByDay} from "@/lib/constants"
 
 type Event = {
   id: string
@@ -17,246 +18,12 @@ type Event = {
   time: string
   participants: string
   prize: string
-  difficulty: string
+  registrationFees: string
   location: string
   highlights: string[]
   image: string
 }
-// Updated event data (same as in timeline-component.tsx for consistency)
-const eventsByDay = {
-  day1: {
-    title: "Day 1 - Tech Focus",
-    date: "March 15, 2025",
-    description: "Kick off Technicia'25 with intense tech competitions and insightful discussions.",
-    events: [
-      {
-        id: "hackathon",
-        title: "Hackathon",
-        description:
-          "A 48-hour coding marathon where innovation meets creativity. Build solutions that can change the world.",
-        time: "September 10, 10:00 AM - September 12, 10:00 AM",
-        participants: "Teams of 4",
-        prize: "₹1,50,000",
-        difficulty: "Advanced",
-        location: "Tech Hub, Main Campus",
-        highlights: ["48-hour coding", "Mentorship sessions", "Industry judges", "Real-world problems"],
-        image: "/competition/hackathon.png",
-      },
-      {
-        id: "striver-dsa",
-        title: "Striver DSA Session",
-        description:
-          "Master Data Structures and Algorithms with industry expert Striver. Interactive problem-solving session.",
-        time: "2:00 PM - 4:00 PM",
-        participants: "200+ Students",
-        prize: "Certificates",
-        difficulty: "Intermediate",
-        location: "Auditorium A",
-        highlights: ["Live coding", "Problem solving", "Career guidance", "Q&A session"],
-        image: "/competition/striver.png",
-      },
-      {
-        id: "tech-treasure-hunt",
-        title: "Tech Treasure Hunt",
-        description:
-          "A thrilling scavenger hunt testing your tech knowledge and problem-solving skills across the campus.",
-        time: "11:00 AM - 1:00 PM",
-        participants: "Teams of 2-3",
-        prize: "₹5,000",
-        difficulty: "Intermediate",
-        location: "Campus-wide",
-        highlights: ["Clues based on tech concepts", "Physical and digital challenges", "Teamwork focus"],
-        image: "/competition/techtr.png",
-      },
-      {
-        id: "tech-expo-student",
-        title: "Tech Expo: Student Innovations",
-        description: "Showcase your innovative projects and prototypes to a panel of experts and peers.",
-        time: "1:00 PM - 5:00 PM",
-        participants: "Individual/Teams",
-        prize: "Best Project Award",
-        difficulty: "All Levels",
-        location: "Exhibition Hall",
-        highlights: ["Live demonstrations", "Networking opportunities", "Feedback from industry professionals"],
-        image: "/competition/expost.png",
-      },
-      {
-        id: "panel-discussion",
-        title: "Panel Discussion: Future of AI",
-        description:
-          "Engage with leading experts on the latest trends and ethical considerations in Artificial Intelligence.",
-        time: "4:00 PM - 5:30 PM",
-        participants: "Open to All",
-        prize: "Knowledge & Insights",
-        difficulty: "All Levels",
-        location: "Auditorium B",
-        highlights: ["Expert speakers", "Interactive Q&A", "Emerging AI technologies", "Career insights"],
-        image: "/competition/panel.png",
-      },
-      {
-        id: "adopt-a-planet",
-        title: "Adopt a Planet",
-        description:
-          "A creative challenge to develop sustainable solutions for an assigned planetary scenario, focusing on environmental technology.",
-        time: "10:00 AM - 6:00 PM",
-        participants: "Teams of 3",
-        prize: "₹18,000",
-        difficulty: "Intermediate",
-        location: "Sustainability Lab",
-        highlights: ["Environmental tech solutions", "Resource management", "Innovative design", "Presentation skills"],
-        image: "/competition/adopt.png",
-      },
-      {
-        id: "flight-forge",
-        title: "Flight Forge",
-        description: "Design, build, and fly your own custom aircraft in this exciting aviation challenge.",
-        time: "10:00 AM - 4:00 PM",
-        participants: "Individual/Teams",
-        prize: "₹20,000",
-        difficulty: "Advanced",
-        location: "Open Grounds, Aeromodelling Zone",
-        highlights: ["Aircraft design", "Aerodynamics principles", "Flight testing", "Innovation in aviation"],
-        image: "/competition/flight.png",
-      },
-      {
-        id: "capture-flag",
-        title: "Capture The Flag",
-        description: "Cybersecurity challenge testing your hacking and security skills in a controlled environment.",
-        time: "10:00 AM - 6:00 PM",
-        participants: "Individual/Teams",
-        prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "Cyber Lab",
-        highlights: ["Web exploitation", "Cryptography", "Reverse engineering", "Network security"],
-        image: "/competition/capture.png",
-      },
-    ],
-  },
-  day2: {
-    title: "Day 2 - Innovation & Robotics",
-    date: "March 16, 2025",
-    description:
-      "Corporate Social Responsibility meets technology for sustainable innovation, alongside robotics and aerial challenges.",
-    events: [
-      {
-        id: "cumun",
-        title: "CUMUN",
-        description: "Chandigarh University Model United Nations - Debate, diplomacy, and global awareness.",
-        time: "9:00 AM - 6:00 PM",
-        participants: "100+ Delegates",
-        prize: "₹40,000",
-        difficulty: "Intermediate",
-        location: "Conference Hall",
-        highlights: ["Diplomatic debates", "Global issues", "Leadership skills", "International exposure"],
-        image: "/competition/mun.png",
-      },
-      {
-        id: "company-expo",
-        title: "Company Expo",
-        description:
-          "Connect with leading companies showcasing career opportunities, internships, and industry insights.",
-        time: "10:00 AM - 4:00 PM",
-        participants: "Open to All",
-        prize: "Networking Opportunities",
-        difficulty: "All Levels",
-        location: "Exhibition Center",
-        highlights: ["Recruitment drives", "Company presentations", "Career guidance", "Industry insights"],
-        image: "/competition/expoco.png",
-      },
-      {
-        id: "non-tech-treasure-hunt",
-        title: "Non-Tech Treasure Hunt",
-        description: "A fun and challenging scavenger hunt focusing on general knowledge, puzzles, and teamwork.",
-        time: "11:00 AM - 1:00 PM",
-        participants: "Teams of 3",
-        prize: "₹8,000",
-        difficulty: "Easy",
-        location: "Campus Gardens",
-        highlights: ["Riddles and clues", "Physical challenges", "Observation skills", "Fun for all"],
-        image: "/competition/nontechtr.png",
-      },
-      {
-        id: "among-us",
-        title: "Among Us Live!",
-        description: "Experience the popular social deduction game in a real-life, immersive setting.",
-        time: "2:00 PM - 5:00 PM",
-        participants: "10-15 players per round",
-        prize: "Bragging Rights & Small Prizes",
-        difficulty: "Easy",
-        location: "Activity Zone",
-        highlights: ["Strategy and deception", "Team dynamics", "Interactive gameplay", "Fun and laughter"],
-        image: "/competition/among.png",
-      },
-      {
-        id: "tech-csr-bootcamp",
-        title: "Tech + CSR Bootcamps",
-        description: "Learn how technology can solve social problems and create sustainable solutions.",
-        time: "9:00 AM - 5:00 PM",
-        participants: "50 Students",
-        prize: "Certificates & Internships",
-        difficulty: "Intermediate",
-        location: "Innovation Center",
-        highlights: ["Social impact projects", "Sustainability focus", "Mentorship", "Real implementations"],
-        image: "/competition/boot.png",
-      },
-    ],
-  },
-  day3: {
-    title: "Day 3 - Cultural & Non-Tech",
-    date: "March 17, 2025",
-    description: "Celebrate creativity, culture, and achievements in a grand finale, with diverse non-tech activities.",
-    events: [
-      {
-        id: "short-film-making",
-        title: "Short Film Making Competition",
-        description: "Unleash your creativity and tell a compelling story through the art of filmmaking.",
-        time: "9:00 AM - 5:00 PM (Submission)",
-        participants: "Individual/Teams",
-        prize: "₹20,000",
-        difficulty: "Intermediate",
-        location: "Film Studio / Online Submission",
-        highlights: ["Scriptwriting", "Videography", "Editing techniques", "Storytelling"],
-        image: "/competition/films.png",
-      },
-      {
-        id: "cultural-night",
-        title: "One Stage One Vibe",
-        description: "Grand cultural showcase featuring music, dance, and artistic performances.",
-        time: "6:00 PM - 10:00 PM",
-        participants: "Open to All",
-        prize: "₹50,000",
-        difficulty: "All Levels",
-        location: "Main Stage",
-        highlights: ["Live performances", "Cultural diversity", "Talent showcase", "Grand finale"],
-        image: "/competition/cultural.png",
-      },
-      {
-        id: "rc-car-race",
-        title: "RC Car Race",
-        description: "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
-        time: "1:00 PM - 5:00 PM",
-        participants: "Individual",
-        prize: "₹15,000",
-        difficulty: "Intermediate",
-        location: "Racing Track",
-        highlights: ["Precision driving", "Speed trials", "Custom car builds", "Agility challenges"],
-        image: "/competition/rc.png",
-      },
-      {
-        id: "drone-race",
-        title: "Drone Race",
-        description: "High-speed drone racing competition testing piloting skills and drone technology.",
-        time: "3:00 PM - 7:00 PM",
-        participants: "Individual",
-        prize: "₹25,000",
-        difficulty: "Advanced",
-        location: "Drone Arena",
-        highlights: ["FPV racing", "Obstacle courses", "Speed challenges", "Precision flying"],
-        image: "/competition/drone.png",
-      },
-    ],
-  },
-}
+
 
 export default function EventDetailsPage() {
   const params = useParams()
@@ -455,7 +222,7 @@ export default function EventDetailsPage() {
                   <Star className="h-5 w-5 mr-3 flex-shrink-0" />
                   <div>
                     <div className="text-xs text-gray-400">Difficulty</div>
-                    <div className="font-semibold text-base md:text-lg">{event.difficulty}</div>
+                    <div className="font-semibold text-base md:text-lg">{event.registrationFees}</div>
                   </div>
                 </motion.div>
               </div>

@@ -235,6 +235,7 @@ export default function EventDetailsPage() {
                   <div>
                     <div className="text-xs text-gray-400">Registration Fees</div>
                     <div className="font-semibold text-base md:text-lg">
+                      
                       {event.registrationFees}
                     </div>
                   </div>
