@@ -18,7 +18,7 @@ type Event = {
   time: string;
   participants: string;
   prize: string;
-  difficulty: string;
+  registrationFees: string;
   location: string;
   highlights: string[];
   image: string;
@@ -235,7 +235,7 @@ export default function EventDetailsPage() {
                   <div>
                     <div className="text-xs text-gray-400">Difficulty</div>
                     <div className="font-semibold text-base md:text-lg">
-                      {event.difficulty}
+                      {event.registrationFees}
                     </div>
                   </div>
                 </motion.div>
