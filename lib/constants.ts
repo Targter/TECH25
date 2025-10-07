@@ -278,6 +278,7 @@ export const eventsByDay = {
         image: "/competition/cumun.png",
         special: true,
       },
+
       {
         id: "panel-discussion-a",
         title: "Panel Discussion - A",
@@ -435,7 +436,7 @@ export const eventsByDay = {
           "Investigation methods",
           "Case studies"
         ],
-        image: "/competition/crime.png",
+        image: "/competition/Crime .png",
         special: false,
       },
      
