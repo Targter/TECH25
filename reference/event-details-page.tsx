@@ -233,7 +233,7 @@ export default function EventDetailsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
               >
-                <h2 className="text-green-400 font-bold mb-4 text-xl md:text-2xl">Key Highlights:</h2>
+                <h2 className="text-green-400 font-bold mb-4 text-xl md:text-2xl">Key Highlights:</h2>  
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {event.highlights.map((highlight, idx) => (
                     <motion.div

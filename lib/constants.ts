@@ -106,8 +106,8 @@ export const eventsByDay = {
           "An interstellar-themed treasure hunt combining logic puzzles, cryptography, and tech decoding across multiple floors in a race to the final code.",
         time: "1:30 PM onwards",
         participants: "Teams of 3–4",
-        prize: "₹5,000",
-        registrationFees: "₹100 per team",
+        prize: "₹3,000",
+        registrationFees: "Free",
         location: "D7 Seminar Hall",
         highlights: [
           "Binary & DNA puzzles",
@@ -144,8 +144,8 @@ export const eventsByDay = {
           "Unleash your creativity and tell a compelling story through the art of filmmaking over 3 days.",
         time: "2:30 PM Onwards (3-day event)",
         participants: "Individual/Teams",
-        prize: "₹20,000",
-        registrationFees: "₹300 per team",
+        prize: "₹30,000",
+        registrationFees: "Free",
         location: "D1 Auditorium",
         highlights: [
           "Scriptwriting",
@@ -164,7 +164,7 @@ export const eventsByDay = {
         time: "2:00 PM - 6:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        registrationFees: "₹2000",
+        registrationFees: "Free",
         location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
@@ -228,7 +228,7 @@ export const eventsByDay = {
           "A themed CSR competition where student teams act as intergalactic CSR leaders solving crises on fictional planets with sustainable solutions.",
         time: "10:00 AM - 4:00 PM",
         participants: "Teams of 3",
-        prize: "₹18,000",
+        prize: "Trophies and More",
         registrationFees: "Free",
         location: "D7 Seminar Hall",
         highlights: [
@@ -247,7 +247,7 @@ export const eventsByDay = {
           "A cybersecurity CTF with challenges across web, crypto, reverse engineering, and forensics. Defend Earth from alien hackers!",
         time: "10:00 AM - 10:00 AM (24 Hours)",
         participants: "Teams of 2–4",
-        prize: "₹25,000",
+        prize: "₹50,000",
         registrationFees: "Free",
         location: "B1 Seminar Hall",
         highlights: [
@@ -280,7 +280,7 @@ export const eventsByDay = {
       },
       {
         id: "startup-expo",
-        title: "Startup Expo [Company]",
+        title: "Startup Expo",
         description:
           "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
         time: "10:00 AM - 4:30 PM",
@@ -323,7 +323,7 @@ export const eventsByDay = {
           "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
         time: "10:30 AM - 2:00 PM",
         participants: "Individual",
-        prize: "₹15,000",
+        prize: "₹25,000",
         registrationFees: "₹2,000",
         location: "C1 Main Ground",
         highlights: [
@@ -342,8 +342,8 @@ export const eventsByDay = {
           "High-speed drone racing competition testing piloting skills and drone technology.",
         time: "6:00 PM - 8:30 PM",
         participants: "Individual",
-        prize: "₹25,000",
-        registrationFees: "₹2,000",
+        prize: "₹50,000",
+        registrationFees: "₹2,500",
         location: "C1 Main Ground/D1 Parking Area",
         highlights: [
           "FPV racing",
@@ -361,8 +361,8 @@ export const eventsByDay = {
           "A fantasy-themed non-tech scavenger hunt where players become 'Seekers' navigating through ancient lore, solving puzzles, and reassembling a magical crown.",
         time: "9:30 AM - 2:00 PM",
         participants: "Teams of 3–4 | Max 35 Teams",
-        prize: "Gold/Silver/Bronze Medals, Goodies, Printed Certificates",
-        registrationFees: "₹100 per team",
+        prize: "Gold/Silver/Bronze Trophies, Goodies, Printed Certificates",
+        registrationFees: "Free",
         location: "In front of A2",
         highlights: [
           "6 lore-based stations",
@@ -381,7 +381,7 @@ export const eventsByDay = {
         time: "10:00 AM - 6:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        registrationFees: "₹50 per person",
+        registrationFees: "Free",
         location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
@@ -426,8 +426,8 @@ export const eventsByDay = {
           "Build and launch water rockets while learning principles of propulsion and aerodynamics.",
         time: "9:30 AM - 1:30 PM",
         participants: "Individual/Teams",
-        prize: "Best Launch Awards",
-        registrationFees: "₹150 per team",
+        prize: "Trophies",
+        registrationFees: "Free",
         location: "D8 Seminar Hall + Hanger + C1 Main Ground",
         highlights: [
           "Rocket construction",
@@ -457,25 +457,7 @@ export const eventsByDay = {
         image: "/competition/crime.png",
         special: false,
       },
-      {
-        id: "project-expo-student",
-        title: "Project Expo [Student]",
-        description:
-          "Student innovation showcase featuring projects across various domains and technologies.",
-        time: "All Day",
-        participants: "Individual/Teams",
-        prize: "Best Project Awards & Recognition",
-        registrationFees: "Free Entry",
-        location: "Exhibition Area",
-        highlights: [
-          "Student innovations",
-          "Project demonstrations",
-          "Technical presentations",
-          "Industry evaluation"
-        ],
-        image: "/competition/project.png",
-        special: false,
-      },
+     
       {
         id: "panel-discussion-b",
         title: "Panel Discussion - B",
