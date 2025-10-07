@@ -279,25 +279,6 @@ export const eventsByDay = {
         special: true,
       },
       {
-        id: "startup-expo",
-        title: "Startup Expo",
-        description:
-          "A career-focused expo where leading companies, startups, and CSR partners showcase innovation, offer internships, and engage directly with students.",
-        time: "10:00 AM - 4:30 PM",
-        participants: "Open to All",
-        prize: "Networking, Internship Offers, CSR Collaboration",
-        registrationFees: "Free Entry",
-        location: "D1 Hallway",
-        highlights: [
-          "Live product demos",
-          "Company stalls & networking",
-          "CSR project mentoring",
-          "Panel talks & awards",
-        ],
-        image: "/competition/company.png",
-        special: false,
-      },
-      {
         id: "panel-discussion-a",
         title: "Panel Discussion - A",
         description:
