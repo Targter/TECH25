@@ -443,111 +443,162 @@ export default function TimelineComponent() {
                       </motion.button>
                     </Link>
 
-                    <motion.button
-                      onClick={() => {
-                        if (isEventInCart(event.id)) {
-                          removeEvent(event.id);
-                        } else {
-                          handleAddToCart(event);
-                        }
-                      }}
-                      className={`group text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto min-w-0 ${isEventInCart(event.id)
-                        ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
-                        : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
-                        }`}
-                      whileHover={{
-                        scale: 1.03,
-                        boxShadow: isEventInCart(event.id)
-                          ? "0 8px 20px rgba(34, 197, 94, 0.3)"
-                          : "0 8px 20px rgba(37, 99, 235, 0.3)",
-                        transition: { duration: 0.2 },
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
+                    {event.id === "hackathon" ? (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
-
-                      {isEventInCart(event.id) && (
+                        className="relative w-full sm:w-auto overflow-hidden rounded-lg bg-gradient-to-r from-red-600/20 to-orange-600/20 border-2 border-red-500/50 py-2.5 md:py-3 px-6 md:px-8"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                      >
                         <motion.div
-                          className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
-                          initial={{ scale: 0.9 }}
-                          whileHover={{ scale: 1 }}
-                        >
-                          <X className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </motion.div>
-                      )}
-
-                      {event.special ? (
-                        <Link
-                          href={
-                            event.id === "cumun"
-                              ? "https://www.cuchd.in/cumun/"
-                              : event.id === "rc-car-race"
-                                ? "https://unstop.com/hackathons/rc-race-car-chandigarh-univeristy-1567312"
-                                : event.id === "drone-race"
-                                  ? "https://unstop.com/hackathons/drone-race-chandigarh-univeristy-1565298"
-                                  : "#"
-                          }
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 hover:gap-2 sm:hover:gap-3 transition-all duration-200"
-                        >
-                          <span className="hidden sm:inline">Register To Explore</span>
-                          <span className="sm:hidden">Register</span>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            className="sm:w-4 sm:h-4 transition-transform group-hover:translate-x-0.5"
+                          className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-orange-500/10 to-red-500/10"
+                          animate={{
+                            x: ["-100%", "100%"],
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: "linear",
+                          }}
+                        />
+                        <div className="relative z-10 flex items-center justify-center gap-2">
+                          <motion.div
+                            animate={{
+                              scale: [1, 1.1, 1],
+                              rotate: [0, 5, -5, 0],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Number.POSITIVE_INFINITY,
+                            }}
                           >
-                            <path d="M7 7h10v10" />
-                            <path d="M7 17 17 7" />
-                          </svg>
-                        </Link>
-                      ) : (
-                        <span
-                          className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
-                            }`}
-                        >
-                          {isEventInCart(event.id) ? (
-                            <>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="14"
-                                height="14"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                className="sm:w-4 sm:h-4"
-                              >
-                                <path d="M20 6L9 17l-5-5" />
-                              </svg>
-                              <span className="hidden xs:inline">Added for Registration</span>
-                              <span className="xs:hidden">Added</span>
-                            </>
-                          ) : (
-                            <>
-                              <span className="hidden sm:inline">Add Event For Registration</span>
-                              <span className="sm:hidden">Add Event</span>
-                            </>
-                          )}
-                        </span>
-                      )}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="text-red-400"
+                            >
+                              <circle cx="12" cy="12" r="10" />
+                              <line x1="15" y1="9" x2="9" y2="15" />
+                              <line x1="9" y1="9" x2="15" y2="15" />
+                            </svg>
+                          </motion.div>
+                          <span className="text-red-400 font-semibold text-sm md:text-base">Registration Closed</span>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.button
+                        onClick={() => {
+                          if (isEventInCart(event.id)) {
+                            removeEvent(event.id);
+                          } else {
+                            handleAddToCart(event);
+                          }
+                        }}
+                        className={`group text-white py-2.5 md:py-3 px-6 md:px-8 rounded-lg transition-colors duration-300 font-semibold relative overflow-hidden text-sm md:text-base w-full sm:w-auto min-w-0 ${isEventInCart(event.id)
+                          ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800"
+                          : "bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                          }`}
+                        whileHover={{
+                          scale: 1.03,
+                          boxShadow: isEventInCart(event.id)
+                            ? "0 8px 20px rgba(34, 197, 94, 0.3)"
+                            : "0 8px 20px rgba(37, 99, 235, 0.3)",
+                          transition: { duration: 0.2 },
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-white/10 via-white/20 to-white/10"
+                          initial={{ x: "-100%" }}
+                          whileHover={{ x: "100%" }}
+                          transition={{ duration: 0.6 }}
+                        />
 
-                    </motion.button>
+                        {isEventInCart(event.id) && (
+                          <motion.div
+                            className="absolute inset-0 bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+                            initial={{ scale: 0.9 }}
+                            whileHover={{ scale: 1 }}
+                          >
+                            <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                          </motion.div>
+                        )}
+
+                        {event.special ? (
+                          <Link
+                            href={
+                              event.id === "cumun"
+                                ? "https://www.cuchd.in/cumun/"
+                                : event.id === "rc-car-race"
+                                  ? "https://unstop.com/hackathons/rc-race-car-chandigarh-univeristy-1567312"
+                                  : event.id === "drone-race"
+                                    ? "https://unstop.com/hackathons/drone-race-chandigarh-univeristy-1565298"
+                                    : "#"
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="relative z-10 flex items-center justify-center gap-1 sm:gap-2 hover:gap-2 sm:hover:gap-3 transition-all duration-200"
+                          >
+                            <span className="hidden sm:inline">Register To Explore</span>
+                            <span className="sm:hidden">Register</span>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="14"
+                              height="14"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              className="sm:w-4 sm:h-4 transition-transform group-hover:translate-x-0.5"
+                            >
+                              <path d="M7 7h10v10" />
+                              <path d="M7 17 17 7" />
+                            </svg>
+                          </Link>
+                        ) : (
+                          <span
+                            className={`relative z-10 flex items-center justify-center gap-1 sm:gap-2 transition-all duration-200 ${isEventInCart(event.id) ? "group-hover:opacity-0" : ""
+                              }`}
+                          >
+                            {isEventInCart(event.id) ? (
+                              <>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="14"
+                                  height="14"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  className="sm:w-4 sm:h-4"
+                                >
+                                  <path d="M20 6L9 17l-5-5" />
+                                </svg>
+                                <span className="hidden xs:inline">Added for Registration</span>
+                                <span className="xs:hidden">Added</span>
+                              </>
+                            ) : (
+                              <>
+                                <span className="hidden sm:inline">Add Event For Registration</span>
+                                <span className="sm:hidden">Add Event</span>
+                              </>
+                            )}
+                          </span>
+                        )}
+
+                      </motion.button>
+                    )}
                   </div>
 
                 </motion.div>
@@ -577,21 +628,21 @@ export default function TimelineComponent() {
 
                     {/* Floating decorative elements */}
                     {/* <motion.div
-                      className="absolute top-4 md:top-8 left-4 md:left-8 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
-                      animate={{
-                        rotateZ: [0, 360],
-                        translateY: [-5, 5, -5],
-                      }}
-                      transition={{
-                        duration: 12,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "linear",
-                      }}
-                      whileHover={{
-                        scale: 1.2,
-                        transition: { duration: 0.2 },
-                      }}
-                    /> */}
+            className="absolute top-4 md:top-8 left-4 md:left-8 w-6 h-6 md:w-10 md:h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-lg shadow-lg"
+            animate={{
+              rotateZ: [0, 360],
+              translateY: [-5, 5, -5],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "linear",
+            }}
+            whileHover={{
+              scale: 1.2,
+              transition: { duration: 0.2 },
+            }}
+          /> */}
                     <motion.div
                       className="absolute bottom-4 md:bottom-8 right-4 md:right-8 w-8 h-8 md:w-12 md:h-12 border-2 border-green-400/50 rounded-full"
                       animate={{
