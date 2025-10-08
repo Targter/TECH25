@@ -241,6 +241,25 @@ export const eventsByDay = {
         special: false,
       },
       {
+        id: "glider",
+        title: "Glider Making Workshop: Lift Your Ideas to the Sky",
+        description:
+          "The Glider Making Workshop is an exciting hands-on aerodynamics session under Technicia’25.",
+        time: "9:00 AM – 5:00 PM ",
+        participants: "Individual or 2-member team",
+        prize: "Trophies and More",
+        registrationFees: "Free",
+        location: "C1 Seminar Hall + Hangar + C1 Main Ground",
+        highlights: [
+          "Story-based problem solving",
+          "Sustainable innovation",
+          "Team presentations",
+          "Judged pitch sessions"
+        ],
+       image: "/competition2/adopt.png",
+        special: false,
+      },
+      {
         id: "capture-flag",
         title: "Capture The Flag – Technicia: Cyber Crisis Protocol",
         description:
