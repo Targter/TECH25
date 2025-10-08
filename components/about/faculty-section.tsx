@@ -235,19 +235,21 @@ const FacultySection = () => {
           </section>
 
           {/* Engineering Leadership */}
-          <section className="mb-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-light mb-2" style={{ color: "#ffffff" }}>
-                Engineering Leadership
-              </h2>
-              <div className="w-16 h-px bg-gray-600 mx-auto"></div>
-            </div>
-            <div className="grid grid-cols-1 pl-77 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {engineeringLeadership.map((member) => (
-                <FacultyMemberCard key={member.id} member={member} />
-              ))}
-            </div>
-          </section>
+       <section className="mb-20">
+  <div className="text-center mb-12">
+    <h2 className="text-3xl font-light mb-2" style={{ color: "#ffffff" }}>
+      Engineering Leadership
+    </h2>
+    <div className="w-16 h-px bg-gray-600 mx-auto"></div>
+  </div>
+  
+  <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto justify-items-center">
+    {engineeringLeadership.map((member) => (
+      <FacultyMemberCard key={member.id} member={member} />
+    ))}
+  </div>
+</section>
+
 
           {/* Faculty Department */}
           <section>
