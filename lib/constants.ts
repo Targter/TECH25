@@ -285,7 +285,7 @@ export const eventsByDay = {
           "Second day of the intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
         time: "9:00 AM - 4:30 PM",
         participants: "100+ Delegates (Open to All Streams)",
-        prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
+        prize: "₹100,000+ Total Cash Pool + Best Delegate Awards",
         registrationFees: "₹1,700 | Outside CU: ₹3,300",
         location: "Chandigarh University",
         highlights: [
@@ -324,7 +324,7 @@ export const eventsByDay = {
           "Showcase your remote-controlled car driving skills on a challenging obstacle course.",
         time: "10:30 AM - 2:00 PM",
         participants: "Individual",
-        prize: "₹25,000",
+        prize: "₹30,000",
         registrationFees: "₹2,000",
         location: "C1 Main Ground",
         highlights: [
@@ -364,7 +364,7 @@ export const eventsByDay = {
         participants: "Teams of 3–4 | Max 35 Teams",
         prize: "Gold/Silver/Bronze Trophies, Goodies, Printed Certificates",
         registrationFees: "Free",
-        location: "In front of A2",
+        location: "B5 Seminar Hall",
         highlights: [
           "6 lore-based stations",
           "Logic & map puzzles",
@@ -400,7 +400,7 @@ export const eventsByDay = {
           "Tactical first-person shooter tournament featuring Valorant with team-based strategic combat and agent-based gameplay.",
         time: "8:00 AM - 8:00 PM",
         participants: "Teams of 5 Players",
-        prize: "Gaming Rewards & Trophies",
+        prize: "₹100,000+",
         registrationFees: "₹250 per team",
         location: "D8 Open Area",
         highlights: [
@@ -503,7 +503,7 @@ export const eventsByDay = {
         description:
           "The Student Expo is a 3-day exhibition at Technicia’25, designed to highlight innovative student projects, prototypes, and start-up ideas.",
         time: "10:00 AM - 2:00 PM",
-        participants: "Open to All",
+        participants: "Individual or team(max 4 members)",
         prize: "Trophies and Certificates",
         registrationFees: "Free Entry",
         location: "D1 Hallway",
@@ -524,7 +524,7 @@ export const eventsByDay = {
         time: "10:00 AM - 2:00 PM",
         participants: "10–15 players per round",
         prize: "Bragging Rights & Fun Hampers",
-        registrationFees: "₹50 per person",
+        registrationFees: "Free",
         location: "A2 Seminar Hall",
         highlights: [
           "Live-action roleplay",
