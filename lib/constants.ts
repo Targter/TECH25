@@ -125,7 +125,7 @@ export const eventsByDay = {
           "First day of an intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
         time: "1:30 PM - 6:30 PM",
         participants: "100+ Delegates (Open to All Streams)",
-        prize: "₹116,000 Total Cash Pool + Best Delegate Awards",
+        prize: "₹100,000+ Total Cash Pool + Best Delegate Awards",
         registrationFees: "₹1,700 | Outside: ₹3,300",
         location: "Chandigarh University",
         highlights: [
