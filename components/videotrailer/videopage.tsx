@@ -131,8 +131,8 @@ export const Video = ({ className = "", src }: VideoProps) => {
 
   const participants = useCounter(5000, 2000, 200);
   const events = useCounter(20, 1500, 400);
-  const prizePool = useCounter(800000, 2200, 600);
-  const sponsors = useCounter(30, 1800, 800);
+  const prizePool = useCounter(600000, 2200, 600);
+  const sponsors = useCounter(6, 1800, 800);
 
   const stats = [
     {

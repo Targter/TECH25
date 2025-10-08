@@ -136,7 +136,7 @@ export function HeroSection() {
     { icon: Users, label: "Footfall", value: "50000+" },
     { icon: Trophy, label: "Competitions", value: "16+" },
     { icon: Code, label: "Projects", value: "500+" },
-    { icon: Zap, label: "Workshops", value: "15+" }
+    { icon: Zap, label: "Workshops", value: "7+" }
   ], [])
 
   // Optimized button click handlers

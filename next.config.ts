@@ -5,6 +5,7 @@
 // };
 
 // export default nextConfig;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -13,6 +14,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'www.canva.com',
         pathname: '/design/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'drive.google.com',
+        pathname: '/**',
       },
     ],
   },

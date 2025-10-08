@@ -77,7 +77,7 @@ export const eventsByDay = {
           "Latest frameworks",
           "Project building"
         ],
-        image: "/competition/webdev.png",
+        image: "/competition2/web dev.png",
         special: false,
       },
       {
@@ -96,7 +96,7 @@ export const eventsByDay = {
           "Hands-on projects",
           "Industry insights"
         ],
-        image: "/competition/AI.png",
+        image: "/competition2/AI.png",
         special: false,
       },
       {
@@ -115,7 +115,7 @@ export const eventsByDay = {
           "Timed decoding levels",
           "Alien-themed storyline"
         ],
-        image: "/competition/techtr.png",
+        image: "/competition2/TECH TRESURE HUNT.png",
         special: false,
       },
       {
@@ -125,7 +125,7 @@ export const eventsByDay = {
           "First day of an intellectually stimulating forum where delegates represent countries and debate global issues through diplomacy, negotiation, and collaboration.",
         time: "1:30 PM - 6:30 PM",
         participants: "100+ Delegates (Open to All Streams)",
-        prize: "₹40,000 Total Cash Pool + Best Delegate Awards",
+        prize: "₹116,000 Total Cash Pool + Best Delegate Awards",
         registrationFees: "₹1,700 | Outside: ₹3,300",
         location: "Chandigarh University",
         highlights: [
@@ -237,7 +237,7 @@ export const eventsByDay = {
           "Team presentations",
           "Judged pitch sessions"
         ],
-        image: "/competition/adopt.png",
+       image: "/competition2/adopt.png",
         special: false,
       },
       {
@@ -295,7 +295,7 @@ export const eventsByDay = {
           "Cybersecurity & Data Privacy",
           "National development vision 2047"
         ],
-        image: "/competition/panel.png",
+        image: "/competition2/Panel Discussion.png",
         special: false,
       },
       {
@@ -314,7 +314,7 @@ export const eventsByDay = {
           "Custom car builds",
           "Agility challenges",
         ],
-        image: "/competition/rc.png",
+        image: "/competition2/RC CAR RACE_Anjani.png",
         special: true,
       },
       {
@@ -333,7 +333,7 @@ export const eventsByDay = {
           "Speed challenges",
           "Precision flying",
         ],
-        image: "/competition/drone.png",
+        image: "/competition2/DRONE RACE.png",
         special: false,
       },
       {
@@ -352,7 +352,7 @@ export const eventsByDay = {
           "Live skit duels",
           "Fantasy-themed props & storyline",
         ],
-        image: "/competition/nontechtr.png",
+        image: "/competition2/non tech treasure hunt.png",
         special: true,
       },
       {
@@ -417,7 +417,7 @@ export const eventsByDay = {
           "Launch competitions",
           "Physics applications"
         ],
-        image: "/competition/hydrorocket.png",
+        image: "/competition2/JAL ASTRA(A.T.).png",
         special: false,
       },
       {
@@ -456,12 +456,12 @@ export const eventsByDay = {
           "Industry insights",
           "Career guidance"
         ],
-        image: "/competition/panel.png",
+        image: "/competition2/Panel Discussion.png",
         special: false,
       },
       {
         id: "defense-talk",
-        title: "Defense Talk - Capt Dharamvir Singh",
+        title: "Defense Talk - Air Marshal Ravi Krishna Kapoor",
         description:
           "Inspiring talk by Captain Dharamvir Singh on defense services, leadership, and national security.",
         time: "9:30 AM - 12:30 PM",
@@ -476,6 +476,25 @@ export const eventsByDay = {
           "Career opportunities"
         ],
         image: "/competition/defense.png",
+        special: false,
+      },
+      {
+        id: "student-expo",
+        title: "Student Expo: The Technicia'25 Innovation Showcase",
+        description:
+          "The Student Expo is a 3-day exhibition at Technicia’25, designed to highlight innovative student projects, prototypes, and start-up ideas.",
+        time: "10:00 AM - 2:00 PM",
+        participants: "Open to All",
+        prize: "Trophies and Certificates",
+        registrationFees: "Free Entry",
+        location: "D1 Hallway",
+        highlights: [
+          "Defense services insights",
+          "Leadership lessons",
+          "National security awareness",
+          "Career opportunities"
+        ],
+        image: "/competition2/student expo.png",
         special: false,
       },
       {
@@ -742,7 +761,7 @@ export const previousEvents = [
 export const faqs = [
   {
     question: "When and where is TECHNICIA'25 taking place?",
-    answer: "TECHNICIA'25 will be held from October 10-12, 2025 at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
+    answer: "TECHNICIA'25 will be held from October 15-17, 2025 at Chandigarh University Campus, Mohali, Punjab. The venue is equipped with state-of-the-art facilities to ensure all participants have an exceptional experience.",
   },
   {
     question: "How can I register for the event?",
@@ -762,7 +781,7 @@ export const faqs = [
   },
   {
     question: "Will accommodation be provided?",
-    answer: "We do not provide accommodation as part of the registration; however, hostel accommodation is available at ₹200/day (accommodation only) or ₹500/day (accommodation with food).",
+    answer: "We do not provide accommodation as part of the registration; however, hostel accommodation is available at ₹350/day (non-AC accommodation only) or ₹500/day ( AC accommodation with  ₹70 per Meal ).",
   },
   {
     question: "How are the competitions judged?",
