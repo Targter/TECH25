@@ -256,7 +256,7 @@ export const eventsByDay = {
           "Team presentations",
           "Judged pitch sessions"
         ],
-       image: "/competition2/adopt.png",
+       image: "/competition2/garuda.jpg",
         special: false,
       },
       {
@@ -494,7 +494,7 @@ export const eventsByDay = {
           "National security awareness",
           "Career opportunities"
         ],
-        image: "/competition/defense.png",
+        image: "/competition2/defence.jpg",
         special: false,
       },
       {
