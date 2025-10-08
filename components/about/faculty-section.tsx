@@ -70,6 +70,7 @@ const FacultyMemberCard = ({ member, size = "large" }: FacultyCardProps) => {
   )
 }
 
+
 interface DepartmentSectionProps {
   department: Department
 }
@@ -241,7 +242,7 @@ const FacultySection = () => {
               </h2>
               <div className="w-16 h-px bg-gray-600 mx-auto"></div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 pl-77 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {engineeringLeadership.map((member) => (
                 <FacultyMemberCard key={member.id} member={member} />
               ))}
