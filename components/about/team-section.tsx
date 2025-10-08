@@ -124,7 +124,7 @@ const TeamsPage = () => {
     position: "President",
     department: "",
     bio: "Leading the team with vision, coordination, and commitment to excellence.",
-    image: "/team/sahil.jpg",
+    image: "/team2/Sahil Wadhwa.HEIC",
     icon: Crown,
   },
   {
@@ -140,6 +140,44 @@ const TeamsPage = () => {
     id: 3,
     name: "Srishti Nautiyal",
     position: "General Secretary",
+    department: "",
+    bio: "Managing internal communication and ensuring efficient organization flow.",
+    image: "/team/Srishti.JPG",
+    icon: Sparkles,
+  },
+];
+ const jointsecretariatBoard = [
+  {
+    id: 1,
+    name: "Jatin Mittal",
+    position: "Joint Secertry",
+    department: "",
+    bio: "Leading the team with vision, coordination, and commitment to excellence.",
+    image: "/team2/Sahil Wadhwa.HEIC",
+    icon: Crown,
+  },
+  {
+    id: 2,
+    name: "Amit Kumar",
+    position: "Joint Secertry",
+    department: "",
+    bio: "Supporting leadership initiatives and ensuring smooth execution across departments.",
+    image: "/team/Yatin Berry.jpg",
+    icon: Star,
+  },
+  {
+    id: 3,
+    name: "Dinky Khurrana",
+    position: "Joint Secretery",
+    department: "",
+    bio: "Managing internal communication and ensuring efficient organization flow.",
+    image: "/team/Srishti.JPG",
+    icon: Sparkles,
+  },
+  {
+    id: 4,
+    name: "Krishnam Gupta",
+    position: "Joint Secretery",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
     image: "/team/Srishti.JPG",
@@ -230,6 +268,15 @@ const TeamsPage = () => {
         image: "/team/Zayed.jpg",
         icon: Newspaper,
       },
+      {
+        id: 4,
+        name: "Charoo Negi",
+        position: "Editor",
+        department: "Media Team",
+        bio: "Editing and producing media content for post-event coverage.",
+        image: "/team/Zayed.jpg",
+        icon: Newspaper,
+      },
     ],
   },
   {
@@ -282,7 +329,7 @@ const TeamsPage = () => {
     lead: {
       id: 8,
       name: "Gaurav Thakur",
-      position: "Head of Technical",
+      position: "Head of Technical Department",
       department: "",
       bio: "Managing all technical and web development aspects of the event.",
       image: "/team/Gaurav Thakur.jpg",
@@ -327,6 +374,7 @@ const TeamsPage = () => {
       { id: 13, name: "Arnav Singh", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Arnav Singh.jpg", icon: Users },
       { id: 14, name: "Nitika", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Nitika.jpg", icon: Users },
       { id: 15, name: "Shatarupa", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Shatarupa.jpg", icon: Users },
+      { id: 16, name: "Yuvraj Singh", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Yuvraj.jpg", icon: Users },
     ],
   },
   {
@@ -367,13 +415,35 @@ const TeamsPage = () => {
         {/* Secretariat Board */}
        <section className="mb-20">
   <div className="text-center mb-12">
-    <h2 className="text-3xl font-light text-white mb-2">Secretariat Board</h2>
+    <h2 className="text-3xl font-light text-white mb-2">Office Bearers</h2>
     <div className="w-16 h-px bg-gray-600 mx-auto"></div>
   </div>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
     {secretariatBoard.map((member) => (
       <TeamMemberCard key={member.id} member={member} />
     ))}
+  </div>
+</section>
+
+{/* Joint Secretary Board */}
+<section className="mb-20">
+  <div className="text-center mb-12">
+    <h2 className="text-3xl font-light text-white mb-2">Joint Secretery Board</h2>
+    <div className="w-16 h-px bg-gray-600 mx-auto"></div>
+  </div>
+  
+  {/* Top row: first 3 members */}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center mb-8">
+    {jointsecretariatBoard.slice(0, 3).map((member) => (
+      <TeamMemberCard key={member.id} member={member} />
+    ))}
+  </div>
+
+  {/* Bottom row: 4th member centered */}
+  <div className="flex justify-center">
+    <div className="w-full max-w-sm">
+      <TeamMemberCard member={jointsecretariatBoard[3]} />
+    </div>
   </div>
 </section>
 
@@ -384,7 +454,7 @@ const TeamsPage = () => {
         {/* USG Positions */}
        <section className="mb-20">
   <div className="text-center mb-12">
-    <h2 className="text-3xl font-light text-white mb-2">Under Secretary General Positions</h2>
+    <h2 className="text-3xl font-light text-white mb-2">Under Secretary General Board</h2>
     <div className="w-16 h-px bg-gray-600 mx-auto"></div>
   </div>
 
@@ -410,13 +480,55 @@ const TeamsPage = () => {
             <h2 className="text-4xl font-light text-white mb-2">Departments</h2>
             <div className="w-20 h-px bg-gray-600 mx-auto"></div>
           </div>
-          {departments.map((department) => (
-            <DepartmentSection key={department.id} department={department} />
-          ))}
+          {departments.map((department) => {
+            // Special layout for departments with 3, 4, or 5 team members
+            if (department.id === "outreach" && department.team.length === 5) {
+              const IconComponent = department.icon;
+              return (
+                <div key={department.id} className="mb-20">
+                  <div className="flex items-center justify-center gap-3 mb-12">
+                    <div className="p-2 bg-gray-800 rounded-lg border border-gray-700">
+                      <IconComponent className="w-6 h-6 text-gray-300" />
+                    </div>
+                    <h2 className="text-3xl font-light text-white">{department.name}</h2>
+                  </div>
+
+                  {/* Full width layout for 5 members - similar to USG Board */}
+                  <div className="max-w-6xl mx-auto">
+                    <div className="mb-12 flex justify-center">
+                      <div className="w-full max-w-sm">
+                        <h3 className="text-lg font-medium text-gray-300 mb-6 text-center">Department Head</h3>
+                        <TeamMemberCard member={department.lead} isLead={true} />
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-medium text-gray-300 mb-6 text-center">Team Members</h3>
+                    
+                    {/* Top row: first 3 members */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center mb-8">
+                      {department.team.slice(0, 3).map((member, index) => (
+                        <TeamMemberCard key={index} member={member} />
+                      ))}
+                    </div>
+
+                    {/* Bottom row: last 2 members centered */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 max-w-4xl mx-auto justify-items-center">
+                      {department.team.slice(3).map((member, index) => (
+                        <TeamMemberCard key={index} member={member} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+            
+            // Default layout for other departments
+            return <DepartmentSection key={department.id} department={department} />;
+          })}
         </section>
       </div>
     </div>
   );
 };
 
-export default TeamsPage; 
+export default TeamsPage;

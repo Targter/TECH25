@@ -153,7 +153,7 @@ export const eventsByDay = {
           "Editing techniques",
           "Storytelling",
         ],
-        image: "/competition/films.png",
+        image: "/competition/Short.png",
         special: false,
       },
       {
@@ -400,7 +400,7 @@ export const eventsByDay = {
           "Tactical first-person shooter tournament featuring Valorant with team-based strategic combat and agent-based gameplay.",
         time: "8:00 AM - 8:00 PM",
         participants: "Teams of 5 Players",
-        prize: "₹100,000+",
+        prize: "₹100,000",
         registrationFees: "₹250 per team",
         location: "D8 Open Area",
         highlights: [
@@ -501,7 +501,7 @@ export const eventsByDay = {
         id: "student-expo",
         title: "Student Expo: The Technicia'25 Innovation Showcase",
         description:
-          "The Student Expo is a 3-day exhibition at Technicia’25, designed to highlight innovative student projects, prototypes, and start-up ideas.",
+          "The Student Expo is an exhibition opportunity at Technicia’25, designed to highlight innovative student projects, prototypes, and start-up ideas.",
         time: "10:00 AM - 2:00 PM",
         participants: "Individual or team(max 4 members)",
         prize: "Trophies and Certificates",
