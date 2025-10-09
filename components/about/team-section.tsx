@@ -351,7 +351,7 @@ const TeamsPage = () => {
         position: "Technical Support",
         department: "Technical",
         bio: "Providing tech assistance and ensuring smooth system performance.",
-        image: "/team/Abhay Bansal.jpg",
+        image: "/team2/uiabhay.jpg",
         icon: Users,
       },
     ],
