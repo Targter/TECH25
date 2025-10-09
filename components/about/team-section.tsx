@@ -142,7 +142,7 @@ const TeamsPage = () => {
     position: "General Secretary",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
-    image: "/team2/Srishti.JPG",
+    image: "/team/Srishti.JPG",
     icon: Sparkles,
   },
 ];
@@ -171,7 +171,7 @@ const TeamsPage = () => {
     position: "Joint Secretery",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
-    image: "/team/Dinky.JPG",
+    image: "/team/Dinky.jpg",
     icon: Sparkles,
   },
   {
@@ -256,7 +256,7 @@ const TeamsPage = () => {
         position: "Camera Person",
         department: "Media Team",
         bio: "Capturing key moments and documenting the spirit of the event.",
-        image: "/team2/Vikram Garg.jpg",
+        image: "/team/Vikram Garg.jpg",
         icon: Newspaper,
       },
       {
