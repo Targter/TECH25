@@ -8,7 +8,7 @@ export const siteConfig = {
   description: "The biggest tech fest of North India - Where Innovation Meets Opportunity",
   date: "SEPT 10-12, 2025",
   venue: "Chandigarh University, Mohali",
-  email: "iste@cumail.in",
+  email: "official@technicia.live",
   phone: "+91 123456789",
   links: {
     twitter: "https://x.com/chandigarh_uni?lang=en",
@@ -366,7 +366,7 @@ export const eventsByDay = {
         registrationFees: "Free",
         location: "B5 Seminar Hall",
         highlights: [
-          "6 lore-based stations",
+          "10 lore-based stations",
           "Logic & map puzzles",
           "Live skit duels",
           "Fantasy-themed props & storyline",

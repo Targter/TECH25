@@ -124,7 +124,7 @@ const TeamsPage = () => {
     position: "President",
     department: "",
     bio: "Leading the team with vision, coordination, and commitment to excellence.",
-    image: "/team2/Sahil Wadhwa.HEIC",
+    image: "/team2/Sahil_Wadhwa.jpg",
     icon: Crown,
   },
   {
@@ -133,7 +133,7 @@ const TeamsPage = () => {
     position: "Vice President",
     department: "",
     bio: "Supporting leadership initiatives and ensuring smooth execution across departments.",
-    image: "/team/Yatin Berry.jpg",
+    image: "/team2/Yatin_Berry.jpg",
     icon: Star,
   },
   {
@@ -142,7 +142,7 @@ const TeamsPage = () => {
     position: "General Secretary",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
-    image: "/team/Srishti.JPG",
+    image: "/team2/Srishti.JPG",
     icon: Sparkles,
   },
 ];
