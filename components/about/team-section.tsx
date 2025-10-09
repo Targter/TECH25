@@ -153,7 +153,7 @@ const TeamsPage = () => {
     position: "Joint Secertry",
     department: "",
     bio: "Leading the team with vision, coordination, and commitment to excellence.",
-    image: "/team2/Sahil Wadhwa.HEIC",
+    image: "/team/Jatin Mittal.png",
     icon: Crown,
   },
   {
@@ -162,7 +162,7 @@ const TeamsPage = () => {
     position: "Joint Secertry",
     department: "",
     bio: "Supporting leadership initiatives and ensuring smooth execution across departments.",
-    image: "/team/Yatin Berry.jpg",
+    image: "/team2/Amit_Kumar.jpg",
     icon: Star,
   },
   {
@@ -171,7 +171,7 @@ const TeamsPage = () => {
     position: "Joint Secretery",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
-    image: "/team/Srishti.JPG",
+    image: "/team/Dinky.JPG",
     icon: Sparkles,
   },
   {
@@ -180,7 +180,7 @@ const TeamsPage = () => {
     position: "Joint Secretery",
     department: "",
     bio: "Managing internal communication and ensuring efficient organization flow.",
-    image: "/team/Srishti.JPG",
+    image: "/team/Krishnam Gupta.jpg",
     icon: Sparkles,
   },
 ];
@@ -203,7 +203,7 @@ const TeamsPage = () => {
     position: "USG Technical",
     department: "",
     bio: "Overseeing technical operations, web systems, and digital infrastructure.",
-    image: "/team/Gaurav Thakur.jpg",
+    image: "/team2/gt.jpg",
     icon: Code,
   },
   {
@@ -212,7 +212,7 @@ const TeamsPage = () => {
     position: "USG Delegate Affairs",
     department: "",
     bio: "Coordinating delegate management and ensuring smooth communication channels.",
-    image: "/team/Shreyanshi.jpg",
+    image: "/team2/Shreyanshi_Soor.jpg",
     icon: Users,
   },
   {
@@ -221,7 +221,7 @@ const TeamsPage = () => {
     position: "USG Events",
     department: "",
     bio: "Leading event coordination and ensuring successful execution of programs.",
-    image: "/team/Sneha Yadav.jpg",
+    image: "/team2/Sneha_Yadav.jpg",
     icon: Calendar,
   },
   {
@@ -246,7 +246,7 @@ const TeamsPage = () => {
       position: "Head of Media",
       department: "",
       bio: "Overseeing all photography, videography, and editing operations.",
-      image: "/team/Hussain Areeb.jpg",
+      image: "/team2/Hussain Areeb.jpg",
       icon: Users,
     },
     team: [
@@ -256,7 +256,7 @@ const TeamsPage = () => {
         position: "Camera Person",
         department: "Media Team",
         bio: "Capturing key moments and documenting the spirit of the event.",
-        image: "/team/Vikram Garg.jpg",
+        image: "/team2/Vikram Garg.jpg",
         icon: Newspaper,
       },
       {
@@ -271,10 +271,10 @@ const TeamsPage = () => {
       {
         id: 4,
         name: "Charoo Negi",
-        position: "Editor",
+        position: "Reel Editor",
         department: "Media Team",
         bio: "Editing and producing media content for post-event coverage.",
-        image: "/team/Zayed.jpg",
+        image: "/team2/Charoo.jpg",
         icon: Newspaper,
       },
     ],
@@ -299,7 +299,7 @@ const TeamsPage = () => {
         position: "Creative Designer",
         department: "Creatives",
         bio: "Designing key visuals and brand elements for the event.",
-        image: "/team/Anjani thakur_.jpg",
+        image: "/team2/Anjani_Thakur.jpg",
         icon: Users,
       },
       {
@@ -317,7 +317,7 @@ const TeamsPage = () => {
         position: "Creative Designer",
         department: "Creatives",
         bio: "Crafting digital and print designs for various campaign materials.",
-        image: "/team/Dibyasree Dash.jpg",
+        image: "/team2/Dibyasree Dash.jpg",
         icon: Users,
       },
     ],
@@ -332,7 +332,7 @@ const TeamsPage = () => {
       position: "Head of Technical Department",
       department: "",
       bio: "Managing all technical and web development aspects of the event.",
-      image: "/team/Gaurav Thakur.jpg",
+      image: "/team2/gt.jpg",
       icon: Users,
     },
     team: [
@@ -342,7 +342,7 @@ const TeamsPage = () => {
         position: "Technical Team Lead",
         department: "Technical",
         bio: "Assisting with website and software coordination tasks.",
-        image: "/team/Shreyanshi.jpg",
+        image: "/team2/Shreyanshi_Soor.jpg",
         icon: Users,
       },
       {
@@ -370,9 +370,9 @@ const TeamsPage = () => {
       icon: Users,
     },
     team: [
-      { id: 12, name: "Harshvardhan Srivastava", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Harshvardhan.jpg", icon: Users },
-      { id: 13, name: "Arnav Singh", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Arnav Singh.jpg", icon: Users },
-      { id: 14, name: "Nitika", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Nitika.jpg", icon: Users },
+      { id: 12, name: "Harshvardhan Srivastava", position: "Outreach Member", department: "Outreach", bio: "", image: "/team2/Harshvardhan_srivastava.jpg", icon: Users },
+      { id: 13, name: "Arnav Singh", position: "Outreach Member", department: "Outreach", bio: "", image: "/team2/Arnav_Singh.jpg", icon: Users },
+      { id: 14, name: "Nitika", position: "Outreach Member", department: "Outreach", bio: "", image: "/team2/Nitika Singh Langeh.jpg", icon: Users },
       { id: 15, name: "Shatarupa", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Shatarupa.jpg", icon: Users },
       { id: 16, name: "Yuvraj Singh", position: "Outreach Member", department: "Outreach", bio: "", image: "/team/Yuvraj.jpg", icon: Users },
     ],
@@ -391,9 +391,9 @@ const TeamsPage = () => {
       icon: Users,
     },
     team: [
-      { id: 17, name: "ShreeDharshan B", position: "Event Coordinator", department: "Events", bio: "", image: "/team/ShreeDharshan.jpg", icon: Users },
-      { id: 18, name: "V Rithish Pranav", position: "Event Coordinator", department: "Events", bio: "", image: "/team/V Rithish Pranav.jpg", icon: Users },
-      { id: 19, name: "Claudio Ronald E", position: "Event Coordinator", department: "Events", bio: "", image: "/team/Claudio Ronald E.jpg", icon: Users },
+      { id: 17, name: "ShreeDharshan B", position: "Event Coordinator", department: "Events", bio: "", image: "/team2/ShreeDharshan_B.jpg", icon: Users },
+      { id: 18, name: "V Rithish Pranav", position: "Event Coordinator", department: "Events", bio: "", image: "/team2/V_Rithish_Pranav.jpg", icon: Users },
+      { id: 19, name: "Claudio Ronald E", position: "Event Coordinator", department: "Events", bio: "", image: "/team2/Claudio_Ronald_E.jpg", icon: Users },
     ],
   },
 ];
