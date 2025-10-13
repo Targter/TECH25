@@ -848,3 +848,59 @@ export const faqs = [
   },
  
 ];
+
+export const merchData = [
+  // TSHIRTS (1–22)
+  ...Array.from({ length: 22 }, (_, i) => ({
+    id: `tshirt-${i + 1}`,
+    name: `Technicia T-Shirt ${i + 1}`,
+    description: "High-quality t-shirt with exclusive Technicia design.",
+    price: 1299,
+    category: "tshirts",
+    image: `/merch/tshirts/${i + 1}.png`,
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["Black", "Navy", "White"],
+    inStock: true,
+    tags: ["cotton", "comfortable", "unisex"],
+  })),
+
+  // BOTTLES (1–2)
+  ...Array.from({ length: 2 }, (_, i) => ({
+    id: `bottle-${i + 1}`,
+    name: `Technicia Bottle ${i + 1}`,
+    description: "Insulated bottle to keep your drink fresh all day.",
+    price: 1499,
+    category: "bottles",
+    image: `/merch/bottle/${i + 1}.png`,
+    colors: ["Black", "Silver", "Blue"],
+    inStock: true,
+    tags: ["insulated", "eco-friendly", "reusable"],
+  })),
+
+  // BAGS (1–6)
+  ...Array.from({ length: 6 }, (_, i) => ({
+    id: `bag-${i + 1}`,
+    name: `Technicia Bag ${i + 1}`,
+    description: "Durable tech backpack with multiple compartments.",
+    price: 2499,
+    category: "bags",
+    image: `/merch/bags/${i + 1}.png`,
+    colors: ["Black", "Charcoal", "Gray"],
+    inStock: true,
+    tags: ["functional", "waterproof", "stylish"],
+  })),
+
+  // DIARIES (1–8)
+  ...Array.from({ length: 8 }, (_, i) => ({
+    id: `diary-${i + 1}`,
+    name: `Technicia Diary ${i + 1}`,
+    description: "Premium diary for everyday writing and planning.",
+    price: 899,
+    category: "diary",
+    image: `/merch/diary/${i + 1}.png`,
+    colors: ["Brown", "Black"],
+    inStock: true,
+    tags: ["leather", "premium", "stationery"],
+  })),
+];
+
