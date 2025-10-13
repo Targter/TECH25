@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart, Search, Plus, Minus, Heart, X } from "lucide-react"
 import Image from "next/image"
 import { merchData } from "@/lib/constants"
-import Link from "next/link"
 
 type MerchItem = {
   id: string
@@ -28,7 +27,6 @@ const categories = [
   { id: "diary", name: "Diary" },
 ]
 
-// Floating Cart Icon
 const FloatingCartIcon = ({ count, onClick }: { count: number; onClick: () => void }) => (
   <motion.div className="fixed bottom-8 right-8 z-50" initial={{ scale: 0 }} animate={{ scale: 1 }} onClick={onClick}>
     <div className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-green-700 rounded-full flex items-center justify-center shadow-lg cursor-pointer">
@@ -47,7 +45,6 @@ const FloatingCartIcon = ({ count, onClick }: { count: number; onClick: () => vo
   </motion.div>
 )
 
-// Product Modal
 const ProductModal = ({
   item,
   onClose,
@@ -174,6 +171,235 @@ const ProductModal = ({
   )
 }
 
+// Checkout Modal Component
+const CheckoutModal = ({
+  isOpen,
+  onClose,
+  totalPrice,
+  cartItems,
+}: {
+  isOpen: boolean
+  onClose: () => void
+  totalPrice: number
+  cartItems: Array<{ item: MerchItem; quantity: number }>
+}) => {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    address: "",
+    couponCode: "",
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
+  const [success, setSuccess] = useState(false)
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!formData.fullName.trim()) {
+      setError("Please enter your full name")
+      return
+    }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      setError("Please enter a valid email")
+      return
+    }
+    if (!formData.phone.trim()) {
+      setError("Please enter your phone number")
+      return
+    }
+    if (!formData.address.trim()) {
+      setError("Please enter your delivery address")
+      return
+    }
+
+    setIsLoading(true)
+    setError("")
+
+    try {
+      const response = await fetch("/api/merchconfirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          address: formData.address,
+          cartItems,
+          totalPrice,
+          couponCode: formData.couponCode || undefined,
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to send email")
+      }
+
+      setSuccess(true)
+
+      setTimeout(() => {
+        window.open("https://razorpay.me/@searchyourmerchllp", "_blank")
+        onClose()
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          address: "",
+          couponCode: "",
+        })
+        setSuccess(false)
+      }, 2000)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <motion.div
+      className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="bg-gray-900 rounded-2xl max-w-md w-full border border-green-700/30 p-6 overflow-y-auto max-h-[90vh]"
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-bold text-white">Checkout</h2>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-white transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        {success ? (
+          <motion.div
+            className="text-center py-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+          >
+            <div className="text-5xl mb-4">✅</div>
+            <h3 className="text-2xl font-bold text-green-400 mb-2">
+              Email Sent!
+            </h3>
+            <p className="text-gray-300 mb-4">
+              Confirmation sent to <strong>{formData.email}</strong>
+            </p>
+            <p className="text-gray-400 text-sm">
+              Redirecting to payment...
+            </p>
+          </motion.div>
+        ) : (
+          <div className="space-y-4">
+            <input
+              type="text"
+              name="fullName"
+              placeholder="Full Name"
+              value={formData.fullName}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-green-500 outline-none transition-colors"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-green-500 outline-none transition-colors"
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-green-500 outline-none transition-colors"
+            />
+            <textarea
+              name="address"
+              placeholder="Delivery Address"
+              value={formData.address}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-green-500 outline-none transition-colors resize-none"
+              rows={3}
+            />
+            <input
+              type="text"
+              name="couponCode"
+              placeholder="Coupon Code (Optional)"
+              value={formData.couponCode}
+              onChange={handleInputChange}
+              className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-green-500 outline-none transition-colors"
+            />
+
+            {error && (
+              <motion.div
+                className="bg-red-900/20 border border-red-700 text-red-400 px-4 py-3 rounded-lg text-sm"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                {error}
+              </motion.div>
+            )}
+
+            <div className="bg-gray-800 rounded-lg p-4 my-4">
+              <h3 className="font-semibold text-white mb-3 text-sm">Order Summary</h3>
+              <div className="space-y-2 text-xs text-gray-300">
+                {cartItems.map(({ item, quantity }) => (
+                  <div key={item.id} className="flex justify-between">
+                    <span>{item.name} x{quantity}</span>
+                    <span>₹{(item.price * quantity).toLocaleString()}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-gray-700 mt-3 pt-3 flex justify-between font-bold text-white">
+                <span>Total</span>
+                <span className="text-green-400">₹{totalPrice.toLocaleString()}</span>
+              </div>
+            </div>
+
+            <button
+              onClick={handleSubmit}
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 disabled:opacity-50 text-white font-bold py-2.5 rounded-lg transition-all"
+            >
+              {isLoading ? "Sending Email..." : "Send & Proceed to Payment →"}
+            </button>
+
+            <button
+              onClick={onClose}
+              className="w-full bg-gray-800 hover:bg-gray-700 text-white font-bold py-2.5 rounded-lg transition-all"
+            >
+              Cancel
+            </button>
+          </div>
+        )}
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function MerchShowcase() {
   const [selectedCategory, setSelectedCategory] = useState("all")
   const [searchQuery, setSearchQuery] = useState("")
@@ -181,6 +407,7 @@ export default function MerchShowcase() {
   const [wishlist, setWishlist] = useState<string[]>([])
   const [selectedItem, setSelectedItem] = useState<MerchItem | null>(null)
   const [viewCartPage, setViewCartPage] = useState(false)
+  const [showCheckoutModal, setShowCheckoutModal] = useState(false)
 
   const filteredItems = useMemo(() => {
     return (merchData as MerchItem[]).filter((item) => {
@@ -243,7 +470,6 @@ export default function MerchShowcase() {
             </div>
           ) : (
             <div className="grid lg:grid-cols-3 gap-8">
-              {/* Cart Items */}
               <div className="lg:col-span-2 space-y-4">
                 {cartItems.map(({ item, quantity }) => (
                   <div key={item.id} className="bg-gray-900 rounded-xl p-4 border border-green-700/20 flex gap-4">
@@ -292,7 +518,6 @@ export default function MerchShowcase() {
                 ))}
               </div>
 
-              {/* Payment Section */}
               <div className="lg:col-span-1">
                 <div className="bg-gray-900 rounded-xl p-6 border border-green-700/20 sticky top-4">
                   <h2 className="text-xl font-bold mb-6">Order Summary</h2>
@@ -313,10 +538,17 @@ export default function MerchShowcase() {
                     <span className="text-green-400">₹{totalPrice.toLocaleString()}</span>
                   </div>
 
+                  <button
+                    onClick={() => setShowCheckoutModal(true)}
+                    className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-6 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg text-white mb-6"
+                  >
+                    Proceed to Checkout →
+                  </button>
+
                   <div className="mb-6">
-                    <p className="text-center text-sm text-gray-400 mb-4">Scan QR code to pay</p>
+                    <p className="text-center text-sm text-gray-400 mb-4">Or scan QR code to pay</p>
                     <div className="bg-white p-6 rounded-lg flex items-center justify-center">
-                      <div className="relative w-64 h-64">
+                      <div className="relative w-48 h-48">
                         <Image 
                           src="/qr.jpg"
                           alt="Payment QR Code"
@@ -327,19 +559,8 @@ export default function MerchShowcase() {
                       </div>
                     </div>
                   </div>
-
-                  <Link 
-                    href="https://razorpay.me/@searchyourmerchllp" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <button className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-6 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg">
-                      Proceed to Payment →
-                    </button>
-                  </Link>
                   
-                  <p className="text-xs text-gray-500 text-center mt-4">
+                  <p className="text-xs text-gray-500 text-center">
                     Secure payment powered by Razorpay
                   </p>
                 </div>
@@ -347,6 +568,13 @@ export default function MerchShowcase() {
             </div>
           )}
         </div>
+
+        <CheckoutModal 
+          isOpen={showCheckoutModal}
+          onClose={() => setShowCheckoutModal(false)}
+          totalPrice={totalPrice}
+          cartItems={cartItems}
+        />
       </div>
     )
   }
@@ -355,7 +583,6 @@ export default function MerchShowcase() {
     <div className="relative min-h-screen text-white overflow-hidden">
       <main className="relative z-10 pt-8 pb-20">
         <div className="max-w-[75rem] mx-auto px-4 sm:px-6">
-          {/* Hero */}
           <div className="text-center mb-12">
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">Tech Merch</span>
@@ -366,7 +593,6 @@ export default function MerchShowcase() {
               Premium merchandise designed for tech enthusiasts. Express your passion with our exclusive collection.
             </p>
             
-            {/* Search Input */}
             <div className="relative max-w-md mx-auto mb-8">
               <input
                 type="text"
@@ -379,7 +605,6 @@ export default function MerchShowcase() {
             </div>
           </div>
 
-          {/* Category Filter */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((category) => (
               <button
@@ -396,7 +621,6 @@ export default function MerchShowcase() {
             ))}
           </div>
 
-          {/* Product Grid */}
           <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" layout>
             <AnimatePresence>
               {filteredItems.map((item, index) => (
