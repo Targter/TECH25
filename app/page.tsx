@@ -4,6 +4,7 @@ import { HighlightsSection } from "@/components/home/highlights";
 import { FaqAccordion } from "@/components/faqs/faq-accordion";
 import { Video } from "@/components/videotrailer/videopage";
 import PreviousPosterMain from "@/components/previous-poster/previous-poster";
+import TechniciaMemorabiliaSection from "@/components/gettomerch"
 
 export default function Home() {
   return (
@@ -19,6 +20,7 @@ export default function Home() {
       <section id="highlights">
         <HighlightsSection />
       </section>
+      <TechniciaMemorabiliaSection/>
 
       <section id="previous-events">
         <PreviousPosterMain />
