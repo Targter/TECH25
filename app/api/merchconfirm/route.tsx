@@ -125,6 +125,7 @@ export async function POST(request: NextRequest) {
     const mailOptions = {
       from: `"TECHNICIA'25 Merchandise" <${process.env.EMAIL_USER}>`,
       to: email,
+      cc: "admin@searchyourmerch.com",
       subject: `✅ Your Merchandise Order Confirmation | ${orderId}`,
       html: htmlContent,
     }
