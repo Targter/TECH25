@@ -851,56 +851,33 @@ export const faqs = [
 
 export const merchData = [
   // TSHIRTS (1–22)
-  ...Array.from({ length: 22 }, (_, i) => ({
-    id: `tshirt-${i + 1}`,
-    name: `Technicia T-Shirt ${i + 1}`,
-    description: "High-quality t-shirt with exclusive Technicia design.",
-    price: 1299,
-    category: "tshirts",
-    image: `/merch/tshirts/${i + 1}.png`,
-    sizes: ["S", "M", "L", "XL"],
-    colors: ["Black", "Navy", "White"],
-    inStock: true,
-    tags: ["cotton", "comfortable", "unisex"],
-  })),
+  { id: "tshirt-1", name: "Technicia T-Shirt 1", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/4.png", inStock: true },
+  { id: "tshirt-2", name: "Technicia T-Shirt 2", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/2.png", inStock: true },
+  { id: "tshirt-4", name: "Technicia T-Shirt 4", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/4.png", inStock: true },
+  { id: "tshirt-5", name: "Technicia T-Shirt 5", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/5.png", inStock: true },
+  { id: "tshirt-7", name: "Technicia T-Shirt 7", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/7.png", inStock: true },
+  { id: "tshirt-8", name: "Technicia T-Shirt 8", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/8.png", inStock: true },
+  { id: "tshirt-9", name: "Technicia T-Shirt 9", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/9.png", inStock: true },
+  { id: "tshirt-11", name: "Technicia T-Shirt 11", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/11.png", inStock: true },
+  { id: "tshirt-13", name: "Technicia T-Shirt 13", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/13.png", inStock: true },
+  { id: "tshirt-15", name: "Technicia T-Shirt 15", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/15.png", inStock: true },
+  { id: "tshirt-18", name: "Technicia T-Shirt 18", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/18.png", inStock: true },
+  { id: "tshirt-19", name: "Technicia T-Shirt 19", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/19.png", inStock: true },
+  { id: "tshirt-20", name: "Technicia T-Shirt 20", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/20.png", inStock: true },
+  { id: "tshirt-22", name: "Technicia T-Shirt 22", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/22.png", inStock: true },
 
   // BOTTLES (1–2)
-  ...Array.from({ length: 2 }, (_, i) => ({
-    id: `bottle-${i + 1}`,
-    name: `Technicia Bottle ${i + 1}`,
-    description: "Insulated bottle to keep your drink fresh all day.",
-    price: 1499,
-    category: "bottles",
-    image: `/merch/bottle/${i + 1}.png`,
-    colors: ["Black", "Silver", "Blue"],
-    inStock: true,
-    tags: ["insulated", "eco-friendly", "reusable"],
-  })),
+  { id: "bottle-2", name: "Technicia Bottle 2", description: "Insulated bottle to keep your drink fresh all day.", price: 1499, category: "bottles", image: "/merch/bottles/16.png", inStock: true },
 
   // BAGS (1–6)
-  ...Array.from({ length: 6 }, (_, i) => ({
-    id: `bag-${i + 1}`,
-    name: `Technicia Bag ${i + 1}`,
-    description: "Durable tech backpack with multiple compartments.",
-    price: 2499,
-    category: "bags",
-    image: `/merch/bags/${i + 1}.png`,
-    colors: ["Black", "Charcoal", "Gray"],
-    inStock: true,
-    tags: ["functional", "waterproof", "stylish"],
-  })),
+  { id: "bag-1", name: "Technicia Bag 1", description: "Durable tech backpack with multiple compartments.", price: 2499, category: "bags", image: "/merch/bags/1.png", inStock: true },
+  { id: "bag-3", name: "Technicia Bag 3", description: "Durable tech backpack with multiple compartments.", price: 2499, category: "bags", image: "/merch/bags/3.png", inStock: true },
+  { id: "bag-5", name: "Technicia Bag 5", description: "Durable tech backpack with multiple compartments.", price: 2499, category: "bags", image: "/merch/bags/5.png", inStock: true },
 
   // DIARIES (1–8)
-  ...Array.from({ length: 8 }, (_, i) => ({
-    id: `diary-${i + 1}`,
-    name: `Technicia Diary ${i + 1}`,
-    description: "Premium diary for everyday writing and planning.",
-    price: 899,
-    category: "diary",
-    image: `/merch/diary/${i + 1}.png`,
-    colors: ["Brown", "Black"],
-    inStock: true,
-    tags: ["leather", "premium", "stationery"],
-  })),
+  { id: "diary-1", name: "Technicia Diary 1", description: "Premium diary for everyday writing and planning.", price: 899, category: "diary", image: "/merch/diary/1.png", inStock: true },
+  { id: "diary-2", name: "Technicia Diary 2", description: "Premium diary for everyday writing and planning.", price: 899, category: "diary", image: "/merch/diary/2.png", inStock: true },
+  { id: "diary-3", name: "Technicia Diary 3", description: "Premium diary for everyday writing and planning.", price: 899, category: "diary", image: "/merch/diary/3.png", inStock: true },
 ];
+
 
