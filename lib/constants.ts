@@ -862,7 +862,6 @@ export const merchData = [
   { id: "tshirt-13", name: "Technicia T-Shirt 13", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/13.png", inStock: true },
   { id: "tshirt-15", name: "Technicia T-Shirt 15", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/15.png", inStock: true },
   { id: "tshirt-18", name: "Technicia T-Shirt 18", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/18.png", inStock: true },
-  { id: "tshirt-19", name: "Technicia T-Shirt 19", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/19.png", inStock: true },
   { id: "tshirt-20", name: "Technicia T-Shirt 20", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/20.png", inStock: true },
   { id: "tshirt-22", name: "Technicia T-Shirt 22", description: "High-quality t-shirt with exclusive Technicia design.", price: 1299, category: "tshirts", image: "/merch/tshirts/22.png", inStock: true },
 
