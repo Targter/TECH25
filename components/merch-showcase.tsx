@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ShoppingCart, Search, Plus, Minus, Heart, X } from "lucide-react"
 import Image from "next/image"
 import { merchData } from "@/lib/constants"
+import Link from "next/link"
 
 type MerchItem = {
   id: string
@@ -210,50 +211,142 @@ export default function MerchShowcase() {
       return item ? acc + item.price * qty : acc
     }, 0)
 
+    const cartItems = Object.entries(cart).map(([id, qty]) => ({
+      item: (merchData as MerchItem[]).find((m) => m.id === id)!,
+      quantity: qty
+    })).filter(({ item }) => item)
+
     return (
-      <div className="p-6 min-h-screen text-white">
-        <button onClick={() => setViewCartPage(false)} className="mb-4 text-green-400 font-bold">
-          &larr; Back to Store
-        </button>
-        <h1 className="text-3xl font-bold mb-6">Your Cart</h1>
-        {totalCartItems === 0 ? (
-          <p className="text-gray-400">Your cart is empty.</p>
-        ) : (
-          <div className="flex flex-col gap-4">
-            {Object.entries(cart).map(([id, qty]) => {
-              const item = (merchData as MerchItem[]).find((m) => m.id === id)!
-              return (
-                <div key={id} className="flex justify-between items-center border-b border-gray-700 py-4">
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-20 h-20">
-                      <Image src={item.image} alt={item.name} fill className="object-cover rounded" />
+      <div className="min-h-screen text-white bg-gray-950">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+          <button 
+            onClick={() => setViewCartPage(false)} 
+            className="mb-6 text-green-400 hover:text-green-300 font-bold flex items-center gap-2 transition-colors"
+          >
+            <span>&larr;</span> Back to Store
+          </button>
+          
+          <h1 className="text-4xl font-bold mb-8 bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+            Your Cart
+          </h1>
+          
+          {totalCartItems === 0 ? (
+            <div className="text-center py-20">
+              <ShoppingCart className="h-24 w-24 text-gray-600 mx-auto mb-4" />
+              <p className="text-gray-400 text-xl">Your cart is empty.</p>
+              <button 
+                onClick={() => setViewCartPage(false)}
+                className="mt-6 bg-green-600 hover:bg-green-700 px-8 py-3 rounded-lg font-bold transition-colors"
+              >
+                Continue Shopping
+              </button>
+            </div>
+          ) : (
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Cart Items */}
+              <div className="lg:col-span-2 space-y-4">
+                {cartItems.map(({ item, quantity }) => (
+                  <div key={item.id} className="bg-gray-900 rounded-xl p-4 border border-green-700/20 flex gap-4">
+                    <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+                      <Image 
+                        src={item.image} 
+                        alt={item.name}
+                        fill
+                        className="object-cover"
+                      />
                     </div>
-                    <div>
-                      <h2 className="font-bold text-lg">{item.name}</h2>
-                      <div className="flex items-center gap-2 mt-1">
-                        <button onClick={() => removeFromCart(id)} className="bg-gray-700 px-2 py-1 rounded">
-                          <Minus className="h-4 w-4" />
-                        </button>
-                        <span>{qty}</span>
-                        <button onClick={() => addToCart(id)} className="bg-gray-700 px-2 py-1 rounded">
-                          <Plus className="h-4 w-4" />
-                        </button>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-bold text-lg mb-1 truncate">{item.name}</h3>
+                      <p className="text-gray-400 text-sm mb-2 line-clamp-2">{item.description}</p>
+                      <div className="flex items-center justify-between">
+                        <span className="text-green-400 font-bold">₹{item.price.toLocaleString()}</span>
+                        <div className="flex items-center gap-3 bg-gray-800 rounded-lg p-1">
+                          <button 
+                            onClick={() => removeFromCart(item.id)} 
+                            className="p-1 text-gray-400 hover:text-white transition-colors"
+                          >
+                            <Minus className="h-4 w-4" />
+                          </button>
+                          <span className="text-white font-semibold min-w-[2rem] text-center">{quantity}</span>
+                          <button 
+                            onClick={() => addToCart(item.id)} 
+                            className="p-1 text-gray-400 hover:text-white transition-colors"
+                          >
+                            <Plus className="h-4 w-4" />
+                          </button>
+                        </div>
                       </div>
-                      <p className="text-green-400 font-semibold mt-1">₹{(item.price * qty).toLocaleString()}</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        const newCart = { ...cart }
+                        delete newCart[item.id]
+                        setCart(newCart)
+                      }}
+                      className="text-red-400 hover:text-red-300 transition-colors"
+                      aria-label="Remove item"
+                    >
+                      <X className="h-5 w-5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Payment Section */}
+              <div className="lg:col-span-1">
+                <div className="bg-gray-900 rounded-xl p-6 border border-green-700/20 sticky top-4">
+                  <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+                  
+                  <div className="space-y-3 mb-6 pb-6 border-b border-gray-800">
+                    <div className="flex justify-between text-gray-400">
+                      <span>Items ({totalCartItems})</span>
+                      <span>₹{totalPrice.toLocaleString()}</span>
+                    </div>
+                    <div className="flex justify-between text-gray-400">
+                      <span>Shipping</span>
+                      <span className="text-green-400">Free</span>
                     </div>
                   </div>
-                  <button onClick={() => removeFromCart(id)} className="text-red-500">
-                    Remove
-                  </button>
+                  
+                  <div className="flex justify-between text-xl font-bold mb-6">
+                    <span>Total</span>
+                    <span className="text-green-400">₹{totalPrice.toLocaleString()}</span>
+                  </div>
+
+                  <div className="mb-6">
+                    <p className="text-center text-sm text-gray-400 mb-4">Scan QR code to pay</p>
+                    <div className="bg-white p-6 rounded-lg flex items-center justify-center">
+                      <div className="relative w-64 h-64">
+                        <Image 
+                          src="/qr.jpg"
+                          alt="Payment QR Code"
+                          fill
+                          className="object-contain"
+                          priority
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <Link 
+                    href="https://razorpay.me/@searchyourmerchllp" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <button className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-6 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg">
+                      Proceed to Payment →
+                    </button>
+                  </Link>
+                  
+                  <p className="text-xs text-gray-500 text-center mt-4">
+                    Secure payment powered by Razorpay
+                  </p>
                 </div>
-              )
-            })}
-            <div className="mt-6 flex justify-end items-center gap-6">
-              <span className="text-xl font-bold">Total: ₹{totalPrice.toLocaleString()}</span>
-              <button className="bg-green-600 px-6 py-2 rounded-lg font-bold">Proceed to Payment</button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     )
   }
