@@ -26,7 +26,7 @@ const navLinks = [
   { title: "Faculty", href: "/faculty", isRoute: true },
   { title: "Team", href: "/team", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
-  { title: "Merche", href: "/merch", isRoute: true },
+  { title: "Merch", href: "/merch", isRoute: true },
 ];
 
 export function Navbar() {
