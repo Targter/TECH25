@@ -182,12 +182,12 @@ export default function MerchShowcase() {
   const [viewCartPage, setViewCartPage] = useState(false)
 
   const filteredItems = useMemo(() => {
-    return merchData.filter((item) => {
+    return (merchData as MerchItem[]).filter((item) => {
       const matchesCategory = selectedCategory === "all" || item.category === selectedCategory
       const matchesSearch =
         item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.tags.some((tag) => tag.toLowerCase().includes(searchQuery.toLowerCase()))
+        (item.tags && item.tags.some((tag: string) => tag.toLowerCase().includes(searchQuery.toLowerCase())))
       return matchesCategory && matchesSearch
     })
   }, [selectedCategory, searchQuery])
@@ -206,7 +206,7 @@ export default function MerchShowcase() {
 
   if (viewCartPage) {
     const totalPrice = Object.entries(cart).reduce((acc, [id, qty]) => {
-      const item = merchData.find((m) => m.id === id)
+      const item = (merchData as MerchItem[]).find((m) => m.id === id)
       return item ? acc + item.price * qty : acc
     }, 0)
 
@@ -221,7 +221,7 @@ export default function MerchShowcase() {
         ) : (
           <div className="flex flex-col gap-4">
             {Object.entries(cart).map(([id, qty]) => {
-              const item = merchData.find((m) => m.id === id)!
+              const item = (merchData as MerchItem[]).find((m) => m.id === id)!
               return (
                 <div key={id} className="flex justify-between items-center border-b border-gray-700 py-4">
                   <div className="flex items-center gap-4">
