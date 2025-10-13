@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
               <a href="mailto:official@technicia.live" style="color: #22c55e; text-decoration: none;">official@technicia.live</a>.
             </p>
             <p style="font-size: 14px; color: #666; margin-top: 10px; margin-bottom: 0;">
-              Thank you for supporting TECHNICIA'25!
+              Thank you for Participating in TECHNICIA'25!
             </p>
           </div>
         </div>
