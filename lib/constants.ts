@@ -867,6 +867,8 @@ export const merchData = [
 
   // BOTTLES (1–2)
   { id: "bottle-2", name: "Technicia Bottle 2", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "bottles", image: "/merch/bottles/16.png", inStock: true },
+  { id: "cap", name: "Technicia Cap", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "cap", image: "/merch/cap.jpg", inStock: true },
+  { id: "pen", name: "Technicia Pen", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "pen", image: "/merch/pen.jpg", inStock: true },
 
   // BAGS (1–6)
   { id: "bag-1", name: "Technicia Bag 1", description: "Durable tech backpack with multiple compartments.", price: 799, category: "bags", image: "/merch/bags/1.png", inStock: true },
@@ -876,7 +878,7 @@ export const merchData = [
   // DIARIES (1–8)
   { id: "diary-1", name: "Technicia Diary 1", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/1.png", inStock: true },
   { id: "diary-2", name: "Technicia Diary 2", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/2.png", inStock: true },
-  { id: "diary-3", name: "Technicia Diary 3", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/3.png", inStock: true },
+  { id: "diary-3", name: "Technicia Diary 3", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/diaryblack.jpg", inStock: true },
 ];
 
 
