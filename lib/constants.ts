@@ -850,42 +850,45 @@ export const faqs = [
 ];
 
 export const merchData = [
-  // TSHIRTS (1–22)
-  { id: "tshirt-1", name: "Technicia Hoodie", description: "High-quality t-shirt with exclusive Technicia design.", price: 729, category: "tshirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
-  { id: "tshirt-2", name: "Technicia T-Shirt 2", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teecu.jpg", inStock: true },
-  { id: "tshirt-4", name: "Technicia T-Shirt 4", description: "High-quality t-shirt with exclusive Technicia design.", price: 499, category: "tshirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
-  { id: "tshirt-5", name: "Technicia T-Shirt 5", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teereg.jpg", inStock: true },
-  { id: "tshirt-7", name: "Technicia T-Shirt 7", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teereggrey.jpg", inStock: true },
-  { id: "tshirt-8", name: "Technicia T-Shirt 8", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/tesscu.jpg", inStock: true },
-  { id: "tshirt-9", name: "Technicia T-Shirt 9", description: "High-quality t-shirt with exclusive Technicia design.", price: 999, category: "tshirts", image: "/merch/tshirts/vanity.jpg", inStock: true },
-  { id: "tshirt-10", name: "Technicia T-Shirt 23", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/2.png", inStock: true },
-  { id: "tshirt-28", name: "Technicia T-Shirt 24", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/4.png", inStock: true },
-  { id: "tshirt-23", name: "Technicia T-Shirt 25", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/5.png", inStock: true },
-  { id: "tshirt-24", name: "Technicia T-Shirt 26", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/7.png", inStock: true },
-  { id: "tshirt-25", name: "Technicia T-Shirt 27", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/8.png", inStock: true },
-  { id: "tshirt-26", name: "Technicia T-Shirt 28", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/9.png", inStock: true },
-  { id: "tshirt-27", name: "Technicia T-Shirt 11", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/10.png", inStock: true },
-  { id: "tshirt-13", name: "Technicia T-Shirt 13", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/13.png", inStock: true },
-  { id: "tshirt-15", name: "Technicia T-Shirt 15", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/15.png", inStock: true },
-  { id: "tshirt-18", name: "Technicia T-Shirt 18", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/18.png", inStock: true },
-  { id: "tshirt-20", name: "Technicia T-Shirt 20", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/20.png", inStock: true },
-  { id: "tshirt-22", name: "Technicia T-Shirt 22", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/22.png", inStock: true },
+  // TSHIRTS
+  { id: "tshirt-1", name: "Technicia Hoodie", description: "Cozy up in our premium Technicia hoodie — crafted for warmth, comfort, and style that stands out.", price: 729, category: "T-Shirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
+  { id: "tshirt-2", name: "Technicia Classic Tee", description: "Stay cool and confident with this sleek Technicia T-shirt — soft fabric, bold look, and all-day comfort.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teecu.jpg", inStock: true },
+  { id: "tshirt-4", name: "Technicia Full Sleeve Tee", description: "Elevate your casual wear with this full-sleeve Technicia T-shirt — perfect for every season.", price: 499, category: "T-Shirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
+  { id: "tshirt-5", name: "Technicia Regular Fit Tee", description: "Classic fit meets timeless design — your everyday essential Technicia tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teereg.jpg", inStock: true },
+  { id: "tshirt-7", name: "Technicia Grey Edition Tee", description: "Minimal yet powerful — this grey Technicia tee adds effortless style to your look.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teereggrey.jpg", inStock: true },
+  { id: "tshirt-8", name: "Technicia Signature Tee", description: "Experience comfort and design perfection with the Technicia signature collection.", price: 399, category: "T-Shirts", image: "/merch/tshirts/tesscu.jpg", inStock: true },
+  { id: "tshirt-9", name: "Technicia Vanity Tee", description: "Show off your passion with the Technicia Vanity tee — vibrant, bold, and built for impact.", price: 999, category: "T-Shirts", image: "/merch/tshirts/vanity.jpg", inStock: true },
+  { id: "tshirt-10", name: "Technicia Bold Edition", description: "Designed for the daring — make a statement in this bold Technicia edition tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/2.png", inStock: true },
+  { id: "tshirt-28", name: "Technicia Streetwear Tee", description: "Urban vibes meet campus style — wear your Technicia pride with confidence.", price: 399, category: "T-Shirts", image: "/merch/tshirts/4.png", inStock: true },
+  { id: "tshirt-23", name: "Technicia Modern Tee", description: "Clean, comfortable, and crafted for the modern student — the Technicia Modern tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/5.png", inStock: true },
+  { id: "tshirt-24", name: "Technicia Edition Tee", description: "Limited Technicia edition — fresh, stylish, and crafted to impress.", price: 399, category: "T-Shirts", image: "/merch/tshirts/7.png", inStock: true },
+  { id: "tshirt-25", name: "Technicia Vibe Tee", description: "Turn heads with the Technicia Vibe tee — a perfect blend of comfort and personality.", price: 399, category: "T-Shirts", image: "/merch/tshirts/8.png", inStock: true },
+  { id: "tshirt-26", name: "Technicia Black Tee", description: "Bold and timeless — the all-black Technicia tee that goes with everything.", price: 399, category: "T-Shirts", image: "/merch/tshirts/9.png", inStock: true },
+  { id: "tshirt-27", name: "Technicia Graphic Tee", description: "Bring your look to life with the Technicia graphic print — fresh and full of attitude.", price: 399, category: "T-Shirts", image: "/merch/tshirts/10.png", inStock: true },
+  { id: "tshirt-13", name: "Technicia Trend Tee", description: "Where comfort meets creativity — this Technicia trend tee defines new-age fashion.", price: 399, category: "T-Shirts", image: "/merch/tshirts/13.png", inStock: true },
+  { id: "tshirt-15", name: "Technicia Street Classic", description: "Streetwear with a Technicia twist — bold, breathable, and built for style.", price: 399, category: "T-Shirts", image: "/merch/tshirts/15.png", inStock: true },
+  { id: "tshirt-18", name: "Technicia Minimal Tee", description: "Simple yet stunning — embrace minimalism with Technicia’s soft-touch tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/18.png", inStock: true },
+  { id: "tshirt-20", name: "Technicia Prime Tee", description: "Designed for comfort and confidence — your go-to Technicia prime edition tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/20.png", inStock: true },
+  { id: "tshirt-22", name: "Technicia Elite Tee", description: "Step into excellence with the Technicia Elite tee — made for leaders, not followers.", price: 399, category: "T-Shirts", image: "/merch/tshirts/22.png", inStock: true },
 
-  // BOTTLES (1–2)
-  { id: "bottle-2", name: "Technicia Bottle 2", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "bottles", image: "/merch/bottles/16.png", inStock: true },
-  { id: "cap", name: "Technicia Cap", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "cap", image: "/merch/cap.jpg", inStock: true },
-  { id: "pen", name: "Technicia Pen", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "pen", image: "/merch/pen.jpg", inStock: true },
-  { id: "mug", name: "Technicia Mug", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "pen", image: "/merch/mugs/mug.jpg", inStock: true },
+  // BOTTLES
+  { id: "bottle-2", name: "Technicia Hydration Bottle/Sipper", description: "Stay refreshed with our insulated Technicia bottle — sleek, durable, and eco-friendly.", price: 749, category: "Bottles", image: "/merch/bottles/16.png", inStock: true },
 
-  // BAGS (1–6)
-  { id: "bag-1", name: "Technicia Bag 1", description: "Durable tech backpack with multiple compartments.", price: 799, category: "bags", image: "/merch/bags/1.png", inStock: true },
-  { id: "bag-3", name: "Technicia Bag 3", description: "Durable tech backpack with multiple compartments.", price: 799, category: "bags", image: "/merch/bags/3.png", inStock: true },
-  { id: "bag-5", name: "Technicia Bag 5", description: "Durable tech backpack with multiple compartments.", price: 799, category: "bags", image: "/merch/bags/5.png", inStock: true },
+  // ACCESSORIES
+  { id: "cap", name: "Technicia Cap", description: "Top off your look with the Technicia cap — smart, sporty, and sun-ready.", price: 749, category: "Caps", image: "/merch/cap.jpg", inStock: true },
+  { id: "pen", name: "Technicia Pen", description: "Write your success story with this elegant Technicia pen — smooth, stylish, and reliable.", price: 99, category: "Pens", image: "/merch/pen.jpg", inStock: true },
+  { id: "mug", name: "Technicia Mug", description: "Sip in style — the Technicia mug keeps your beverage hot while your vibe stays cool.", price: 179, category: "Mugs", image: "/merch/mugs/mug.jpg", inStock: true },
 
-  // DIARIES (1–8)
-  { id: "diary-1", name: "Technicia Diary 1", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/1.png", inStock: true },
-  { id: "diary-2", name: "Technicia Diary 2", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/2.png", inStock: true },
-  { id: "diary-3", name: "Technicia Diary 3", description: "Premium diary for everyday writing and planning.", price: 229, category: "diary", image: "/merch/diary/diaryblack.jpg", inStock: true },
+  // BAGS
+  { id: "bag-1", name: "Technicia Rugged Tote Bag", description: "Spacious and durable — carry your world in the ultimate Technicia backpack.", price: 599, category: "Bags", image: "/merch/bags/1.png", inStock: true },
+  { id: "bag-3", name: "Technicia PowerPuff Tote Bag", description: "Urban-ready and student-approved — this Technicia bag is built for daily hustle.", price: 599, category: "Bags", image: "/merch/bags/3.png", inStock: true },
+  { id: "bag-5", name: "Technicia Disney Stitch Tote Bag", description: "Perfect for trips or campus days — the Technicia travel bag is your all-in-one companion.", price: 599, category: "Bags", image: "/merch/bags/5.png", inStock: true },
+
+  // DIARIES
+  { id: "diary-1", name: "Technicia Diary Bahi Style", description: "Plan big dreams in this sleek Technicia blue diary — smooth pages, elegant design.", price: 229, category: "Diaries", image: "/merch/diary/1.png", inStock: true },
+  { id: "diary-2", name: "Technicia Thanos Diary", description: "Stay organized with class — the Technicia tan diary adds charm to every note.", price: 229, category: "Diaries", image: "/merch/diary/2.png", inStock: true },
+  { id: "diary-3", name: "Technicia Diary", description: "Bold and refined — the Technicia black diary for those who write their own destiny.", price: 229, category: "Diaries", image: "/merch/diary/diaryblack.jpg", inStock: true },
 ];
+
 
 
