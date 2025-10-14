@@ -408,6 +408,9 @@ export default function MerchShowcase() {
   const [selectedItem, setSelectedItem] = useState<MerchItem | null>(null)
   const [viewCartPage, setViewCartPage] = useState(false)
   const [showCheckoutModal, setShowCheckoutModal] = useState(false)
+  const [couponCode, setCouponCode] = useState("")
+const [discountApplied, setDiscountApplied] = useState(false)
+
 
   const filteredItems = useMemo(() => {
     return (merchData as MerchItem[]).filter((item) => {
@@ -457,7 +460,152 @@ export default function MerchShowcase() {
             Your Cart
           </h1>
           
-          {totalCartItems === 0 ? (
+        {totalCartItems === 0 ? (
+  <div className="text-center py-20">
+    <ShoppingCart className="h-24 w-24 text-gray-600 mx-auto mb-4" />
+    <p className="text-gray-400 text-xl">Your cart is empty.</p>
+    <button 
+      onClick={() => setViewCartPage(false)}
+      className="mt-6 bg-green-600 hover:bg-green-700 px-8 py-3 rounded-lg font-bold transition-colors"
+    >
+      Continue Shopping
+    </button>
+  </div>
+) : (
+  <div className="grid lg:grid-cols-3 gap-8">
+    <div className="lg:col-span-2 space-y-4">
+      {cartItems.map(({ item, quantity }) => (
+        <div key={item.id} className="bg-gray-900 rounded-xl p-4 border border-green-700/20 flex gap-4">
+          <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+            <Image 
+              src={item.image} 
+              alt={item.name}
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-lg mb-1 truncate">{item.name}</h3>
+            <p className="text-gray-400 text-sm mb-2 line-clamp-2">{item.description}</p>
+            <div className="flex items-center justify-between">
+              <span className="text-green-400 font-bold">₹{item.price.toLocaleString()}</span>
+              <div className="flex items-center gap-3 bg-gray-800 rounded-lg p-1">
+                <button 
+                  onClick={() => removeFromCart(item.id)} 
+                  className="p-1 text-gray-400 hover:text-white transition-colors"
+                >
+                  <Minus className="h-4 w-4" />
+                </button>
+                <span className="text-white font-semibold min-w-[2rem] text-center">{quantity}</span>
+                <button 
+                  onClick={() => addToCart(item.id)} 
+                  className="p-1 text-gray-400 hover:text-white transition-colors"
+                >
+                  <Plus className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              const newCart = { ...cart }
+              delete newCart[item.id]
+              setCart(newCart)
+            }}
+            className="text-red-400 hover:text-red-300 transition-colors"
+            aria-label="Remove item"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+      ))}
+    </div>
+
+    <div className="lg:col-span-1">
+      <div className="bg-gray-900 rounded-xl p-6 border border-green-700/20 sticky top-4">
+        <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+
+        {/* Coupon Input */}
+        <div className="mb-6">
+          <input
+            type="text"
+            placeholder="Enter coupon code"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+            className="w-full bg-gray-800 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 mb-3"
+          />
+          <button
+            onClick={() => {
+              if (couponCode.trim().toUpperCase() === "TECHNICIA25") {
+                setDiscountApplied(true)
+              } else {
+                setDiscountApplied(false)
+                alert("Invalid coupon code")
+              }
+            }}
+            className="w-full bg-green-700 hover:bg-green-800 px-4 py-2 rounded-lg font-bold text-white transition-colors"
+          >
+            Apply Coupon
+          </button>
+          {discountApplied && (
+            <p className="text-green-400 text-sm mt-2">Coupon applied! You saved 10% 🎉</p>
+          )}
+        </div>
+
+        <div className="space-y-3 mb-6 pb-6 border-b border-gray-800">
+          <div className="flex justify-between text-gray-400">
+            <span>Items ({totalCartItems})</span>
+            <span>₹{totalPrice.toLocaleString()}</span>
+          </div>
+          <div className="flex justify-between text-gray-400">
+            <span>Shipping</span>
+            <span className="text-green-400">Free</span>
+          </div>
+          {discountApplied && (
+            <div className="flex justify-between text-gray-400">
+              <span>Discount (10%)</span>
+              <span className="text-green-400">-₹{(totalPrice * 0.1).toFixed(0)}</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex justify-between text-xl font-bold mb-6">
+          <span>Total</span>
+          <span className="text-green-400">
+            ₹{discountApplied ? (totalPrice * 0.9).toFixed(0) : totalPrice.toLocaleString()}
+          </span>
+        </div>
+
+        <button
+          onClick={() => setShowCheckoutModal(true)}
+          className="w-full bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 px-6 py-4 rounded-lg font-bold transition-all transform hover:scale-105 shadow-lg text-white mb-6"
+        >
+          Proceed to Checkout →
+        </button>
+
+        <div className="mb-6">
+          <p className="text-center text-sm text-gray-400 mb-4">Or scan QR code to pay</p>
+          <div className="bg-white p-6 rounded-lg flex items-center justify-center">
+            <div className="relative w-48 h-48">
+              <Image 
+                src="/qr.jpg"
+                alt="Payment QR Code"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+          </div>
+        </div>
+
+        <p className="text-xs text-gray-500 text-center">
+          Secure payment powered by Razorpay
+        </p>
+      </div>
+    </div>
+  </div>
+)}
+  {totalCartItems === 0 ? (
             <div className="text-center py-20">
               <ShoppingCart className="h-24 w-24 text-gray-600 mx-auto mb-4" />
               <p className="text-gray-400 text-xl">Your cart is empty.</p>
