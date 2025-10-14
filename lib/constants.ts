@@ -851,14 +851,20 @@ export const faqs = [
 
 export const merchData = [
   // TSHIRTS (1–22)
-  { id: "tshirt-1", name: "Technicia Hoodie", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
+  { id: "tshirt-1", name: "Technicia Hoodie", description: "High-quality t-shirt with exclusive Technicia design.", price: 729, category: "tshirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
   { id: "tshirt-2", name: "Technicia T-Shirt 2", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teecu.jpg", inStock: true },
-  { id: "tshirt-4", name: "Technicia T-Shirt 4", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
+  { id: "tshirt-4", name: "Technicia T-Shirt 4", description: "High-quality t-shirt with exclusive Technicia design.", price: 499, category: "tshirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
   { id: "tshirt-5", name: "Technicia T-Shirt 5", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teereg.jpg", inStock: true },
   { id: "tshirt-7", name: "Technicia T-Shirt 7", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/teereggrey.jpg", inStock: true },
   { id: "tshirt-8", name: "Technicia T-Shirt 8", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/tesscu.jpg", inStock: true },
-  { id: "tshirt-9", name: "Technicia T-Shirt 9", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/vanity.jpg", inStock: true },
-  { id: "tshirt-11", name: "Technicia T-Shirt 11", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/11.png", inStock: true },
+  { id: "tshirt-9", name: "Technicia T-Shirt 9", description: "High-quality t-shirt with exclusive Technicia design.", price: 999, category: "tshirts", image: "/merch/tshirts/vanity.jpg", inStock: true },
+  { id: "tshirt-10", name: "Technicia T-Shirt 23", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/2.png", inStock: true },
+  { id: "tshirt-28", name: "Technicia T-Shirt 24", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/4.png", inStock: true },
+  { id: "tshirt-23", name: "Technicia T-Shirt 25", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/5.png", inStock: true },
+  { id: "tshirt-24", name: "Technicia T-Shirt 26", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/7.png", inStock: true },
+  { id: "tshirt-25", name: "Technicia T-Shirt 27", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/8.png", inStock: true },
+  { id: "tshirt-26", name: "Technicia T-Shirt 28", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/9.png", inStock: true },
+  { id: "tshirt-27", name: "Technicia T-Shirt 11", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/10.png", inStock: true },
   { id: "tshirt-13", name: "Technicia T-Shirt 13", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/13.png", inStock: true },
   { id: "tshirt-15", name: "Technicia T-Shirt 15", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/15.png", inStock: true },
   { id: "tshirt-18", name: "Technicia T-Shirt 18", description: "High-quality t-shirt with exclusive Technicia design.", price: 399, category: "tshirts", image: "/merch/tshirts/18.png", inStock: true },
@@ -869,6 +875,7 @@ export const merchData = [
   { id: "bottle-2", name: "Technicia Bottle 2", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "bottles", image: "/merch/bottles/16.png", inStock: true },
   { id: "cap", name: "Technicia Cap", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "cap", image: "/merch/cap.jpg", inStock: true },
   { id: "pen", name: "Technicia Pen", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "pen", image: "/merch/pen.jpg", inStock: true },
+  { id: "mug", name: "Technicia Mug", description: "Insulated bottle to keep your drink fresh all day.", price: 749, category: "pen", image: "/merch/mugs/mug.jpg", inStock: true },
 
   // BAGS (1–6)
   { id: "bag-1", name: "Technicia Bag 1", description: "Durable tech backpack with multiple compartments.", price: 799, category: "bags", image: "/merch/bags/1.png", inStock: true },
