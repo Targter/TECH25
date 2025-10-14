@@ -23,9 +23,9 @@ const navLinks = [
   // { title: "Sponsors", href: "/sponsers2", isRoute: true },
   // { title: "Merch", href: "/merch", isRoute: true },
   { title: "Previous Events", href: "/previous-events", isRoute: true },
+  { title: "Merch", href: "/merch", isRoute: true },
   { title: "Faculty", href: "/faculty", isRoute: true },
   { title: "Team", href: "/team", isRoute: true },
-  { title: "Merch", href: "/merch", isRoute: true },
   { title: "Registration", href: "/register", special: true, isRoute: true },
 ];
 

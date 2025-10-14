@@ -851,11 +851,11 @@ export const faqs = [
 
 export const merchData = [
   // TSHIRTS
-  { id: "tshirt-1", name: "Technicia Hoodie", description: "Cozy up in our premium Technicia hoodie — crafted for warmth, comfort, and style that stands out.", price: 729, category: "T-Shirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
-  { id: "tshirt-2", name: "Technicia Classic Tee", description: "Stay cool and confident with this sleek Technicia T-shirt — soft fabric, bold look, and all-day comfort.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teecu.jpg", inStock: true },
-  { id: "tshirt-4", name: "Technicia Full Sleeve Tee", description: "Elevate your casual wear with this full-sleeve Technicia T-shirt — perfect for every season.", price: 499, category: "T-Shirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
-  { id: "tshirt-5", name: "Technicia Regular Fit Tee", description: "Classic fit meets timeless design — your everyday essential Technicia tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teereg.jpg", inStock: true },
-  { id: "tshirt-7", name: "Technicia Grey Edition Tee", description: "Minimal yet powerful — this grey Technicia tee adds effortless style to your look.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teereggrey.jpg", inStock: true },
+  { id: "tshirt-1", name: "Technicia Jatt daniels Hoodie", description: "Cozy up in our premium Technicia hoodie — crafted for warmth, comfort, and style that stands out.", price: 1199, category: "T-Shirts", image: "/merch/tshirts/hoddie.jpg", inStock: true },
+  { id: "tshirt-2", name: "Technicia Classic Sweatshirt", description: "Stay cool and confident with this sleek Technicia T-shirt — soft fabric, bold look, and all-day comfort.", price: 399, category: "T-Shirts", image: "/merch/tshirts/teecu.jpg", inStock: true },
+  { id: "tshirt-4", name: "Technicia Full Sweatshirt", description: "Elevate your casual wear with this full-sleeve Technicia T-shirt — perfect for every season.", price: 499, category: "T-Shirts", image: "/merch/tshirts/teefull.jpg", inStock: true },
+  { id: "tshirt-5", name: "Technicia Diet Coke paglu T-shirt", description: "Classic fit meets timeless design — your everyday essential Technicia tee.", price: 699, category: "T-Shirts", image: "/merch/tshirts/teereg.jpg", inStock: true },
+  { id: "tshirt-7", name: "Technicia Diet Coke paglu T-shirt Grey Edition ", description: "Minimal yet powerful — this grey Technicia tee adds effortless style to your look.", price: 699, category: "T-Shirts", image: "/merch/tshirts/teereggrey.jpg", inStock: true },
   { id: "tshirt-8", name: "Technicia Signature Tee", description: "Experience comfort and design perfection with the Technicia signature collection.", price: 399, category: "T-Shirts", image: "/merch/tshirts/tesscu.jpg", inStock: true },
   { id: "tshirt-9", name: "Technicia Vanity Tee", description: "Show off your passion with the Technicia Vanity tee — vibrant, bold, and built for impact.", price: 999, category: "T-Shirts", image: "/merch/tshirts/vanity.jpg", inStock: true },
   { id: "tshirt-10", name: "Technicia Bold Edition", description: "Designed for the daring — make a statement in this bold Technicia edition tee.", price: 399, category: "T-Shirts", image: "/merch/tshirts/2.png", inStock: true },
