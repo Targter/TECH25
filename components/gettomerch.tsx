@@ -61,6 +61,9 @@ export default function TechniciaMemorabiliaSection() {
               <span className="text-sm text-gray-400 font-medium">Accessories</span>
             </div>
           </div>
+           <h2 className="text-xl font-semibold text-green-400 mb-8 animate-pulse">
+    🎁 Use Code <span className="text-white">TECHNICIA25</span> for <span className="text-white">10% OFF</span> your order!
+  </h2>
 
           {/* CTA Button */}
           <Link href="/merch">
