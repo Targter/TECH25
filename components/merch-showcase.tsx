@@ -622,27 +622,34 @@ const [discountApplied, setDiscountApplied] = useState(false)
     <div className="relative min-h-screen text-white overflow-hidden">
       <main className="relative z-10 pt-8 pb-20">
         <div className="max-w-[75rem] mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-green-400 via-green-500 to-green-600 bg-clip-text text-transparent">Tech Merch</span>
-              <br />
-              <span className="text-white">For The Digital Generation</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
-              Premium merchandise designed for tech enthusiasts. Express your passion with our exclusive collection.
-            </p>
-            
-            <div className="relative max-w-md mx-auto mb-8">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search items..."
-                className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-              <Search className="absolute right-3 top-3.5 text-gray-400 h-5 w-5" />
-            </div>
-          </div>
+         <div className="text-center mb-12">
+  <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+    <span className="bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 bg-clip-text text-transparent">
+      Tech Merch
+    </span>
+    <br />
+    <span className="text-white">Made for the Digital Generation ⚡</span>
+  </h1>
+  <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
+    Elevate your style with premium gear built for innovators, coders, and creators.
+    <br />Exclusive designs that let your tech spirit shine.
+  </p>
+  <h2 className="text-xl font-semibold text-green-400 mb-8 animate-pulse">
+    🎁 Use Code <span className="text-white">TECHNICIA25</span> for <span className="text-white">10% OFF</span> your order!
+  </h2>
+
+  <div className="relative max-w-md mx-auto mb-8">
+    <input
+      type="text"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
+      placeholder="Search your favorite merch..."
+      className="w-full px-4 py-3 rounded-lg bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500"
+    />
+    <Search className="absolute right-3 top-3.5 text-gray-400 h-5 w-5" />
+  </div>
+</div>
+
 
           <div className="flex flex-wrap justify-center gap-3 mb-12">
             {categories.map((category) => (
