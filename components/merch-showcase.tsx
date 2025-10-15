@@ -628,7 +628,7 @@ const [discountApplied, setDiscountApplied] = useState(false)
       Tech Merch
     </span>
     <br />
-    <span className="text-white">Made for the Digital Generation ⚡</span>
+    <span className="text-white">Made for the Digital Generation</span>
   </h1>
   <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed mb-8">
     Elevate your style with premium gear built for innovators, coders, and creators.
