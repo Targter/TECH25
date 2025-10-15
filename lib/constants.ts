@@ -868,8 +868,6 @@ export const merchData = [
   { id: "tshirt-20", name: "Technicia T-Shirt", description: "Designed for comfort and confidence — your go-to Technicia prime edition tee.", price: 499, category: "T-Shirts", image: "/merch/tshirts/20.png", inStock: true },
   { id: "tshirt-22", name: "Technicia T-Shirt", description: "Step into excellence with the Technicia Elite tee — made for leaders, not followers.", price: 499, category: "T-Shirts", image: "/merch/tshirts/22.png", inStock: true },
 
-  // BOTTLES
-  { id: "bottle-2", name: "Technicia Hydration Bottle/Sipper", description: "Stay refreshed with our insulated Technicia bottle — sleek, durable, and eco-friendly.", price: 749, category: "Bottles", image: "/merch/bottles/16.png", inStock: true },
 
   // ACCESSORIES
   { id: "cap", name: "Technicia Cap", description: "Top off your look with the Technicia cap — smart, sporty, and sun-ready.", price: 749, category: "Caps", image: "/merch/cap.jpg", inStock: true },
