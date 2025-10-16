@@ -22,13 +22,24 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <head>
+          <!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-935BPG1ZKE"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-935BPG1ZKE');
+          </script>
+        </head>
         {/* Starfield background - applied globally */}
-        <StarfieldBackground 
+        <StarfieldBackground
           intensity={0.8}
           rotationSpeed={0.001}
           starCount={2000}
         />
-        
+
         {/* Main content */}
         <div className="min-h-screen flex flex-col relative">
           <Navbar />
