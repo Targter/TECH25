@@ -21,8 +21,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
         <head>
+      <body className={inter.className}>
           <!-- Google tag (gtag.js) -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-935BPG1ZKE"></script>
           <script>
@@ -32,13 +32,12 @@ export default function RootLayout({
 
             gtag('config', 'G-935BPG1ZKE');
           </script>
-        </head>
         {/* Starfield background - applied globally */}
         <StarfieldBackground
           intensity={0.8}
           rotationSpeed={0.001}
           starCount={2000}
-        />
+          />
 
         {/* Main content */}
         <div className="min-h-screen flex flex-col relative">
@@ -48,6 +47,7 @@ export default function RootLayout({
           <Footer />
         </div>
       </body>
+          </head>
     </html>
   );
 }
